@@ -152,7 +152,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/06/New%20Document/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/06/Base64/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -166,7 +166,125 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/09/06/New%20Document/" class="post-title-link" itemprop="url">仿射密码(单表加密)</a>
+            <a href="/2022/09/06/Base64/" class="post-title-link" itemprop="url">Base64编码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-06 21:20:23 / 修改时间：21:34:21" itemprop="dateCreated datePublished" datetime="2022-09-06T21:20:23+08:00">2022-09-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="编码过程"><a href="#编码过程" class="headerlink" title="编码过程"></a>编码过程</h2><ol>
+<li><p>将目标字符依照ASCII码表变为纯二进制</p>
+</li>
+<li><p>按每6位一个单元进行重新切割，（不够6位的地方补0）</p>
+</li>
+<li><p>对照base64编码表，编码出每个单元所代表的字符</p>
+</li>
+</ol>
+<h2 id="base64编码表"><a href="#base64编码表" class="headerlink" title="base64编码表"></a>base64编码表</h2><p><img src="https://s2.loli.net/2022/09/06/QiUuEKzCvZIFNDV.jpg" alt="v2-ff0ffbecbd68704bf1ddf8f7d53095b8_r.jpg"></p>
+<h2 id="eg："><a href="#eg：" class="headerlink" title="eg："></a>eg：</h2><ul>
+<li><p>目标字符：dlw</p>
+</li>
+<li><p>第一步：转变为二进制串</p>
+</li>
+</ul>
+<blockquote>
+<p>01100100(d) 01101100(l) 01110111(w)</p>
+</blockquote>
+<ul>
+<li>第二步：6位切割</li>
+</ul>
+<blockquote>
+<p>011001 | 000110 | 110001 | 110111</p>
+</blockquote>
+<ul>
+<li>第三步：查找每一单元对应的字符，重新编码</li>
+</ul>
+<blockquote>
+<p>011001(Z) | 000110(G) | 110001(x) | 110111(3)</p>
+</blockquote>
+<ul>
+<li>得到结果：ZGx3</li>
+</ul>
+<h2 id="python编码"><a href="#python编码" class="headerlink" title="python编码"></a>python编码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64encode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
+
+<h2 id="python解码"><a href="#python解码" class="headerlink" title="python解码"></a>python解码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64decode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
+
+<h2 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h2><ol>
+<li><p>base64的特征之一：结果串长度一定为4的倍数</p>
+</li>
+<li><p>为了补齐4倍的单元，编码时可能会出现末尾n个单元全部为空的情况，这时候就用“&#x3D;”补齐，这也是识别base64编码的一种方式</p>
+</li>
+</ol>
+<h4 id="比如两个字符“dl”"><a href="#比如两个字符“dl”" class="headerlink" title="比如两个字符“dl”"></a>比如两个字符“dl”</h4><ul>
+<li><p>二进制：01100100(d) 01101100(l)</p>
+</li>
+<li><p>切割：011001(Z)) | 000110(G) | 1100（补两个0）(w) | （空单元）(&#x3D;)</p>
+</li>
+<li><p>结果：ZGw&#x3D;</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/06/Affine%20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="WoodenmanDu">
+      <meta itemprop="description" content="多少是有点bug">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆向光点">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/06/Affine%20/" class="post-title-link" itemprop="url">仿射密码(单表加密)</a>
         </h2>
 
         <div class="post-meta">
@@ -376,7 +494,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
