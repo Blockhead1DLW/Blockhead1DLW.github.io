@@ -152,6 +152,91 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/06/New%20Document/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="WoodenmanDu">
+      <meta itemprop="description" content="多少是有点bug">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆向光点">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/06/New%20Document/" class="post-title-link" itemprop="url">仿射密码(单表加密)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-06 14:18:52 / 修改时间：21:18:42" itemprop="dateCreated datePublished" datetime="2022-09-06T14:18:52+08:00">2022-09-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><ul>
+<li>简单来说就是利用加密函数将一个字母映射为另一个字母</li>
+</ul>
+<h2 id="加密函数"><a href="#加密函数" class="headerlink" title="加密函数"></a>加密函数</h2><h3 id="E-x-x3D-ax-b-n-其中"><a href="#E-x-x3D-ax-b-n-其中" class="headerlink" title="E(x) &#x3D; (ax+b)%n,其中"></a>E(x) &#x3D; (ax+b)%n,其中</h3><ul>
+<li>n为所设置的字母编码表的大小</li>
+<li>a,b为自选数，只要满足a与n互质即可</li>
+<li>x为明文编码后的数字</li>
+</ul>
+<h2 id="解密函数"><a href="#解密函数" class="headerlink" title="解密函数"></a>解密函数</h2><h3 id="D-x-x3D-a-1-x-b-n"><a href="#D-x-x3D-a-1-x-b-n" class="headerlink" title="D(x) &#x3D; a-1(x-b)%n"></a>D(x) &#x3D; a<sup>-1</sup>(x-b)%n</h3><ul>
+<li>a<sup>-1</sup>是a在Z<sub>n</sub>群的乘法逆元</li>
+</ul>
+<blockquote>
+<p>乘法逆元这个东西等后续完全搞懂了再解释，主要的一点是满足a<sup>-1</sup>*a%n&#x3D;1</p>
+</blockquote>
+<h2 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h2><p>字母编码表就按ABC来，a取7，b取3,通过某在线模逆元计算器可得a<sup>-1</sup>&#x3D;15<br><img src="https://s2.loli.net/2022/09/06/mIWkYnr3jJP6Tgw.jpg" alt="Screenshot 2022-09-06 210756.jpg"></p>
+<h2 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/challenges/details?hash=41cc6af0-5263-425f-828d-3a15224918c1_2&task_category_id=5">BITSCTF2017 - fanfie</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/06/helloworld/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -291,15 +376,19 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
