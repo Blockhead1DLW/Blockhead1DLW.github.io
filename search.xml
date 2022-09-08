@@ -17,34 +17,109 @@
       </categories>
   </entry>
   <entry>
+    <title>IDA快捷操作</title>
+    <url>/2022/09/08/IDA/</url>
+    <content><![CDATA[<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F5</td>
+<td>反汇编</td>
+</tr>
+<tr>
+<td>函数列表Ctrl+F</td>
+<td>搜索函数</td>
+</tr>
+<tr>
+<td>Ctrl+X</td>
+<td>交叉引用</td>
+</tr>
+<tr>
+<td>G</td>
+<td>按地址查找</td>
+</tr>
+<tr>
+<td>Shift+F12</td>
+<td>字符串列表</td>
+</tr>
+<tr>
+<td>Alt+T</td>
+<td>按指令查找</td>
+</tr>
+<tr>
+<td>N</td>
+<td>重命名(函数名等)</td>
+</tr>
+<tr>
+<td>Ctrl+Z</td>
+<td>操作撤销</td>
+</tr>
+<tr>
+<td>D</td>
+<td>将字符串等元素转为数据</td>
+</tr>
+<tr>
+<td>A</td>
+<td>将数据转变为字符串</td>
+</tr>
+<tr>
+<td>C</td>
+<td>将数据转变为汇编代码</td>
+</tr>
+<tr>
+<td>U</td>
+<td>将字符串转变为原始数据</td>
+</tr>
+<tr>
+<td>Shift+E</td>
+<td>导出数据</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>反汇编</tag>
+        <tag>逆向</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>幂数加密</title>
     <url>/2022/09/07/index/</url>
-    <content><![CDATA[<h2 id="加密方法"><a href="#加密方法" class="headerlink" title="加密方法"></a>加密方法</h2><ul>
-<li>由于每一个数都可以拆成形式为”2^a+2^b+2^c….”的表达式<br>所以我们用对应”abc…”数字串来代表这个数</li>
-<li>例如<br>5 &#x3D; 2^0+2^2，即可表示为02<br>19 &#x3D; 2^0+2^1+2^4，即014</li>
+    <content><![CDATA[<h3 id="加密方法"><a href="#加密方法" class="headerlink" title="加密方法"></a>加密方法</h3><ul>
+<li>由于每一个数都可以变成形式为”2<sup>a</sup>+2<sup>b</sup>+2<sup>c</sup>….”的表达式<br>所以我们用对应”abc…”数字串来代表这个数</li>
+<li>例如<br>5 &#x3D; 2<sup>0</sup>+2<sup>2</sup>，即可表示为02<br>19 &#x3D; 2<sup>0</sup>+2<sup>1</sup>+2<sup>4</sup>，即014</li>
 </ul>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
 <p>8842101220480224404014224202480122</p>
 </blockquote>
 <ul>
 <li>是8位大写字母</li>
 <li>采用幂数加密</li>
 </ul>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><ul>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><ul>
 <li><p>联想8位字母和8个0的字符串，猜测<font color="#f18583">以0为分隔符</font><br>拆分后可以得到：</p>
 <blockquote>
 <p>88421 122 48 2244 4 142242 248 122</p>
 </blockquote>
 </li>
-<li><p>观察发现每个数字都是2的倍数，推断单个数字表示的就是”2^a”，所以将每一段数字直接求和</p>
+<li><p>观察发现每个数字都是2的倍数，推断单个数字表示的就是”2<sup>a</sup>“，所以将每一段数字直接求和</p>
 </li>
 <li><p>上脚本：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	string s = <span class="string">&quot;88421 122 48 2244 4 142242 248 122 &quot;</span>; </span><br><span class="line">	int <span class="built_in">sum</span> = 0;</span><br><span class="line">	<span class="keyword">for</span>(int i = 0; i &lt; s.length(); i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s[i] == <span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">			cout &lt;&lt;<span class="string">char(sum+&#x27;A&#x27;-1);</span></span><br><span class="line"><span class="string">			sum = 0;</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		else&#123;</span></span><br><span class="line"><span class="string">			sum += (s[i]-&#x27;0&#x27;);</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	return 0;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>得到flag：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	string s = <span class="string">&quot;88421 122 48 2244 4 142242 248 122 &quot;</span>; </span><br><span class="line">	int <span class="built_in">sum</span> = 0;</span><br><span class="line">	<span class="keyword">for</span>(int i = 0; i &lt; s.length(); i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s[i] == <span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">			cout &lt;&lt;<span class="string">char(sum+&#x27;A&#x27;-1);</span></span><br><span class="line"><span class="string">			sum = 0;</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		else&#123;</span></span><br><span class="line"><span class="string">			sum += (s[i]-&#x27;0&#x27;);</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	return 0;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>得到flag：</p>
 <blockquote>
 <p>cyberpace{WELLDONE}</p>
 </blockquote>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>CTF题解——crypto</category>
@@ -56,8 +131,8 @@
   <entry>
     <title>python-trade</title>
     <url>/2022/09/07/python-trade/</url>
-    <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>此处无法显示。。。。</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><ul>
+    <content><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>此处无法显示。。。。</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><ul>
 <li>拿到的是一个pyc文件，那第一步必定是反编回去看源码<br>利用uncompyle6反编之后得到</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line"></span><br><span class="line">def encode(message):</span><br><span class="line">    s = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> message:</span><br><span class="line">        x = ord(i) ^ 32</span><br><span class="line">        x = x + 16</span><br><span class="line">        s += chr(x)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> base64.b64encode(s)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">correct = <span class="string">&#x27;XlNkVmtUI1MgXWBZXCFeKY+AaXNt&#x27;</span></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Input flag:&#x27;</span>)</span><br><span class="line">flag = input()</span><br><span class="line"><span class="keyword">if</span> encode(flag) == correct:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;correct&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;wrong&#x27;</span>)</span><br></pre></td></tr></table></figure>
@@ -69,12 +144,14 @@
 </blockquote>
 </li>
 <li><p>直接写脚本：<br>按encode()逆一下就行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">a = <span class="string">&#x27;XlNkVmtUI1MgXWBZXCFeKY+AaXNt&#x27;</span></span><br><span class="line">a = base64.b64decode(a)</span><br><span class="line">s = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    x = (i-16)^32</span><br><span class="line">    s += chr(x)</span><br><span class="line"><span class="built_in">print</span>(s)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>得到flag：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">a = <span class="string">&#x27;XlNkVmtUI1MgXWBZXCFeKY+AaXNt&#x27;</span></span><br><span class="line">a = base64.b64decode(a)</span><br><span class="line">s = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    x = (i-16)^32</span><br><span class="line">    s += chr(x)</span><br><span class="line"><span class="built_in">print</span>(s)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>得到flag：</p>
 <blockquote>
 <p>nctf{d3c0mpil1n9_PyC}</p>
 </blockquote>
+</li>
+</ul>
 <blockquote>
 <p>这绝对是我最近遇到的最舒适的题</p>
 </blockquote>
@@ -90,11 +167,11 @@
   <entry>
     <title>pyc文件反编</title>
     <url>/2022/09/07/Re_pyc/</url>
-    <content><![CDATA[<h2 id="pyc文件"><a href="#pyc文件" class="headerlink" title="pyc文件"></a>pyc文件</h2><p>py生成的中间文件</p>
+    <content><![CDATA[<h3 id="pyc文件"><a href="#pyc文件" class="headerlink" title="pyc文件"></a>pyc文件</h3><p>py生成的中间文件</p>
 <blockquote>
 <p>先省略无数字，需要深入了解底层再说</p>
 </blockquote>
-<h2 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h2><ul>
+<h3 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h3><ul>
 <li><p>借用外部资源，安装uncompyle6</p>
 <blockquote>
 <p>pip install uncompyle</p>
@@ -106,7 +183,7 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h2><ul>
+<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
 <li>python-trade</li>
 </ul>
 ]]></content>
@@ -120,11 +197,11 @@
   <entry>
     <title>fanfie</title>
     <url>/2022/09/06/fanfie/</url>
-    <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>来源：BITSCTF2017</p>
+    <content><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>来源：BITSCTF2017</p>
 <blockquote>
 <p>Brute and get the base 32 format of flag.<br>encrypted.txt: MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI</p>
 </blockquote>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>题目是一如既往的简洁<br>首先题目告诉我们有<font color="#f18583">base32编码</font><br>同时由题目来源可知flag格式为<font color="#f18583">BITSCTF{}</font></p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>题目是一如既往的简洁<br>首先题目告诉我们有<font color="#f18583">base32编码</font><br>同时由题目来源可知flag格式为<font color="#f18583">BITSCTF{}</font></p>
 <p>所以<br>对”<b>BITSCTF{</b>“进行base32编码得到”<b>IJEVIU2DKRDHW&#x3D;&#x3D;&#x3D;</b>“</p>
 <p>接下来就是玄学猜想:<br>编码后变长了，或许刚好和题目给的密文等长吧，考虑单表加密<br>I变M，J变Z，E变Y，很明显没直接的映射规律，考虑<a href="http://woodenmandu.cn/2022/09/06/Affine/">仿射密码</a></p>
 <p>下一步计算a，b</p>
@@ -157,7 +234,7 @@
   <entry>
     <title>Base64编码</title>
     <url>/2022/09/06/Base64/</url>
-    <content><![CDATA[<h2 id="编码过程"><a href="#编码过程" class="headerlink" title="编码过程"></a>编码过程</h2><ol>
+    <content><![CDATA[<h3 id="编码过程"><a href="#编码过程" class="headerlink" title="编码过程"></a>编码过程</h3><ol>
 <li><p>将目标字符依照ASCII码表变为纯二进制</p>
 </li>
 <li><p>按每6位一个单元进行重新切割，（不够6位的地方补0）</p>
@@ -165,8 +242,8 @@
 <li><p>对照base64编码表，编码出每个单元所代表的字符</p>
 </li>
 </ol>
-<h2 id="base64编码表"><a href="#base64编码表" class="headerlink" title="base64编码表"></a>base64编码表</h2><p><img src="https://s2.loli.net/2022/09/06/QiUuEKzCvZIFNDV.jpg" alt="v2-ff0ffbecbd68704bf1ddf8f7d53095b8_r.jpg"></p>
-<h2 id="eg："><a href="#eg：" class="headerlink" title="eg："></a>eg：</h2><ul>
+<h3 id="base64编码表"><a href="#base64编码表" class="headerlink" title="base64编码表"></a>base64编码表</h3><p><img src="https://s2.loli.net/2022/09/06/QiUuEKzCvZIFNDV.jpg" alt="v2-ff0ffbecbd68704bf1ddf8f7d53095b8_r.jpg"></p>
+<h3 id="eg："><a href="#eg：" class="headerlink" title="eg："></a>eg：</h3><ul>
 <li><p>目标字符：dlw</p>
 </li>
 <li><p>第一步：转变为二进制串</p>
@@ -190,11 +267,11 @@
 <ul>
 <li>得到结果：ZGx3</li>
 </ul>
-<h2 id="python编码"><a href="#python编码" class="headerlink" title="python编码"></a>python编码</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64encode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
+<h3 id="python编码"><a href="#python编码" class="headerlink" title="python编码"></a>python编码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64encode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
 
-<h2 id="python解码"><a href="#python解码" class="headerlink" title="python解码"></a>python解码</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64decode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
+<h3 id="python解码"><a href="#python解码" class="headerlink" title="python解码"></a>python解码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64decode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
 
-<h2 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h2><ol>
+<h3 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h3><ol>
 <li><p>base64的特征之一：结果串长度一定为4的倍数</p>
 </li>
 <li><p>为了补齐4倍的单元，编码时可能会出现末尾n个单元全部为空的情况，这时候就用“&#x3D;”补齐，这也是识别base64编码的一种方式</p>
@@ -208,7 +285,7 @@
 <li><p>结果：ZGw&#x3D;</p>
 </li>
 </ul>
-<h2 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h2><ul>
+<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
 <li>python-trade</li>
 </ul>
 ]]></content>
@@ -222,22 +299,22 @@
   <entry>
     <title>仿射密码(单表加密)</title>
     <url>/2022/09/06/Affine/</url>
-    <content><![CDATA[<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><ul>
+    <content><![CDATA[<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><ul>
 <li>简单来说就是利用加密函数将一个字母映射为另一个字母</li>
 </ul>
-<h2 id="加密函数"><a href="#加密函数" class="headerlink" title="加密函数"></a>加密函数</h2><h3 id="E-x-x3D-ax-b-n-其中"><a href="#E-x-x3D-ax-b-n-其中" class="headerlink" title="E(x) &#x3D; (ax+b)%n,其中"></a>E(x) &#x3D; (ax+b)%n,其中</h3><ul>
+<h3 id="加密函数"><a href="#加密函数" class="headerlink" title="加密函数"></a>加密函数</h3><h4 id="E-x-x3D-ax-b-n-其中"><a href="#E-x-x3D-ax-b-n-其中" class="headerlink" title="E(x) &#x3D; (ax+b)%n,其中"></a>E(x) &#x3D; (ax+b)%n,其中</h4><ul>
 <li>n为所设置的字母编码表的大小</li>
 <li>a,b为自选数，只要满足a与n互质即可</li>
 <li>x为明文编码后的数字</li>
 </ul>
-<h2 id="解密函数"><a href="#解密函数" class="headerlink" title="解密函数"></a>解密函数</h2><h3 id="D-x-x3D-a-1-x-b-n"><a href="#D-x-x3D-a-1-x-b-n" class="headerlink" title="D(x) &#x3D; a-1(x-b)%n"></a>D(x) &#x3D; a<sup>-1</sup>(x-b)%n</h3><ul>
+<h3 id="解密函数"><a href="#解密函数" class="headerlink" title="解密函数"></a>解密函数</h3><h4 id="D-x-x3D-a-1-x-b-n"><a href="#D-x-x3D-a-1-x-b-n" class="headerlink" title="D(x) &#x3D; a-1(x-b)%n"></a>D(x) &#x3D; a<sup>-1</sup>(x-b)%n</h4><ul>
 <li>a<sup>-1</sup>是a在Z<sub>n</sub>群的乘法逆元</li>
 </ul>
 <blockquote>
 <p>乘法逆元这个东西等后续完全搞懂了再解释，主要的一点是满足a<sup>-1</sup>*a%n&#x3D;1</p>
 </blockquote>
-<h2 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h2><p>字母编码表就按ABC来，a取7，b取3,通过某在线模逆元计算器可得a<sup>-1</sup>&#x3D;15<br><img src="https://s2.loli.net/2022/09/06/mIWkYnr3jJP6Tgw.jpg" alt="Screenshot 2022-09-06 210756.jpg"></p>
-<h2 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h2><ul>
+<h3 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h3><p>字母编码表就按ABC来，a取7，b取3,通过某在线模逆元计算器可得a<sup>-1</sup>&#x3D;15<br><img src="https://s2.loli.net/2022/09/06/mIWkYnr3jJP6Tgw.jpg" alt="Screenshot 2022-09-06 210756.jpg"></p>
+<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
 <li><a href="http://woodenmandu.cn/2022/09/06/Affine/">BITSCTF2017 - fanfie</a></li>
 </ul>
 ]]></content>

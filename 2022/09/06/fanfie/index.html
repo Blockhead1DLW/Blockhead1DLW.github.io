@@ -28,7 +28,7 @@
 <meta property="og:description" content="题目来源：BITSCTF2017  Brute and get the base 32 format of flag.encrypted.txt: MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI  题解题目是一如既往的简洁首先题目告诉我们有base32编码同时由题目来源可知flag格式为BITSCTF{} 所以对”BITSCTF{“进行base32编码得到”IJEVIU2DK">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-06T13:43:52.601Z">
-<meta property="article:modified_time" content="2022-09-06T15:38:51.173Z">
+<meta property="article:modified_time" content="2022-09-08T08:25:22.886Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta property="article:tag" content="仿射密码">
 <meta name="twitter:card" content="summary">
@@ -207,10 +207,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-09-06 21:43:52 / 修改时间：23:38:51" itemprop="dateCreated datePublished" datetime="2022-09-06T21:43:52+08:00">2022-09-06</time>
+              <time title="创建时间：2022-09-06 21:43:52" itemprop="dateCreated datePublished" datetime="2022-09-06T21:43:52+08:00">2022-09-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-08 16:25:22" itemprop="dateModified" datetime="2022-09-08T16:25:22+08:00">2022-09-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -239,11 +245,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>来源：BITSCTF2017</p>
+        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>来源：BITSCTF2017</p>
 <blockquote>
 <p>Brute and get the base 32 format of flag.<br>encrypted.txt: MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI</p>
 </blockquote>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>题目是一如既往的简洁<br>首先题目告诉我们有<font color="#f18583">base32编码</font><br>同时由题目来源可知flag格式为<font color="#f18583">BITSCTF{}</font></p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>题目是一如既往的简洁<br>首先题目告诉我们有<font color="#f18583">base32编码</font><br>同时由题目来源可知flag格式为<font color="#f18583">BITSCTF{}</font></p>
 <p>所以<br>对”<b>BITSCTF{</b>“进行base32编码得到”<b>IJEVIU2DKRDHW&#x3D;&#x3D;&#x3D;</b>“</p>
 <p>接下来就是玄学猜想:<br>编码后变长了，或许刚好和题目给的密文等长吧，考虑单表加密<br>I变M，J变Z，E变Y，很明显没直接的映射规律，考虑<a target="_blank" rel="noopener" href="http://woodenmandu.cn/2022/09/06/Affine/">仿射密码</a></p>
 <p>下一步计算a，b</p>
@@ -365,7 +371,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -381,7 +387,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -392,7 +398,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
