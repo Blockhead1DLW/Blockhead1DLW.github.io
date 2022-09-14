@@ -20,20 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="pyc文件py生成的中间文件  先省略无数字，需要深入了解底层再说  处理 借用外部资源，安装uncompyle6  pip install uncompyle   使用  uncompyle6 name.pyc &gt; name.py   或者直接用网上的在线反编译：(https:&#x2F;&#x2F;tool.lu&#x2F;pyc&#x2F;)    因为比较bug的一件事情是：我遇到了某pyc文件用uncompyle6无法反">
+  <meta name="description" content="鉴于某些方程不是人解的，所以就用z3了…. 下载 直接搞到网盘上用链接吧：链接：(https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1gni_eYUC-Y_dQVogJh9QyA?pwd&#x3D;1234)提取码：1234   下载解压 将文件中bin目录配置到系统变量path中 新建PYTHONPATH系统变量，路径为bin&#x2F;python目录  运行 打开黑框框   cmd到bin&#x2F;p">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pyc文件反编">
-<meta property="og:url" content="http://example.com/2022/09/07/Re_pyc/index.html">
+<meta property="og:title" content="解方程用的牛马z3">
+<meta property="og:url" content="http://example.com/2022/09/14/z3/index.html">
 <meta property="og:site_name" content="逆向光点">
-<meta property="og:description" content="pyc文件py生成的中间文件  先省略无数字，需要深入了解底层再说  处理 借用外部资源，安装uncompyle6  pip install uncompyle   使用  uncompyle6 name.pyc &gt; name.py   或者直接用网上的在线反编译：(https:&#x2F;&#x2F;tool.lu&#x2F;pyc&#x2F;)    因为比较bug的一件事情是：我遇到了某pyc文件用uncompyle6无法反">
+<meta property="og:description" content="鉴于某些方程不是人解的，所以就用z3了…. 下载 直接搞到网盘上用链接吧：链接：(https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1gni_eYUC-Y_dQVogJh9QyA?pwd&#x3D;1234)提取码：1234   下载解压 将文件中bin目录配置到系统变量path中 新建PYTHONPATH系统变量，路径为bin&#x2F;python目录  运行 打开黑框框   cmd到bin&#x2F;p">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-07T08:52:23.743Z">
-<meta property="article:modified_time" content="2022-09-14T14:13:35.430Z">
+<meta property="article:published_time" content="2022-09-14T13:53:33.509Z">
+<meta property="article:modified_time" content="2022-09-14T14:13:37.412Z">
 <meta property="article:author" content="WoodenmanDu">
-<meta property="article:tag" content="reserve">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/09/07/Re_pyc/">
+<link rel="canonical" href="http://example.com/2022/09/14/z3/">
 
 
 <script id="page-configurations">
@@ -46,7 +45,7 @@
   };
 </script>
 
-  <title>pyc文件反编 | 逆向光点</title>
+  <title>解方程用的牛马z3 | 逆向光点</title>
   
 
 
@@ -184,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/07/Re_pyc/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/14/z3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -197,7 +196,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          pyc文件反编
+          解方程用的牛马z3
         </h1>
 
         <div class="post-meta">
@@ -207,16 +206,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-09-07 16:52:23" itemprop="dateCreated datePublished" datetime="2022-09-07T16:52:23+08:00">2022-09-07</time>
+              <time title="创建时间：2022-09-14 21:53:33 / 修改时间：22:13:37" itemprop="dateCreated datePublished" datetime="2022-09-14T21:53:33+08:00">2022-09-14</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-14 22:13:35" itemprop="dateModified" datetime="2022-09-14T22:13:35+08:00">2022-09-14</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -245,30 +238,46 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="pyc文件"><a href="#pyc文件" class="headerlink" title="pyc文件"></a>pyc文件</h3><p>py生成的中间文件</p>
-<blockquote>
-<p>先省略无数字，需要深入了解底层再说</p>
+        <p>鉴于某些方程不是人解的，所以就用z3了….</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><blockquote>
+<p>直接搞到网盘上用链接吧：<br>链接：(<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234">https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234</a>)<br>提取码：1234</p>
 </blockquote>
-<h3 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h3><ul>
-<li><p>借用外部资源，安装uncompyle6</p>
+<ol>
+<li>下载解压</li>
+<li>将文件中bin目录配置到系统变量path中</li>
+<li>新建PYTHONPATH系统变量，路径为bin&#x2F;python目录</li>
+</ol>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ol>
+<li>打开黑框框</li>
+</ol>
 <blockquote>
-<p>pip install uncompyle</p>
+<p>cmd到bin&#x2F;python的目录</p>
 </blockquote>
+<p>or</p>
+<blockquote>
+<p>在bin&#x2F;python目录下shift右键powershell</p>
+</blockquote>
+<ol start="2">
+<li><p>输入python</p>
 </li>
-<li><p>使用</p>
-<blockquote>
-<p>uncompyle6 name.pyc &gt; name.py</p>
-</blockquote>
+<li><p>把代码输进去回车就完了</p>
 </li>
-<li><p>或者直接用网上的在线反编译：<br>(<a target="_blank" rel="noopener" href="https://tool.lu/pyc/">https://tool.lu/pyc/</a>)</p>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
+<li><p>先看官方示例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from z3 import *</span><br><span class="line">x = Real(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">y = Real(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">s = Solver()</span><br><span class="line">s.add(x + y &gt; 5, x &gt; 1, y &gt; 1)</span><br><span class="line"><span class="built_in">print</span>(s.check())</span><br><span class="line"><span class="built_in">print</span>(s.model())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简单说一下</p>
 </li>
 </ul>
-<blockquote>
-<p>因为比较bug的一件事情是：<br>我遇到了某pyc文件用uncompyle6无法反编的情况，目前推测应该是版本不对的问题<br>后续再研究研究</p>
-</blockquote>
-<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
-<li>python-trade</li>
-</ul>
+<ol>
+<li>导包z3</li>
+<li>a &#x3D; Real(b), a为方程中的未知数，b为输出时候用来表示a的变量</li>
+<li>Solver()，简言之：解决函数，方程接收器</li>
+<li>add()，括号里塞方程就行，用“,”隔开，或者你多用几个add()也行</li>
+<li>后面俩不用动了，就那样</li>
+<li>回车出结果</li>
+</ol>
 
     </div>
 
@@ -284,7 +293,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://example.com/2022/09/07/Re_pyc/" title="pyc文件反编">http://example.com/2022/09/07/Re_pyc/</a>
+    <a href="http://example.com/2022/09/14/z3/" title="解方程用的牛马z3">http://example.com/2022/09/14/z3/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -294,9 +303,6 @@
 
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/reserve/" rel="tag"># reserve</a>
-          </div>
 
         
 
@@ -304,13 +310,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/09/06/fanfie/" rel="prev" title="fanfie">
-      <i class="fa fa-chevron-left"></i> fanfie
+    <a href="/2022/09/08/IDA/" rel="prev" title="IDA快捷操作">
+      <i class="fa fa-chevron-left"></i> IDA快捷操作
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/09/07/python-trade/" rel="next" title="python-trade">
-      python-trade <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -369,7 +372,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#pyc%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">pyc文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%89%E5%8F%8A%E9%A2%98%E7%9B%AE"><span class="nav-number">3.</span> <span class="nav-text">涉及题目</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C"><span class="nav-number">2.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
