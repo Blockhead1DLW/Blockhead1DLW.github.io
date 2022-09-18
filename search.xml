@@ -382,4 +382,116 @@
         <category>CTF——工具</category>
       </categories>
   </entry>
+  <entry>
+    <title>OD使用</title>
+    <url>/2022/09/15/OD/</url>
+    <content><![CDATA[<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F2</td>
+<td>断点</td>
+</tr>
+<tr>
+<td>F4</td>
+<td>让程序执行到光标处</td>
+</tr>
+<tr>
+<td>F7</td>
+<td>单步步入</td>
+</tr>
+<tr>
+<td>F8</td>
+<td>单步步过</td>
+</tr>
+<tr>
+<td>F9</td>
+<td>让程序执行到断点处</td>
+</tr>
+<tr>
+<td>Ctrl+F2</td>
+<td>重载程序</td>
+</tr>
+<tr>
+<td>Ctrl+G</td>
+<td>快速定位</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>CTF——工具</category>
+      </categories>
+      <tags>
+        <tag>反汇编</tag>
+        <tag>逆向</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>工具汇总</title>
+    <url>/2022/09/18/Tools/</url>
+    <content><![CDATA[<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>这篇文章主要把逆向和密码学需要用到的工具汇总一下</li>
+<li>如果引用内容侵权，请联系删除</li>
+<li>安装过程一般不做说明，google即可</li>
+</ul>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h3><ul>
+<li><p>APKTOOLS<br>官方网站-(<a href="https://ibotpeaches.github.io/Apktool/install/">https://ibotpeaches.github.io/Apktool/install/</a>)</p>
+</li>
+<li><p>Dex2jar<br> SOURCEFORGE-(<a href="https://sourceforge.net/projects/dex2jar">https://sourceforge.net/projects/dex2jar</a>)</p>
+</li>
+<li><p>JD-GUIjar</p>
+</li>
+</ul>
+<h3 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h3><ul>
+<li>z3(解方程工具)<blockquote>
+<p>链接：(<a href="https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234">https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234</a>)<br>提取码：1234</p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CTF——工具</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>APK反编</title>
+    <url>/2022/09/18/APK/</url>
+    <content><![CDATA[<h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ol>
+<li><p>修改apk文件后缀为zip，解压</p>
+</li>
+<li><p>将反编的dex文件复制到dex2jar工具目录下</p>
+</li>
+<li><p>使用命令生成jar文件</p>
+<blockquote>
+<p>d2j-dex2jar.bat document_name.dex</p>
+</blockquote>
+<p>如果出现下列报错(版本号不匹配):</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">com.googlecode.d2j.DexException: not support version.</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:151)</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:211)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.doCommandLine(Dex2jarCmd.java:104)</span><br><span class="line">     at com.googlecode.dex2jar.tools.BaseCmd.doMain(BaseCmd.java:288)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.main(Dex2jarCmd.java:32)</span><br></pre></td></tr></table></figure>
+<p>用文本编辑软件打开dex文件，将文件头改为035或者036</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dex</span><br><span class="line">037 9!Q&lt;€颧€?滣^氶wl?  p   x</span><br></pre></td></tr></table></figure>
+<p>正常情况应该是这样的(没有任何多余)：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">E:\SoftWarePackage\Jd-GUI+dex2\dex2jar-2.0&gt;d2j-dex2jar.bat classes3.dex</span><br><span class="line"> dex2jar classes3.dex -&gt; .\classes3-dex2jar.jar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用jd-guijar反编译jar文件，命令是这个：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar jd-gui-1.5.0.jar</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其实就是执行jar文件而已，可以直接写bat桌面一键打开</li>
+</ul>
+</li>
+<li><p>收工</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>CTF———知识点</category>
+      </categories>
+      <tags>
+        <tag>反汇编</tag>
+        <tag>逆向</tag>
+      </tags>
+  </entry>
 </search>

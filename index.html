@@ -260,6 +260,296 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/18/APK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="WoodenmanDu">
+      <meta itemprop="description" content="多少是有点bug">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆向光点">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/18/APK/" class="post-title-link" itemprop="url">APK反编</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-18 17:40:32 / 修改时间：18:04:18" itemprop="dateCreated datePublished" datetime="2022-09-18T17:40:32+08:00">2022-09-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ol>
+<li><p>修改apk文件后缀为zip，解压</p>
+</li>
+<li><p>将反编的dex文件复制到dex2jar工具目录下</p>
+</li>
+<li><p>使用命令生成jar文件</p>
+<blockquote>
+<p>d2j-dex2jar.bat document_name.dex</p>
+</blockquote>
+<p>如果出现下列报错(版本号不匹配):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">com.googlecode.d2j.DexException: not support version.</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:151)</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:211)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.doCommandLine(Dex2jarCmd.java:104)</span><br><span class="line">     at com.googlecode.dex2jar.tools.BaseCmd.doMain(BaseCmd.java:288)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.main(Dex2jarCmd.java:32)</span><br></pre></td></tr></table></figure>
+<p>用文本编辑软件打开dex文件，将文件头改为035或者036</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dex</span><br><span class="line">037 9!Q&lt;€颧€?滣^氶wl?  p   x</span><br></pre></td></tr></table></figure>
+<p>正常情况应该是这样的(没有任何多余)：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\SoftWarePackage\Jd-GUI+dex2\dex2jar-2.0&gt;d2j-dex2jar.bat classes3.dex</span><br><span class="line"> dex2jar classes3.dex -&gt; .\classes3-dex2jar.jar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用jd-guijar反编译jar文件，命令是这个：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jd-gui-1.5.0.jar</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其实就是执行jar文件而已，可以直接写bat桌面一键打开</li>
+</ul>
+</li>
+<li><p>收工</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/18/Tools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="WoodenmanDu">
+      <meta itemprop="description" content="多少是有点bug">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆向光点">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/18/Tools/" class="post-title-link" itemprop="url">工具汇总</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-18 11:57:32 / 修改时间：17:59:38" itemprop="dateCreated datePublished" datetime="2022-09-18T11:57:32+08:00">2022-09-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF%E2%80%94%E2%80%94%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">CTF——工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>这篇文章主要把逆向和密码学需要用到的工具汇总一下</li>
+<li>如果引用内容侵权，请联系删除</li>
+<li>安装过程一般不做说明，google即可</li>
+</ul>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h3><ul>
+<li><p>APKTOOLS<br>官方网站-(<a target="_blank" rel="noopener" href="https://ibotpeaches.github.io/Apktool/install/">https://ibotpeaches.github.io/Apktool/install/</a>)</p>
+</li>
+<li><p>Dex2jar<br> SOURCEFORGE-(<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/dex2jar">https://sourceforge.net/projects/dex2jar</a>)</p>
+</li>
+<li><p>JD-GUIjar</p>
+</li>
+</ul>
+<h3 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h3><ul>
+<li>z3(解方程工具)<blockquote>
+<p>链接：(<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234">https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234</a>)<br>提取码：1234</p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/15/OD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="WoodenmanDu">
+      <meta itemprop="description" content="多少是有点bug">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆向光点">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/15/OD/" class="post-title-link" itemprop="url">OD使用</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-15 20:05:00" itemprop="dateCreated datePublished" datetime="2022-09-15T20:05:00+08:00">2022-09-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-18 11:59:37" itemprop="dateModified" datetime="2022-09-18T11:59:37+08:00">2022-09-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF%E2%80%94%E2%80%94%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">CTF——工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F2</td>
+<td>断点</td>
+</tr>
+<tr>
+<td>F4</td>
+<td>让程序执行到光标处</td>
+</tr>
+<tr>
+<td>F7</td>
+<td>单步步入</td>
+</tr>
+<tr>
+<td>F8</td>
+<td>单步步过</td>
+</tr>
+<tr>
+<td>F9</td>
+<td>让程序执行到断点处</td>
+</tr>
+<tr>
+<td>Ctrl+F2</td>
+<td>重载程序</td>
+</tr>
+<tr>
+<td>Ctrl+G</td>
+<td>快速定位</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/14/z3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -901,228 +1191,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/06/Base64/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/06/Base64/" class="post-title-link" itemprop="url">Base64编码</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-06 21:20:23" itemprop="dateCreated datePublished" datetime="2022-09-06T21:20:23+08:00">2022-09-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-14 21:54:40" itemprop="dateModified" datetime="2022-09-14T21:54:40+08:00">2022-09-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="编码过程"><a href="#编码过程" class="headerlink" title="编码过程"></a>编码过程</h3><ol>
-<li><p>将目标字符依照ASCII码表变为纯二进制</p>
-</li>
-<li><p>按每6位一个单元进行重新切割，（不够6位的地方补0）</p>
-</li>
-<li><p>对照base64编码表，编码出每个单元所代表的字符</p>
-</li>
-</ol>
-<h3 id="base64编码表"><a href="#base64编码表" class="headerlink" title="base64编码表"></a>base64编码表</h3><p><img src="https://s2.loli.net/2022/09/06/QiUuEKzCvZIFNDV.jpg" alt="v2-ff0ffbecbd68704bf1ddf8f7d53095b8_r.jpg"></p>
-<h3 id="eg："><a href="#eg：" class="headerlink" title="eg："></a>eg：</h3><ul>
-<li><p>目标字符：dlw</p>
-</li>
-<li><p>第一步：转变为二进制串</p>
-</li>
-</ul>
-<blockquote>
-<p>01100100(d) 01101100(l) 01110111(w)</p>
-</blockquote>
-<ul>
-<li>第二步：6位切割</li>
-</ul>
-<blockquote>
-<p>011001 | 000110 | 110001 | 110111</p>
-</blockquote>
-<ul>
-<li>第三步：查找每一单元对应的字符，重新编码</li>
-</ul>
-<blockquote>
-<p>011001(Z) | 000110(G) | 110001(x) | 110111(3)</p>
-</blockquote>
-<ul>
-<li>得到结果：ZGx3</li>
-</ul>
-<h3 id="python编码"><a href="#python编码" class="headerlink" title="python编码"></a>python编码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64encode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
-
-<h3 id="python解码"><a href="#python解码" class="headerlink" title="python解码"></a>python解码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64decode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
-
-<h3 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h3><ol>
-<li><p>base64的特征之一：结果串长度一定为4的倍数</p>
-</li>
-<li><p>为了补齐4倍的单元，编码时可能会出现末尾n个单元全部为空的情况，这时候就用“&#x3D;”补齐，这也是识别base64编码的一种方式</p>
-</li>
-</ol>
-<h4 id="比如两个字符“dl”"><a href="#比如两个字符“dl”" class="headerlink" title="比如两个字符“dl”"></a>比如两个字符“dl”</h4><ul>
-<li><p>二进制：01100100(d) 01101100(l)</p>
-</li>
-<li><p>切割：011001(Z)) | 000110(G) | 1100（补两个0）(w) | （空单元）(&#x3D;)</p>
-</li>
-<li><p>结果：ZGw&#x3D;</p>
-</li>
-</ul>
-<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
-<li>python-trade</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/06/Affine/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/06/Affine/" class="post-title-link" itemprop="url">仿射密码(单表加密)</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-06 14:18:52" itemprop="dateCreated datePublished" datetime="2022-09-06T14:18:52+08:00">2022-09-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-14 21:54:46" itemprop="dateModified" datetime="2022-09-14T21:54:46+08:00">2022-09-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF——知识点</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><ul>
-<li>简单来说就是利用加密函数将一个字母映射为另一个字母</li>
-</ul>
-<h3 id="加密函数"><a href="#加密函数" class="headerlink" title="加密函数"></a>加密函数</h3><h4 id="E-x-x3D-ax-b-n-其中"><a href="#E-x-x3D-ax-b-n-其中" class="headerlink" title="E(x) &#x3D; (ax+b)%n,其中"></a>E(x) &#x3D; (ax+b)%n,其中</h4><ul>
-<li>n为所设置的字母编码表的大小</li>
-<li>a,b为自选数，只要满足a与n互质即可</li>
-<li>x为明文编码后的数字</li>
-</ul>
-<h3 id="解密函数"><a href="#解密函数" class="headerlink" title="解密函数"></a>解密函数</h3><h4 id="D-x-x3D-a-1-x-b-n"><a href="#D-x-x3D-a-1-x-b-n" class="headerlink" title="D(x) &#x3D; a-1(x-b)%n"></a>D(x) &#x3D; a<sup>-1</sup>(x-b)%n</h4><ul>
-<li>a<sup>-1</sup>是a在Z<sub>n</sub>群的乘法逆元</li>
-</ul>
-<blockquote>
-<p>乘法逆元这个东西等后续完全搞懂了再解释，主要的一点是满足a<sup>-1</sup>*a%n&#x3D;1</p>
-</blockquote>
-<h3 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h3><p>字母编码表就按ABC来，a取7，b取3,通过某在线模逆元计算器可得a<sup>-1</sup>&#x3D;15<br><img src="https://s2.loli.net/2022/09/06/mIWkYnr3jJP6Tgw.jpg" alt="Screenshot 2022-09-06 210756.jpg"></p>
-<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
-<li><a target="_blank" rel="noopener" href="http://woodenmandu.cn/2022/09/06/Affine/">BITSCTF2017 - fanfie</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1189,7 +1262,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
