@@ -1,33 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>仿射密码(单表加密)</title>
-    <url>/2022/09/06/Affine/</url>
-    <content><![CDATA[<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><ul>
-<li>简单来说就是利用加密函数将一个字母映射为另一个字母</li>
-</ul>
-<h3 id="加密函数"><a href="#加密函数" class="headerlink" title="加密函数"></a>加密函数</h3><h4 id="E-x-x3D-ax-b-n-其中"><a href="#E-x-x3D-ax-b-n-其中" class="headerlink" title="E(x) &#x3D; (ax+b)%n,其中"></a>E(x) &#x3D; (ax+b)%n,其中</h4><ul>
-<li>n为所设置的字母编码表的大小</li>
-<li>a,b为自选数，只要满足a与n互质即可</li>
-<li>x为明文编码后的数字</li>
-</ul>
-<h3 id="解密函数"><a href="#解密函数" class="headerlink" title="解密函数"></a>解密函数</h3><h4 id="D-x-x3D-a-1-x-b-n"><a href="#D-x-x3D-a-1-x-b-n" class="headerlink" title="D(x) &#x3D; a-1(x-b)%n"></a>D(x) &#x3D; a<sup>-1</sup>(x-b)%n</h4><ul>
-<li>a<sup>-1</sup>是a在Z<sub>n</sub>群的乘法逆元</li>
+    <title>CTF逆向入门</title>
+    <url>/2022/09/27/Introduction/</url>
+    <content><![CDATA[<h4 id="把之前的hello-world搬过来，没地方放了，可手动忽略"><a href="#把之前的hello-world搬过来，没地方放了，可手动忽略" class="headerlink" title="把之前的hello world搬过来，没地方放了，可手动忽略"></a>把之前的hello world搬过来，没地方放了，可手动忽略</h4><h2 id="This-is-a-new-starting-point"><a href="#This-is-a-new-starting-point" class="headerlink" title="This is a new starting point."></a>This is a new starting point.</h2><h4 id="About-Ctf-Xcpc-and-Life"><a href="#About-Ctf-Xcpc-and-Life" class="headerlink" title="About Ctf, Xcpc and Life."></a>About Ctf, Xcpc and Life.</h4><h2 id="So，Welcome-to-a-new-world"><a href="#So，Welcome-to-a-new-world" class="headerlink" title="So，Welcome to a new world!"></a><em>So，Welcome to a new world!</em></h2><h4 id="Some-other-web-sites"><a href="#Some-other-web-sites" class="headerlink" title="Some other web sites:"></a>Some other web sites:</h4><ul>
+<li><a href="https://blog.csdn.net/qq_59700927?spm=1000.2115.3001.5343">CSDN</a></li>
+<li><a href="https://www.zhihu.com/people/woodenman-15">知乎</a></li>
+<li><a href="https://github.com/Blockhead1DLW">Github</a></li>
 </ul>
 <blockquote>
-<p>乘法逆元这个东西等后续完全搞懂了再解释，主要的一点是满足a<sup>-1</sup>*a%n&#x3D;1</p>
+<p>If the picture cannot be loaded, it can be determined that your site is in China</p>
 </blockquote>
-<h3 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h3><p>字母编码表就按ABC来，a取7，b取3,通过某在线模逆元计算器可得a<sup>-1</sup>&#x3D;15<br><img src="https://s2.loli.net/2022/09/06/mIWkYnr3jJP6Tgw.jpg" alt="Screenshot 2022-09-06 210756.jpg"></p>
-<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
-<li><a href="http://woodenmandu.cn/2022/09/06/Affine/">BITSCTF2017 - fanfie</a></li>
+<h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>用这篇文章来浅谈一下逆向吧<br>如果你是大一，那你可能会遇到一些麻烦，一下子接触这么多语言，接触这么多配置方式。<br>我只能说，不要急，慢慢来</p>
+<h2 id="序序言"><a href="#序序言" class="headerlink" title="序序言"></a>序序言</h2><blockquote>
+<p>你可以不会汇编，但是你不可以不会c语言</p>
+</blockquote>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>你应该干什么？</p>
+<ol>
+<li>在展开正式学习之前，先试着去安装一个kali虚拟机，这是必要的</li>
+<li>关于ctf-wiki，我们需要看，但不是现在；如果你想看的话，可以看看目录</li>
+<li>安装工具，可以看我工具篇，安装教程的话百度都有</li>
+<li>开始学习<ol>
+<li>学会使用工具(目的在于学会工具使用，而不是看懂代码)</li>
+</ol>
+<ul>
+<li>exe文件执行与反编</li>
+<li>elf文件执行与反编</li>
+<li>jar文件执行与反编</li>
+<li>pyc文件反编与编译运行</li>
+<li>apk文件反编<blockquote>
+<p>记住，要实践去反编一个文件，完成一道对应的题才行<br>或许你不能完全的完成上面的事情，但这并不影响你继续后面的步骤</p>
+</blockquote>
+</li>
+</ul>
+<ol start="2">
+<li>了解一些常见的加密方式，tea，xtea，base64等等</li>
+<li>python，java语言学习，先了解基本语法，此外，用python写一些简单的脚本（记住循序渐进）</li>
+<li>汇编语言（功底越深越好）</li>
+<li>看CTF-wiki，到这里你已经有了一些功底，是时候加深了解逆向了。浅浅接触一下花指令、加脱壳、反调试技术等等，你或许会发现自己看不懂，别急，看不懂的就是我们接下来要学习的</li>
+<li>看过wiki之后，我想你明白了逆向有windows逆向，linux逆向，Android逆向，Ios逆向<blockquote>
+<p>到这里，如果你在学习时同时刷了足够多的题，那我想你应该知道你接下来要做什么了</p>
+</blockquote>
+</li>
+<li>尝试破解一些简单的软件之类(记住，不是让你犯法)</li>
+<li>练题 &amp; 底层学习</li>
+<li>少年加油</li>
+</ol>
+</li>
+</ol>
+<h2 id="一些建议"><a href="#一些建议" class="headerlink" title="一些建议"></a>一些建议</h2><ul>
+<li>逆向是一个需要代码能力较强的方向，最后你一定能够依靠的，是汇编，所以，学好汇编</li>
+<li>多刷题，逆向要做的事就决定了他需要积攒足够的经验，因为你也不知道你下一秒遇到的软件是哪个奇葩开发的</li>
+<li>多去论坛转悠转悠，会有帮助</li>
+<li>不要执着于一个点，要学会取舍</li>
+</ul>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>师傅领进门，修行靠自己<br>记住，能轻易完成的工作，也是最容易被替代的工作，我们要成为的，不是被替代的人。‘</p>
+]]></content>
+      <categories>
+        <category>Welcome</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>书籍汇总</title>
+    <url>/2022/09/27/book/</url>
+    <content><![CDATA[<h2 id="直接正文"><a href="#直接正文" class="headerlink" title="直接正文"></a>直接正文</h2><ul>
+<li><p>《逆向工程核心原理》</p>
+<blockquote>
+<p>我觉得这本书开始的入门非常合理，简直完美</p>
+</blockquote>
+</li>
+<li><p>《加密与解密》</p>
+<blockquote>
+<p>堪比《算法导论》的大哥书籍，前几章必看，后面的选择性看</p>
+</blockquote>
+</li>
+<li><p>《基于x86汇编语言》</p>
+<blockquote>
+<p>我说了汇编非常重要，这个书上来吧</p>
+</blockquote>
+</li>
+<li><p>《汇编语言》王爽</p>
+<blockquote>
+<p>学汇编这本书也备受好评</p>
+</blockquote>
+</li>
+</ul>
+<p>可以了可以了，再说就不礼貌了</p>
+]]></content>
+      <categories>
+        <category>CTF——工具</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>APK反编</title>
+    <url>/2022/09/18/APK/</url>
+    <content><![CDATA[<h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ol>
+<li><p>修改apk文件后缀为zip，解压</p>
+</li>
+<li><p>将反编的dex文件复制到dex2jar工具目录下</p>
+</li>
+<li><p>使用命令生成jar文件</p>
+<blockquote>
+<p>d2j-dex2jar.bat document_name.dex</p>
+</blockquote>
+<p>如果出现下列报错(版本号不匹配):</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">com.googlecode.d2j.DexException: not support version.</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:151)</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:211)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.doCommandLine(Dex2jarCmd.java:104)</span><br><span class="line">     at com.googlecode.dex2jar.tools.BaseCmd.doMain(BaseCmd.java:288)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.main(Dex2jarCmd.java:32)</span><br></pre></td></tr></table></figure>
+<p>用文本编辑软件打开dex文件，将文件头改为035或者036</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dex</span><br><span class="line">037 9!Q&lt;€颧€?滣^氶wl?  p   x</span><br></pre></td></tr></table></figure>
+<p>正常情况应该是这样的(没有任何多余)：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">E:\SoftWarePackage\Jd-GUI+dex2\dex2jar-2.0&gt;d2j-dex2jar.bat classes3.dex</span><br><span class="line"> dex2jar classes3.dex -&gt; .\classes3-dex2jar.jar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用jd-guijar反编译jar文件，命令是这个：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar jd-gui-1.5.0.jar</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其实就是执行jar文件而已，可以直接写bat桌面一键打开</li>
+</ul>
+</li>
+<li><p>收工</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>CTF———知识点</category>
+      </categories>
+      <tags>
+        <tag>反汇编</tag>
+        <tag>逆向</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>工具汇总</title>
+    <url>/2022/09/18/Tools/</url>
+    <content><![CDATA[<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>这篇文章主要把逆向和密码学需要用到的工具汇总一下</li>
+<li>如果引用内容侵权，请联系删除</li>
+<li>安装过程一般不做说明，google即可</li>
+</ul>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h3><ul>
+<li><p>exeinfope(查壳工具)</p>
+</li>
+<li><p>PEiD(查壳工具)</p>
+</li>
+<li><p>IDA(静态调试工具)</p>
+</li>
+<li><p>Ollydbg(动态调试工具)<br>吾爱破解</p>
+</li>
+<li><p>cheat engine(内存修改工具)<br>官方网站-(<a href="https://cheatengine.org/">https://cheatengine.org/</a>)</p>
+</li>
+<li><p>upx加脱壳</p>
+<blockquote>
+<p>链接：(<a href="https://pan.baidu.com/s/1LqzAz1arZqpbEBEHZrRsBg?pwd=1234">https://pan.baidu.com/s/1LqzAz1arZqpbEBEHZrRsBg?pwd=1234</a>)<br>提取码：1234</p>
+</blockquote>
+</li>
+<li><p>Winhex(十六进制查看器)</p>
+</li>
+<li><p>010 Editor(十六进制查看器)</p>
+</li>
+<li><p>APKTOOLS(反编译android apk)<br>官方网站-(<a href="https://ibotpeaches.github.io/Apktool/install/">https://ibotpeaches.github.io/Apktool/install/</a>)</p>
+</li>
+<li><p>Dex2jar(打包dex文件为jar)<br> SOURCEFORGE-(<a href="https://sourceforge.net/projects/dex2jar">https://sourceforge.net/projects/dex2jar</a>)</p>
+</li>
+<li><p>JD-GUIjar(反编译jar文件)</p>
+</li>
+</ul>
+<h3 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h3><ul>
+<li><p>z3(解方程工具)</p>
+<blockquote>
+<p>链接：(<a href="https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234">https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234</a>)<br>提取码：1234</p>
+</blockquote>
+</li>
+<li><p>Ziperello(zip加密暴力破解)</p>
+<blockquote>
+<p>链接：(<a href="https://pan.baidu.com/s/1of_e5mleYDPjZGZxiYi63Q?pwd=1234">https://pan.baidu.com/s/1of_e5mleYDPjZGZxiYi63Q?pwd=1234</a>)<br>提取码：1234</p>
+</blockquote>
+</li>
 </ul>
 ]]></content>
       <categories>
-        <category>CTF——知识点</category>
+        <category>CTF——工具</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>OD使用</title>
+    <url>/2022/09/15/OD/</url>
+    <content><![CDATA[<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F2</td>
+<td>断点</td>
+</tr>
+<tr>
+<td>F4</td>
+<td>让程序执行到光标处</td>
+</tr>
+<tr>
+<td>F7</td>
+<td>单步步入</td>
+</tr>
+<tr>
+<td>F8</td>
+<td>单步步过</td>
+</tr>
+<tr>
+<td>F9</td>
+<td>让程序执行到断点处</td>
+</tr>
+<tr>
+<td>Ctrl+F2</td>
+<td>重载程序</td>
+</tr>
+<tr>
+<td>Ctrl+G</td>
+<td>快速定位</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>CTF——工具</category>
       </categories>
       <tags>
-        <tag>密码学</tag>
+        <tag>反汇编</tag>
+        <tag>逆向</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>解方程用的牛马z3</title>
+    <url>/2022/09/14/z3/</url>
+    <content><![CDATA[<p>鉴于某些方程不是人解的，所以就用z3了….</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><blockquote>
+<p>直接搞到网盘上用链接吧：<br>链接：(<a href="https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234">https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234</a>)<br>提取码：1234</p>
+</blockquote>
+<ol>
+<li>下载解压</li>
+<li>将文件中bin目录配置到系统变量path中</li>
+<li>新建PYTHONPATH系统变量，路径为bin&#x2F;python目录</li>
+</ol>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ol>
+<li>打开黑框框</li>
+</ol>
+<blockquote>
+<p>cmd到bin&#x2F;python的目录</p>
+</blockquote>
+<p>or</p>
+<blockquote>
+<p>在bin&#x2F;python目录下shift右键powershell</p>
+</blockquote>
+<ol start="2">
+<li><p>输入python</p>
+</li>
+<li><p>把代码输进去回车就完了</p>
+</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
+<li><p>先看官方示例</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">from z3 import *</span><br><span class="line">x = Real(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">y = Real(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">s = Solver()</span><br><span class="line">s.add(x + y &gt; 5, x &gt; 1, y &gt; 1)</span><br><span class="line"><span class="built_in">print</span>(s.check())</span><br><span class="line"><span class="built_in">print</span>(s.model())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简单说一下</p>
+</li>
+</ul>
+<ol>
+<li>导包z3</li>
+<li>a &#x3D; Real(b), a为方程中的未知数，b为输出时候用来表示a的变量</li>
+<li>Solver()，简言之：解决函数，方程接收器</li>
+<li>add()，括号里塞方程就行，用“,”隔开，或者你多用几个add()也行</li>
+<li>后面俩不用动了，就那样</li>
+<li>回车出结果</li>
+</ol>
+]]></content>
+      <categories>
+        <category>CTF——工具</category>
+      </categories>
   </entry>
   <entry>
     <title>IDA快捷操作</title>
@@ -48,12 +295,12 @@
 <td>搜索函数</td>
 </tr>
 <tr>
-<td>Ctrl+X</td>
+<td>X</td>
 <td>交叉引用</td>
 </tr>
 <tr>
 <td>G</td>
-<td>按地址查找</td>
+<td>跳转到指定地址</td>
 </tr>
 <tr>
 <td>Shift+F12</td>
@@ -95,6 +342,34 @@
 <td>Shift+F2</td>
 <td>脚本嵌入</td>
 </tr>
+<tr>
+<td>;</td>
+<td>添加注释(所有交叉参考处均显示)</td>
+</tr>
+<tr>
+<td>:</td>
+<td>添加注释(仅在此处显示)</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>后退一步</td>
+</tr>
+<tr>
+<td>Ctrl+Enter</td>
+<td>前进一步</td>
+</tr>
+<tr>
+<td>Alt+M</td>
+<td>标记当前位置</td>
+</tr>
+<tr>
+<td>Ctrl+M</td>
+<td>跳转到标记位置</td>
+</tr>
+<tr>
+<td>P</td>
+<td>创建函数</td>
+</tr>
 </tbody></table>
 ]]></content>
       <categories>
@@ -103,159 +378,6 @@
       <tags>
         <tag>反汇编</tag>
         <tag>逆向</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>pyc文件反编</title>
-    <url>/2022/09/07/Re_pyc/</url>
-    <content><![CDATA[<h3 id="pyc文件"><a href="#pyc文件" class="headerlink" title="pyc文件"></a>pyc文件</h3><p>py生成的中间文件</p>
-<blockquote>
-<p>先省略无数字，需要深入了解底层再说</p>
-</blockquote>
-<h3 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h3><ul>
-<li><p>借用外部资源，安装uncompyle6</p>
-<blockquote>
-<p>pip install uncompyle</p>
-</blockquote>
-</li>
-<li><p>使用</p>
-<blockquote>
-<p>uncompyle6 name.pyc &gt; name.py</p>
-</blockquote>
-</li>
-<li><p>或者直接用网上的在线反编译：<br>(<a href="https://tool.lu/pyc/">https://tool.lu/pyc/</a>)</p>
-</li>
-</ul>
-<blockquote>
-<p>因为比较bug的一件事情是：<br>我遇到了某pyc文件用uncompyle6无法反编的情况，目前推测应该是版本不对的问题<br>后续再研究研究</p>
-</blockquote>
-<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
-<li>python-trade</li>
-</ul>
-]]></content>
-      <categories>
-        <category>CTF——工具</category>
-      </categories>
-      <tags>
-        <tag>reserve</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Base64编码</title>
-    <url>/2022/09/06/Base64/</url>
-    <content><![CDATA[<h3 id="编码过程"><a href="#编码过程" class="headerlink" title="编码过程"></a>编码过程</h3><ol>
-<li><p>将目标字符依照ASCII码表变为纯二进制</p>
-</li>
-<li><p>按每6位一个单元进行重新切割，（不够6位的地方补0）</p>
-</li>
-<li><p>对照base64编码表，编码出每个单元所代表的字符</p>
-</li>
-</ol>
-<h3 id="base64编码表"><a href="#base64编码表" class="headerlink" title="base64编码表"></a>base64编码表</h3><p><img src="https://s2.loli.net/2022/09/06/QiUuEKzCvZIFNDV.jpg" alt="v2-ff0ffbecbd68704bf1ddf8f7d53095b8_r.jpg"></p>
-<h3 id="eg："><a href="#eg：" class="headerlink" title="eg："></a>eg：</h3><ul>
-<li><p>目标字符：dlw</p>
-</li>
-<li><p>第一步：转变为二进制串</p>
-</li>
-</ul>
-<blockquote>
-<p>01100100(d) 01101100(l) 01110111(w)</p>
-</blockquote>
-<ul>
-<li>第二步：6位切割</li>
-</ul>
-<blockquote>
-<p>011001 | 000110 | 110001 | 110111</p>
-</blockquote>
-<ul>
-<li>第三步：查找每一单元对应的字符，重新编码</li>
-</ul>
-<blockquote>
-<p>011001(Z) | 000110(G) | 110001(x) | 110111(3)</p>
-</blockquote>
-<ul>
-<li>得到结果：ZGx3</li>
-</ul>
-<h3 id="python编码"><a href="#python编码" class="headerlink" title="python编码"></a>python编码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64encode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
-
-<h3 id="python解码"><a href="#python解码" class="headerlink" title="python解码"></a>python解码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64decode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
-
-<h3 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h3><ol>
-<li><p>base64的特征之一：结果串长度一定为4的倍数</p>
-</li>
-<li><p>为了补齐4倍的单元，编码时可能会出现末尾n个单元全部为空的情况，这时候就用“&#x3D;”补齐，这也是识别base64编码的一种方式</p>
-</li>
-</ol>
-<h4 id="比如两个字符“dl”"><a href="#比如两个字符“dl”" class="headerlink" title="比如两个字符“dl”"></a>比如两个字符“dl”</h4><ul>
-<li><p>二进制：01100100(d) 01101100(l)</p>
-</li>
-<li><p>切割：011001(Z)) | 000110(G) | 1100（补两个0）(w) | （空单元）(&#x3D;)</p>
-</li>
-<li><p>结果：ZGw&#x3D;</p>
-</li>
-</ul>
-<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
-<li>python-trade</li>
-</ul>
-]]></content>
-      <categories>
-        <category>CTF———知识点</category>
-      </categories>
-      <tags>
-        <tag>密码学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/09/06/helloworld/</url>
-    <content><![CDATA[<h2 id="This-is-a-new-starting-point"><a href="#This-is-a-new-starting-point" class="headerlink" title="This is a new starting point."></a>This is a new starting point.</h2><h4 id="About-Ctf-Xcpc-and-Life"><a href="#About-Ctf-Xcpc-and-Life" class="headerlink" title="About Ctf, Xcpc and Life."></a>About Ctf, Xcpc and Life.</h4><h2 id="So，Welcome-to-a-new-world"><a href="#So，Welcome-to-a-new-world" class="headerlink" title="So，Welcome to a new world!"></a><em>So，Welcome to a new world!</em></h2><h4 id="Some-other-web-sites"><a href="#Some-other-web-sites" class="headerlink" title="Some other web sites:"></a>Some other web sites:</h4><ul>
-<li><a href="https://blog.csdn.net/qq_59700927?spm=1000.2115.3001.5343">CSDN</a></li>
-<li><a href="https://www.zhihu.com/people/woodenman-15">知乎</a></li>
-<li><a href="https://github.com/Blockhead1DLW">Github</a></li>
-</ul>
-<blockquote>
-<p>If the picture cannot be loaded, it can be determined that your site is in China</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Welcome</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>fanfie</title>
-    <url>/2022/09/06/fanfie/</url>
-    <content><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>来源：BITSCTF2017</p>
-<blockquote>
-<p>Brute and get the base 32 format of flag.<br>encrypted.txt: MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI</p>
-</blockquote>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>题目是一如既往的简洁<br>首先题目告诉我们有<font color="#f18583">base32编码</font><br>同时由题目来源可知flag格式为<font color="#f18583">BITSCTF{}</font></p>
-<p>所以<br>对”<b>BITSCTF{</b>“进行base32编码得到”<b>IJEVIU2DKRDHW&#x3D;&#x3D;&#x3D;</b>“</p>
-<p>接下来就是玄学猜想:<br>编码后变长了，或许刚好和题目给的密文等长吧，考虑单表加密<br>I变M，J变Z，E变Y，很明显没直接的映射规律，考虑<a href="http://woodenmandu.cn/2022/09/06/Affine/">仿射密码</a></p>
-<p>下一步计算a，b</p>
-<blockquote>
-<p>别忘记这是base32，加密函数为E(x) &#x3D; (ax+b)%32</p>
-</blockquote>
-<ul>
-<li>小算一下，拿两组数据：<blockquote>
-<p>8(I)–&gt;12(M)<br>9(J)–&gt;25(Z)</p>
-</blockquote>
-</li>
-<li>函数差值搞一下：25-12&#x3D;(9-1)a<br>a&#x3D;13，b顺理成章等于4</li>
-<li>然后google找个求逆元的网站得到逆元等于5<br>得到解密函数D(x) &#x3D; 5(x-4)%32</li>
-</ul>
-<p>通过解密得到</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">密文：MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI</span><br><span class="line">明文：IJEVIU2DKRDHWUZSKZ4VSMTUN5RDEWTNPU</span><br></pre></td></tr></table></figure>
-
-<p>最后base32解码就能得到flag:</p>
-<blockquote>
-<p>BITSCTF{S2VyY2tob2Zm}</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>CTF题解——crypto</category>
-      </categories>
-      <tags>
-        <tag>仿射密码</tag>
       </tags>
   </entry>
   <entry>
@@ -335,163 +457,169 @@
       </tags>
   </entry>
   <entry>
-    <title>解方程用的牛马z3</title>
-    <url>/2022/09/14/z3/</url>
-    <content><![CDATA[<p>鉴于某些方程不是人解的，所以就用z3了….</p>
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><blockquote>
-<p>直接搞到网盘上用链接吧：<br>链接：(<a href="https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234">https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234</a>)<br>提取码：1234</p>
-</blockquote>
-<ol>
-<li>下载解压</li>
-<li>将文件中bin目录配置到系统变量path中</li>
-<li>新建PYTHONPATH系统变量，路径为bin&#x2F;python目录</li>
-</ol>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ol>
-<li>打开黑框框</li>
-</ol>
+    <title>pyc文件反编</title>
+    <url>/2022/09/07/Re_pyc/</url>
+    <content><![CDATA[<h3 id="pyc文件"><a href="#pyc文件" class="headerlink" title="pyc文件"></a>pyc文件</h3><p>py生成的中间文件</p>
 <blockquote>
-<p>cmd到bin&#x2F;python的目录</p>
+<p>先省略无数字，需要深入了解底层再说</p>
 </blockquote>
-<p>or</p>
+<h3 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h3><ul>
+<li><p>借用外部资源，安装uncompyle6</p>
 <blockquote>
-<p>在bin&#x2F;python目录下shift右键powershell</p>
+<p>pip install uncompyle</p>
 </blockquote>
-<ol start="2">
-<li><p>输入python</p>
 </li>
-<li><p>把代码输进去回车就完了</p>
+<li><p>使用</p>
+<blockquote>
+<p>uncompyle6 name.pyc &gt; name.py</p>
+</blockquote>
 </li>
-</ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
-<li><p>先看官方示例</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">from z3 import *</span><br><span class="line">x = Real(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">y = Real(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">s = Solver()</span><br><span class="line">s.add(x + y &gt; 5, x &gt; 1, y &gt; 1)</span><br><span class="line"><span class="built_in">print</span>(s.check())</span><br><span class="line"><span class="built_in">print</span>(s.model())</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>简单说一下</p>
+<li><p>或者直接用网上的在线反编译：<br>(<a href="https://tool.lu/pyc/">https://tool.lu/pyc/</a>)</p>
 </li>
 </ul>
-<ol>
-<li>导包z3</li>
-<li>a &#x3D; Real(b), a为方程中的未知数，b为输出时候用来表示a的变量</li>
-<li>Solver()，简言之：解决函数，方程接收器</li>
-<li>add()，括号里塞方程就行，用“,”隔开，或者你多用几个add()也行</li>
-<li>后面俩不用动了，就那样</li>
-<li>回车出结果</li>
-</ol>
-]]></content>
-      <categories>
-        <category>CTF——工具</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>OD使用</title>
-    <url>/2022/09/15/OD/</url>
-    <content><![CDATA[<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>操作</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>F2</td>
-<td>断点</td>
-</tr>
-<tr>
-<td>F4</td>
-<td>让程序执行到光标处</td>
-</tr>
-<tr>
-<td>F7</td>
-<td>单步步入</td>
-</tr>
-<tr>
-<td>F8</td>
-<td>单步步过</td>
-</tr>
-<tr>
-<td>F9</td>
-<td>让程序执行到断点处</td>
-</tr>
-<tr>
-<td>Ctrl+F2</td>
-<td>重载程序</td>
-</tr>
-<tr>
-<td>Ctrl+G</td>
-<td>快速定位</td>
-</tr>
-</tbody></table>
+<blockquote>
+<p>因为比较bug的一件事情是：<br>我遇到了某pyc文件用uncompyle6无法反编的情况，目前推测应该是版本不对的问题<br>后续再研究研究</p>
+</blockquote>
+<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
+<li>python-trade</li>
+</ul>
 ]]></content>
       <categories>
         <category>CTF——工具</category>
       </categories>
       <tags>
-        <tag>反汇编</tag>
-        <tag>逆向</tag>
+        <tag>reserve</tag>
       </tags>
   </entry>
   <entry>
-    <title>工具汇总</title>
-    <url>/2022/09/18/Tools/</url>
-    <content><![CDATA[<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
-<li>这篇文章主要把逆向和密码学需要用到的工具汇总一下</li>
-<li>如果引用内容侵权，请联系删除</li>
-<li>安装过程一般不做说明，google即可</li>
-</ul>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h3><ul>
-<li><p>APKTOOLS<br>官方网站-(<a href="https://ibotpeaches.github.io/Apktool/install/">https://ibotpeaches.github.io/Apktool/install/</a>)</p>
-</li>
-<li><p>Dex2jar<br> SOURCEFORGE-(<a href="https://sourceforge.net/projects/dex2jar">https://sourceforge.net/projects/dex2jar</a>)</p>
-</li>
-<li><p>JD-GUIjar</p>
-</li>
-</ul>
-<h3 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h3><ul>
-<li>z3(解方程工具)<blockquote>
-<p>链接：(<a href="https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234">https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234</a>)<br>提取码：1234</p>
+    <title>fanfie</title>
+    <url>/2022/09/06/fanfie/</url>
+    <content><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>来源：BITSCTF2017</p>
+<blockquote>
+<p>Brute and get the base 32 format of flag.<br>encrypted.txt: MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI</p>
+</blockquote>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>题目是一如既往的简洁<br>首先题目告诉我们有<font color="#f18583">base32编码</font><br>同时由题目来源可知flag格式为<font color="#f18583">BITSCTF{}</font></p>
+<p>所以<br>对”<b>BITSCTF{</b>“进行base32编码得到”<b>IJEVIU2DKRDHW&#x3D;&#x3D;&#x3D;</b>“</p>
+<p>接下来就是玄学猜想:<br>编码后变长了，或许刚好和题目给的密文等长吧，考虑单表加密<br>I变M，J变Z，E变Y，很明显没直接的映射规律，考虑<a href="http://woodenmandu.cn/2022/09/06/Affine/">仿射密码</a></p>
+<p>下一步计算a，b</p>
+<blockquote>
+<p>别忘记这是base32，加密函数为E(x) &#x3D; (ax+b)%32</p>
+</blockquote>
+<ul>
+<li>小算一下，拿两组数据：<blockquote>
+<p>8(I)–&gt;12(M)<br>9(J)–&gt;25(Z)</p>
 </blockquote>
 </li>
+<li>函数差值搞一下：25-12&#x3D;(9-1)a<br>a&#x3D;13，b顺理成章等于4</li>
+<li>然后google找个求逆元的网站得到逆元等于5<br>得到解密函数D(x) &#x3D; 5(x-4)%32</li>
 </ul>
+<p>通过解密得到</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">密文：MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI</span><br><span class="line">明文：IJEVIU2DKRDHWUZSKZ4VSMTUN5RDEWTNPU</span><br></pre></td></tr></table></figure>
+
+<p>最后base32解码就能得到flag:</p>
+<blockquote>
+<p>BITSCTF{S2VyY2tob2Zm}</p>
+</blockquote>
 ]]></content>
       <categories>
-        <category>CTF——工具</category>
+        <category>CTF题解——crypto</category>
       </categories>
+      <tags>
+        <tag>仿射密码</tag>
+      </tags>
   </entry>
   <entry>
-    <title>APK反编</title>
-    <url>/2022/09/18/APK/</url>
-    <content><![CDATA[<h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ol>
-<li><p>修改apk文件后缀为zip，解压</p>
+    <title>Base64编码</title>
+    <url>/2022/09/06/Base64/</url>
+    <content><![CDATA[<h3 id="编码过程"><a href="#编码过程" class="headerlink" title="编码过程"></a>编码过程</h3><ol>
+<li><p>将目标字符依照ASCII码表变为纯二进制</p>
 </li>
-<li><p>将反编的dex文件复制到dex2jar工具目录下</p>
+<li><p>按每6位一个单元进行重新切割，（不够6位的地方补0）</p>
 </li>
-<li><p>使用命令生成jar文件</p>
-<blockquote>
-<p>d2j-dex2jar.bat document_name.dex</p>
-</blockquote>
-<p>如果出现下列报错(版本号不匹配):</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">com.googlecode.d2j.DexException: not support version.</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:151)</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:211)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.doCommandLine(Dex2jarCmd.java:104)</span><br><span class="line">     at com.googlecode.dex2jar.tools.BaseCmd.doMain(BaseCmd.java:288)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.main(Dex2jarCmd.java:32)</span><br></pre></td></tr></table></figure>
-<p>用文本编辑软件打开dex文件，将文件头改为035或者036</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dex</span><br><span class="line">037 9!Q&lt;€颧€?滣^氶wl?  p   x</span><br></pre></td></tr></table></figure>
-<p>正常情况应该是这样的(没有任何多余)：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">E:\SoftWarePackage\Jd-GUI+dex2\dex2jar-2.0&gt;d2j-dex2jar.bat classes3.dex</span><br><span class="line"> dex2jar classes3.dex -&gt; .\classes3-dex2jar.jar</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用jd-guijar反编译jar文件，命令是这个：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar jd-gui-1.5.0.jar</span><br></pre></td></tr></table></figure>
-<ul>
-<li>其实就是执行jar文件而已，可以直接写bat桌面一键打开</li>
-</ul>
-</li>
-<li><p>收工</p>
+<li><p>对照base64编码表，编码出每个单元所代表的字符</p>
 </li>
 </ol>
+<h3 id="base64编码表"><a href="#base64编码表" class="headerlink" title="base64编码表"></a>base64编码表</h3><p><img src="https://s2.loli.net/2022/09/06/QiUuEKzCvZIFNDV.jpg" alt="v2-ff0ffbecbd68704bf1ddf8f7d53095b8_r.jpg"></p>
+<h3 id="eg："><a href="#eg：" class="headerlink" title="eg："></a>eg：</h3><ul>
+<li><p>目标字符：dlw</p>
+</li>
+<li><p>第一步：转变为二进制串</p>
+</li>
+</ul>
+<blockquote>
+<p>01100100(d) 01101100(l) 01110111(w)</p>
+</blockquote>
+<ul>
+<li>第二步：6位切割</li>
+</ul>
+<blockquote>
+<p>011001 | 000110 | 110001 | 110111</p>
+</blockquote>
+<ul>
+<li>第三步：查找每一单元对应的字符，重新编码</li>
+</ul>
+<blockquote>
+<p>011001(Z) | 000110(G) | 110001(x) | 110111(3)</p>
+</blockquote>
+<ul>
+<li>得到结果：ZGx3</li>
+</ul>
+<h3 id="python编码"><a href="#python编码" class="headerlink" title="python编码"></a>python编码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64encode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
+
+<h3 id="python解码"><a href="#python解码" class="headerlink" title="python解码"></a>python解码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64decode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
+
+<h3 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h3><ol>
+<li><p>base64的特征之一：结果串长度一定为4的倍数</p>
+</li>
+<li><p>为了补齐4倍的单元，编码时可能会出现末尾n个单元全部为空的情况，这时候就用“&#x3D;”补齐，这也是识别base64编码的一种方式</p>
+</li>
+</ol>
+<h4 id="比如两个字符“dl”"><a href="#比如两个字符“dl”" class="headerlink" title="比如两个字符“dl”"></a>比如两个字符“dl”</h4><ul>
+<li><p>二进制：01100100(d) 01101100(l)</p>
+</li>
+<li><p>切割：011001(Z)) | 000110(G) | 1100（补两个0）(w) | （空单元）(&#x3D;)</p>
+</li>
+<li><p>结果：ZGw&#x3D;</p>
+</li>
+</ul>
+<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
+<li>python-trade</li>
+</ul>
 ]]></content>
       <categories>
         <category>CTF———知识点</category>
       </categories>
       <tags>
-        <tag>反汇编</tag>
-        <tag>逆向</tag>
+        <tag>密码学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>仿射密码(单表加密)</title>
+    <url>/2022/09/06/Affine/</url>
+    <content><![CDATA[<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><ul>
+<li>简单来说就是利用加密函数将一个字母映射为另一个字母</li>
+</ul>
+<h3 id="加密函数"><a href="#加密函数" class="headerlink" title="加密函数"></a>加密函数</h3><h4 id="E-x-x3D-ax-b-n-其中"><a href="#E-x-x3D-ax-b-n-其中" class="headerlink" title="E(x) &#x3D; (ax+b)%n,其中"></a>E(x) &#x3D; (ax+b)%n,其中</h4><ul>
+<li>n为所设置的字母编码表的大小</li>
+<li>a,b为自选数，只要满足a与n互质即可</li>
+<li>x为明文编码后的数字</li>
+</ul>
+<h3 id="解密函数"><a href="#解密函数" class="headerlink" title="解密函数"></a>解密函数</h3><h4 id="D-x-x3D-a-1-x-b-n"><a href="#D-x-x3D-a-1-x-b-n" class="headerlink" title="D(x) &#x3D; a-1(x-b)%n"></a>D(x) &#x3D; a<sup>-1</sup>(x-b)%n</h4><ul>
+<li>a<sup>-1</sup>是a在Z<sub>n</sub>群的乘法逆元</li>
+</ul>
+<blockquote>
+<p>乘法逆元这个东西等后续完全搞懂了再解释，主要的一点是满足a<sup>-1</sup>*a%n&#x3D;1</p>
+</blockquote>
+<h3 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h3><p>字母编码表就按ABC来，a取7，b取3,通过某在线模逆元计算器可得a<sup>-1</sup>&#x3D;15<br><img src="https://s2.loli.net/2022/09/06/mIWkYnr3jJP6Tgw.jpg" alt="Screenshot 2022-09-06 210756.jpg"></p>
+<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
+<li><a href="http://woodenmandu.cn/2022/09/06/Affine/">BITSCTF2017 - fanfie</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>CTF——知识点</category>
+      </categories>
+      <tags>
+        <tag>密码学</tag>
       </tags>
   </entry>
 </search>
