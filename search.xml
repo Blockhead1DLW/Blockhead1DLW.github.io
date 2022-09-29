@@ -3,7 +3,7 @@
   <entry>
     <title>CTF逆向入门</title>
     <url>/2022/09/27/Introduction/</url>
-    <content><![CDATA[<h4 id="把之前的hello-world搬过来，没地方放了，可手动忽略"><a href="#把之前的hello-world搬过来，没地方放了，可手动忽略" class="headerlink" title="把之前的hello world搬过来，没地方放了，可手动忽略"></a>把之前的hello world搬过来，没地方放了，可手动忽略</h4><h2 id="This-is-a-new-starting-point"><a href="#This-is-a-new-starting-point" class="headerlink" title="This is a new starting point."></a>This is a new starting point.</h2><h4 id="About-Ctf-Xcpc-and-Life"><a href="#About-Ctf-Xcpc-and-Life" class="headerlink" title="About Ctf, Xcpc and Life."></a>About Ctf, Xcpc and Life.</h4><h2 id="So，Welcome-to-a-new-world"><a href="#So，Welcome-to-a-new-world" class="headerlink" title="So，Welcome to a new world!"></a><em>So，Welcome to a new world!</em></h2><h4 id="Some-other-web-sites"><a href="#Some-other-web-sites" class="headerlink" title="Some other web sites:"></a>Some other web sites:</h4><ul>
+    <content><![CDATA[<h2 id="This-is-a-new-starting-point"><a href="#This-is-a-new-starting-point" class="headerlink" title="This is a new starting point."></a>This is a new starting point.</h2><h2 id="Welcome-to-a-new-world"><a href="#Welcome-to-a-new-world" class="headerlink" title="Welcome to a new world!_"></a>Welcome to a new world!_</h2><h4 id="Some-other-web-sites"><a href="#Some-other-web-sites" class="headerlink" title="Some other web sites:"></a>Some other web sites:</h4><ul>
 <li><a href="https://blog.csdn.net/qq_59700927?spm=1000.2115.3001.5343">CSDN</a></li>
 <li><a href="https://www.zhihu.com/people/woodenman-15">知乎</a></li>
 <li><a href="https://github.com/Blockhead1DLW">Github</a></li>
@@ -59,74 +59,6 @@
       <categories>
         <category>Welcome</category>
       </categories>
-  </entry>
-  <entry>
-    <title>书籍汇总</title>
-    <url>/2022/09/27/book/</url>
-    <content><![CDATA[<h2 id="直接正文"><a href="#直接正文" class="headerlink" title="直接正文"></a>直接正文</h2><ul>
-<li><p>《逆向工程核心原理》</p>
-<blockquote>
-<p>我觉得这本书开始的入门非常合理，简直完美</p>
-</blockquote>
-</li>
-<li><p>《加密与解密》</p>
-<blockquote>
-<p>堪比《算法导论》的大哥书籍，前几章必看，后面的选择性看</p>
-</blockquote>
-</li>
-<li><p>《基于x86汇编语言》</p>
-<blockquote>
-<p>我说了汇编非常重要，这个书上来吧</p>
-</blockquote>
-</li>
-<li><p>《汇编语言》王爽</p>
-<blockquote>
-<p>学汇编这本书也备受好评</p>
-</blockquote>
-</li>
-</ul>
-<p>可以了可以了，再说就不礼貌了</p>
-]]></content>
-      <categories>
-        <category>CTF——工具</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>APK反编</title>
-    <url>/2022/09/18/APK/</url>
-    <content><![CDATA[<h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ol>
-<li><p>修改apk文件后缀为zip，解压</p>
-</li>
-<li><p>将反编的dex文件复制到dex2jar工具目录下</p>
-</li>
-<li><p>使用命令生成jar文件</p>
-<blockquote>
-<p>d2j-dex2jar.bat document_name.dex</p>
-</blockquote>
-<p>如果出现下列报错(版本号不匹配):</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">com.googlecode.d2j.DexException: not support version.</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:151)</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:211)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.doCommandLine(Dex2jarCmd.java:104)</span><br><span class="line">     at com.googlecode.dex2jar.tools.BaseCmd.doMain(BaseCmd.java:288)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.main(Dex2jarCmd.java:32)</span><br></pre></td></tr></table></figure>
-<p>用文本编辑软件打开dex文件，将文件头改为035或者036</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dex</span><br><span class="line">037 9!Q&lt;€颧€?滣^氶wl?  p   x</span><br></pre></td></tr></table></figure>
-<p>正常情况应该是这样的(没有任何多余)：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">E:\SoftWarePackage\Jd-GUI+dex2\dex2jar-2.0&gt;d2j-dex2jar.bat classes3.dex</span><br><span class="line"> dex2jar classes3.dex -&gt; .\classes3-dex2jar.jar</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用jd-guijar反编译jar文件，命令是这个：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar jd-gui-1.5.0.jar</span><br></pre></td></tr></table></figure>
-<ul>
-<li>其实就是执行jar文件而已，可以直接写bat桌面一键打开</li>
-</ul>
-</li>
-<li><p>收工</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>CTF———知识点</category>
-      </categories>
-      <tags>
-        <tag>反汇编</tag>
-        <tag>逆向</tag>
-      </tags>
   </entry>
   <entry>
     <title>工具汇总</title>
@@ -206,6 +138,43 @@
       <categories>
         <category>CTF——工具</category>
       </categories>
+  </entry>
+  <entry>
+    <title>APK反编</title>
+    <url>/2022/09/18/APK/</url>
+    <content><![CDATA[<h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ol>
+<li><p>修改apk文件后缀为zip，解压</p>
+</li>
+<li><p>将反编的dex文件复制到dex2jar工具目录下</p>
+</li>
+<li><p>使用命令生成jar文件</p>
+<blockquote>
+<p>d2j-dex2jar.bat document_name.dex</p>
+</blockquote>
+<p>如果出现下列报错(版本号不匹配):</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">com.googlecode.d2j.DexException: not support version.</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:151)</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:211)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.doCommandLine(Dex2jarCmd.java:104)</span><br><span class="line">     at com.googlecode.dex2jar.tools.BaseCmd.doMain(BaseCmd.java:288)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.main(Dex2jarCmd.java:32)</span><br></pre></td></tr></table></figure>
+<p>用文本编辑软件打开dex文件，将文件头改为035或者036</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dex</span><br><span class="line">037 9!Q&lt;€颧€?滣^氶wl?  p   x</span><br></pre></td></tr></table></figure>
+<p>正常情况应该是这样的(没有任何多余)：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">E:\SoftWarePackage\Jd-GUI+dex2\dex2jar-2.0&gt;d2j-dex2jar.bat classes3.dex</span><br><span class="line"> dex2jar classes3.dex -&gt; .\classes3-dex2jar.jar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用jd-guijar反编译jar文件，命令是这个：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar jd-gui-1.5.0.jar</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其实就是执行jar文件而已，可以直接写bat桌面一键打开</li>
+</ul>
+</li>
+<li><p>收工</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>CTF———知识点</category>
+      </categories>
+      <tags>
+        <tag>反汇编</tag>
+        <tag>逆向</tag>
+      </tags>
   </entry>
   <entry>
     <title>OD使用</title>
