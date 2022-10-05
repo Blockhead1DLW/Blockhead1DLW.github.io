@@ -345,7 +345,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-28 16:50:42" itemprop="dateModified" datetime="2022-09-28T16:50:42+08:00">2022-09-28</time>
+                <time title="修改时间：2022-10-02 13:40:52" itemprop="dateModified" datetime="2022-10-02T13:40:52+08:00">2022-10-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -421,6 +421,8 @@
 </li>
 <li><p>JD-GUIjar(反编译jar文件)</p>
 </li>
+<li><p>jeb(apk反编)<br>看雪社区搜索破解</p>
+</li>
 </ul>
 <h3 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h3><ul>
 <li><p>z3(解方程工具)</p>
@@ -437,6 +439,102 @@
 <blockquote>
 <p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1hzK04wmtm4rWsNyofqXPxw?pwd=1234">https://pan.baidu.com/s/1hzK04wmtm4rWsNyofqXPxw?pwd=1234</a><br>提取码：1234</p>
 </blockquote>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/05/Summary1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="WoodenmanDu">
+      <meta itemprop="description" content="多少是有点bug">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆向光点">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/05/Summary1/" class="post-title-link" itemprop="url">总结1</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-05 16:31:22 / 修改时间：19:37:41" itemprop="dateCreated datePublished" datetime="2022-10-05T16:31:22+08:00">2022-10-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>ESP-栈顶指针<br>EBP-栈帧指针</p>
+<h2 id="栈帧"><a href="#栈帧" class="headerlink" title="栈帧"></a>栈帧</h2><ul>
+<li>栈特点：FILO（first in last out）</li>
+<li>在调用函数的时候需要将参数压入栈中，栈顶地址发生改变，而使用结束又需要将参数弹出，将栈恢复到被调用前的状态，为了便于管理，于是出现了栈帧。<ul>
+<li>官方解释：利用EBP寄存器访问栈内局部变量、参数、函数返回地址的手段。</li>
+<li>具体操作：在调用函数之前，将ESP中的栈顶地址存入EBP中，将该地址作为基准点。然后调用函数，ESP寄存器正常进行，其间可通过EBP去控制访问变量参数等等，在调用结束后，再将EBP中的基准点地址给到ESP，将栈的状态恢复到函数调用前</li>
+<li>代码流程：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PUSH EBP          ;函数开始</span><br><span class="line">MOV  EBP,ESP      ;将栈顶地址存入EBP中</span><br><span class="line"></span><br><span class="line">....              ;函数执行，期间EBP地址不变</span><br><span class="line"></span><br><span class="line">MOV  ESP,EBP      ;基准点地址给到ESP</span><br><span class="line">POP EBP           ;栈状态恢复，弹出EBP</span><br><span class="line">RETN              ;函数结束</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="函数调用约定"><a href="#函数调用约定" class="headerlink" title="函数调用约定"></a>函数调用约定</h2><p>(Calling Convention)</p>
+<ul>
+<li>三种方式(cdcel, stdcall, fastcall)<ul>
+<li>cdcel<br>主要运用于c语言，由调用者负责清理栈<blockquote>
+<p>函数调用结束后通过移动ESP，恢复到调用前的栈状态</p>
+</blockquote>
+</li>
+<li>stdcall<br>主要运用于Win32 API，由被调用者清理栈<blockquote>
+<p>在被调用函数的结尾通过RETN语句移动ESP到原位置</p>
+</blockquote>
+</li>
+<li>fastcall<blockquote>
+<p>使用寄存器去传递函数的部分参数，实现快速调用</p>
+</blockquote>
+</li>
+</ul>
 </li>
 </ul>
 
@@ -1070,7 +1168,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-08 16:27:34" itemprop="dateModified" datetime="2022-09-08T16:27:34+08:00">2022-09-08</time>
+                <time title="修改时间：2022-09-29 15:25:14" itemprop="dateModified" datetime="2022-09-29T15:25:14+08:00">2022-09-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1078,7 +1176,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E9%A2%98%E8%A7%A3%E2%80%94%E2%80%94reserve/" itemprop="url" rel="index"><span itemprop="name">CTF题解——reserve</span></a>
+                  <a href="/categories/CTF%E9%A2%98%E8%A7%A3%E2%80%94%E2%80%94reverse/" itemprop="url" rel="index"><span itemprop="name">CTF题解——reverse</span></a>
                 </span>
             </span>
 
@@ -1168,7 +1266,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-14 22:13:35" itemprop="dateModified" datetime="2022-09-14T22:13:35+08:00">2022-09-14</time>
+                <time title="修改时间：2022-09-29 15:25:28" itemprop="dateModified" datetime="2022-09-29T15:25:28+08:00">2022-09-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1215,106 +1313,6 @@
 <h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
 <li>python-trade</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/06/fanfie/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/06/fanfie/" class="post-title-link" itemprop="url">fanfie</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-06 21:43:52" itemprop="dateCreated datePublished" datetime="2022-09-06T21:43:52+08:00">2022-09-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-08 16:25:22" itemprop="dateModified" datetime="2022-09-08T16:25:22+08:00">2022-09-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E9%A2%98%E8%A7%A3%E2%80%94%E2%80%94crypto/" itemprop="url" rel="index"><span itemprop="name">CTF题解——crypto</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>来源：BITSCTF2017</p>
-<blockquote>
-<p>Brute and get the base 32 format of flag.<br>encrypted.txt: MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI</p>
-</blockquote>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>题目是一如既往的简洁<br>首先题目告诉我们有<font color="#f18583">base32编码</font><br>同时由题目来源可知flag格式为<font color="#f18583">BITSCTF{}</font></p>
-<p>所以<br>对”<b>BITSCTF{</b>“进行base32编码得到”<b>IJEVIU2DKRDHW&#x3D;&#x3D;&#x3D;</b>“</p>
-<p>接下来就是玄学猜想:<br>编码后变长了，或许刚好和题目给的密文等长吧，考虑单表加密<br>I变M，J变Z，E变Y，很明显没直接的映射规律，考虑<a target="_blank" rel="noopener" href="http://woodenmandu.cn/2022/09/06/Affine/">仿射密码</a></p>
-<p>下一步计算a，b</p>
-<blockquote>
-<p>别忘记这是base32，加密函数为E(x) &#x3D; (ax+b)%32</p>
-</blockquote>
-<ul>
-<li>小算一下，拿两组数据：<blockquote>
-<p>8(I)–&gt;12(M)<br>9(J)–&gt;25(Z)</p>
-</blockquote>
-</li>
-<li>函数差值搞一下：25-12&#x3D;(9-1)a<br>a&#x3D;13，b顺理成章等于4</li>
-<li>然后google找个求逆元的网站得到逆元等于5<br>得到解密函数D(x) &#x3D; 5(x-4)%32</li>
-</ul>
-<p>通过解密得到</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">密文：MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI</span><br><span class="line">明文：IJEVIU2DKRDHWUZSKZ4VSMTUN5RDEWTNPU</span><br></pre></td></tr></table></figure>
-
-<p>最后base32解码就能得到flag:</p>
-<blockquote>
-<p>BITSCTF{S2VyY2tob2Zm}</p>
-</blockquote>
 
       
     </div>
@@ -1401,7 +1399,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
