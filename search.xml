@@ -141,6 +141,84 @@
       </categories>
   </entry>
   <entry>
+    <title>《逆向工程核心原理》总结2</title>
+    <url>/2022/10/06/Summary2/</url>
+    <content><![CDATA[<h1 id="PE文件格式"><a href="#PE文件格式" class="headerlink" title="PE文件格式"></a>PE文件格式</h1><h2 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h2><table>
+<thead>
+<tr>
+<th>种类</th>
+<th>主扩展名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>可执行系列</td>
+<td>EXE，SCR</td>
+</tr>
+<tr>
+<td>库系列</td>
+<td>DLL，OCX，CPL，DRV</td>
+</tr>
+<tr>
+<td>驱动程序系列</td>
+<td>SYS，VXD</td>
+</tr>
+<tr>
+<td>对象文件系列</td>
+<td>OBJ</td>
+</tr>
+</tbody></table>
+<h2 id="零碎点"><a href="#零碎点" class="headerlink" title="零碎点"></a>零碎点</h2><ol>
+<li>PE文件分PE头与PE体</li>
+<li>PE头由各种结构体构成，说明了文件大小、执行地址等等信息，PE体分多个节区，如代码段、数据段、资源段等。</li>
+<li>PE文件在内存中和在磁盘中大小不同</li>
+<li>RVA(相对虚拟地址)  VA(虚拟内存绝对地址)  RAW(文件偏移)</li>
+</ol>
+<h2 id="PE头分解"><a href="#PE头分解" class="headerlink" title="PE头分解"></a>PE头分解</h2><h3 id="DOS头"><a href="#DOS头" class="headerlink" title="DOS头"></a>DOS头</h3><p>核心参数：</p>
+<ul>
+<li>e_magic:DOS签名，“MZ”（DOS可执行文件设计者）</li>
+<li>e_lfanew:指示NT头的偏移</li>
+</ul>
+<h3 id="DOS存根"><a href="#DOS存根" class="headerlink" title="DOS存根"></a>DOS存根</h3><p>一个可忽略项，可理解为DOS下执行的数据</p>
+<blockquote>
+<p>例如notepad.exe中的提示语:This program cannot be run in DOS mode</p>
+</blockquote>
+<h3 id="NT头"><a href="#NT头" class="headerlink" title="NT头"></a>NT头</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">typedef struct _IMAGE_NT_HEADERS &#123;</span><br><span class="line">    DWORD Signature;                             //签名“PE”</span><br><span class="line">    IMAGE_FILE_HEADER FileHeader;                //文件头</span><br><span class="line">    IMAGE_OPTIONAL_HEADER32 OptionalHeader;      //可选头</span><br><span class="line">&#125; IMAGE_NT_HEADERS32, *PIMAGE_NT_HEADERS32;</span><br></pre></td></tr></table></figure>
+<h4 id="文件头"><a href="#文件头" class="headerlink" title="文件头"></a>文件头</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">typedef struct _IMAGE_FILE_HEADER &#123;</span><br><span class="line">    WORD    Machine;                  //机器码（每种CPU都有各自的固定值，如intel x86的14C）</span><br><span class="line">    WORD    NumberOfSections;         //节区数量</span><br><span class="line">    DWORD   TimeDateStamp;</span><br><span class="line">    DWORD   PointerToSymbolTable;</span><br><span class="line">    DWORD   NumberOfSymbols;</span><br><span class="line">    WORD    SizeOfOptionalHeader;     //指示可选头的大小</span><br><span class="line">    WORD    Characteristics;          //标识文件属性（是否为DLL等等）</span><br><span class="line">&#125; IMAGE_FILE_HEADER, *PIMAGE_FILE_HEADER</span><br></pre></td></tr></table></figure>
+<h4 id="可选头-直接把64位的搬过来了"><a href="#可选头-直接把64位的搬过来了" class="headerlink" title="可选头(直接把64位的搬过来了)"></a>可选头(直接把64位的搬过来了)</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">typedef struct _IMAGE_OPTIONAL_HEADER64 &#123;</span><br><span class="line">    WORD        Magic;                       //32-10B， 64-20B</span><br><span class="line">    BYTE        MajorLinkerVersion;          </span><br><span class="line">    BYTE        MinorLinkerVersion;</span><br><span class="line">    DWORD       SizeOfCode;</span><br><span class="line">    DWORD       SizeOfInitializedData;</span><br><span class="line">    DWORD       SizeOfUninitializedData;</span><br><span class="line">    DWORD       AddressOfEntryPoint;         //PE的RVA值，指出代码起始位置</span><br><span class="line">    DWORD       BaseOfCode;</span><br><span class="line">    ULONGLONG   ImageBase;                   //基准，VA = RVA + ImageBase</span><br><span class="line">    DWORD       SectionAlignment;            //节区内存最小单位</span><br><span class="line">    DWORD       FileAlignment;               //节区磁盘最小单位</span><br><span class="line">    WORD        MajorOperatingSystemVersion;</span><br><span class="line">    WORD        MinorOperatingSystemVersion;</span><br><span class="line">    WORD        MajorImageVersion;</span><br><span class="line">    WORD        MinorImageVersion;</span><br><span class="line">    WORD        MajorSubsystemVersion;</span><br><span class="line">    WORD        MinorSubsystemVersion;</span><br><span class="line">    DWORD       Win32VersionValue;</span><br><span class="line">    DWORD       SizeOfImage;                 //指定在虚拟内存中所占空间大小</span><br><span class="line">    DWORD       SizeOfHeaders;               //PE头大小（第一节区所在位置与该值距文件开始偏移量相同）</span><br><span class="line">    DWORD       CheckSum;</span><br><span class="line">    WORD        Subsystem;                   //区分文件</span><br><span class="line">                                              1 Driver文件（系统驱动）</span><br><span class="line">                                              2 GUI文件（窗口应用程序）</span><br><span class="line">                                              3 CUI文件（控制台应用程序）</span><br><span class="line">    WORD        DllCharacteristics;</span><br><span class="line">    ULONGLONG   SizeOfStackReserve;</span><br><span class="line">    ULONGLONG   SizeOfStackCommit;</span><br><span class="line">    ULONGLONG   SizeOfHeapReserve;</span><br><span class="line">    ULONGLONG   SizeOfHeapCommit;</span><br><span class="line">    DWORD       LoaderFlags;</span><br><span class="line">    DWORD       NumberOfRvaAndSizes;         //</span><br><span class="line">    IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];</span><br><span class="line">&#125; IMAGE_OPTIONAL_HEADER64, *PIMAGE_OPTIONAL_HEADER64;</span><br></pre></td></tr></table></figure>
+<h3 id="节区头"><a href="#节区头" class="headerlink" title="节区头"></a>节区头</h3><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>访问权限</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>执行，读取权限</td>
+</tr>
+<tr>
+<td>data</td>
+<td>非执行，读写权限</td>
+</tr>
+<tr>
+<td>resource</td>
+<td>非执行，读取权限</td>
+</tr>
+</tbody></table>
+<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_SIZEOF_SHORT_NAME              8</span></span><br><span class="line"></span><br><span class="line">typedef struct _IMAGE_SECTION_HEADER &#123;</span><br><span class="line">    BYTE    Name[IMAGE_SIZEOF_SHORT_NAME];</span><br><span class="line">    union &#123;</span><br><span class="line">            DWORD   PhysicalAddress;</span><br><span class="line">            DWORD   VirtualSize;            //内存中节区大小</span><br><span class="line">    &#125; Misc;</span><br><span class="line">    DWORD   VirtualAddress;                 //内存中节区起始地址（RVA）</span><br><span class="line">    DWORD   SizeOfRawData;                  //磁盘中节区大小</span><br><span class="line">    DWORD   PointerToRawData;               //磁盘中节区起始地址</span><br><span class="line">    DWORD   PointerToRelocations;</span><br><span class="line">    DWORD   PointerToLinenumbers;</span><br><span class="line">    WORD    NumberOfRelocations;</span><br><span class="line">    WORD    NumberOfLinenumbers;</span><br><span class="line">    DWORD   Characteristics;                //节区属性</span><br><span class="line">&#125; IMAGE_SECTION_HEADER, *PIMAGE_SECTION_HEADER;</span><br></pre></td></tr></table></figure>
+<h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><ul>
+<li>RAW &#x3D; RVA - (VA)VirtualAddress + PointerToRawData</li>
+</ul>
+<h1 id="附表："><a href="#附表：" class="headerlink" title="附表："></a>附表：</h1><h2 id="DataDirectory结构体数组-64-01239为重点"><a href="#DataDirectory结构体数组-64-01239为重点" class="headerlink" title="DataDirectory结构体数组(64)[01239为重点]"></a>DataDirectory结构体数组(64)[01239为重点]</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_EXPORT          0   // Export Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_IMPORT          1   // Import Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_RESOURCE        2   // Resource Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_EXCEPTION       3   // Exception Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_SECURITY        4   // Security Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_BASERELOC       5   // Base Relocation Table</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_DEBUG           6   // Debug Directory</span></span><br><span class="line">        IMAGE_DIRECTORY_ENTRY_COPYRIGHT       7   // (X86 usage)</span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_ARCHITECTURE    7   // Architecture Specific Data</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_GLOBALPTR       8   // RVA of GP</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_TLS             9   // TLS Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG    10   // Load Configuration Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT   11   // Bound Import Directory in headers</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_IAT            12   // Import Address Table</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT   13   // Delay Load Import Descriptors</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR 14   // COM Runtime descriptor</span></span><br></pre></td></tr></table></figure>
+<h2 id="Machine值"><a href="#Machine值" class="headerlink" title="Machine值"></a>Machine值</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_UNKNOWN           0</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_I386              0x014c  // Intel 386.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_R3000             0x0162  // MIPS little-endian, 0x160 big-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_R4000             0x0166  // MIPS little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_R10000            0x0168  // MIPS little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_WCEMIPSV2         0x0169  // MIPS little-endian WCE v2</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_ALPHA             0x0184  // Alpha_AXP</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH3               0x01a2  // SH3 little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH3DSP            0x01a3</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH3E              0x01a4  // SH3E little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH4               0x01a6  // SH4 little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH5               0x01a8  // SH5</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_ARM               0x01c0  // ARM Little-Endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_THUMB             0x01c2</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_AM33              0x01d3</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_POWERPC           0x01F0  // IBM PowerPC Little-Endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_POWERPCFP         0x01f1</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_IA64              0x0200  // Intel 64</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_MIPS16            0x0266  // MIPS</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_ALPHA64           0x0284  // ALPHA64</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_MIPSFPU           0x0366  // MIPS</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_MIPSFPU16         0x0466  // MIPS</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_AXP64             IMAGE_FILE_MACHINE_ALPHA64</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_TRICORE           0x0520  // Infineon</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_CEF               0x0CEF</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_EBC               0x0EBC  // EFI Byte Code</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_AMD64             0x8664  // AMD64 (K8)</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_M32R              0x9041  // M32R little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_CEE               0xC0EE</span></span><br></pre></td></tr></table></figure>
+<h2 id="Characteristics值"><a href="#Characteristics值" class="headerlink" title="Characteristics值"></a>Characteristics值</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_FILE_RELOCS_STRIPPED           0x0001  // Relocation info stripped from file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_EXECUTABLE_IMAGE          0x0002  // File is executable  (i.e. no unresolved externel references).</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_LINE_NUMS_STRIPPED        0x0004  // Line nunbers stripped from file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_LOCAL_SYMS_STRIPPED       0x0008  // Local symbols stripped from file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_AGGRESIVE_WS_TRIM         0x0010  // Agressively trim working set</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_LARGE_ADDRESS_AWARE       0x0020  // App can handle &gt;2gb addresses</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_BYTES_REVERSED_LO         0x0080  // Bytes of machine word are reversed.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_32BIT_MACHINE             0x0100  // 32 bit word machine.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_DEBUG_STRIPPED            0x0200  // Debugging info stripped from file in .DBG file</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP   0x0400  // If Image is on removable media, copy and run from the swap file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_NET_RUN_FROM_SWAP         0x0800  // If Image is on Net, copy and run from the swap file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_SYSTEM                    0x1000  // System File.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_DLL                       0x2000  // File is a DLL.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_UP_SYSTEM_ONLY            0x4000  // File should only be run on a UP machine</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_BYTES_REVERSED_HI         0x8000  // Bytes of machine word are reversed.</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>CTF———知识点</category>
+      </categories>
+  </entry>
+  <entry>
     <title>《逆向工程核心原理》总结1</title>
     <url>/2022/10/05/Summary1/</url>
     <content><![CDATA[<h2 id="常见寄存器"><a href="#常见寄存器" class="headerlink" title="常见寄存器"></a>常见寄存器</h2><ul>
