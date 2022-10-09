@@ -491,10 +491,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-10-08 23:34:33 / 修改时间：23:41:36" itemprop="dateCreated datePublished" datetime="2022-10-08T23:34:33+08:00">2022-10-08</time>
+              <time title="创建时间：2022-10-08 23:34:33" itemprop="dateCreated datePublished" datetime="2022-10-08T23:34:33+08:00">2022-10-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-09 15:01:44" itemprop="dateModified" datetime="2022-10-09T15:01:44+08:00">2022-10-09</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -531,6 +537,12 @@
 </ul>
 </li>
 </ul>
+<h2 id="节区删除"><a href="#节区删除" class="headerlink" title="节区删除"></a>节区删除</h2><ol>
+<li>删除节区头，PEview中查看节区头起始地址及长度，在hex编辑器中将该区域用0覆盖</li>
+<li>删除节区，查看节区起始偏移及长度，hex编辑器中删除</li>
+<li>修改IMAGE_FILE_HEADER[Number Of Sections -&#x3D; 1]</li>
+<li>修改IMAGE_OPTIONAL_HEADER[Size Of Image减少对应长度]</li>
+</ol>
 
       
     </div>

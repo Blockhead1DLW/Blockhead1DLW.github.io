@@ -165,6 +165,12 @@
 </ul>
 </li>
 </ul>
+<h2 id="节区删除"><a href="#节区删除" class="headerlink" title="节区删除"></a>节区删除</h2><ol>
+<li>删除节区头，PEview中查看节区头起始地址及长度，在hex编辑器中将该区域用0覆盖</li>
+<li>删除节区，查看节区起始偏移及长度，hex编辑器中删除</li>
+<li>修改IMAGE_FILE_HEADER[Number Of Sections -&#x3D; 1]</li>
+<li>修改IMAGE_OPTIONAL_HEADER[Size Of Image减少对应长度]</li>
+</ol>
 ]]></content>
       <categories>
         <category>CTF———知识点</category>
