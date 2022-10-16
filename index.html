@@ -180,6 +180,111 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/16/Solve1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="WoodenmanDu">
+      <meta itemprop="description" content="多少是有点bug">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆向光点">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/16/Solve1/" class="post-title-link" itemprop="url">解题</a>
+        </h2>
+
+        <div class="post-meta">
+          
+          <i class="fa fa-thumb-tack"></i>
+          <font color=7D26CD>置顶</font>
+          <span class="post-meta-divider">|</span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-16 11:31:33 / 修改时间：13:17:11" itemprop="dateCreated datePublished" datetime="2022-10-16T11:31:33+08:00">2022-10-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF%E9%A2%98%E8%A7%A3%E2%80%94%E2%80%94reverse/" itemprop="url" rel="index"><span itemprop="name">CTF题解——reverse</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这俩天玩了几道比较绕的题，写一下主体思路，不配图，不适合新手观看</p>
+<h2 id="网鼎杯-2020-青龙组-jocker"><a href="#网鼎杯-2020-青龙组-jocker" class="headerlink" title="[网鼎杯 2020 青龙组]jocker"></a>[网鼎杯 2020 青龙组]jocker</h2><ol>
+<li>exe文件，32位无壳，拖入IDA32</li>
+<li>ctrl+f12定位主体函数，修改变量名提高可读性</li>
+<li>F5反汇编发现提示栈错误，option调出栈指针，修改栈指针为0，重新F5</li>
+<li>查看输入，24位字符串，主体：复制-&gt;加密-&gt;校对-&gt;encypt函数-&gt;final函数</li>
+<li>发现wrong函数加密，omg函数校对，简单异或解密，提交错误，为障眼法（但是得到了正确的输入字符串）</li>
+<li>wrong函数上方对输入的flag进行了复制，真正处理的是复制后的flag</li>
+<li>找到相应的加密函数encypt，结果是动态加密函数，无法直接F5</li>
+<li>exe拖入OD，找到调用加密函数地址，下断点，输入正确字符串运行</li>
+<li>F7单步进入加密函数，ODdump脱壳，生成新文件</li>
+<li>新文件拖入IDA，查看encypt函数，异或解密得到前19位flag</li>
+<li>还剩最后5位，只剩final函数，未知加密，提示是隐藏，推断和之前加密方式相同，为异或加密</li>
+<li>利用最后一位”}”推断出异或key，进行解密得到正确flag</li>
+</ol>
+<blockquote>
+<p>核心：修改由于后续动态加密造成的栈指针错位，解密正确输入，OD动态加密脱壳</p>
+</blockquote>
+<h2 id="SWPU2019-EasiestRe"><a href="#SWPU2019-EasiestRe" class="headerlink" title="[SWPU2019]EasiestRe"></a>[SWPU2019]EasiestRe</h2><ol>
+<li>拖入exeinfope，32位无壳，进IDA</li>
+<li>ctrl+f找到main函数发现GetThreadContext、SetThreadContext等等函数，多线程没跑了，先放一边</li>
+<li>ctrl+f12字符串查找flag找到主体函数(交叉引用)，修改变量名提高可读性</li>
+<li>F5反编发现__debugbreak()，int3断点，可以准备改二进制了，继续查看还不止一个</li>
+<li>重新看线程，是个父子线程保护，子线程加密，查看函数捕获重要长数组v16、v15</li>
+<li>所以又是动态加密，返回__debugbreak()处tab看汇编，int3+nop的长度和v16对的上，那就把v16搬过去，改二进制，重新反编</li>
+<li>观察主体函数：输入-&gt;加密-&gt;check-&gt;输出</li>
+<li>进入加密，又有__debugbreak()，和上面一样的方式，用v15改二进制码，反编</li>
+<li>进入check函数，tab查看汇编，408638地址处发现“cmp [ebp+var_20], 18h”校对指令</li>
+<li>查看对应地址，找到校对字符串（即加密结果）</li>
+<li>返回加密函数，分析，三次加密(异或–&gt;分段–&gt;移位)</li>
+<li>逆写解密</li>
+</ol>
+<p>核心：双线程保护系统，int3断点(0xcc)，二进制修改</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/27/Introduction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -467,6 +572,77 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/12/shell/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="WoodenmanDu">
+      <meta itemprop="description" content="多少是有点bug">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆向光点">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/12/shell/" class="post-title-link" itemprop="url">脚本函数积累</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-12 22:13:57 / 修改时间：22:25:13" itemprop="dateCreated datePublished" datetime="2022-10-12T22:13:57+08:00">2022-10-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本来不想写的，后来发现自己脑子不太行根本记不住，查又不想查，所以慢慢积累吧，总有一天会用到的<br>我的设想是等未来达到一定数量以后再按python库整理，现在的话就这样散着</p>
+<h2 id="sha1加密"><a href="#sha1加密" class="headerlink" title="sha1加密"></a>sha1加密</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import hashlib</span><br><span class="line">origin = input()</span><br><span class="line">temp = hashlib.sha1(origin.encode())</span><br><span class="line"><span class="built_in">print</span>(temp.hexdigest())</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/08/Summary3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -724,10 +900,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-10-05 16:31:22 / 修改时间：22:57:00" itemprop="dateCreated datePublished" datetime="2022-10-05T16:31:22+08:00">2022-10-05</time>
+              <time title="创建时间：2022-10-05 16:31:22" itemprop="dateCreated datePublished" datetime="2022-10-05T16:31:22+08:00">2022-10-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-14 23:34:47" itemprop="dateModified" datetime="2022-10-14T23:34:47+08:00">2022-10-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -757,7 +939,7 @@
 <li>EDX：（I&#x2F;O指针）数据寄存器</li>
 <li>ESI：（字符串操作源指针）源变址寄存器</li>
 <li>EDI：（字符串操作目标指针）目的变址寄存器</li>
-<li>EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器]</li>
+<li>EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器][栈底指针寄存器]</li>
 <li>ESP：（SS段中栈指针）栈指针寄存器[指向栈顶]</li>
 </ul>
 </li>
@@ -771,9 +953,13 @@
 </ul>
 </li>
 <li>程序状态与控制寄存器<ul>
-<li>EFLAGS：标志寄存器，32个位元的01控制<blockquote>
-<p>ZF(零标志器，运算结果为0时置1)  CF(进位标志)  OF(溢出标志)</p>
-</blockquote>
+<li>EFLAGS：标志寄存器，32个位元的01控制<ul>
+<li>ZF(零标志器，运算结果为0时置1)  </li>
+<li>CF(进位标志，运算结果向最高位以上进位时置1)  </li>
+<li>OF(溢出标志) </li>
+<li>AF(辅助进位标志，运算结果在第3位的时候置1)</li>
+<li>SF(符号标志，有符号整型的符号位为1时置1)</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -1135,275 +1321,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/08/IDA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/08/IDA/" class="post-title-link" itemprop="url">IDA快捷操作</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-08 16:05:15" itemprop="dateCreated datePublished" datetime="2022-09-08T16:05:15+08:00">2022-09-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-27 21:03:35" itemprop="dateModified" datetime="2022-09-27T21:03:35+08:00">2022-09-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E2%80%94%E2%80%94%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">CTF——工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <table>
-<thead>
-<tr>
-<th>操作</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>F5</td>
-<td>反汇编</td>
-</tr>
-<tr>
-<td>函数列表Ctrl+F</td>
-<td>搜索函数</td>
-</tr>
-<tr>
-<td>X</td>
-<td>交叉引用</td>
-</tr>
-<tr>
-<td>G</td>
-<td>跳转到指定地址</td>
-</tr>
-<tr>
-<td>Shift+F12</td>
-<td>字符串列表</td>
-</tr>
-<tr>
-<td>Alt+T</td>
-<td>按指令查找</td>
-</tr>
-<tr>
-<td>N</td>
-<td>重命名(函数名等)</td>
-</tr>
-<tr>
-<td>Ctrl+Z</td>
-<td>操作撤销</td>
-</tr>
-<tr>
-<td>D</td>
-<td>将字符串等元素转为数据</td>
-</tr>
-<tr>
-<td>A</td>
-<td>将数据转变为字符串</td>
-</tr>
-<tr>
-<td>C</td>
-<td>将数据转变为汇编代码</td>
-</tr>
-<tr>
-<td>U</td>
-<td>将字符串转变为原始数据</td>
-</tr>
-<tr>
-<td>Shift+E</td>
-<td>导出数据</td>
-</tr>
-<tr>
-<td>Shift+F2</td>
-<td>脚本嵌入</td>
-</tr>
-<tr>
-<td>;</td>
-<td>添加注释(所有交叉参考处均显示)</td>
-</tr>
-<tr>
-<td>:</td>
-<td>添加注释(仅在此处显示)</td>
-</tr>
-<tr>
-<td>Esc</td>
-<td>后退一步</td>
-</tr>
-<tr>
-<td>Ctrl+Enter</td>
-<td>前进一步</td>
-</tr>
-<tr>
-<td>Alt+M</td>
-<td>标记当前位置</td>
-</tr>
-<tr>
-<td>Ctrl+M</td>
-<td>跳转到标记位置</td>
-</tr>
-<tr>
-<td>P</td>
-<td>创建函数</td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/07/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/07/index/" class="post-title-link" itemprop="url">幂数加密</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-07 20:36:29" itemprop="dateCreated datePublished" datetime="2022-09-07T20:36:29+08:00">2022-09-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-08 16:27:42" itemprop="dateModified" datetime="2022-09-08T16:27:42+08:00">2022-09-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E9%A2%98%E8%A7%A3%E2%80%94%E2%80%94crypto/" itemprop="url" rel="index"><span itemprop="name">CTF题解——crypto</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="加密方法"><a href="#加密方法" class="headerlink" title="加密方法"></a>加密方法</h3><ul>
-<li>由于每一个数都可以变成形式为”2<sup>a</sup>+2<sup>b</sup>+2<sup>c</sup>….”的表达式<br>所以我们用对应”abc…”数字串来代表这个数</li>
-<li>例如<br>5 &#x3D; 2<sup>0</sup>+2<sup>2</sup>，即可表示为02<br>19 &#x3D; 2<sup>0</sup>+2<sup>1</sup>+2<sup>4</sup>，即014</li>
-</ul>
-<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
-<p>8842101220480224404014224202480122</p>
-</blockquote>
-<ul>
-<li>是8位大写字母</li>
-<li>采用幂数加密</li>
-</ul>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><ul>
-<li><p>联想8位字母和8个0的字符串，猜测<font color="#f18583">以0为分隔符</font><br>拆分后可以得到：</p>
-<blockquote>
-<p>88421 122 48 2244 4 142242 248 122</p>
-</blockquote>
-</li>
-<li><p>观察发现每个数字都是2的倍数，推断单个数字表示的就是”2<sup>a</sup>“，所以将每一段数字直接求和</p>
-</li>
-<li><p>上脚本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	string s = <span class="string">&quot;88421 122 48 2244 4 142242 248 122 &quot;</span>; </span><br><span class="line">	int <span class="built_in">sum</span> = 0;</span><br><span class="line">	<span class="keyword">for</span>(int i = 0; i &lt; s.length(); i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s[i] == <span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">			cout &lt;&lt;<span class="string">char(sum+&#x27;A&#x27;-1);</span></span><br><span class="line"><span class="string">			sum = 0;</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		else&#123;</span></span><br><span class="line"><span class="string">			sum += (s[i]-&#x27;0&#x27;);</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	return 0;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-<li><p>得到flag：</p>
-<blockquote>
-<p>cyberpace{WELLDONE}</p>
-</blockquote>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1475,14 +1392,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="常见寄存器 通用寄存器 EAX：（针对操作数和结果数据的）累加器 EBX：（DS段的数据指针）基址寄存器 ECX：（字符串和循环操作的）计数器 EDX：（I&#x2F;O指针）数据寄存器 ESI：（字符串操作源指针）源变址寄存器 EDI：（字符串操作目标指针）目的变址寄存器 EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器] ESP：（SS段中栈指针）栈指针寄存器[指向栈顶]   段">
+  <meta name="description" content="常见寄存器 通用寄存器 EAX：（针对操作数和结果数据的）累加器 EBX：（DS段的数据指针）基址寄存器 ECX：（字符串和循环操作的）计数器 EDX：（I&#x2F;O指针）数据寄存器 ESI：（字符串操作源指针）源变址寄存器 EDI：（字符串操作目标指针）目的变址寄存器 EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器][栈底指针寄存器] ESP：（SS段中栈指针）栈指针寄存器[">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《逆向工程核心原理》总结1">
 <meta property="og:url" content="http://example.com/2022/10/05/Summary1/index.html">
 <meta property="og:site_name" content="逆向光点">
-<meta property="og:description" content="常见寄存器 通用寄存器 EAX：（针对操作数和结果数据的）累加器 EBX：（DS段的数据指针）基址寄存器 ECX：（字符串和循环操作的）计数器 EDX：（I&#x2F;O指针）数据寄存器 ESI：（字符串操作源指针）源变址寄存器 EDI：（字符串操作目标指针）目的变址寄存器 EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器] ESP：（SS段中栈指针）栈指针寄存器[指向栈顶]   段">
+<meta property="og:description" content="常见寄存器 通用寄存器 EAX：（针对操作数和结果数据的）累加器 EBX：（DS段的数据指针）基址寄存器 ECX：（字符串和循环操作的）计数器 EDX：（I&#x2F;O指针）数据寄存器 ESI：（字符串操作源指针）源变址寄存器 EDI：（字符串操作目标指针）目的变址寄存器 EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器][栈底指针寄存器] ESP：（SS段中栈指针）栈指针寄存器[">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-05T08:31:22.827Z">
-<meta property="article:modified_time" content="2022-10-05T14:57:00.482Z">
+<meta property="article:modified_time" content="2022-10-14T15:34:47.394Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
@@ -206,10 +206,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-10-05 16:31:22 / 修改时间：22:57:00" itemprop="dateCreated datePublished" datetime="2022-10-05T16:31:22+08:00">2022-10-05</time>
+              <time title="创建时间：2022-10-05 16:31:22" itemprop="dateCreated datePublished" datetime="2022-10-05T16:31:22+08:00">2022-10-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-14 23:34:47" itemprop="dateModified" datetime="2022-10-14T23:34:47+08:00">2022-10-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -246,7 +252,7 @@
 <li>EDX：（I&#x2F;O指针）数据寄存器</li>
 <li>ESI：（字符串操作源指针）源变址寄存器</li>
 <li>EDI：（字符串操作目标指针）目的变址寄存器</li>
-<li>EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器]</li>
+<li>EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器][栈底指针寄存器]</li>
 <li>ESP：（SS段中栈指针）栈指针寄存器[指向栈顶]</li>
 </ul>
 </li>
@@ -260,9 +266,13 @@
 </ul>
 </li>
 <li>程序状态与控制寄存器<ul>
-<li>EFLAGS：标志寄存器，32个位元的01控制<blockquote>
-<p>ZF(零标志器，运算结果为0时置1)  CF(进位标志)  OF(溢出标志)</p>
-</blockquote>
+<li>EFLAGS：标志寄存器，32个位元的01控制<ul>
+<li>ZF(零标志器，运算结果为0时置1)  </li>
+<li>CF(进位标志，运算结果向最高位以上进位时置1)  </li>
+<li>OF(溢出标志) </li>
+<li>AF(辅助进位标志，运算结果在第3位的时候置1)</li>
+<li>SF(符号标志，有符号整型的符号位为1时置1)</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -411,14 +421,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
