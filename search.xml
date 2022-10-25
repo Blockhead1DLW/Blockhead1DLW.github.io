@@ -58,7 +58,7 @@
 </blockquote>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>你应该干什么？</p>
 <ol>
-<li>在展开正式学习之前，先试着去安装一个kali虚拟机，这是必要的</li>
+<li>在展开正式学习之前，先试着去安装一个kali 和win10虚拟机，这是必要的</li>
 <li>关于ctf-wiki，我们需要看，看一看逆向简介即可，剩余的如果你想看的话，可以看看目录</li>
 <li>安装工具</li>
 <li>开始学习<ol>
@@ -694,7 +694,29 @@
   <entry>
     <title>pyc文件反编</title>
     <url>/2022/09/07/Re_pyc/</url>
-    <content><![CDATA[<h3 id="pyc文件"><a href="#pyc文件" class="headerlink" title="pyc文件"></a>pyc文件</h3><p>py生成的中间文件</p>
+    <content><![CDATA[<h2 id="2022-x2F-10-x2F-25-重写"><a href="#2022-x2F-10-x2F-25-重写" class="headerlink" title="2022&#x2F;10&#x2F;25 重写"></a>2022&#x2F;10&#x2F;25 重写</h2><ul>
+<li><p>加一个内容：exe到pyc的转化</p>
+<ul>
+<li>可操作exe的识别（用python编译生成的exe文件一般来讲会比较大）</li>
+<li>具体处理（利用脚本完成）</li>
+</ul>
+</li>
+<li><p>py脚本（pyinstxtractor）</p>
+<p>（<a href="https://gitcode.net/mirrors/extremecoders-re/pyinstxtractor?utm_source=csdn_github_accelerator">mirrors &#x2F; extremecoders-re &#x2F; pyinstxtractor · GitCode</a>）</p>
+</li>
+<li><p>使用</p>
+<ul>
+<li><p>建议官方文档readme.md</p>
+</li>
+<li><p>比较常见的操作就是将要转化的exe程序复制到脚本文件目录下，执行命令</p>
+<blockquote>
+<p>python pyinstxtractor.py test.exe</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="pyc文件反编"><a href="#pyc文件反编" class="headerlink" title="pyc文件反编"></a>pyc文件反编</h3><p>py生成的中间文件</p>
 <blockquote>
 <p>先省略无数字，需要深入了解底层再说</p>
 </blockquote>
