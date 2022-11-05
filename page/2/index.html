@@ -180,6 +180,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/14/z3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="WoodenmanDu">
+      <meta itemprop="description" content="多少是有点bug">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆向光点">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/14/z3/" class="post-title-link" itemprop="url">解方程用的牛马z3</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-14 21:53:33 / 修改时间：22:13:37" itemprop="dateCreated datePublished" datetime="2022-09-14T21:53:33+08:00">2022-09-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF%E2%80%94%E2%80%94%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">CTF——工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>鉴于某些方程不是人解的，所以就用z3了….</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><blockquote>
+<p>直接搞到网盘上用链接吧：<br>链接：(<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234">https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234</a>)<br>提取码：1234</p>
+</blockquote>
+<ol>
+<li>下载解压</li>
+<li>将文件中bin目录配置到系统变量path中</li>
+<li>新建PYTHONPATH系统变量，路径为bin&#x2F;python目录</li>
+</ol>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ol>
+<li>打开黑框框</li>
+</ol>
+<blockquote>
+<p>cmd到bin&#x2F;python的目录</p>
+</blockquote>
+<p>or</p>
+<blockquote>
+<p>在bin&#x2F;python目录下shift右键powershell</p>
+</blockquote>
+<ol start="2">
+<li><p>输入python</p>
+</li>
+<li><p>把代码输进去回车就完了</p>
+</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
+<li><p>先看官方示例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from z3 import *</span><br><span class="line">x = Real(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">y = Real(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">s = Solver()</span><br><span class="line">s.add(x + y &gt; 5, x &gt; 1, y &gt; 1)</span><br><span class="line"><span class="built_in">print</span>(s.check())</span><br><span class="line"><span class="built_in">print</span>(s.model())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简单说一下</p>
+</li>
+</ul>
+<ol>
+<li>导包z3</li>
+<li>a &#x3D; Real(b), a为方程中的未知数，b为输出时候用来表示a的变量</li>
+<li>Solver()，简言之：解决函数，方程接收器</li>
+<li>add()，括号里塞方程就行，用“,”隔开，或者你多用几个add()也行</li>
+<li>后面俩不用动了，就那样</li>
+<li>回车出结果</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/08/IDA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1054,7 +1162,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -20,19 +20,17 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="常见寄存器 通用寄存器 EAX：（针对操作数和结果数据的）累加器 EBX：（DS段的数据指针）基址寄存器 ECX：（字符串和循环操作的）计数器 EDX：（I&#x2F;O指针）数据寄存器 ESI：（字符串操作源指针）源变址寄存器 EDI：（字符串操作目标指针）目的变址寄存器 EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器][栈底指针寄存器] ESP：（SS段中栈指针）栈指针寄存器[">
-<meta property="og:type" content="article">
-<meta property="og:title" content="《逆向工程核心原理》总结1">
-<meta property="og:url" content="http://example.com/2022/10/05/Summary1/index.html">
+  <meta name="description" content="多少是有点bug">
+<meta property="og:type" content="website">
+<meta property="og:title" content="逆向光点">
+<meta property="og:url" content="http://example.com/archives/2022/11/index.html">
 <meta property="og:site_name" content="逆向光点">
-<meta property="og:description" content="常见寄存器 通用寄存器 EAX：（针对操作数和结果数据的）累加器 EBX：（DS段的数据指针）基址寄存器 ECX：（字符串和循环操作的）计数器 EDX：（I&#x2F;O指针）数据寄存器 ESI：（字符串操作源指针）源变址寄存器 EDI：（字符串操作目标指针）目的变址寄存器 EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器][栈底指针寄存器] ESP：（SS段中栈指针）栈指针寄存器[">
+<meta property="og:description" content="多少是有点bug">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-05T08:31:22.827Z">
-<meta property="article:modified_time" content="2022-10-14T15:34:47.394Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/10/05/Summary1/">
+<link rel="canonical" href="http://example.com/archives/2022/11/">
 
 
 <script id="page-configurations">
@@ -40,12 +38,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>《逆向工程核心原理》总结1 | 逆向光点</title>
+  <title>归档 | 逆向光点</title>
   
 
 
@@ -176,183 +174,50 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content archive">
             
 
-    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/05/Summary1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          《逆向工程核心原理》总结1
-        </h1>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-05 16:31:22" itemprop="dateCreated datePublished" datetime="2022-10-05T16:31:22+08:00">2022-10-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-14 23:34:47" itemprop="dateModified" datetime="2022-10-14T23:34:47+08:00">2022-10-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <span class="collection-header">嗯..! 目前共计 18 篇日志。 继续努力。</span>
+      </div>
 
       
-        <h2 id="常见寄存器"><a href="#常见寄存器" class="headerlink" title="常见寄存器"></a>常见寄存器</h2><ul>
-<li>通用寄存器<ul>
-<li>EAX：（针对操作数和结果数据的）累加器</li>
-<li>EBX：（DS段的数据指针）基址寄存器</li>
-<li>ECX：（字符串和循环操作的）计数器</li>
-<li>EDX：（I&#x2F;O指针）数据寄存器</li>
-<li>ESI：（字符串操作源指针）源变址寄存器</li>
-<li>EDI：（字符串操作目标指针）目的变址寄存器</li>
-<li>EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器][栈底指针寄存器]</li>
-<li>ESP：（SS段中栈指针）栈指针寄存器[指向栈顶]</li>
-</ul>
-</li>
-<li>段寄存器<ul>
-<li>CS：代码段寄存器</li>
-<li>SS：栈段寄存器</li>
-<li>DS：数据段寄存器</li>
-<li>FS：数据段寄存器</li>
-<li>ES：附加数据寄存器</li>
-<li>GS：数据段寄存器</li>
-</ul>
-</li>
-<li>程序状态与控制寄存器<ul>
-<li>EFLAGS：标志寄存器，32个位元的01控制<ul>
-<li>ZF(零标志器，运算结果为0时置1)  </li>
-<li>CF(进位标志，运算结果向最高位以上进位时置1)  </li>
-<li>OF(溢出标志) </li>
-<li>AF(辅助进位标志，运算结果在第3位的时候置1)</li>
-<li>SF(符号标志，有符号整型的符号位为1时置1)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>指令指针寄存器<ul>
-<li>EIP：保存CPU要执行的指令地址</li>
-</ul>
-</li>
-</ul>
-<h2 id="栈帧"><a href="#栈帧" class="headerlink" title="栈帧"></a>栈帧</h2><ul>
-<li>栈特点：FILO（first in last out）</li>
-<li>在调用函数的时候需要将参数压入栈中，栈顶地址发生改变，而使用结束又需要将参数弹出，将栈恢复到被调用前的状态，为了便于管理，于是出现了栈帧。<ul>
-<li>官方解释：利用EBP寄存器访问栈内局部变量、参数、函数返回地址的手段。</li>
-<li>具体操作：在调用函数之前，将ESP中的栈顶地址存入EBP中，将该地址作为基准点。然后调用函数，ESP寄存器正常进行，其间可通过EBP去控制访问变量参数等等，在调用结束后，再将EBP中的基准点地址给到ESP，将栈的状态恢复到函数调用前</li>
-<li>代码流程：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PUSH EBP          ;函数开始</span><br><span class="line">MOV  EBP,ESP      ;将栈顶地址存入EBP中</span><br><span class="line"></span><br><span class="line">....              ;函数执行，期间EBP地址不变</span><br><span class="line"></span><br><span class="line">MOV  ESP,EBP      ;基准点地址给到ESP</span><br><span class="line">POP EBP           ;栈状态恢复，弹出EBP</span><br><span class="line">RETN              ;函数结束</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="函数调用约定"><a href="#函数调用约定" class="headerlink" title="函数调用约定"></a>函数调用约定</h2><p>(Calling Convention)</p>
-<ul>
-<li>三种方式(cdcel, stdcall, fastcall)<ul>
-<li>cdcel<br>主要运用于c语言，由调用者负责清理栈<blockquote>
-<p>函数调用结束后通过移动ESP，恢复到调用前的栈状态</p>
-</blockquote>
-</li>
-<li>stdcall<br>主要运用于Win32 API，由被调用者清理栈<blockquote>
-<p>在被调用函数的结尾通过RETN语句移动ESP到原位置</p>
-</blockquote>
-</li>
-<li>fastcall<blockquote>
-<p>使用寄存器去传递函数的部分参数，实现快速调用</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-
+    <div class="collection-year">
+      <span class="collection-header">2022</span>
     </div>
 
-    
-    
-    
-        
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>WoodenmanDu
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://example.com/2022/10/05/Summary1/" title="《逆向工程核心原理》总结1">http://example.com/2022/10/05/Summary1/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2022-11-05T22:09:19+08:00"
+              content="2022-11-05">
+          11-05
+        </time>
+      </div>
 
+      <div class="post-title">
+          <a class="post-title-link" href="/2022/11/05/fast_sum1/" itemprop="url">
+            <span itemprop="name">《c++反汇编与逆向分析技术揭秘》速记1</span>
+          </a>
+      </div>
 
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2022/09/27/Introduction/" rel="prev" title="CTF逆向入门">
-      <i class="fa fa-chevron-left"></i> CTF逆向入门
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/10/06/Summary2/" rel="next" title="《逆向工程核心原理》总结2">
-      《逆向工程核心原理》总结2 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+    </header>
   </article>
+
+
+    </div>
+  </div>
   
   
+  
+
   
 
 
@@ -405,7 +270,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">常见寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%88%E5%B8%A7"><span class="nav-number">2.</span> <span class="nav-text">栈帧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A"><span class="nav-number">3.</span> <span class="nav-text">函数调用约定</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
