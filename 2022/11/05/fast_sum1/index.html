@@ -28,7 +28,7 @@
 <meta property="og:description" content="基本类型表示 无符号整数：全部字节表示数字，只有正数  有符号整数：最高位表示正负  负数表示  补码（0减去该数的绝对值）存放，补码 &#x3D; 反码 + 1，进位丢失  举例： 1234567--&gt; -3--&gt; 0减去该数的绝对值----&gt; 0xFFFFFFFD + 3 &#x3D; 0，最高位溢出 &gt;&gt; 0xFFFFFFFD表示-3--&gt; 补码 &#x3D; 反码 + 1-">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-05T14:09:19.587Z">
-<meta property="article:modified_time" content="2022-11-05T15:16:54.525Z">
+<meta property="article:modified_time" content="2022-11-06T04:52:00.410Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
@@ -206,10 +206,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-05 22:09:19 / 修改时间：23:16:54" itemprop="dateCreated datePublished" datetime="2022-11-05T22:09:19+08:00">2022-11-05</time>
+              <time title="创建时间：2022-11-05 22:09:19" itemprop="dateCreated datePublished" datetime="2022-11-05T22:09:19+08:00">2022-11-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-06 12:52:00" itemprop="dateModified" datetime="2022-11-06T12:52:00+08:00">2022-11-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -288,6 +294,9 @@
 </ul>
 <h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.text:0000000000401387           loc_401387:          </span><br><span class="line">.text:0000000000401387           mov     qword ptr [rax], 0</span><br><span class="line">.text:000000000040138E           mov     cs:argv, rbp</span><br><span class="line">.text:0000000000401395           call    __main</span><br><span class="line">.text:0000000000401395</span><br><span class="line">.text:000000000040139A           mov     rax, cs:_refptr___imp___initenv</span><br><span class="line">.text:00000000004013A1           mov     rdx, cs:envp</span><br><span class="line">.text:00000000004013A8           mov     ecx, cs:argc           ; argc</span><br><span class="line">.text:00000000004013AE           mov     rax, [rax]</span><br><span class="line">.text:00000000004013B1           mov     [rax], rdx</span><br><span class="line">.text:00000000004013B4           mov     r8, cs:envp            ; envp</span><br><span class="line">.text:00000000004013BB           mov     rdx, cs:argv           ; argv</span><br><span class="line">.text:00000000004013C2           call    main</span><br><span class="line">.text:00000000004013C2</span><br><span class="line">.text:00000000004013C7           mov     ecx, cs:managedapp</span><br><span class="line">.text:00000000004013CD           mov     cs:mainret, eax</span><br><span class="line">.text:00000000004013D3           test    ecx, ecx</span><br><span class="line">.text:00000000004013D5           jz      loc_40149E</span><br><span class="line">.text:00000000004013D5</span><br><span class="line">.text:00000000004013DB           mov     edx, cs:has_cctor</span><br><span class="line">.text:00000000004013E1           test    edx, edx</span><br><span class="line">.text:00000000004013E3           jnz     short loc_4013F0</span><br><span class="line">.text:00000000004013E3</span><br><span class="line">.text:00000000004013E5           call    _cexit                ;返回调用exit()函数</span><br></pre></td></tr></table></figure>
 
+<h2 id="表达式求值"><a href="#表达式求值" class="headerlink" title="表达式求值"></a>表达式求值</h2><ul>
+<li>无效语句，例如2+3；编译时自动剔除，不进行处理</li>
+</ul>
 
     </div>
 
@@ -320,10 +329,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/10/16/Solve1/" rel="prev" title="解题">
-      <i class="fa fa-chevron-left"></i> 解题
+    <a href="/2022/10/16/Solve1/" rel="prev" title="解题1">
+      <i class="fa fa-chevron-left"></i> 解题1
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/11/08/Solve2/" rel="next" title="RoarCTF2019 polyre">
+      RoarCTF2019 polyre <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -382,7 +394,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.</span> <span class="nav-text">基本类型表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main%E5%87%BD%E6%95%B0%EF%BC%88%E8%AF%AD%E6%B3%95%E8%A7%84%E5%AE%9A%E7%94%A8%E6%88%B7%E5%85%A5%E5%8F%A3%EF%BC%89%E7%89%B9%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">main函数（语法规定用户入口）特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B"><span class="nav-number">2.1.</span> <span class="nav-text">举例</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.</span> <span class="nav-text">基本类型表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main%E5%87%BD%E6%95%B0%EF%BC%88%E8%AF%AD%E6%B3%95%E8%A7%84%E5%AE%9A%E7%94%A8%E6%88%B7%E5%85%A5%E5%8F%A3%EF%BC%89%E7%89%B9%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">main函数（语法规定用户入口）特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B"><span class="nav-number">2.1.</span> <span class="nav-text">举例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC"><span class="nav-number">3.</span> <span class="nav-text">表达式求值</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -398,7 +410,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -20,30 +20,32 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="多少是有点bug">
-<meta property="og:type" content="website">
-<meta property="og:title" content="逆向光点">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="解题流程 查壳IDA 脚本去平坦化 IDA脚本去混淆 CRC32识别 解密脚本  脚本集 去平坦化脚本  命令：  python deflat.py attachment 0x400620   deflat 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RoarCTF2019 polyre">
+<meta property="og:url" content="http://example.com/2022/11/08/Solve2/index.html">
 <meta property="og:site_name" content="逆向光点">
-<meta property="og:description" content="多少是有点bug">
+<meta property="og:description" content="解题流程 查壳IDA 脚本去平坦化 IDA脚本去混淆 CRC32识别 解密脚本  脚本集 去平坦化脚本  命令：  python deflat.py attachment 0x400620   deflat 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-08T08:55:27.739Z">
+<meta property="article:modified_time" content="2022-11-08T12:46:49.892Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/11/08/Solve2/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>逆向光点</title>
+  <title>RoarCTF2019 polyre | 逆向光点</title>
   
 
 
@@ -174,306 +176,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/27/Introduction/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/27/Introduction/" class="post-title-link" itemprop="url">CTF逆向入门</a>
-        </h2>
-
-        <div class="post-meta">
-          
-          <i class="fa fa-thumb-tack"></i>
-          <font color=7D26CD>置顶</font>
-          <span class="post-meta-divider">|</span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-27 21:04:17" itemprop="dateCreated datePublished" datetime="2022-09-27T21:04:17+08:00">2022-09-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-20 11:05:45" itemprop="dateModified" datetime="2022-10-20T11:05:45+08:00">2022-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Welcome/" itemprop="url" rel="index"><span itemprop="name">Welcome</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="This-is-a-new-starting-point"><a href="#This-is-a-new-starting-point" class="headerlink" title="This is a new starting point."></a>This is a new starting point.</h2><h2 id="Welcome-to-a-new-world"><a href="#Welcome-to-a-new-world" class="headerlink" title="Welcome to a new world!_"></a>Welcome to a new world!_</h2><h4 id="Some-other-web-sites"><a href="#Some-other-web-sites" class="headerlink" title="Some other web sites:"></a>Some other web sites:</h4><ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_59700927?spm=1000.2115.3001.5343">CSDN</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/woodenman-15">知乎</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/Blockhead1DLW">Github</a></li>
-</ul>
-<blockquote>
-<p>If the picture cannot be loaded, it can be determined that your site is in China</p>
-</blockquote>
-<h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>用这篇文章来浅谈一下逆向吧<br>如果你是大一，那你可能会遇到一些麻烦，一下子接触这么多语言，接触这么多配置方式。<br>我只能说，不要急，慢慢来</p>
-<h2 id="序序言"><a href="#序序言" class="headerlink" title="序序言"></a>序序言</h2><blockquote>
-<p>你可以不会汇编，但是你不可以不会c语言</p>
-</blockquote>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>你应该干什么？</p>
-<ol>
-<li>在展开正式学习之前，先试着去安装一个kali 和win10虚拟机，这是必要的</li>
-<li>关于ctf-wiki，我们需要看，看一看逆向简介即可，剩余的如果你想看的话，可以看看目录</li>
-<li>安装工具</li>
-<li>开始学习<ol>
-<li>学会使用工具(目的在于学会工具使用，而不是看懂代码)</li>
-</ol>
-<ul>
-<li>exe文件执行与反编</li>
-<li>elf文件执行与反编</li>
-<li>jar文件执行与反编</li>
-<li>pyc文件反编与编译运行</li>
-<li>apk文件反编<blockquote>
-<p>或许你不能完全的完成上面的事情，但这并不影响你继续后面的步骤</p>
-</blockquote>
-</li>
-</ul>
-<ol>
-<li>了解一些常见的加密方式，tea，xtea，base64等等</li>
-<li>python，java语言学习，先了解基本语法，此外，用python写一些简单的脚本（记住循序渐进）</li>
-<li>汇编语言（功底越深越好）</li>
-<li>看CTF-wiki，到这里你已经有了一些功底，是时候加深了解逆向了。浅浅接触一下花指令、加脱壳、反调试技术等等，你或许会发现自己看不懂，别急，看不懂的就是我们接下来要学习的</li>
-<li>看过wiki之后，我想你明白了逆向有windows逆向，linux逆向，Android逆向，Ios逆向<blockquote>
-<p>到这里，如果你在学习时同时刷了足够多的题，那我想你应该知道你接下来要做什么了</p>
-</blockquote>
-</li>
-<li>尝试破解一些简单的软件之类(不要去违法)</li>
-<li>刷题 &amp; 底层学习</li>
-</ol>
-</li>
-</ol>
-<h2 id="一些建议"><a href="#一些建议" class="headerlink" title="一些建议"></a>一些建议</h2><ul>
-<li>逆向是一个需要代码能力较强的方向，最后你一定能够依靠的，是汇编，所以，学好汇编</li>
-<li>多刷题，逆向要做的事就决定了他需要积攒足够的经验，因为你也不知道你下一秒遇到的软件是哪个奇葩开发的</li>
-<li>多去论坛转悠转悠，会有帮助</li>
-<li>不要执着于一个点，要学会取舍</li>
-</ul>
-<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>记住，能轻易完成的工作，也是最容易被替代的工作，我们要成为的，不是被替代的人。‘</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/18/Tools/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/18/Tools/" class="post-title-link" itemprop="url">工具汇总</a>
-        </h2>
-
-        <div class="post-meta">
-          
-          <i class="fa fa-thumb-tack"></i>
-          <font color=7D26CD>置顶</font>
-          <span class="post-meta-divider">|</span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-18 11:57:32" itemprop="dateCreated datePublished" datetime="2022-09-18T11:57:32+08:00">2022-09-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-25 11:53:07" itemprop="dateModified" datetime="2022-10-25T11:53:07+08:00">2022-10-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E2%80%94%E2%80%94%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">CTF——工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
-<li>这篇文章主要把逆向和密码学需要用到的工具汇总一下</li>
-<li>如果引用内容侵权，请联系删除</li>
-<li>安装过程一般不做说明，google即可</li>
-</ul>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h3><ul>
-<li><p>虚拟机下载<br><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/">清华源</a><br><a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror">阿里源</a></p>
-</li>
-<li><p>exeinfope(查壳工具)</p>
-<blockquote>
-<p>链接：(<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1oXarqcAuWdXWTB-8830q0Q?pwd=1234">https://pan.baidu.com/s/1oXarqcAuWdXWTB-8830q0Q?pwd=1234</a>)<br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>PEiD(查壳工具)</p>
-<blockquote>
-<p>链接：(<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/15vWG_e4qcNi_McHmdiTPkg?pwd=1234">https://pan.baidu.com/s/15vWG_e4qcNi_McHmdiTPkg?pwd=1234</a>)<br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>IDA7.2(静态调试工具)</p>
-<blockquote>
-<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1fADIonw9sSyZ1pFIDkeBXg?pwd=1234">https://pan.baidu.com/s/1fADIonw9sSyZ1pFIDkeBXg?pwd=1234</a><br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>Ollydbg(动态调试工具)<br><a target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-350397-1-1.html">吾爱破解</a></p>
-</li>
-<li><p>x64dbg(动态调试工具)[工具来源于吾爱破解]</p>
-<blockquote>
-<p>链接：(<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1aG_nczhG8mOqDBvOZMzyYg?pwd=1234">https://pan.baidu.com/s/1aG_nczhG8mOqDBvOZMzyYg?pwd=1234</a>)<br>提取码：1234 </p>
-</blockquote>
-</li>
-<li><p>Ghidra(静态调试工具)</p>
-<blockquote>
-<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1fr1TeZUrdzD-VZHnWbl57w?pwd=1234">https://pan.baidu.com/s/1fr1TeZUrdzD-VZHnWbl57w?pwd=1234</a><br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>cheat engine(内存修改工具)<br>官方网站-(<a target="_blank" rel="noopener" href="https://cheatengine.org/">https://cheatengine.org/</a>)</p>
-</li>
-<li><p>upx加脱壳</p>
-<blockquote>
-<p>链接：(<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1LqzAz1arZqpbEBEHZrRsBg?pwd=1234">https://pan.baidu.com/s/1LqzAz1arZqpbEBEHZrRsBg?pwd=1234</a>)<br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>upx shell</p>
-<blockquote>
-<p>链接：(<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/195lxQRjBB39H_RA46SWxpg?pwd=1234">https://pan.baidu.com/s/195lxQRjBB39H_RA46SWxpg?pwd=1234</a>)<br>提取码：1234 </p>
-</blockquote>
-</li>
-<li><p>upx<br>官方网站-(<a target="_blank" rel="noopener" href="https://upx.github.io/">https://upx.github.io</a>)</p>
-</li>
-<li><p>PEview(查看PE文件结构)</p>
-<blockquote>
-<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1JGCcCVmR5nUOJbkM5OzQ5w?pwd=1234">https://pan.baidu.com/s/1JGCcCVmR5nUOJbkM5OzQ5w?pwd=1234</a><br>提取码：1234 </p>
-</blockquote>
-</li>
-<li><p>Winhex(十六进制查看器)</p>
-<blockquote>
-<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1NLyr9YsQ1DNAOTPyY02hBA?pwd=1234">https://pan.baidu.com/s/1NLyr9YsQ1DNAOTPyY02hBA?pwd=1234</a><br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>010 Editor(十六进制查看器)</p>
-<blockquote>
-<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1o1X7FKxfOUZsOkGxi22Ttg?pwd=1234">https://pan.baidu.com/s/1o1X7FKxfOUZsOkGxi22Ttg?pwd=1234</a><br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>APKTOOLS(反编译android apk)<br>官方网站-(<a target="_blank" rel="noopener" href="https://ibotpeaches.github.io/Apktool/install/">https://ibotpeaches.github.io/Apktool/install/</a>)</p>
-</li>
-<li><p>Dex2jar(打包dex文件为jar)<br> SOURCEFORGE-(<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/dex2jar">https://sourceforge.net/projects/dex2jar</a>)</p>
-</li>
-<li><p>JD-GUIjar(反编译jar文件)</p>
-</li>
-<li><p>jeb(apk反编)<br>看雪社区搜索破解</p>
-</li>
-</ul>
-<h3 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h3><ul>
-<li><p>z3(解方程工具)</p>
-<blockquote>
-<p>链接：(<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234">https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234</a>)<br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>Ziperello(zip加密暴力破解)</p>
-<blockquote>
-<p>链接：(<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1of_e5mleYDPjZGZxiYi63Q?pwd=1234">https://pan.baidu.com/s/1of_e5mleYDPjZGZxiYi63Q?pwd=1234</a>)<br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>Converter(编码转换工具)</p>
-<blockquote>
-<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1hzK04wmtm4rWsNyofqXPxw?pwd=1234">https://pan.baidu.com/s/1hzK04wmtm4rWsNyofqXPxw?pwd=1234</a><br>提取码：1234</p>
-</blockquote>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -489,10 +195,9 @@
       <meta itemprop="name" content="逆向光点">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/08/Solve2/" class="post-title-link" itemprop="url">RoarCTF2019 polyre</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          RoarCTF2019 polyre
+        </h1>
 
         <div class="post-meta">
           
@@ -516,6 +221,13 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
 
         </div>
       </header>
@@ -526,7 +238,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="解题流程"><a href="#解题流程" class="headerlink" title="解题流程"></a>解题流程</h2><ol>
+        <h2 id="解题流程"><a href="#解题流程" class="headerlink" title="解题流程"></a>解题流程</h2><ol>
 <li>查壳IDA</li>
 <li>脚本去平坦化</li>
 <li>IDA脚本去混淆</li>
@@ -555,829 +267,48 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">secret = [<span class="number">0xBC8FF26D43536296</span>, <span class="number">0x520100780530EE16</span>, <span class="number">0x4DC0B5EA935F08EC</span>,</span><br><span class="line">          <span class="number">0x342B90AFD853F450</span>, <span class="number">0x8B250EBCAA2C3681</span>, <span class="number">0x55759F81A2C68AE4</span>]</span><br><span class="line">key = <span class="number">0xB0004B7679FA26B3</span></span><br><span class="line"></span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 产生CRC32查表法所用的表</span></span><br><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> secret:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">64</span>):</span><br><span class="line">        sign = s &amp; <span class="number">1</span>                   <span class="comment">#判断首位正负</span></span><br><span class="line">        <span class="keyword">if</span> sign == <span class="number">1</span>:</span><br><span class="line">            s ^= key</span><br><span class="line">        s //= <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> sign == <span class="number">1</span>:</span><br><span class="line">            s |= <span class="number">0x8000000000000000</span>    <span class="comment"># 防止负值除2，溢出为正值</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">hex</span>(s))                      <span class="comment"># 输出表</span></span><br><span class="line">    <span class="comment"># 计算CRC64</span></span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> j &lt; <span class="number">8</span>:</span><br><span class="line">        flag += <span class="built_in">chr</span>(s&amp;<span class="number">0xFF</span>)</span><br><span class="line">        s &gt;&gt;= <span class="number">8</span></span><br><span class="line">        j += <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure></li>
 </ul>
 
-      
     </div>
 
     
     
     
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>WoodenmanDu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/11/08/Solve2/" title="RoarCTF2019 polyre">http://example.com/2022/11/08/Solve2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/05/fast_sum1/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/05/fast_sum1/" class="post-title-link" itemprop="url">《c++反汇编与逆向分析技术揭秘》速记1</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-05 22:09:19" itemprop="dateCreated datePublished" datetime="2022-11-05T22:09:19+08:00">2022-11-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-06 12:52:00" itemprop="dateModified" datetime="2022-11-06T12:52:00+08:00">2022-11-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="基本类型表示"><a href="#基本类型表示" class="headerlink" title="基本类型表示"></a>基本类型表示</h2><ul>
-<li><p>无符号整数：全部字节表示数字，只有正数</p>
-</li>
-<li><p>有符号整数：最高位表示正负</p>
-</li>
-<li><p>负数表示</p>
-<ul>
-<li><p>补码（0减去该数的绝对值）存放，补码 &#x3D; 反码 + 1，进位丢失</p>
-</li>
-<li><p>举例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">--&gt; -<span class="number">3</span></span><br><span class="line">--&gt; <span class="number">0</span>减去该数的绝对值</span><br><span class="line">----&gt; <span class="number">0xFFFFFFFD</span> + <span class="number">3</span> = <span class="number">0</span>，最高位溢出 &gt;&gt; <span class="number">0xFFFFFFFD</span>表示-<span class="number">3</span></span><br><span class="line">--&gt; 补码 = 反码 + <span class="number">1</span></span><br><span class="line">----&gt; <span class="built_in">bin</span>(<span class="number">3</span>):<span class="number">11</span></span><br><span class="line">----&gt; <span class="built_in">bin</span>(<span class="number">3</span>)反码:<span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1100</span></span><br><span class="line">----&gt; <span class="built_in">hex</span>(反码+<span class="number">1</span>):<span class="number">0xFFFFFFFD</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>浮点数</p>
-<ul>
-<li>定点实数存储：提前约定整数和小数长度，进行存放</li>
-<li>浮点实数存储：开辟两个部分，一部分存指数域（小数点位置），一部分存数值大小（无小数点的整数）</li>
-<li>编码方式（符号位-指数域-尾数域）<ul>
-<li>float（size4，32位）：1-8-23</li>
-<li>double（size8，64位）：1-11-52</li>
-<li>因为指数域可能为负数，所以在指数存放时 + 0xf（ 127，1023），判别正负</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>字符串</p>
-<ul>
-<li>编码方式：unicode，ASCII···</li>
-<li>存储<ul>
-<li>线性存储，需要确定首尾地址</li>
-<li>尾地址确定：<ol>
-<li>开辟一部分空间存放长度len，首地址+len确定</li>
-<li>利用结束符直接确定</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="main函数（语法规定用户入口）特点"><a href="#main函数（语法规定用户入口）特点" class="headerlink" title="main函数（语法规定用户入口）特点"></a>main函数（语法规定用户入口）特点</h2><blockquote>
-<p>int __cdecl main(int argc, const char **argv, const char **envp)</p>
-</blockquote>
-<ul>
-<li>main函数启动函数中唯一一个3参数函数：命令行参数个数、命令行参数信息、环境变量信息。</li>
-<li>WinMain是唯一一个4参数函数</li>
-<li>返回要调用exit()函数</li>
-</ul>
-<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.text:0000000000401387           loc_401387:          </span><br><span class="line">.text:0000000000401387           mov     qword ptr [rax], 0</span><br><span class="line">.text:000000000040138E           mov     cs:argv, rbp</span><br><span class="line">.text:0000000000401395           call    __main</span><br><span class="line">.text:0000000000401395</span><br><span class="line">.text:000000000040139A           mov     rax, cs:_refptr___imp___initenv</span><br><span class="line">.text:00000000004013A1           mov     rdx, cs:envp</span><br><span class="line">.text:00000000004013A8           mov     ecx, cs:argc           ; argc</span><br><span class="line">.text:00000000004013AE           mov     rax, [rax]</span><br><span class="line">.text:00000000004013B1           mov     [rax], rdx</span><br><span class="line">.text:00000000004013B4           mov     r8, cs:envp            ; envp</span><br><span class="line">.text:00000000004013BB           mov     rdx, cs:argv           ; argv</span><br><span class="line">.text:00000000004013C2           call    main</span><br><span class="line">.text:00000000004013C2</span><br><span class="line">.text:00000000004013C7           mov     ecx, cs:managedapp</span><br><span class="line">.text:00000000004013CD           mov     cs:mainret, eax</span><br><span class="line">.text:00000000004013D3           test    ecx, ecx</span><br><span class="line">.text:00000000004013D5           jz      loc_40149E</span><br><span class="line">.text:00000000004013D5</span><br><span class="line">.text:00000000004013DB           mov     edx, cs:has_cctor</span><br><span class="line">.text:00000000004013E1           test    edx, edx</span><br><span class="line">.text:00000000004013E3           jnz     short loc_4013F0</span><br><span class="line">.text:00000000004013E3</span><br><span class="line">.text:00000000004013E5           call    _cexit                ;返回调用exit()函数</span><br></pre></td></tr></table></figure>
-
-<h2 id="表达式求值"><a href="#表达式求值" class="headerlink" title="表达式求值"></a>表达式求值</h2><ul>
-<li>无效语句，例如2+3；编译时自动剔除，不进行处理</li>
-</ul>
-
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/05/fast_sum1/" rel="prev" title="《c++反汇编与逆向分析技术揭秘》速记1">
+      <i class="fa fa-chevron-left"></i> 《c++反汇编与逆向分析技术揭秘》速记1
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/16/Solve1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/16/Solve1/" class="post-title-link" itemprop="url">解题1</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-16 11:31:33" itemprop="dateCreated datePublished" datetime="2022-10-16T11:31:33+08:00">2022-10-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-08 16:55:49" itemprop="dateModified" datetime="2022-11-08T16:55:49+08:00">2022-11-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E9%A2%98%E8%A7%A3%E2%80%94%E2%80%94reverse/" itemprop="url" rel="index"><span itemprop="name">CTF题解——reverse</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="2022-x2F-11-x2F-08更新"><a href="#2022-x2F-11-x2F-08更新" class="headerlink" title="2022&#x2F;11&#x2F;08更新"></a>2022&#x2F;11&#x2F;08更新</h2><p>写一下一些奇葩题主体思路，不配图，不适合新手观看</p>
-<h2 id="网鼎杯-2020-青龙组-jocker"><a href="#网鼎杯-2020-青龙组-jocker" class="headerlink" title="[网鼎杯 2020 青龙组]jocker"></a>[网鼎杯 2020 青龙组]jocker</h2><ol>
-<li>exe文件，32位无壳，拖入IDA32</li>
-<li>ctrl+f12定位主体函数，修改变量名提高可读性</li>
-<li>F5反汇编发现提示栈错误，option调出栈指针，修改栈指针为0，重新F5</li>
-<li>查看输入，24位字符串，主体：复制-&gt;加密-&gt;校对-&gt;encypt函数-&gt;final函数</li>
-<li>发现wrong函数加密，omg函数校对，简单异或解密，提交错误，为障眼法（但是得到了正确的输入字符串）</li>
-<li>wrong函数上方对输入的flag进行了复制，真正处理的是复制后的flag</li>
-<li>找到相应的加密函数encypt，结果是动态加密函数，无法直接F5</li>
-<li>exe拖入OD，找到调用加密函数地址，下断点，输入正确字符串运行</li>
-<li>F7单步进入加密函数，ODdump脱壳，生成新文件</li>
-<li>新文件拖入IDA，查看encypt函数，异或解密得到前19位flag</li>
-<li>还剩最后5位，只剩final函数，未知加密，提示是隐藏，推断和之前加密方式相同，为异或加密</li>
-<li>利用最后一位”}”推断出异或key，进行解密得到正确flag</li>
-</ol>
-<blockquote>
-<p>核心：修改由于后续动态加密造成的栈指针错位，解密正确输入，OD动态加密脱壳</p>
-</blockquote>
-<h2 id="SWPU2019-EasiestRe"><a href="#SWPU2019-EasiestRe" class="headerlink" title="[SWPU2019]EasiestRe"></a>[SWPU2019]EasiestRe</h2><ol>
-<li>拖入exeinfope，32位无壳，进IDA</li>
-<li>ctrl+f找到main函数发现GetThreadContext、SetThreadContext等等函数，多线程没跑了，先放一边</li>
-<li>ctrl+f12字符串查找flag找到主体函数(交叉引用)，修改变量名提高可读性</li>
-<li>F5反编发现__debugbreak()，int3断点，可以准备改二进制了，继续查看还不止一个</li>
-<li>重新看线程，是个父子线程保护，子线程加密，查看函数捕获重要长数组v16、v15</li>
-<li>所以又是动态加密，返回__debugbreak()处tab看汇编，int3+nop的长度和v16对的上，那就把v16搬过去，改二进制，重新反编</li>
-<li>观察主体函数：输入-&gt;加密-&gt;check-&gt;输出</li>
-<li>进入加密，又有__debugbreak()，和上面一样的方式，用v15改二进制码，反编</li>
-<li>进入check函数，tab查看汇编，408638地址处发现“cmp [ebp+var_20], 18h”校对指令</li>
-<li>查看对应地址，找到校对字符串（即加密结果）</li>
-<li>返回加密函数，分析，三次加密(异或–&gt;分段–&gt;移位)</li>
-<li>逆写解密</li>
-</ol>
-<p>核心：双线程保护系统，int3断点(0xcc)，二进制修改</p>
-<h2 id="WMCTF2020-easy-re"><a href="#WMCTF2020-easy-re" class="headerlink" title="[WMCTF2020]easy_re"></a>[WMCTF2020]easy_re</h2><ul>
-<li>perl处理：一种解释语言，运行时解压，动调处理<ul>
-<li>搜索script关键词，找到perl脚本调用处</li>
-<li>再关键点下面设断点，F8运行到脚本执行完毕</li>
-<li>下一个eax中可见原文</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/12/shell/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/12/shell/" class="post-title-link" itemprop="url">脚本函数积累</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-12 22:13:57" itemprop="dateCreated datePublished" datetime="2022-10-12T22:13:57+08:00">2022-10-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-08 16:53:54" itemprop="dateModified" datetime="2022-11-08T16:53:54+08:00">2022-11-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本来不想写的，后来发现自己脑子不太行根本记不住，查又不想查，所以慢慢积累吧，总有一天会用到的<br>我的设想是等未来达到一定数量以后再按python库整理，现在的话就这样散着</p>
-<h2 id="sha1加密"><a href="#sha1加密" class="headerlink" title="sha1加密"></a>sha1加密</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line">origin = <span class="built_in">input</span>()</span><br><span class="line">temp = hashlib.sha1(origin.encode())</span><br><span class="line"><span class="built_in">print</span>(temp.hexdigest())</span><br></pre></td></tr></table></figure>
-
-<h2 id="求模乘逆元"><a href="#求模乘逆元" class="headerlink" title="求模乘逆元"></a>求模乘逆元</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># e*d mod φ(n) = 1</span></span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">e = <span class="string">&#x27;e&#x27;</span></span><br><span class="line">phi = <span class="string">&#x27;φ(n)&#x27;</span></span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
-
-<h2 id="MD5加密"><a href="#MD5加密" class="headerlink" title="MD5加密"></a>MD5加密</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 待加密信息</span></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&#x27;this is a md5 test.&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建md5对象</span></span><br><span class="line">hl = hashlib.md5()</span><br><span class="line">hl.update(<span class="built_in">str</span>.encode(encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;MD5加密前为 ：&#x27;</span> + <span class="built_in">str</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;MD5加密后为 ：&#x27;</span> + hl.hexdigest())</span><br></pre></td></tr></table></figure>
-
-<h2 id="XXTEA"><a href="#XXTEA" class="headerlink" title="XXTEA"></a>XXTEA</h2><ul>
-<li>ISCTF2022 green_tea</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">参数描述:</span></span><br><span class="line"><span class="string">  DELTA: 神秘常数δ，它来源于黄金比率，以保证每一轮加密都不相同。但δ的精确值似乎并不重要，这里 TEA 把它定义为 δ=「(√5 - 1)231」</span></span><br><span class="line"><span class="string">      v: 需要加解密的数据，格式为32位的无符号整数组成的数组</span></span><br><span class="line"><span class="string">      n: n表示需要加密的32位无符号整数的个数（例：n为1时，只有v数组中的第一个元素被加密了），n不能大于v的长度</span></span><br><span class="line"><span class="string">      k: 密钥，格式为4个32位无符号整数组成的数组，即密钥长度为128位</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> c_uint32</span><br><span class="line"> </span><br><span class="line">DELTA = <span class="number">0x9E3779B9</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">encrypt</span>(<span class="params">v, n, k</span>):</span><br><span class="line">    rounds = <span class="number">6</span> + <span class="built_in">int</span>(<span class="number">52</span> / n)</span><br><span class="line">    <span class="built_in">sum</span> = c_uint32(<span class="number">0</span>)</span><br><span class="line">    z = v[n - <span class="number">1</span>].value</span><br><span class="line">    <span class="keyword">while</span> rounds &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">sum</span>.value += DELTA</span><br><span class="line">        e = (<span class="built_in">sum</span>.value &gt;&gt; <span class="number">2</span>) &amp; <span class="number">3</span></span><br><span class="line">        p = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> p &lt; n - <span class="number">1</span>:</span><br><span class="line">            y = v[p + <span class="number">1</span>].value</span><br><span class="line">            v[p].value += (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">            z = v[p].value</span><br><span class="line">            p += <span class="number">1</span></span><br><span class="line">        y = v[<span class="number">0</span>].value</span><br><span class="line">        v[n - <span class="number">1</span>].value += (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">        z = v[n - <span class="number">1</span>].value</span><br><span class="line">        rounds -= <span class="number">1</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt</span>(<span class="params">v, n, k</span>):</span><br><span class="line">    rounds = <span class="number">6</span> + <span class="built_in">int</span>(<span class="number">52</span> / n)</span><br><span class="line">    <span class="built_in">sum</span> = c_uint32(rounds * DELTA)</span><br><span class="line">    y = v[<span class="number">0</span>].value</span><br><span class="line">    <span class="keyword">while</span> rounds &gt; <span class="number">0</span>:</span><br><span class="line">        e = (<span class="built_in">sum</span>.value &gt;&gt; <span class="number">2</span>) &amp; <span class="number">3</span></span><br><span class="line">        p = n - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> p &gt; <span class="number">0</span>:</span><br><span class="line">            z = v[p - <span class="number">1</span>].value</span><br><span class="line">            v[p].value -= (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">            y = v[p].value</span><br><span class="line">            p -= <span class="number">1</span></span><br><span class="line">        z = v[n - <span class="number">1</span>].value</span><br><span class="line">        v[<span class="number">0</span>].value -= (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">        y = v[<span class="number">0</span>].value</span><br><span class="line">        <span class="built_in">sum</span>.value -= DELTA</span><br><span class="line">        rounds -= <span class="number">1</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test1</span>():</span><br><span class="line">    k = [<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">    v = [c_uint32(<span class="number">1</span>), c_uint32(<span class="number">2</span>)]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;plain: 1 2&#x27;</span>)</span><br><span class="line">    encrypt(v, <span class="built_in">len</span>(v), k)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;encrypted: %X %X&#x27;</span> % (v[<span class="number">0</span>].value, v[<span class="number">1</span>].value))</span><br><span class="line">    decrypt(v, <span class="built_in">len</span>(v), k)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;decrypted: %X %X&#x27;</span> % (v[<span class="number">0</span>].value, v[<span class="number">1</span>].value))</span><br><span class="line"></span><br><span class="line">————————————————</span><br><span class="line">版权声明：本文为CSDN博主「koxb」的原创文章，遵循CC <span class="number">4.0</span> BY-SA版权协议，转载请附上原文出处链接及本声明。</span><br><span class="line">原文链接：https://blog.csdn.net/koxb/article/details/<span class="number">120088234</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="参数注入"><a href="#参数注入" class="headerlink" title="参数注入"></a>参数注入</h2><ul>
-<li>hackgame2022 flag自动机</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">    HWND target = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取窗口句柄</span></span><br><span class="line">    target = <span class="built_in">FindWindowW</span>(<span class="string">L&quot;flag 自动机&quot;</span>, <span class="string">L&quot;flag 自动机&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (target == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;error!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;0x%x&quot;</span>, target);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 发送消息</span></span><br><span class="line">    <span class="built_in">PostMessageW</span>(target, <span class="number">0x111</span>, <span class="number">3</span>, <span class="number">114514</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="CRC32"><a href="#CRC32" class="headerlink" title="CRC32"></a>CRC32</h2><ul>
-<li>RoarCTF2019 polyre</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">secret = [<span class="number">0xBC8FF26D43536296</span>, <span class="number">0x520100780530EE16</span>, <span class="number">0x4DC0B5EA935F08EC</span>,</span><br><span class="line">          <span class="number">0x342B90AFD853F450</span>, <span class="number">0x8B250EBCAA2C3681</span>, <span class="number">0x55759F81A2C68AE4</span>]</span><br><span class="line">key = <span class="number">0xB0004B7679FA26B3</span></span><br><span class="line"></span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 产生CRC32查表法所用的表</span></span><br><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> secret:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">64</span>):</span><br><span class="line">        sign = s &amp; <span class="number">1</span>                   <span class="comment">#判断首位正负</span></span><br><span class="line">        <span class="keyword">if</span> sign == <span class="number">1</span>:</span><br><span class="line">            s ^= key</span><br><span class="line">        s //= <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> sign == <span class="number">1</span>:</span><br><span class="line">            s |= <span class="number">0x8000000000000000</span>    <span class="comment"># 防止负值除2，溢出为正值</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">hex</span>(s))                      <span class="comment"># 输出表</span></span><br><span class="line">    <span class="comment"># 计算CRC64</span></span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> j &lt; <span class="number">8</span>:</span><br><span class="line">        flag += <span class="built_in">chr</span>(s&amp;<span class="number">0xFF</span>)</span><br><span class="line">        s &gt;&gt;= <span class="number">8</span></span><br><span class="line">        j += <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/08/Summary3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/08/Summary3/" class="post-title-link" itemprop="url">《逆向工程核心原理》总结3</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-08 23:34:33" itemprop="dateCreated datePublished" datetime="2022-10-08T23:34:33+08:00">2022-10-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-09 15:01:44" itemprop="dateModified" datetime="2022-10-09T15:01:44+08:00">2022-10-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="DLL文件"><a href="#DLL文件" class="headerlink" title="DLL文件"></a>DLL文件</h2><ul>
-<li>（Dynamic Link Library）动态链接库</li>
-<li>目的：解决在多进程时一个系统API可能会被多次调用，多次加载到内存造成空间浪费的问题</li>
-<li>描述：<ul>
-<li>库封装，单独组成DLL文件</li>
-<li>内存映射技术，实现多进程共享同一个文件</li>
-<li>更新库时替换对应DLL文件</li>
-</ul>
-</li>
-<li>加载方式：<ul>
-<li>显式链接：使用时加载，用完后释放内存</li>
-<li>隐式链接：加载程序时将DLL全部加载，程序终止后释放内存</li>
-</ul>
-</li>
-</ul>
-<h2 id="节区删除"><a href="#节区删除" class="headerlink" title="节区删除"></a>节区删除</h2><ol>
-<li>删除节区头，PEview中查看节区头起始地址及长度，在hex编辑器中将该区域用0覆盖</li>
-<li>删除节区，查看节区起始偏移及长度，hex编辑器中删除</li>
-<li>修改IMAGE_FILE_HEADER[Number Of Sections -&#x3D; 1]</li>
-<li>修改IMAGE_OPTIONAL_HEADER[Size Of Image减少对应长度]</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/06/Summary2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/06/Summary2/" class="post-title-link" itemprop="url">《逆向工程核心原理》总结2</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-06 15:50:18 / 修改时间：17:01:43" itemprop="dateCreated datePublished" datetime="2022-10-06T15:50:18+08:00">2022-10-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="PE文件格式"><a href="#PE文件格式" class="headerlink" title="PE文件格式"></a>PE文件格式</h1><h2 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h2><table>
-<thead>
-<tr>
-<th>种类</th>
-<th>主扩展名</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>可执行系列</td>
-<td>EXE，SCR</td>
-</tr>
-<tr>
-<td>库系列</td>
-<td>DLL，OCX，CPL，DRV</td>
-</tr>
-<tr>
-<td>驱动程序系列</td>
-<td>SYS，VXD</td>
-</tr>
-<tr>
-<td>对象文件系列</td>
-<td>OBJ</td>
-</tr>
-</tbody></table>
-<h2 id="零碎点"><a href="#零碎点" class="headerlink" title="零碎点"></a>零碎点</h2><ol>
-<li>PE文件分PE头与PE体</li>
-<li>PE头由各种结构体构成，说明了文件大小、执行地址等等信息，PE体分多个节区，如代码段、数据段、资源段等。</li>
-<li>PE文件在内存中和在磁盘中大小不同</li>
-<li>RVA(相对虚拟地址)  VA(虚拟内存绝对地址)  RAW(文件偏移)</li>
-</ol>
-<h2 id="PE头分解"><a href="#PE头分解" class="headerlink" title="PE头分解"></a>PE头分解</h2><h3 id="DOS头"><a href="#DOS头" class="headerlink" title="DOS头"></a>DOS头</h3><p>核心参数：</p>
-<ul>
-<li>e_magic:DOS签名，“MZ”（DOS可执行文件设计者）</li>
-<li>e_lfanew:指示NT头的偏移</li>
-</ul>
-<h3 id="DOS存根"><a href="#DOS存根" class="headerlink" title="DOS存根"></a>DOS存根</h3><p>一个可忽略项，可理解为DOS下执行的数据</p>
-<blockquote>
-<p>例如notepad.exe中的提示语:This program cannot be run in DOS mode</p>
-</blockquote>
-<h3 id="NT头"><a href="#NT头" class="headerlink" title="NT头"></a>NT头</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _IMAGE_NT_HEADERS &#123;</span><br><span class="line">    DWORD Signature;                             //签名“PE”</span><br><span class="line">    IMAGE_FILE_HEADER FileHeader;                //文件头</span><br><span class="line">    IMAGE_OPTIONAL_HEADER32 OptionalHeader;      //可选头</span><br><span class="line">&#125; IMAGE_NT_HEADERS32, *PIMAGE_NT_HEADERS32;</span><br></pre></td></tr></table></figure>
-<h4 id="文件头"><a href="#文件头" class="headerlink" title="文件头"></a>文件头</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _IMAGE_FILE_HEADER &#123;</span><br><span class="line">    WORD    Machine;                  //机器码（每种CPU都有各自的固定值，如intel x86的14C）</span><br><span class="line">    WORD    NumberOfSections;         //节区数量</span><br><span class="line">    DWORD   TimeDateStamp;</span><br><span class="line">    DWORD   PointerToSymbolTable;</span><br><span class="line">    DWORD   NumberOfSymbols;</span><br><span class="line">    WORD    SizeOfOptionalHeader;     //指示可选头的大小</span><br><span class="line">    WORD    Characteristics;          //标识文件属性（是否为DLL等等）</span><br><span class="line">&#125; IMAGE_FILE_HEADER, *PIMAGE_FILE_HEADER</span><br></pre></td></tr></table></figure>
-<h4 id="可选头-直接把64位的搬过来了"><a href="#可选头-直接把64位的搬过来了" class="headerlink" title="可选头(直接把64位的搬过来了)"></a>可选头(直接把64位的搬过来了)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _IMAGE_OPTIONAL_HEADER64 &#123;</span><br><span class="line">    WORD        Magic;                       //32-10B， 64-20B</span><br><span class="line">    BYTE        MajorLinkerVersion;          </span><br><span class="line">    BYTE        MinorLinkerVersion;</span><br><span class="line">    DWORD       SizeOfCode;</span><br><span class="line">    DWORD       SizeOfInitializedData;</span><br><span class="line">    DWORD       SizeOfUninitializedData;</span><br><span class="line">    DWORD       AddressOfEntryPoint;         //PE的RVA值，指出代码起始位置</span><br><span class="line">    DWORD       BaseOfCode;</span><br><span class="line">    ULONGLONG   ImageBase;                   //基准，VA = RVA + ImageBase</span><br><span class="line">    DWORD       SectionAlignment;            //节区内存最小单位</span><br><span class="line">    DWORD       FileAlignment;               //节区磁盘最小单位</span><br><span class="line">    WORD        MajorOperatingSystemVersion;</span><br><span class="line">    WORD        MinorOperatingSystemVersion;</span><br><span class="line">    WORD        MajorImageVersion;</span><br><span class="line">    WORD        MinorImageVersion;</span><br><span class="line">    WORD        MajorSubsystemVersion;</span><br><span class="line">    WORD        MinorSubsystemVersion;</span><br><span class="line">    DWORD       Win32VersionValue;</span><br><span class="line">    DWORD       SizeOfImage;                 //指定在虚拟内存中所占空间大小</span><br><span class="line">    DWORD       SizeOfHeaders;               //PE头大小（第一节区所在位置与该值距文件开始偏移量相同）</span><br><span class="line">    DWORD       CheckSum;</span><br><span class="line">    WORD        Subsystem;                   //区分文件</span><br><span class="line">                                              1 Driver文件（系统驱动）</span><br><span class="line">                                              2 GUI文件（窗口应用程序）</span><br><span class="line">                                              3 CUI文件（控制台应用程序）</span><br><span class="line">    WORD        DllCharacteristics;</span><br><span class="line">    ULONGLONG   SizeOfStackReserve;</span><br><span class="line">    ULONGLONG   SizeOfStackCommit;</span><br><span class="line">    ULONGLONG   SizeOfHeapReserve;</span><br><span class="line">    ULONGLONG   SizeOfHeapCommit;</span><br><span class="line">    DWORD       LoaderFlags;</span><br><span class="line">    DWORD       NumberOfRvaAndSizes;         //</span><br><span class="line">    IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];</span><br><span class="line">&#125; IMAGE_OPTIONAL_HEADER64, *PIMAGE_OPTIONAL_HEADER64;</span><br></pre></td></tr></table></figure>
-<h3 id="节区头"><a href="#节区头" class="headerlink" title="节区头"></a>节区头</h3><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><table>
-<thead>
-<tr>
-<th>类别</th>
-<th>访问权限</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>code</td>
-<td>执行，读取权限</td>
-</tr>
-<tr>
-<td>data</td>
-<td>非执行，读写权限</td>
-</tr>
-<tr>
-<td>resource</td>
-<td>非执行，读取权限</td>
-</tr>
-</tbody></table>
-<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_SIZEOF_SHORT_NAME              8</span></span><br><span class="line"></span><br><span class="line">typedef struct _IMAGE_SECTION_HEADER &#123;</span><br><span class="line">    BYTE    Name[IMAGE_SIZEOF_SHORT_NAME];</span><br><span class="line">    union &#123;</span><br><span class="line">            DWORD   PhysicalAddress;</span><br><span class="line">            DWORD   VirtualSize;            //内存中节区大小</span><br><span class="line">    &#125; Misc;</span><br><span class="line">    DWORD   VirtualAddress;                 //内存中节区起始地址（RVA）</span><br><span class="line">    DWORD   SizeOfRawData;                  //磁盘中节区大小</span><br><span class="line">    DWORD   PointerToRawData;               //磁盘中节区起始地址</span><br><span class="line">    DWORD   PointerToRelocations;</span><br><span class="line">    DWORD   PointerToLinenumbers;</span><br><span class="line">    WORD    NumberOfRelocations;</span><br><span class="line">    WORD    NumberOfLinenumbers;</span><br><span class="line">    DWORD   Characteristics;                //节区属性</span><br><span class="line">&#125; IMAGE_SECTION_HEADER, *PIMAGE_SECTION_HEADER;</span><br></pre></td></tr></table></figure>
-<h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><ul>
-<li>RAW &#x3D; RVA - (VA)VirtualAddress + PointerToRawData</li>
-</ul>
-<h1 id="附表："><a href="#附表：" class="headerlink" title="附表："></a>附表：</h1><h2 id="DataDirectory结构体数组-64-01239为重点"><a href="#DataDirectory结构体数组-64-01239为重点" class="headerlink" title="DataDirectory结构体数组(64)[01239为重点]"></a>DataDirectory结构体数组(64)[01239为重点]</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_EXPORT          0   // Export Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_IMPORT          1   // Import Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_RESOURCE        2   // Resource Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_EXCEPTION       3   // Exception Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_SECURITY        4   // Security Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_BASERELOC       5   // Base Relocation Table</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_DEBUG           6   // Debug Directory</span></span><br><span class="line">        IMAGE_DIRECTORY_ENTRY_COPYRIGHT       7   // (X86 usage)</span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_ARCHITECTURE    7   // Architecture Specific Data</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_GLOBALPTR       8   // RVA of GP</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_TLS             9   // TLS Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG    10   // Load Configuration Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT   11   // Bound Import Directory in headers</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_IAT            12   // Import Address Table</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT   13   // Delay Load Import Descriptors</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR 14   // COM Runtime descriptor</span></span><br></pre></td></tr></table></figure>
-<h2 id="Machine值"><a href="#Machine值" class="headerlink" title="Machine值"></a>Machine值</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_UNKNOWN           0</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_I386              0x014c  // Intel 386.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_R3000             0x0162  // MIPS little-endian, 0x160 big-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_R4000             0x0166  // MIPS little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_R10000            0x0168  // MIPS little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_WCEMIPSV2         0x0169  // MIPS little-endian WCE v2</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_ALPHA             0x0184  // Alpha_AXP</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH3               0x01a2  // SH3 little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH3DSP            0x01a3</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH3E              0x01a4  // SH3E little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH4               0x01a6  // SH4 little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH5               0x01a8  // SH5</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_ARM               0x01c0  // ARM Little-Endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_THUMB             0x01c2</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_AM33              0x01d3</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_POWERPC           0x01F0  // IBM PowerPC Little-Endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_POWERPCFP         0x01f1</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_IA64              0x0200  // Intel 64</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_MIPS16            0x0266  // MIPS</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_ALPHA64           0x0284  // ALPHA64</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_MIPSFPU           0x0366  // MIPS</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_MIPSFPU16         0x0466  // MIPS</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_AXP64             IMAGE_FILE_MACHINE_ALPHA64</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_TRICORE           0x0520  // Infineon</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_CEF               0x0CEF</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_EBC               0x0EBC  // EFI Byte Code</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_AMD64             0x8664  // AMD64 (K8)</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_M32R              0x9041  // M32R little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_CEE               0xC0EE</span></span><br></pre></td></tr></table></figure>
-<h2 id="Characteristics值"><a href="#Characteristics值" class="headerlink" title="Characteristics值"></a>Characteristics值</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_FILE_RELOCS_STRIPPED           0x0001  // Relocation info stripped from file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_EXECUTABLE_IMAGE          0x0002  // File is executable  (i.e. no unresolved externel references).</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_LINE_NUMS_STRIPPED        0x0004  // Line nunbers stripped from file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_LOCAL_SYMS_STRIPPED       0x0008  // Local symbols stripped from file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_AGGRESIVE_WS_TRIM         0x0010  // Agressively trim working set</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_LARGE_ADDRESS_AWARE       0x0020  // App can handle &gt;2gb addresses</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_BYTES_REVERSED_LO         0x0080  // Bytes of machine word are reversed.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_32BIT_MACHINE             0x0100  // 32 bit word machine.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_DEBUG_STRIPPED            0x0200  // Debugging info stripped from file in .DBG file</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP   0x0400  // If Image is on removable media, copy and run from the swap file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_NET_RUN_FROM_SWAP         0x0800  // If Image is on Net, copy and run from the swap file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_SYSTEM                    0x1000  // System File.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_DLL                       0x2000  // File is a DLL.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_UP_SYSTEM_ONLY            0x4000  // File should only be run on a UP machine</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_BYTES_REVERSED_HI         0x8000  // Bytes of machine word are reversed.</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/05/Summary1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/05/Summary1/" class="post-title-link" itemprop="url">《逆向工程核心原理》总结1</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-05 16:31:22" itemprop="dateCreated datePublished" datetime="2022-10-05T16:31:22+08:00">2022-10-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-14 23:34:47" itemprop="dateModified" datetime="2022-10-14T23:34:47+08:00">2022-10-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="常见寄存器"><a href="#常见寄存器" class="headerlink" title="常见寄存器"></a>常见寄存器</h2><ul>
-<li>通用寄存器<ul>
-<li>EAX：（针对操作数和结果数据的）累加器</li>
-<li>EBX：（DS段的数据指针）基址寄存器</li>
-<li>ECX：（字符串和循环操作的）计数器</li>
-<li>EDX：（I&#x2F;O指针）数据寄存器</li>
-<li>ESI：（字符串操作源指针）源变址寄存器</li>
-<li>EDI：（字符串操作目标指针）目的变址寄存器</li>
-<li>EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器][栈底指针寄存器]</li>
-<li>ESP：（SS段中栈指针）栈指针寄存器[指向栈顶]</li>
-</ul>
-</li>
-<li>段寄存器<ul>
-<li>CS：代码段寄存器</li>
-<li>SS：栈段寄存器</li>
-<li>DS：数据段寄存器</li>
-<li>FS：数据段寄存器</li>
-<li>ES：附加数据寄存器</li>
-<li>GS：数据段寄存器</li>
-</ul>
-</li>
-<li>程序状态与控制寄存器<ul>
-<li>EFLAGS：标志寄存器，32个位元的01控制<ul>
-<li>ZF(零标志器，运算结果为0时置1)  </li>
-<li>CF(进位标志，运算结果向最高位以上进位时置1)  </li>
-<li>OF(溢出标志) </li>
-<li>AF(辅助进位标志，运算结果在第3位的时候置1)</li>
-<li>SF(符号标志，有符号整型的符号位为1时置1)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>指令指针寄存器<ul>
-<li>EIP：保存CPU要执行的指令地址</li>
-</ul>
-</li>
-</ul>
-<h2 id="栈帧"><a href="#栈帧" class="headerlink" title="栈帧"></a>栈帧</h2><ul>
-<li>栈特点：FILO（first in last out）</li>
-<li>在调用函数的时候需要将参数压入栈中，栈顶地址发生改变，而使用结束又需要将参数弹出，将栈恢复到被调用前的状态，为了便于管理，于是出现了栈帧。<ul>
-<li>官方解释：利用EBP寄存器访问栈内局部变量、参数、函数返回地址的手段。</li>
-<li>具体操作：在调用函数之前，将ESP中的栈顶地址存入EBP中，将该地址作为基准点。然后调用函数，ESP寄存器正常进行，其间可通过EBP去控制访问变量参数等等，在调用结束后，再将EBP中的基准点地址给到ESP，将栈的状态恢复到函数调用前</li>
-<li>代码流程：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PUSH EBP          ;函数开始</span><br><span class="line">MOV  EBP,ESP      ;将栈顶地址存入EBP中</span><br><span class="line"></span><br><span class="line">....              ;函数执行，期间EBP地址不变</span><br><span class="line"></span><br><span class="line">MOV  ESP,EBP      ;基准点地址给到ESP</span><br><span class="line">POP EBP           ;栈状态恢复，弹出EBP</span><br><span class="line">RETN              ;函数结束</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="函数调用约定"><a href="#函数调用约定" class="headerlink" title="函数调用约定"></a>函数调用约定</h2><p>(Calling Convention)</p>
-<ul>
-<li>三种方式(cdcel, stdcall, fastcall)<ul>
-<li>cdcel<br>主要运用于c语言，由调用者负责清理栈<blockquote>
-<p>函数调用结束后通过移动ESP，恢复到调用前的栈状态</p>
-</blockquote>
-</li>
-<li>stdcall<br>主要运用于Win32 API，由被调用者清理栈<blockquote>
-<p>在被调用函数的结尾通过RETN语句移动ESP到原位置</p>
-</blockquote>
-</li>
-<li>fastcall<blockquote>
-<p>使用寄存器去传递函数的部分参数，实现快速调用</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/18/APK/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/18/APK/" class="post-title-link" itemprop="url">APK反编</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-09-18 17:40:32 / 修改时间：18:04:18" itemprop="dateCreated datePublished" datetime="2022-09-18T17:40:32+08:00">2022-09-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ol>
-<li><p>修改apk文件后缀为zip，解压</p>
-</li>
-<li><p>将反编的dex文件复制到dex2jar工具目录下</p>
-</li>
-<li><p>使用命令生成jar文件</p>
-<blockquote>
-<p>d2j-dex2jar.bat document_name.dex</p>
-</blockquote>
-<p>如果出现下列报错(版本号不匹配):</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">com.googlecode.d2j.DexException: not support version.</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:151)</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:211)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.doCommandLine(Dex2jarCmd.java:104)</span><br><span class="line">     at com.googlecode.dex2jar.tools.BaseCmd.doMain(BaseCmd.java:288)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.main(Dex2jarCmd.java:32)</span><br></pre></td></tr></table></figure>
-<p>用文本编辑软件打开dex文件，将文件头改为035或者036</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dex</span><br><span class="line">037 9!Q&lt;€颧€?滣^氶wl?  p   x</span><br></pre></td></tr></table></figure>
-<p>正常情况应该是这样的(没有任何多余)：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\SoftWarePackage\Jd-GUI+dex2\dex2jar-2.0&gt;d2j-dex2jar.bat classes3.dex</span><br><span class="line"> dex2jar classes3.dex -&gt; .\classes3-dex2jar.jar</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用jd-guijar反编译jar文件，命令是这个：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jd-gui-1.5.0.jar</span><br></pre></td></tr></table></figure>
-<ul>
-<li>其实就是执行jar文件而已，可以直接写bat桌面一键打开</li>
-</ul>
-</li>
-<li><p>收工</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -1429,6 +360,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">解题流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E9%9B%86"><span class="nav-number">2.</span> <span class="nav-text">脚本集</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
