@@ -477,6 +477,120 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/10/Crypto/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="WoodenmanDu">
+      <meta itemprop="description" content="多少是有点bug">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆向光点">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/10/Crypto/" class="post-title-link" itemprop="url">Crypto常见编码特征识别</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-10 17:12:53 / 修改时间：18:07:11" itemprop="dateCreated datePublished" datetime="2022-11-10T17:12:53+08:00">2022-11-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>积累常见的诡异编码</p>
+<blockquote>
+<p>该文章仅用于研究学习，网站侵删</p>
+</blockquote>
+<h2 id="猪圈加密"><a href="#猪圈加密" class="headerlink" title="猪圈加密"></a>猪圈加密</h2><h2 id="佛曰加密"><a href="#佛曰加密" class="headerlink" title="佛曰加密"></a>佛曰加密</h2><ul>
+<li>特征：“諸隸毘僧降毘吽諸陀毘摩毘隸僧毘缽薩毘願心毘婆毘嚴彌毘念毘如毘囑毘”  一堆古怪文字</li>
+<li>解密网站：<ul>
+<li><a target="_blank" rel="noopener" href="http://hi.pcmoe.net/Buddha.html">新约佛论禅&#x2F;佛曰加密 - PcMoe!</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="天干地支加密"><a href="#天干地支加密" class="headerlink" title="天干地支加密"></a>天干地支加密</h2><ul>
+<li>特征：利用纪年法对应加密数字</li>
+<li>解密：查表</li>
+<li>涉及题目：<ul>
+<li>[MRCTF]天干地支+甲子</li>
+</ul>
+</li>
+</ul>
+<h2 id="社会主义核心价值观加密"><a href="#社会主义核心价值观加密" class="headerlink" title="社会主义核心价值观加密"></a>社会主义核心价值观加密</h2><ul>
+<li>特征：顾名思义</li>
+<li>解密网站：<ul>
+<li><a target="_blank" rel="noopener" href="http://www.atoolbox.net/Tool.php?Id=850">社会主义核心价值观加密&#x2F;解密 - 一个工具箱 - 好用的在线工具都在这里！ (atoolbox.net)</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="jsfuck编码"><a href="#jsfuck编码" class="headerlink" title="jsfuck编码"></a>jsfuck编码</h2><ul>
+<li><p>特征：由()+ []! 六个字符组成编码</p>
+</li>
+<li><p>举例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">false</span>	==&gt;	![]</span><br><span class="line"><span class="literal">true</span>	=&gt;	!![]</span><br><span class="line">undefined	=&gt;	[][[]]</span><br><span class="line">NaN	=&gt;	+[![]]</span><br><span class="line">0	=&gt;	+[]</span><br><span class="line">1	=&gt;	+!+[]</span><br><span class="line">2	=&gt;	!+[]+!+[]</span><br><span class="line">10	=&gt;	[+!+[]]+[+[]]</span><br><span class="line">Array	=&gt;	[]</span><br><span class="line">Number	=&gt;	+[]</span><br><span class="line">String	=&gt;	[]+[]</span><br><span class="line">Boolean	=&gt;	![]</span><br><span class="line">Function	=&gt;	[][<span class="string">&quot;filter&quot;</span>]</span><br><span class="line"><span class="built_in">eval</span>	=&gt;	[][<span class="string">&quot;filter&quot;</span>][<span class="string">&quot;constructor&quot;</span>]( CODE )()</span><br><span class="line">window	=&gt;	[][<span class="string">&quot;filter&quot;</span>][<span class="string">&quot;constructor&quot;</span>](<span class="string">&quot;return this&quot;</span>)()</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>解密网站：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bugku.com/tools/jsfuck">https://www.bugku.com/tools/jsfuck</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dejs.vip/encry_decry/jsfuck.html">jsfuck加密&#x2F;解密 - dejs.vip</a></li>
+</ul>
+</li>
+<li><p>涉及题目：</p>
+<ul>
+<li>buuctf - 这是什么</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/08/Solve2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1327,99 +1441,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/18/APK/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/18/APK/" class="post-title-link" itemprop="url">APK反编</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-09-18 17:40:32 / 修改时间：18:04:18" itemprop="dateCreated datePublished" datetime="2022-09-18T17:40:32+08:00">2022-09-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ol>
-<li><p>修改apk文件后缀为zip，解压</p>
-</li>
-<li><p>将反编的dex文件复制到dex2jar工具目录下</p>
-</li>
-<li><p>使用命令生成jar文件</p>
-<blockquote>
-<p>d2j-dex2jar.bat document_name.dex</p>
-</blockquote>
-<p>如果出现下列报错(版本号不匹配):</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">com.googlecode.d2j.DexException: not support version.</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:151)</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:211)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.doCommandLine(Dex2jarCmd.java:104)</span><br><span class="line">     at com.googlecode.dex2jar.tools.BaseCmd.doMain(BaseCmd.java:288)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.main(Dex2jarCmd.java:32)</span><br></pre></td></tr></table></figure>
-<p>用文本编辑软件打开dex文件，将文件头改为035或者036</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dex</span><br><span class="line">037 9!Q&lt;€颧€?滣^氶wl?  p   x</span><br></pre></td></tr></table></figure>
-<p>正常情况应该是这样的(没有任何多余)：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\SoftWarePackage\Jd-GUI+dex2\dex2jar-2.0&gt;d2j-dex2jar.bat classes3.dex</span><br><span class="line"> dex2jar classes3.dex -&gt; .\classes3-dex2jar.jar</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用jd-guijar反编译jar文件，命令是这个：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jd-gui-1.5.0.jar</span><br></pre></td></tr></table></figure>
-<ul>
-<li>其实就是执行jar文件而已，可以直接写bat桌面一键打开</li>
-</ul>
-</li>
-<li><p>收工</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1491,7 +1512,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
