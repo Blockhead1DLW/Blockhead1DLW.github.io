@@ -732,7 +732,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-08 16:55:49" itemprop="dateModified" datetime="2022-11-08T16:55:49+08:00">2022-11-08</time>
+                <time title="修改时间：2022-11-09 16:45:04" itemprop="dateModified" datetime="2022-11-09T16:45:04+08:00">2022-11-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -755,7 +755,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="2022-x2F-11-x2F-08更新"><a href="#2022-x2F-11-x2F-08更新" class="headerlink" title="2022&#x2F;11&#x2F;08更新"></a>2022&#x2F;11&#x2F;08更新</h2><p>写一下一些奇葩题主体思路，不配图，不适合新手观看</p>
+          <h2 id="2022-x2F-11-x2F-09更新"><a href="#2022-x2F-11-x2F-09更新" class="headerlink" title="2022&#x2F;11&#x2F;09更新"></a>2022&#x2F;11&#x2F;09更新</h2><p>写一下一些奇葩题主体思路，不配图，不适合新手观看</p>
 <h2 id="网鼎杯-2020-青龙组-jocker"><a href="#网鼎杯-2020-青龙组-jocker" class="headerlink" title="[网鼎杯 2020 青龙组]jocker"></a>[网鼎杯 2020 青龙组]jocker</h2><ol>
 <li>exe文件，32位无壳，拖入IDA32</li>
 <li>ctrl+f12定位主体函数，修改变量名提高可读性</li>
@@ -794,6 +794,17 @@
 <li>再关键点下面设断点，F8运行到脚本执行完毕</li>
 <li>下一个eax中可见原文</li>
 </ul>
+</li>
+</ul>
+<h2 id="BJDCTF2020-hamburger-competition"><a href="#BJDCTF2020-hamburger-competition" class="headerlink" title="[BJDCTF2020]hamburger competition"></a>[BJDCTF2020]hamburger competition</h2><ul>
+<li><p>一个unity游戏逆向问题</p>
+</li>
+<li><p>工具：dnspy</p>
+</li>
+<li><p>核心代码一般路径：</p>
+<blockquote>
+<p>\TPH\TPH_Data\Managed\Assembly-CSharp.dll</p>
+</blockquote>
 </li>
 </ul>
 
@@ -847,7 +858,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-08 16:53:54" itemprop="dateModified" datetime="2022-11-08T16:53:54+08:00">2022-11-08</time>
+                <time title="修改时间：2022-11-10 15:58:15" itemprop="dateModified" datetime="2022-11-10T15:58:15+08:00">2022-11-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -874,6 +885,42 @@
 <h2 id="sha1加密"><a href="#sha1加密" class="headerlink" title="sha1加密"></a>sha1加密</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line">origin = <span class="built_in">input</span>()</span><br><span class="line">temp = hashlib.sha1(origin.encode())</span><br><span class="line"><span class="built_in">print</span>(temp.hexdigest())</span><br></pre></td></tr></table></figure>
 
 <h2 id="求模乘逆元"><a href="#求模乘逆元" class="headerlink" title="求模乘逆元"></a>求模乘逆元</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># e*d mod φ(n) = 1</span></span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">e = <span class="string">&#x27;e&#x27;</span></span><br><span class="line">phi = <span class="string">&#x27;φ(n)&#x27;</span></span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
+
+<h2 id="RSA共模攻击"><a href="#RSA共模攻击" class="headerlink" title="RSA共模攻击"></a>RSA共模攻击</h2><ul>
+<li><p>使用同一个模数n</p>
+</li>
+<li><p>用两个不同的公钥e1、e2对同一段明文m进行加密得到两份密文c1、c2</p>
+</li>
+<li><p>解密公式：</p>
+<blockquote>
+<p>m &#x3D; (c1<sup>s1</sup> % n * c2<sup>s2</sup> % n) % n</p>
+</blockquote>
+</li>
+<li><p>公式推导：</p>
+<ul>
+<li><p>由共模可推出  </p>
+<ul>
+<li>m<sup>e1</sup> % n &#x3D; c1   </li>
+<li>m<sup>e2</sup> % n &#x3D; c2</li>
+</ul>
+</li>
+<li><p>欧几里得扩展算法取s1、s2使得</p>
+<ul>
+<li>e1 * s1 + e2 * s2 &#x3D; 1</li>
+</ul>
+</li>
+<li><p>m &#x3D; m<sup>(e1<em>s1+e2</em>s2)</sup> % n</p>
+</li>
+<li><p>m &#x3D; (c1<sup>s1</sup> % n * c2<sup>s2</sup> % n) % n</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span>  binascii</span><br><span class="line">c1 =</span><br><span class="line">n =</span><br><span class="line">e1 =</span><br><span class="line">c2 =</span><br><span class="line">e2 =</span><br><span class="line">r,s1,s2 = gmpy2.gcdext(e1, e2)    <span class="comment"># 扩展欧几里得算法</span></span><br><span class="line"><span class="comment"># 公式</span></span><br><span class="line">m = (gmpy2.powmod(c1,s1,n)*gmpy2.powmod(c2,s2,n)) % n   <span class="comment"># 计算明文m</span></span><br><span class="line">m = <span class="built_in">hex</span>(m)[<span class="number">2</span>:]</span><br><span class="line"><span class="built_in">print</span>(binascii.unhexlify(m))</span><br></pre></td></tr></table></figure>
+
+
+
+
 
 <h2 id="MD5加密"><a href="#MD5加密" class="headerlink" title="MD5加密"></a>MD5加密</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 待加密信息</span></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&#x27;this is a md5 test.&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建md5对象</span></span><br><span class="line">hl = hashlib.md5()</span><br><span class="line">hl.update(<span class="built_in">str</span>.encode(encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;MD5加密前为 ：&#x27;</span> + <span class="built_in">str</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;MD5加密后为 ：&#x27;</span> + hl.hexdigest())</span><br></pre></td></tr></table></figure>
 

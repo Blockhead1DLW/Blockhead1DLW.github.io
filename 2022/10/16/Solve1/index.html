@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="2022&#x2F;11&#x2F;08更新写一下一些奇葩题主体思路，不配图，不适合新手观看 [网鼎杯 2020 青龙组]jocker exe文件，32位无壳，拖入IDA32 ctrl+f12定位主体函数，修改变量名提高可读性 F5反汇编发现提示栈错误，option调出栈指针，修改栈指针为0，重新F5 查看输入，24位字符串，主体：复制-&gt;加密-&gt;校对-&gt;encypt函数-&amp;gt">
+  <meta name="description" content="2022&#x2F;11&#x2F;09更新写一下一些奇葩题主体思路，不配图，不适合新手观看 [网鼎杯 2020 青龙组]jocker exe文件，32位无壳，拖入IDA32 ctrl+f12定位主体函数，修改变量名提高可读性 F5反汇编发现提示栈错误，option调出栈指针，修改栈指针为0，重新F5 查看输入，24位字符串，主体：复制-&gt;加密-&gt;校对-&gt;encypt函数-&amp;gt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解题1">
 <meta property="og:url" content="http://example.com/2022/10/16/Solve1/index.html">
 <meta property="og:site_name" content="逆向光点">
-<meta property="og:description" content="2022&#x2F;11&#x2F;08更新写一下一些奇葩题主体思路，不配图，不适合新手观看 [网鼎杯 2020 青龙组]jocker exe文件，32位无壳，拖入IDA32 ctrl+f12定位主体函数，修改变量名提高可读性 F5反汇编发现提示栈错误，option调出栈指针，修改栈指针为0，重新F5 查看输入，24位字符串，主体：复制-&gt;加密-&gt;校对-&gt;encypt函数-&amp;gt">
+<meta property="og:description" content="2022&#x2F;11&#x2F;09更新写一下一些奇葩题主体思路，不配图，不适合新手观看 [网鼎杯 2020 青龙组]jocker exe文件，32位无壳，拖入IDA32 ctrl+f12定位主体函数，修改变量名提高可读性 F5反汇编发现提示栈错误，option调出栈指针，修改栈指针为0，重新F5 查看输入，24位字符串，主体：复制-&gt;加密-&gt;校对-&gt;encypt函数-&amp;gt">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-16T03:31:33.091Z">
-<meta property="article:modified_time" content="2022-11-08T08:55:49.629Z">
+<meta property="article:modified_time" content="2022-11-09T08:45:04.644Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
@@ -214,7 +214,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-08 16:55:49" itemprop="dateModified" datetime="2022-11-08T16:55:49+08:00">2022-11-08</time>
+                <time title="修改时间：2022-11-09 16:45:04" itemprop="dateModified" datetime="2022-11-09T16:45:04+08:00">2022-11-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -244,7 +244,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="2022-x2F-11-x2F-08更新"><a href="#2022-x2F-11-x2F-08更新" class="headerlink" title="2022&#x2F;11&#x2F;08更新"></a>2022&#x2F;11&#x2F;08更新</h2><p>写一下一些奇葩题主体思路，不配图，不适合新手观看</p>
+        <h2 id="2022-x2F-11-x2F-09更新"><a href="#2022-x2F-11-x2F-09更新" class="headerlink" title="2022&#x2F;11&#x2F;09更新"></a>2022&#x2F;11&#x2F;09更新</h2><p>写一下一些奇葩题主体思路，不配图，不适合新手观看</p>
 <h2 id="网鼎杯-2020-青龙组-jocker"><a href="#网鼎杯-2020-青龙组-jocker" class="headerlink" title="[网鼎杯 2020 青龙组]jocker"></a>[网鼎杯 2020 青龙组]jocker</h2><ol>
 <li>exe文件，32位无壳，拖入IDA32</li>
 <li>ctrl+f12定位主体函数，修改变量名提高可读性</li>
@@ -283,6 +283,17 @@
 <li>再关键点下面设断点，F8运行到脚本执行完毕</li>
 <li>下一个eax中可见原文</li>
 </ul>
+</li>
+</ul>
+<h2 id="BJDCTF2020-hamburger-competition"><a href="#BJDCTF2020-hamburger-competition" class="headerlink" title="[BJDCTF2020]hamburger competition"></a>[BJDCTF2020]hamburger competition</h2><ul>
+<li><p>一个unity游戏逆向问题</p>
+</li>
+<li><p>工具：dnspy</p>
+</li>
+<li><p>核心代码一般路径：</p>
+<blockquote>
+<p>\TPH\TPH_Data\Managed\Assembly-CSharp.dll</p>
+</blockquote>
 </li>
 </ul>
 
@@ -382,7 +393,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2022-x2F-11-x2F-08%E6%9B%B4%E6%96%B0"><span class="nav-number">1.</span> <span class="nav-text">2022&#x2F;11&#x2F;08更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E9%9D%92%E9%BE%99%E7%BB%84-jocker"><span class="nav-number">2.</span> <span class="nav-text">[网鼎杯 2020 青龙组]jocker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SWPU2019-EasiestRe"><span class="nav-number">3.</span> <span class="nav-text">[SWPU2019]EasiestRe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WMCTF2020-easy-re"><span class="nav-number">4.</span> <span class="nav-text">[WMCTF2020]easy_re</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2022-x2F-11-x2F-09%E6%9B%B4%E6%96%B0"><span class="nav-number">1.</span> <span class="nav-text">2022&#x2F;11&#x2F;09更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E9%9D%92%E9%BE%99%E7%BB%84-jocker"><span class="nav-number">2.</span> <span class="nav-text">[网鼎杯 2020 青龙组]jocker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SWPU2019-EasiestRe"><span class="nav-number">3.</span> <span class="nav-text">[SWPU2019]EasiestRe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WMCTF2020-easy-re"><span class="nav-number">4.</span> <span class="nav-text">[WMCTF2020]easy_re</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BJDCTF2020-hamburger-competition"><span class="nav-number">5.</span> <span class="nav-text">[BJDCTF2020]hamburger competition</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
