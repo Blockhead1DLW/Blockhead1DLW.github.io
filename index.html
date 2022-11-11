@@ -477,6 +477,118 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/10/Misc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="WoodenmanDu">
+      <meta itemprop="description" content="多少是有点bug">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆向光点">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/10/Misc/" class="post-title-link" itemprop="url">buuctf Misc简单题记录</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-10 21:22:56" itemprop="dateCreated datePublished" datetime="2022-11-10T21:22:56+08:00">2022-11-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-11 16:12:12" itemprop="dateModified" datetime="2022-11-11T16:12:12+08:00">2022-11-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF%E9%A2%98%E8%A7%A3%E2%80%94%E2%80%94misc/" itemprop="url" rel="index"><span itemprop="name">CTF题解——misc</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>闲来无事写一写Misc的一眼题，顺便记录一下</p>
+<h2 id="金三胖"><a href="#金三胖" class="headerlink" title="金三胖"></a>金三胖</h2><ul>
+<li>gifframe捕捉帧</li>
+</ul>
+<h2 id="二维码"><a href="#二维码" class="headerlink" title="二维码"></a>二维码</h2><ul>
+<li>binwalk检测出隐藏zip</li>
+<li>foremost分离zip</li>
+<li>azpr破解zip密码得到flag</li>
+</ul>
+<h2 id="你竟然赶我走"><a href="#你竟然赶我走" class="headerlink" title="你竟然赶我走"></a>你竟然赶我走</h2><ul>
+<li>winhex查看，末尾存flag</li>
+</ul>
+<h2 id="乌镇峰会种图"><a href="#乌镇峰会种图" class="headerlink" title="乌镇峰会种图"></a>乌镇峰会种图</h2><ul>
+<li>同上</li>
+</ul>
+<h2 id="大白"><a href="#大白" class="headerlink" title="大白"></a>大白</h2><ul>
+<li>图片高度隐藏，winhex修改图片高度即可</li>
+</ul>
+<h2 id="N种方法解决"><a href="#N种方法解决" class="headerlink" title="N种方法解决"></a>N种方法解决</h2><ul>
+<li><p>假的exe文件，010打开发现是个base64，网站在线解码输出为png，是个二维码，扫码得flag</p>
+</li>
+<li><p>直接将原字符作为url获得二维码</p>
+</li>
+<li><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;png&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;img src=&quot;data:image/jpg;base64,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&quot;&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="基础破解"><a href="#基础破解" class="headerlink" title="基础破解"></a>基础破解</h2><ul>
+<li>azpr破解zip密码</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/10/Crypto/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -503,7 +615,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-11-10 17:12:53 / 修改时间：18:07:11" itemprop="dateCreated datePublished" datetime="2022-11-10T17:12:53+08:00">2022-11-10</time>
+              <time title="创建时间：2022-11-10 17:12:53 / 修改时间：21:22:40" itemprop="dateCreated datePublished" datetime="2022-11-10T17:12:53+08:00">2022-11-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -530,7 +642,17 @@
 <blockquote>
 <p>该文章仅用于研究学习，网站侵删</p>
 </blockquote>
-<h2 id="猪圈加密"><a href="#猪圈加密" class="headerlink" title="猪圈加密"></a>猪圈加密</h2><h2 id="佛曰加密"><a href="#佛曰加密" class="headerlink" title="佛曰加密"></a>佛曰加密</h2><ul>
+<h2 id="猪圈密码"><a href="#猪圈密码" class="headerlink" title="猪圈密码"></a>猪圈密码</h2><ul>
+<li><p>特征：</p>
+<p><img src="https://s2.loli.net/2022/11/10/NcQI8HopdEwVzy9.jpg" alt="Crypto_Pig.jpg"></p>
+</li>
+<li><p>解密网站：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://xiao84.com/tools/103177.html">猪圈密码-在线解密加密工具 (xiao84.com)</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="佛曰加密"><a href="#佛曰加密" class="headerlink" title="佛曰加密"></a>佛曰加密</h2><ul>
 <li>特征：“諸隸毘僧降毘吽諸陀毘摩毘隸僧毘缽薩毘願心毘婆毘嚴彌毘念毘如毘囑毘”  一堆古怪文字</li>
 <li>解密网站：<ul>
 <li><a target="_blank" rel="noopener" href="http://hi.pcmoe.net/Buddha.html">新约佛论禅&#x2F;佛曰加密 - PcMoe!</a></li>
@@ -972,7 +1094,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-10 15:58:15" itemprop="dateModified" datetime="2022-11-10T15:58:15+08:00">2022-11-10</time>
+                <time title="修改时间：2022-11-11 17:27:03" itemprop="dateModified" datetime="2022-11-11T17:27:03+08:00">2022-11-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1034,11 +1156,18 @@
 
 
 
+<h2 id="Base64变表解密"><a href="#Base64变表解密" class="headerlink" title="Base64变表解密"></a>Base64变表解密</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="comment"># 原表</span></span><br><span class="line">origin = <span class="string">&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#x27;</span></span><br><span class="line"><span class="comment"># 变表</span></span><br><span class="line">base = <span class="string">&#x27;yzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/abcdefghijklmnopqrstuvwx&#x27;</span></span><br><span class="line"><span class="comment"># 密文</span></span><br><span class="line">c = <span class="string">&#x27;1ovhXETgZUDgXFS=&#x27;</span></span><br><span class="line"><span class="comment"># 映射表</span></span><br><span class="line">table = <span class="built_in">str</span>.maketrans(base,origin)</span><br><span class="line"><span class="comment"># 明文</span></span><br><span class="line">m = <span class="built_in">str</span>(base64.b64decode(c.translate(table)),encoding=(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(m)</span><br></pre></td></tr></table></figure>
+
+<h2 id="SM4解密"><a href="#SM4解密" class="headerlink" title="SM4解密"></a>SM4解密</h2><ul>
+<li>题目部分解密源码</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> libnum <span class="keyword">import</span> s2n, n2s</span><br><span class="line"><span class="keyword">from</span> pysm4 <span class="keyword">import</span> decrypt</span><br><span class="line">cipher = <span class="number">119384314703134531538573762305905297230</span></span><br><span class="line"><span class="built_in">print</span>(cipher)</span><br><span class="line">sm4_key = s2n(<span class="string">b&quot;where_are_u_now?&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(n2s(decrypt(cipher, sm4_key)).decode())</span><br></pre></td></tr></table></figure>
+
 
 
 <h2 id="MD5加密"><a href="#MD5加密" class="headerlink" title="MD5加密"></a>MD5加密</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 待加密信息</span></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&#x27;this is a md5 test.&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建md5对象</span></span><br><span class="line">hl = hashlib.md5()</span><br><span class="line">hl.update(<span class="built_in">str</span>.encode(encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;MD5加密前为 ：&#x27;</span> + <span class="built_in">str</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;MD5加密后为 ：&#x27;</span> + hl.hexdigest())</span><br></pre></td></tr></table></figure>
 
-<h2 id="XXTEA"><a href="#XXTEA" class="headerlink" title="XXTEA"></a>XXTEA</h2><ul>
+<h2 id="XXTEA加解密"><a href="#XXTEA加解密" class="headerlink" title="XXTEA加解密"></a>XXTEA加解密</h2><ul>
 <li>ISCTF2022 green_tea</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">参数描述:</span></span><br><span class="line"><span class="string">  DELTA: 神秘常数δ，它来源于黄金比率，以保证每一轮加密都不相同。但δ的精确值似乎并不重要，这里 TEA 把它定义为 δ=「(√5 - 1)231」</span></span><br><span class="line"><span class="string">      v: 需要加解密的数据，格式为32位的无符号整数组成的数组</span></span><br><span class="line"><span class="string">      n: n表示需要加密的32位无符号整数的个数（例：n为1时，只有v数组中的第一个元素被加密了），n不能大于v的长度</span></span><br><span class="line"><span class="string">      k: 密钥，格式为4个32位无符号整数组成的数组，即密钥长度为128位</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> c_uint32</span><br><span class="line"> </span><br><span class="line">DELTA = <span class="number">0x9E3779B9</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">encrypt</span>(<span class="params">v, n, k</span>):</span><br><span class="line">    rounds = <span class="number">6</span> + <span class="built_in">int</span>(<span class="number">52</span> / n)</span><br><span class="line">    <span class="built_in">sum</span> = c_uint32(<span class="number">0</span>)</span><br><span class="line">    z = v[n - <span class="number">1</span>].value</span><br><span class="line">    <span class="keyword">while</span> rounds &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">sum</span>.value += DELTA</span><br><span class="line">        e = (<span class="built_in">sum</span>.value &gt;&gt; <span class="number">2</span>) &amp; <span class="number">3</span></span><br><span class="line">        p = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> p &lt; n - <span class="number">1</span>:</span><br><span class="line">            y = v[p + <span class="number">1</span>].value</span><br><span class="line">            v[p].value += (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">            z = v[p].value</span><br><span class="line">            p += <span class="number">1</span></span><br><span class="line">        y = v[<span class="number">0</span>].value</span><br><span class="line">        v[n - <span class="number">1</span>].value += (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">        z = v[n - <span class="number">1</span>].value</span><br><span class="line">        rounds -= <span class="number">1</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt</span>(<span class="params">v, n, k</span>):</span><br><span class="line">    rounds = <span class="number">6</span> + <span class="built_in">int</span>(<span class="number">52</span> / n)</span><br><span class="line">    <span class="built_in">sum</span> = c_uint32(rounds * DELTA)</span><br><span class="line">    y = v[<span class="number">0</span>].value</span><br><span class="line">    <span class="keyword">while</span> rounds &gt; <span class="number">0</span>:</span><br><span class="line">        e = (<span class="built_in">sum</span>.value &gt;&gt; <span class="number">2</span>) &amp; <span class="number">3</span></span><br><span class="line">        p = n - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> p &gt; <span class="number">0</span>:</span><br><span class="line">            z = v[p - <span class="number">1</span>].value</span><br><span class="line">            v[p].value -= (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">            y = v[p].value</span><br><span class="line">            p -= <span class="number">1</span></span><br><span class="line">        z = v[n - <span class="number">1</span>].value</span><br><span class="line">        v[<span class="number">0</span>].value -= (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">        y = v[<span class="number">0</span>].value</span><br><span class="line">        <span class="built_in">sum</span>.value -= DELTA</span><br><span class="line">        rounds -= <span class="number">1</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test1</span>():</span><br><span class="line">    k = [<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">    v = [c_uint32(<span class="number">1</span>), c_uint32(<span class="number">2</span>)]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;plain: 1 2&#x27;</span>)</span><br><span class="line">    encrypt(v, <span class="built_in">len</span>(v), k)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;encrypted: %X %X&#x27;</span> % (v[<span class="number">0</span>].value, v[<span class="number">1</span>].value))</span><br><span class="line">    decrypt(v, <span class="built_in">len</span>(v), k)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;decrypted: %X %X&#x27;</span> % (v[<span class="number">0</span>].value, v[<span class="number">1</span>].value))</span><br><span class="line"></span><br><span class="line">————————————————</span><br><span class="line">版权声明：本文为CSDN博主「koxb」的原创文章，遵循CC <span class="number">4.0</span> BY-SA版权协议，转载请附上原文出处链接及本声明。</span><br><span class="line">原文链接：https://blog.csdn.net/koxb/article/details/<span class="number">120088234</span></span><br></pre></td></tr></table></figure>
@@ -1050,7 +1179,7 @@
 
 
 
-<h2 id="CRC32"><a href="#CRC32" class="headerlink" title="CRC32"></a>CRC32</h2><ul>
+<h2 id="CRC32解密"><a href="#CRC32解密" class="headerlink" title="CRC32解密"></a>CRC32解密</h2><ul>
 <li>RoarCTF2019 polyre</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">secret = [<span class="number">0xBC8FF26D43536296</span>, <span class="number">0x520100780530EE16</span>, <span class="number">0x4DC0B5EA935F08EC</span>,</span><br><span class="line">          <span class="number">0x342B90AFD853F450</span>, <span class="number">0x8B250EBCAA2C3681</span>, <span class="number">0x55759F81A2C68AE4</span>]</span><br><span class="line">key = <span class="number">0xB0004B7679FA26B3</span></span><br><span class="line"></span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 产生CRC32查表法所用的表</span></span><br><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> secret:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">64</span>):</span><br><span class="line">        sign = s &amp; <span class="number">1</span>                   <span class="comment">#判断首位正负</span></span><br><span class="line">        <span class="keyword">if</span> sign == <span class="number">1</span>:</span><br><span class="line">            s ^= key</span><br><span class="line">        s //= <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> sign == <span class="number">1</span>:</span><br><span class="line">            s |= <span class="number">0x8000000000000000</span>    <span class="comment"># 防止负值除2，溢出为正值</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">hex</span>(s))                      <span class="comment"># 输出表</span></span><br><span class="line">    <span class="comment"># 计算CRC64</span></span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> j &lt; <span class="number">8</span>:</span><br><span class="line">        flag += <span class="built_in">chr</span>(s&amp;<span class="number">0xFF</span>)</span><br><span class="line">        s &gt;&gt;= <span class="number">8</span></span><br><span class="line">        j += <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
@@ -1303,148 +1432,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/05/Summary1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="多少是有点bug">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/05/Summary1/" class="post-title-link" itemprop="url">《逆向工程核心原理》总结1</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-05 16:31:22" itemprop="dateCreated datePublished" datetime="2022-10-05T16:31:22+08:00">2022-10-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-14 23:34:47" itemprop="dateModified" datetime="2022-10-14T23:34:47+08:00">2022-10-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="常见寄存器"><a href="#常见寄存器" class="headerlink" title="常见寄存器"></a>常见寄存器</h2><ul>
-<li>通用寄存器<ul>
-<li>EAX：（针对操作数和结果数据的）累加器</li>
-<li>EBX：（DS段的数据指针）基址寄存器</li>
-<li>ECX：（字符串和循环操作的）计数器</li>
-<li>EDX：（I&#x2F;O指针）数据寄存器</li>
-<li>ESI：（字符串操作源指针）源变址寄存器</li>
-<li>EDI：（字符串操作目标指针）目的变址寄存器</li>
-<li>EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器][栈底指针寄存器]</li>
-<li>ESP：（SS段中栈指针）栈指针寄存器[指向栈顶]</li>
-</ul>
-</li>
-<li>段寄存器<ul>
-<li>CS：代码段寄存器</li>
-<li>SS：栈段寄存器</li>
-<li>DS：数据段寄存器</li>
-<li>FS：数据段寄存器</li>
-<li>ES：附加数据寄存器</li>
-<li>GS：数据段寄存器</li>
-</ul>
-</li>
-<li>程序状态与控制寄存器<ul>
-<li>EFLAGS：标志寄存器，32个位元的01控制<ul>
-<li>ZF(零标志器，运算结果为0时置1)  </li>
-<li>CF(进位标志，运算结果向最高位以上进位时置1)  </li>
-<li>OF(溢出标志) </li>
-<li>AF(辅助进位标志，运算结果在第3位的时候置1)</li>
-<li>SF(符号标志，有符号整型的符号位为1时置1)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>指令指针寄存器<ul>
-<li>EIP：保存CPU要执行的指令地址</li>
-</ul>
-</li>
-</ul>
-<h2 id="栈帧"><a href="#栈帧" class="headerlink" title="栈帧"></a>栈帧</h2><ul>
-<li>栈特点：FILO（first in last out）</li>
-<li>在调用函数的时候需要将参数压入栈中，栈顶地址发生改变，而使用结束又需要将参数弹出，将栈恢复到被调用前的状态，为了便于管理，于是出现了栈帧。<ul>
-<li>官方解释：利用EBP寄存器访问栈内局部变量、参数、函数返回地址的手段。</li>
-<li>具体操作：在调用函数之前，将ESP中的栈顶地址存入EBP中，将该地址作为基准点。然后调用函数，ESP寄存器正常进行，其间可通过EBP去控制访问变量参数等等，在调用结束后，再将EBP中的基准点地址给到ESP，将栈的状态恢复到函数调用前</li>
-<li>代码流程：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PUSH EBP          ;函数开始</span><br><span class="line">MOV  EBP,ESP      ;将栈顶地址存入EBP中</span><br><span class="line"></span><br><span class="line">....              ;函数执行，期间EBP地址不变</span><br><span class="line"></span><br><span class="line">MOV  ESP,EBP      ;基准点地址给到ESP</span><br><span class="line">POP EBP           ;栈状态恢复，弹出EBP</span><br><span class="line">RETN              ;函数结束</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="函数调用约定"><a href="#函数调用约定" class="headerlink" title="函数调用约定"></a>函数调用约定</h2><p>(Calling Convention)</p>
-<ul>
-<li>三种方式(cdcel, stdcall, fastcall)<ul>
-<li>cdcel<br>主要运用于c语言，由调用者负责清理栈<blockquote>
-<p>函数调用结束后通过移动ESP，恢复到调用前的栈状态</p>
-</blockquote>
-</li>
-<li>stdcall<br>主要运用于Win32 API，由被调用者清理栈<blockquote>
-<p>在被调用函数的结尾通过RETN语句移动ESP到原位置</p>
-</blockquote>
-</li>
-<li>fastcall<blockquote>
-<p>使用寄存器去传递函数的部分参数，实现快速调用</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1512,14 +1503,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
