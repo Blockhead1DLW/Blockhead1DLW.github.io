@@ -158,6 +158,48 @@
       </categories>
   </entry>
   <entry>
+    <title>ACTF新生赛2020 fungame</title>
+    <url>/2022/11/11/Solve3/</url>
+    <content><![CDATA[<h2 id="ACTF新生赛2020-fungame"><a href="#ACTF新生赛2020-fungame" class="headerlink" title="[ACTF新生赛2020]fungame"></a>[ACTF新生赛2020]fungame</h2><ul>
+<li><p>这个题虽然不难，但思路清奇，写个题解</p>
+</li>
+<li><p>查壳，32位无壳，进IDA</p>
+</li>
+<li><p>F5main函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> __cdecl <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">void</span> *v4; <span class="comment">// [esp+1Ch] [ebp-4h]</span></span><br><span class="line"></span><br><span class="line">  __main();</span><br><span class="line">  v4 = <span class="built_in">malloc</span>(<span class="number">0x14</span>u);</span><br><span class="line">  <span class="built_in">memset</span>(v4, <span class="number">0</span>, <span class="number">0x14</span>u);</span><br><span class="line">  <span class="built_in">memset</span>(x, <span class="number">0</span>, <span class="number">0x18</span>u);</span><br><span class="line">  <span class="built_in">sub_401340</span>(v4);</span><br><span class="line">  <span class="built_in">sub_4013BA</span>((<span class="type">char</span> *)v4);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>挨个看，第一个函数，有意思，简单异或，提取y2，y1，解密一下</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> __cdecl <span class="title">sub_401340</span><span class="params">(<span class="type">int</span> flag)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">char</span> i; <span class="comment">// [esp+1Fh] [ebp-9h]</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Please input:&quot;</span>);</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, flag);           <span class="comment">//输入第一段flag</span></span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">15</span>; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">//异或加密</span></span><br><span class="line">    <span class="keyword">if</span> ( (*(_BYTE *)(i + flag) ^ *((_BYTE *)y1 + i)) != y2[i] )</span><br><span class="line">      <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>提取y1，y2解密flag：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Re_1s_So0_funny!</span></span><br></pre></td></tr></table></figure>
+
+<p>提交了，假flag，再探，下一位函数</p>
+</li>
+<li><p>这个就有意思了，16位flag存进了12位的数组，搞溢出哇</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> __cdecl <span class="title">sub_4013BA</span><span class="params">(<span class="type">char</span> *flag)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">//12位，溢出</span></span><br><span class="line">  <span class="type">char</span> Destination[<span class="number">12</span>]; <span class="comment">// [esp+1Ch] [ebp-Ch] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">strcpy</span>(Destination, flag);	<span class="comment">//传给des，溢出部分作为参数传递</span></span><br><span class="line">  <span class="built_in">strcpy</span>(x, flag);				<span class="comment">//又复制一份给x，有问题</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>交叉引用查x</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> __noreturn <span class="title">sub_40233D</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">char</span> Str2[<span class="number">13</span>]; </span><br><span class="line">  <span class="type">char</span> Str1[<span class="number">16</span>]; </span><br><span class="line">  <span class="type">char</span> Str[<span class="number">12</span>]; </span><br><span class="line">  <span class="type">size_t</span> v3; </span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Please input again:&quot;</span>);</span><br><span class="line">  <span class="built_in">strcpy</span>(Str2, <span class="string">&quot;YTFzMF9wV24=&quot;</span>);	  <span class="comment">//base64加密结果</span></span><br><span class="line">  <span class="built_in">memset</span>(Str, <span class="number">0</span>, <span class="built_in">sizeof</span>(Str));</span><br><span class="line">  <span class="built_in">memset</span>(Str1, <span class="number">0</span>, <span class="built_in">sizeof</span>(Str1));</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, Str);				   <span class="comment">//第二段输入</span></span><br><span class="line">  v3 = <span class="built_in">strlen</span>(Str);</span><br><span class="line">  <span class="built_in">sub_402421</span>(Str, v3, Str1);	   <span class="comment">//base64</span></span><br><span class="line">  <span class="keyword">if</span> ( !<span class="built_in">strcmp</span>(Str1, Str2) )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s%s&quot;</span>, x, Str);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sub_40233D就是对新的输入进行一个base64加密</p>
+</li>
+<li><p>但是这个函数是怎么被执行的，答案就是上面的溢出，通过溢出调用了这个函数40233D</p>
+</li>
+<li><p>所以真正的flag就是：</p>
+<blockquote>
+<p>x + 溢出(注意大小端序问题) + str</p>
+</blockquote>
+</li>
+<li><p>解密脚本</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#异或解密</span></span><br><span class="line"><span class="built_in">list</span>=[<span class="number">0x23</span>,<span class="number">0x61</span>,<span class="number">0x3e</span>,<span class="number">0x69</span>,<span class="number">0x54</span>,<span class="number">0x41</span>,<span class="number">0x18</span>,<span class="number">0x4d</span>,<span class="number">0x6e</span>,<span class="number">0x3b</span>,<span class="number">0x65</span>,<span class="number">0x53</span>,<span class="number">0x30</span>,<span class="number">0x79</span>,<span class="number">0x45</span>,<span class="number">0x5b</span>]</span><br><span class="line">list1=[<span class="number">0x71</span>,<span class="number">0x4</span>,<span class="number">0x61</span>,<span class="number">0x58</span>,<span class="number">0x27</span>,<span class="number">0x1e</span>,<span class="number">0x4b</span>,<span class="number">0x22</span>,<span class="number">0x5e</span>,<span class="number">0x64</span>,<span class="number">0x3</span>,<span class="number">0x26</span>,<span class="number">0x5e</span>,<span class="number">0x17</span>,<span class="number">0x3c</span>,<span class="number">0x7a</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(<span class="built_in">list</span>)):</span><br><span class="line">    <span class="built_in">list</span>[i] = <span class="built_in">chr</span>(<span class="built_in">list</span>[i]^list1[i])</span><br><span class="line"><span class="built_in">list</span> = <span class="built_in">list</span>[:<span class="number">12</span>]</span><br><span class="line"><span class="comment">#溢出</span></span><br><span class="line">yichu = [<span class="number">0x3d</span>,<span class="number">0x23</span>,<span class="number">0x40</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> yichu:</span><br><span class="line">    <span class="built_in">list</span>.append(<span class="built_in">chr</span>(i))</span><br><span class="line"><span class="built_in">list</span> = <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">list</span>)</span><br><span class="line"><span class="comment">#base64</span></span><br><span class="line">s=<span class="string">&quot;YTFzMF9wV24=&quot;</span></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">s = <span class="built_in">str</span>(base64.b64decode(s),encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;flag&#123;&#x27;</span> + <span class="built_in">list</span> + s + <span class="string">&#x27;&#125;&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>CTF题解——reverse</category>
+      </categories>
+  </entry>
+  <entry>
     <title>buuctf Misc简单题记录</title>
     <url>/2022/11/10/Misc/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>闲来无事写一写Misc的一眼题，顺便记录一下</p>
@@ -197,6 +239,20 @@
 </ul>
 <h2 id="基础破解"><a href="#基础破解" class="headerlink" title="基础破解"></a>基础破解</h2><ul>
 <li>azpr破解zip密码</li>
+</ul>
+<h2 id="wireshark"><a href="#wireshark" class="headerlink" title="wireshark"></a>wireshark</h2><ul>
+<li><p>wireshark捕获post请求即可</p>
+<blockquote>
+<p>http.request.method&#x3D;&#x3D;POST</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="文件中的秘密"><a href="#文件中的秘密" class="headerlink" title="文件中的秘密"></a>文件中的秘密</h2><ul>
+<li>右键属性即可</li>
+</ul>
+<h2 id="LSB"><a href="#LSB" class="headerlink" title="LSB"></a>LSB</h2><ul>
+<li>Stegsolve发现最上方隐写</li>
+<li>输出为png二维码</li>
 </ul>
 ]]></content>
       <categories>

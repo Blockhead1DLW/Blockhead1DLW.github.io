@@ -28,7 +28,7 @@
 <meta property="og:description" content="前言闲来无事写一写Misc的一眼题，顺便记录一下 金三胖 gifframe捕捉帧  二维码 binwalk检测出隐藏zip foremost分离zip azpr破解zip密码得到flag  你竟然赶我走 winhex查看，末尾存flag  乌镇峰会种图 同上  大白 图片高度隐藏，winhex修改图片高度即可  N种方法解决 假的exe文件，010打开发现是个base64，网站在线解码输出为png">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-10T13:22:56.952Z">
-<meta property="article:modified_time" content="2022-11-11T08:12:12.361Z">
+<meta property="article:modified_time" content="2022-11-11T10:06:22.360Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta property="article:tag" content="密码学">
 <meta name="twitter:card" content="summary">
@@ -215,7 +215,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-11 16:12:12" itemprop="dateModified" datetime="2022-11-11T16:12:12+08:00">2022-11-11</time>
+                <time title="修改时间：2022-11-11 18:06:22" itemprop="dateModified" datetime="2022-11-11T18:06:22+08:00">2022-11-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -283,6 +283,20 @@
 <h2 id="基础破解"><a href="#基础破解" class="headerlink" title="基础破解"></a>基础破解</h2><ul>
 <li>azpr破解zip密码</li>
 </ul>
+<h2 id="wireshark"><a href="#wireshark" class="headerlink" title="wireshark"></a>wireshark</h2><ul>
+<li><p>wireshark捕获post请求即可</p>
+<blockquote>
+<p>http.request.method&#x3D;&#x3D;POST</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="文件中的秘密"><a href="#文件中的秘密" class="headerlink" title="文件中的秘密"></a>文件中的秘密</h2><ul>
+<li>右键属性即可</li>
+</ul>
+<h2 id="LSB"><a href="#LSB" class="headerlink" title="LSB"></a>LSB</h2><ul>
+<li>Stegsolve发现最上方隐写</li>
+<li>输出为png二维码</li>
+</ul>
 
     </div>
 
@@ -321,7 +335,10 @@
     <a href="/2022/11/10/Crypto/" rel="prev" title="Crypto常见编码特征识别">
       <i class="fa fa-chevron-left"></i> Crypto常见编码特征识别
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/11/11/Solve3/" rel="next" title="ACTF新生赛2020 fungame">
+      ACTF新生赛2020 fungame <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -380,7 +397,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%91%E4%B8%89%E8%83%96"><span class="nav-number">2.</span> <span class="nav-text">金三胖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">二维码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%A0%E7%AB%9F%E7%84%B6%E8%B5%B6%E6%88%91%E8%B5%B0"><span class="nav-number">4.</span> <span class="nav-text">你竟然赶我走</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%8C%E9%95%87%E5%B3%B0%E4%BC%9A%E7%A7%8D%E5%9B%BE"><span class="nav-number">5.</span> <span class="nav-text">乌镇峰会种图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E7%99%BD"><span class="nav-number">6.</span> <span class="nav-text">大白</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N%E7%A7%8D%E6%96%B9%E6%B3%95%E8%A7%A3%E5%86%B3"><span class="nav-number">7.</span> <span class="nav-text">N种方法解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%A0%B4%E8%A7%A3"><span class="nav-number">8.</span> <span class="nav-text">基础破解</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%91%E4%B8%89%E8%83%96"><span class="nav-number">2.</span> <span class="nav-text">金三胖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">二维码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%A0%E7%AB%9F%E7%84%B6%E8%B5%B6%E6%88%91%E8%B5%B0"><span class="nav-number">4.</span> <span class="nav-text">你竟然赶我走</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%8C%E9%95%87%E5%B3%B0%E4%BC%9A%E7%A7%8D%E5%9B%BE"><span class="nav-number">5.</span> <span class="nav-text">乌镇峰会种图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E7%99%BD"><span class="nav-number">6.</span> <span class="nav-text">大白</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N%E7%A7%8D%E6%96%B9%E6%B3%95%E8%A7%A3%E5%86%B3"><span class="nav-number">7.</span> <span class="nav-text">N种方法解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%A0%B4%E8%A7%A3"><span class="nav-number">8.</span> <span class="nav-text">基础破解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wireshark"><span class="nav-number">9.</span> <span class="nav-text">wireshark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E7%A7%98%E5%AF%86"><span class="nav-number">10.</span> <span class="nav-text">文件中的秘密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSB"><span class="nav-number">11.</span> <span class="nav-text">LSB</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -396,7 +413,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
