@@ -17,14 +17,14 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","Pisces | Gemini":200,"width":200,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","Pisces | Gemini":200,"width":200,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="编码过程 将目标字符依照ASCII码表变为纯二进制  按每6位一个单元进行重新切割，（不够6位的地方补0）  对照base64编码表，编码出每个单元所代表的字符   base64编码表 eg： 目标字符：dlw  第一步：转变为二进制串    01100100(d) 01101100(l) 01110111(w)   第二步：6位切割   011001 | 000110 | 110001 | 11">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Base64编码">
 <meta property="og:url" content="http://example.com/2022/09/06/Base64/index.html">
-<meta property="og:site_name" content="&lt;font color&#x3D;&quot;#FFFFFF&quot;&gt;逆向光点&lt;&#x2F;font&gt;">
+<meta property="og:site_name" content="逆向光点">
 <meta property="og:description" content="编码过程 将目标字符依照ASCII码表变为纯二进制  按每6位一个单元进行重新切割，（不够6位的地方补0）  对照base64编码表，编码出每个单元所代表的字符   base64编码表 eg： 目标字符：dlw  第一步：转变为二进制串    01100100(d) 01101100(l) 01110111(w)   第二步：6位切割   011001 | 000110 | 110001 | 11">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2022/09/06/QiUuEKzCvZIFNDV.jpg">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>Base64编码 | <font color="#FFFFFF">逆向光点</font></title>
+  <title>Base64编码 | 逆向光点</title>
   
 
 
@@ -99,7 +99,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title"><font color="#FFFFFF">逆向光点</font></h1>
+      <h1 class="site-title">逆向光点</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -196,7 +196,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="<font color="#FFFFFF">逆向光点</font>">
+      <meta itemprop="name" content="逆向光点">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -402,7 +402,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">编码过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#base64%E7%BC%96%E7%A0%81%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">base64编码表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eg%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">eg：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python%E7%BC%96%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">python编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python%E8%A7%A3%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">python解码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Notice"><span class="nav-number">6.</span> <span class="nav-text">Notice</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%94%E5%A6%82%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E2%80%9Cdl%E2%80%9D"><span class="nav-number">6.1.</span> <span class="nav-text">比如两个字符“dl”</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%89%E5%8F%8A%E9%A2%98%E7%9B%AE"><span class="nav-number">7.</span> <span class="nav-text">涉及题目</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E8%BF%87%E7%A8%8B"><span class="nav-text">编码过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#base64%E7%BC%96%E7%A0%81%E8%A1%A8"><span class="nav-text">base64编码表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eg%EF%BC%9A"><span class="nav-text">eg：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python%E7%BC%96%E7%A0%81"><span class="nav-text">python编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python%E8%A7%A3%E7%A0%81"><span class="nav-text">python解码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Notice"><span class="nav-text">Notice</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%94%E5%A6%82%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E2%80%9Cdl%E2%80%9D"><span class="nav-text">比如两个字符“dl”</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%89%E5%8F%8A%E9%A2%98%E7%9B%AE"><span class="nav-text">涉及题目</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -462,8 +462,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">WoodenmanDu</span>
 </div>
+<!--
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
+-->
 
 
     <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>

@@ -17,14 +17,14 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","Pisces | Gemini":200,"width":200,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","Pisces | Gemini":200,"width":200,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="PE文件格式种类   种类 主扩展名    可执行系列 EXE，SCR   库系列 DLL，OCX，CPL，DRV   驱动程序系列 SYS，VXD   对象文件系列 OBJ   零碎点 PE文件分PE头与PE体 PE头由各种结构体构成，说明了文件大小、执行地址等等信息，PE体分多个节区，如代码段、数据段、资源段等。 PE文件在内存中和在磁盘中大小不同 RVA(相对虚拟地址)  VA(虚拟内存绝对">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《逆向工程核心原理》总结2">
 <meta property="og:url" content="http://example.com/2022/10/06/Summary2/index.html">
-<meta property="og:site_name" content="&lt;font color&#x3D;&quot;#FFFFFF&quot;&gt;逆向光点&lt;&#x2F;font&gt;">
+<meta property="og:site_name" content="逆向光点">
 <meta property="og:description" content="PE文件格式种类   种类 主扩展名    可执行系列 EXE，SCR   库系列 DLL，OCX，CPL，DRV   驱动程序系列 SYS，VXD   对象文件系列 OBJ   零碎点 PE文件分PE头与PE体 PE头由各种结构体构成，说明了文件大小、执行地址等等信息，PE体分多个节区，如代码段、数据段、资源段等。 PE文件在内存中和在磁盘中大小不同 RVA(相对虚拟地址)  VA(虚拟内存绝对">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-06T07:50:18.552Z">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>《逆向工程核心原理》总结2 | <font color="#FFFFFF">逆向光点</font></title>
+  <title>《逆向工程核心原理》总结2 | 逆向光点</title>
   
 
 
@@ -96,7 +96,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title"><font color="#FFFFFF">逆向光点</font></h1>
+      <h1 class="site-title">逆向光点</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -193,7 +193,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="<font color="#FFFFFF">逆向光点</font>">
+      <meta itemprop="name" content="逆向光点">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -406,7 +406,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">PE文件格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%8D%E7%B1%BB"><span class="nav-number">1.1.</span> <span class="nav-text">种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B6%E7%A2%8E%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">零碎点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE%E5%A4%B4%E5%88%86%E8%A7%A3"><span class="nav-number">1.3.</span> <span class="nav-text">PE头分解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOS%E5%A4%B4"><span class="nav-number">1.3.1.</span> <span class="nav-text">DOS头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOS%E5%AD%98%E6%A0%B9"><span class="nav-number">1.3.2.</span> <span class="nav-text">DOS存根</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NT%E5%A4%B4"><span class="nav-number">1.3.3.</span> <span class="nav-text">NT头</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B4"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">文件头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%A4%B4-%E7%9B%B4%E6%8E%A5%E6%8A%8A64%E4%BD%8D%E7%9A%84%E6%90%AC%E8%BF%87%E6%9D%A5%E4%BA%86"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">可选头(直接把64位的搬过来了)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8A%82%E5%8C%BA%E5%A4%B4"><span class="nav-number">1.3.4.</span> <span class="nav-text">节区头</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">内容</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97"><span class="nav-number">1.4.</span> <span class="nav-text">计算</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E8%A1%A8%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">附表：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DataDirectory%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84-64-01239%E4%B8%BA%E9%87%8D%E7%82%B9"><span class="nav-number">2.1.</span> <span class="nav-text">DataDirectory结构体数组(64)[01239为重点]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Machine%E5%80%BC"><span class="nav-number">2.2.</span> <span class="nav-text">Machine值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Characteristics%E5%80%BC"><span class="nav-number">2.3.</span> <span class="nav-text">Characteristics值</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-text">PE文件格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%8D%E7%B1%BB"><span class="nav-text">种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B6%E7%A2%8E%E7%82%B9"><span class="nav-text">零碎点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE%E5%A4%B4%E5%88%86%E8%A7%A3"><span class="nav-text">PE头分解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOS%E5%A4%B4"><span class="nav-text">DOS头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOS%E5%AD%98%E6%A0%B9"><span class="nav-text">DOS存根</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NT%E5%A4%B4"><span class="nav-text">NT头</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B4"><span class="nav-text">文件头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%A4%B4-%E7%9B%B4%E6%8E%A5%E6%8A%8A64%E4%BD%8D%E7%9A%84%E6%90%AC%E8%BF%87%E6%9D%A5%E4%BA%86"><span class="nav-text">可选头(直接把64位的搬过来了)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8A%82%E5%8C%BA%E5%A4%B4"><span class="nav-text">节区头</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7"><span class="nav-text">属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-text">内容</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97"><span class="nav-text">计算</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E8%A1%A8%EF%BC%9A"><span class="nav-text">附表：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DataDirectory%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84-64-01239%E4%B8%BA%E9%87%8D%E7%82%B9"><span class="nav-text">DataDirectory结构体数组(64)[01239为重点]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Machine%E5%80%BC"><span class="nav-text">Machine值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Characteristics%E5%80%BC"><span class="nav-text">Characteristics值</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -466,8 +466,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">WoodenmanDu</span>
 </div>
+<!--
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
+-->
 
 
     <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>

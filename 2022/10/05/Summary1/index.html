@@ -17,14 +17,14 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","Pisces | Gemini":200,"width":200,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","Pisces | Gemini":200,"width":200,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="常见寄存器 通用寄存器 EAX：（针对操作数和结果数据的）累加器 EBX：（DS段的数据指针）基址寄存器 ECX：（字符串和循环操作的）计数器 EDX：（I&#x2F;O指针）数据寄存器 ESI：（字符串操作源指针）源变址寄存器 EDI：（字符串操作目标指针）目的变址寄存器 EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器][栈底指针寄存器] ESP：（SS段中栈指针）栈指针寄存器[">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《逆向工程核心原理》总结1">
 <meta property="og:url" content="http://example.com/2022/10/05/Summary1/index.html">
-<meta property="og:site_name" content="&lt;font color&#x3D;&quot;#FFFFFF&quot;&gt;逆向光点&lt;&#x2F;font&gt;">
+<meta property="og:site_name" content="逆向光点">
 <meta property="og:description" content="常见寄存器 通用寄存器 EAX：（针对操作数和结果数据的）累加器 EBX：（DS段的数据指针）基址寄存器 ECX：（字符串和循环操作的）计数器 EDX：（I&#x2F;O指针）数据寄存器 ESI：（字符串操作源指针）源变址寄存器 EDI：（字符串操作目标指针）目的变址寄存器 EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器][栈底指针寄存器] ESP：（SS段中栈指针）栈指针寄存器[">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-05T08:31:22.827Z">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>《逆向工程核心原理》总结1 | <font color="#FFFFFF">逆向光点</font></title>
+  <title>《逆向工程核心原理》总结1 | 逆向光点</title>
   
 
 
@@ -96,7 +96,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title"><font color="#FFFFFF">逆向光点</font></h1>
+      <h1 class="site-title">逆向光点</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -193,7 +193,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="<font color="#FFFFFF">逆向光点</font>">
+      <meta itemprop="name" content="逆向光点">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -406,7 +406,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">常见寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%88%E5%B8%A7"><span class="nav-number">2.</span> <span class="nav-text">栈帧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A"><span class="nav-number">3.</span> <span class="nav-text">函数调用约定</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-text">常见寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%88%E5%B8%A7"><span class="nav-text">栈帧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A"><span class="nav-text">函数调用约定</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -466,8 +466,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">WoodenmanDu</span>
 </div>
+<!--
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
+-->
 
 
     <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
