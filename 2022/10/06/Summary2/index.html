@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","Pisces | Gemini":200,"width":200,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="PE文件格式种类   种类 主扩展名    可执行系列 EXE，SCR   库系列 DLL，OCX，CPL，DRV   驱动程序系列 SYS，VXD   对象文件系列 OBJ   零碎点 PE文件分PE头与PE体 PE头由各种结构体构成，说明了文件大小、执行地址等等信息，PE体分多个节区，如代码段、数据段、资源段等。 PE文件在内存中和在磁盘中大小不同 RVA(相对虚拟地址)  VA(虚拟内存绝对">
+  <meta name="description" content="PE文件格式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《逆向工程核心原理》总结2">
 <meta property="og:url" content="http://example.com/2022/10/06/Summary2/index.html">
 <meta property="og:site_name" content="逆向光点">
-<meta property="og:description" content="PE文件格式种类   种类 主扩展名    可执行系列 EXE，SCR   库系列 DLL，OCX，CPL，DRV   驱动程序系列 SYS，VXD   对象文件系列 OBJ   零碎点 PE文件分PE头与PE体 PE头由各种结构体构成，说明了文件大小、执行地址等等信息，PE体分多个节区，如代码段、数据段、资源段等。 PE文件在内存中和在磁盘中大小不同 RVA(相对虚拟地址)  VA(虚拟内存绝对">
+<meta property="og:description" content="PE文件格式">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-06T07:50:18.552Z">
-<meta property="article:modified_time" content="2022-10-06T09:07:57.966Z">
+<meta property="article:modified_time" content="2022-11-21T05:57:00.192Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
@@ -208,10 +208,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-10-06 15:50:18 / 修改时间：17:07:57" itemprop="dateCreated datePublished" datetime="2022-10-06T15:50:18+08:00">2022-10-06</time>
+              <time title="创建时间：2022-10-06 15:50:18" itemprop="dateCreated datePublished" datetime="2022-10-06T15:50:18+08:00">2022-10-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-21 13:57:00" itemprop="dateModified" datetime="2022-11-21T13:57:00+08:00">2022-11-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -240,7 +246,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="PE文件格式"><a href="#PE文件格式" class="headerlink" title="PE文件格式"></a>PE文件格式</h1><h2 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h2><table>
+        <ul>
+<li>PE文件格式<!-- less --></li>
+</ul>
+<HR width="100%"  color="#FF7F00">
+
+<h1 id="PE文件格式"><a href="#PE文件格式" class="headerlink" title="PE文件格式"></a>PE文件格式</h1><h2 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h2><table>
 <thead>
 <tr>
 <th>种类</th>
@@ -309,8 +320,6 @@
 <h1 id="附表："><a href="#附表：" class="headerlink" title="附表："></a>附表：</h1><h2 id="DataDirectory结构体数组-64-01239为重点"><a href="#DataDirectory结构体数组-64-01239为重点" class="headerlink" title="DataDirectory结构体数组(64)[01239为重点]"></a>DataDirectory结构体数组(64)[01239为重点]</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_EXPORT          0   // Export Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_IMPORT          1   // Import Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_RESOURCE        2   // Resource Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_EXCEPTION       3   // Exception Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_SECURITY        4   // Security Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_BASERELOC       5   // Base Relocation Table</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_DEBUG           6   // Debug Directory</span></span><br><span class="line">        IMAGE_DIRECTORY_ENTRY_COPYRIGHT       7   // (X86 usage)</span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_ARCHITECTURE    7   // Architecture Specific Data</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_GLOBALPTR       8   // RVA of GP</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_TLS             9   // TLS Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG    10   // Load Configuration Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT   11   // Bound Import Directory in headers</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_IAT            12   // Import Address Table</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT   13   // Delay Load Import Descriptors</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR 14   // COM Runtime descriptor</span></span><br></pre></td></tr></table></figure>
 <h2 id="Machine值"><a href="#Machine值" class="headerlink" title="Machine值"></a>Machine值</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_UNKNOWN           0</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_I386              0x014c  // Intel 386.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_R3000             0x0162  // MIPS little-endian, 0x160 big-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_R4000             0x0166  // MIPS little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_R10000            0x0168  // MIPS little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_WCEMIPSV2         0x0169  // MIPS little-endian WCE v2</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_ALPHA             0x0184  // Alpha_AXP</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH3               0x01a2  // SH3 little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH3DSP            0x01a3</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH3E              0x01a4  // SH3E little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH4               0x01a6  // SH4 little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH5               0x01a8  // SH5</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_ARM               0x01c0  // ARM Little-Endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_THUMB             0x01c2</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_AM33              0x01d3</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_POWERPC           0x01F0  // IBM PowerPC Little-Endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_POWERPCFP         0x01f1</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_IA64              0x0200  // Intel 64</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_MIPS16            0x0266  // MIPS</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_ALPHA64           0x0284  // ALPHA64</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_MIPSFPU           0x0366  // MIPS</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_MIPSFPU16         0x0466  // MIPS</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_AXP64             IMAGE_FILE_MACHINE_ALPHA64</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_TRICORE           0x0520  // Infineon</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_CEF               0x0CEF</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_EBC               0x0EBC  // EFI Byte Code</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_AMD64             0x8664  // AMD64 (K8)</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_M32R              0x9041  // M32R little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_CEE               0xC0EE</span></span><br></pre></td></tr></table></figure>
 <h2 id="Characteristics值"><a href="#Characteristics值" class="headerlink" title="Characteristics值"></a>Characteristics值</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_FILE_RELOCS_STRIPPED           0x0001  // Relocation info stripped from file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_EXECUTABLE_IMAGE          0x0002  // File is executable  (i.e. no unresolved externel references).</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_LINE_NUMS_STRIPPED        0x0004  // Line nunbers stripped from file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_LOCAL_SYMS_STRIPPED       0x0008  // Local symbols stripped from file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_AGGRESIVE_WS_TRIM         0x0010  // Agressively trim working set</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_LARGE_ADDRESS_AWARE       0x0020  // App can handle &gt;2gb addresses</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_BYTES_REVERSED_LO         0x0080  // Bytes of machine word are reversed.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_32BIT_MACHINE             0x0100  // 32 bit word machine.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_DEBUG_STRIPPED            0x0200  // Debugging info stripped from file in .DBG file</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP   0x0400  // If Image is on removable media, copy and run from the swap file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_NET_RUN_FROM_SWAP         0x0800  // If Image is on Net, copy and run from the swap file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_SYSTEM                    0x1000  // System File.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_DLL                       0x2000  // File is a DLL.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_UP_SYSTEM_ONLY            0x4000  // File should only be run on a UP machine</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_BYTES_REVERSED_HI         0x8000  // Bytes of machine word are reversed.</span></span><br></pre></td></tr></table></figure>
-
-
     </div>
 
     
@@ -423,7 +432,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -434,7 +443,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -590,7 +599,14 @@ $(document).ready(function() {
 
   
  
- 
+
+<!-- 引入jQuery -->
+<script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+
+ <!-- 雪花特效2 -->
+<script type="text/javascript" src="/js/snow2.js"></script>
+
+
 
 </body>
 </html>

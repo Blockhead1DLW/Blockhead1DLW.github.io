@@ -214,7 +214,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-09 15:01:44" itemprop="dateModified" datetime="2022-10-09T15:01:44+08:00">2022-10-09</time>
+                <time title="修改时间：2022-11-21 13:57:04" itemprop="dateModified" datetime="2022-11-21T13:57:04+08:00">2022-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,28 +237,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="DLL文件"><a href="#DLL文件" class="headerlink" title="DLL文件"></a>DLL文件</h2><ul>
-<li>（Dynamic Link Library）动态链接库</li>
-<li>目的：解决在多进程时一个系统API可能会被多次调用，多次加载到内存造成空间浪费的问题</li>
-<li>描述：<ul>
-<li>库封装，单独组成DLL文件</li>
-<li>内存映射技术，实现多进程共享同一个文件</li>
-<li>更新库时替换对应DLL文件</li>
+          <ul>
+<li>DLL文件</li>
+<li>节区删除<!-- less --></li>
 </ul>
-</li>
-<li>加载方式：<ul>
-<li>显式链接：使用时加载，用完后释放内存</li>
-<li>隐式链接：加载程序时将DLL全部加载，程序终止后释放内存</li>
-</ul>
-</li>
-</ul>
-<h2 id="节区删除"><a href="#节区删除" class="headerlink" title="节区删除"></a>节区删除</h2><ol>
-<li>删除节区头，PEview中查看节区头起始地址及长度，在hex编辑器中将该区域用0覆盖</li>
-<li>删除节区，查看节区起始偏移及长度，hex编辑器中删除</li>
-<li>修改IMAGE_FILE_HEADER[Number Of Sections -&#x3D; 1]</li>
-<li>修改IMAGE_OPTIONAL_HEADER[Size Of Image减少对应长度]</li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/10/08/Summary3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -301,10 +291,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-10-06 15:50:18 / 修改时间：17:07:57" itemprop="dateCreated datePublished" datetime="2022-10-06T15:50:18+08:00">2022-10-06</time>
+              <time title="创建时间：2022-10-06 15:50:18" itemprop="dateCreated datePublished" datetime="2022-10-06T15:50:18+08:00">2022-10-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-21 13:57:00" itemprop="dateModified" datetime="2022-11-21T13:57:00+08:00">2022-11-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -326,77 +322,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="PE文件格式"><a href="#PE文件格式" class="headerlink" title="PE文件格式"></a>PE文件格式</h1><h2 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h2><table>
-<thead>
-<tr>
-<th>种类</th>
-<th>主扩展名</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>可执行系列</td>
-<td>EXE，SCR</td>
-</tr>
-<tr>
-<td>库系列</td>
-<td>DLL，OCX，CPL，DRV</td>
-</tr>
-<tr>
-<td>驱动程序系列</td>
-<td>SYS，VXD</td>
-</tr>
-<tr>
-<td>对象文件系列</td>
-<td>OBJ</td>
-</tr>
-</tbody></table>
-<h2 id="零碎点"><a href="#零碎点" class="headerlink" title="零碎点"></a>零碎点</h2><ol>
-<li>PE文件分PE头与PE体</li>
-<li>PE头由各种结构体构成，说明了文件大小、执行地址等等信息，PE体分多个节区，如代码段、数据段、资源段等。</li>
-<li>PE文件在内存中和在磁盘中大小不同</li>
-<li>RVA(相对虚拟地址)  VA(虚拟内存绝对地址)  RAW(文件偏移)</li>
-</ol>
-<h2 id="PE头分解"><a href="#PE头分解" class="headerlink" title="PE头分解"></a>PE头分解</h2><h3 id="DOS头"><a href="#DOS头" class="headerlink" title="DOS头"></a>DOS头</h3><p>核心参数：</p>
-<ul>
-<li>e_magic:DOS签名，“MZ”（DOS可执行文件设计者）</li>
-<li>e_lfanew:指示NT头的偏移</li>
+          <ul>
+<li>PE文件格式<!-- less --></li>
 </ul>
-<h3 id="DOS存根"><a href="#DOS存根" class="headerlink" title="DOS存根"></a>DOS存根</h3><p>一个可忽略项，可理解为DOS下执行的数据</p>
-<blockquote>
-<p>例如notepad.exe中的提示语:This program cannot be run in DOS mode</p>
-</blockquote>
-<h3 id="NT头"><a href="#NT头" class="headerlink" title="NT头"></a>NT头</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _IMAGE_NT_HEADERS &#123;</span><br><span class="line">    DWORD Signature;                             //签名“PE”</span><br><span class="line">    IMAGE_FILE_HEADER FileHeader;                //文件头</span><br><span class="line">    IMAGE_OPTIONAL_HEADER32 OptionalHeader;      //可选头</span><br><span class="line">&#125; IMAGE_NT_HEADERS32, *PIMAGE_NT_HEADERS32;</span><br></pre></td></tr></table></figure>
-<h4 id="文件头"><a href="#文件头" class="headerlink" title="文件头"></a>文件头</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _IMAGE_FILE_HEADER &#123;</span><br><span class="line">    WORD    Machine;                  //机器码（每种CPU都有各自的固定值，如intel x86的14C）</span><br><span class="line">    WORD    NumberOfSections;         //节区数量</span><br><span class="line">    DWORD   TimeDateStamp;</span><br><span class="line">    DWORD   PointerToSymbolTable;</span><br><span class="line">    DWORD   NumberOfSymbols;</span><br><span class="line">    WORD    SizeOfOptionalHeader;     //指示可选头的大小</span><br><span class="line">    WORD    Characteristics;          //标识文件属性（是否为DLL等等）</span><br><span class="line">&#125; IMAGE_FILE_HEADER, *PIMAGE_FILE_HEADER</span><br></pre></td></tr></table></figure>
-<h4 id="可选头-直接把64位的搬过来了"><a href="#可选头-直接把64位的搬过来了" class="headerlink" title="可选头(直接把64位的搬过来了)"></a>可选头(直接把64位的搬过来了)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _IMAGE_OPTIONAL_HEADER64 &#123;</span><br><span class="line">    WORD        Magic;                       //32-10B， 64-20B</span><br><span class="line">    BYTE        MajorLinkerVersion;          </span><br><span class="line">    BYTE        MinorLinkerVersion;</span><br><span class="line">    DWORD       SizeOfCode;</span><br><span class="line">    DWORD       SizeOfInitializedData;</span><br><span class="line">    DWORD       SizeOfUninitializedData;</span><br><span class="line">    DWORD       AddressOfEntryPoint;         //PE的RVA值，指出代码起始位置</span><br><span class="line">    DWORD       BaseOfCode;</span><br><span class="line">    ULONGLONG   ImageBase;                   //基准，VA = RVA + ImageBase</span><br><span class="line">    DWORD       SectionAlignment;            //节区内存最小单位</span><br><span class="line">    DWORD       FileAlignment;               //节区磁盘最小单位</span><br><span class="line">    WORD        MajorOperatingSystemVersion;</span><br><span class="line">    WORD        MinorOperatingSystemVersion;</span><br><span class="line">    WORD        MajorImageVersion;</span><br><span class="line">    WORD        MinorImageVersion;</span><br><span class="line">    WORD        MajorSubsystemVersion;</span><br><span class="line">    WORD        MinorSubsystemVersion;</span><br><span class="line">    DWORD       Win32VersionValue;</span><br><span class="line">    DWORD       SizeOfImage;                 //指定在虚拟内存中所占空间大小</span><br><span class="line">    DWORD       SizeOfHeaders;               //PE头大小（第一节区所在位置与该值距文件开始偏移量相同）</span><br><span class="line">    DWORD       CheckSum;</span><br><span class="line">    WORD        Subsystem;                   //区分文件</span><br><span class="line">                                              1 Driver文件（系统驱动）</span><br><span class="line">                                              2 GUI文件（窗口应用程序）</span><br><span class="line">                                              3 CUI文件（控制台应用程序）</span><br><span class="line">    WORD        DllCharacteristics;</span><br><span class="line">    ULONGLONG   SizeOfStackReserve;</span><br><span class="line">    ULONGLONG   SizeOfStackCommit;</span><br><span class="line">    ULONGLONG   SizeOfHeapReserve;</span><br><span class="line">    ULONGLONG   SizeOfHeapCommit;</span><br><span class="line">    DWORD       LoaderFlags;</span><br><span class="line">    DWORD       NumberOfRvaAndSizes;         //</span><br><span class="line">    IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];</span><br><span class="line">&#125; IMAGE_OPTIONAL_HEADER64, *PIMAGE_OPTIONAL_HEADER64;</span><br></pre></td></tr></table></figure>
-<h3 id="节区头"><a href="#节区头" class="headerlink" title="节区头"></a>节区头</h3><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><table>
-<thead>
-<tr>
-<th>类别</th>
-<th>访问权限</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>code</td>
-<td>执行，读取权限</td>
-</tr>
-<tr>
-<td>data</td>
-<td>非执行，读写权限</td>
-</tr>
-<tr>
-<td>resource</td>
-<td>非执行，读取权限</td>
-</tr>
-</tbody></table>
-<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_SIZEOF_SHORT_NAME              8</span></span><br><span class="line"></span><br><span class="line">typedef struct _IMAGE_SECTION_HEADER &#123;</span><br><span class="line">    BYTE    Name[IMAGE_SIZEOF_SHORT_NAME];</span><br><span class="line">    union &#123;</span><br><span class="line">            DWORD   PhysicalAddress;</span><br><span class="line">            DWORD   VirtualSize;            //内存中节区大小</span><br><span class="line">    &#125; Misc;</span><br><span class="line">    DWORD   VirtualAddress;                 //内存中节区起始地址（RVA）</span><br><span class="line">    DWORD   SizeOfRawData;                  //磁盘中节区大小</span><br><span class="line">    DWORD   PointerToRawData;               //磁盘中节区起始地址</span><br><span class="line">    DWORD   PointerToRelocations;</span><br><span class="line">    DWORD   PointerToLinenumbers;</span><br><span class="line">    WORD    NumberOfRelocations;</span><br><span class="line">    WORD    NumberOfLinenumbers;</span><br><span class="line">    DWORD   Characteristics;                //节区属性</span><br><span class="line">&#125; IMAGE_SECTION_HEADER, *PIMAGE_SECTION_HEADER;</span><br></pre></td></tr></table></figure>
-<h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><ul>
-<li>RAW &#x3D; RVA - (VA)VirtualAddress + PointerToRawData</li>
-</ul>
-<h1 id="附表："><a href="#附表：" class="headerlink" title="附表："></a>附表：</h1><h2 id="DataDirectory结构体数组-64-01239为重点"><a href="#DataDirectory结构体数组-64-01239为重点" class="headerlink" title="DataDirectory结构体数组(64)[01239为重点]"></a>DataDirectory结构体数组(64)[01239为重点]</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_EXPORT          0   // Export Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_IMPORT          1   // Import Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_RESOURCE        2   // Resource Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_EXCEPTION       3   // Exception Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_SECURITY        4   // Security Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_BASERELOC       5   // Base Relocation Table</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_DEBUG           6   // Debug Directory</span></span><br><span class="line">        IMAGE_DIRECTORY_ENTRY_COPYRIGHT       7   // (X86 usage)</span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_ARCHITECTURE    7   // Architecture Specific Data</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_GLOBALPTR       8   // RVA of GP</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_TLS             9   // TLS Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG    10   // Load Configuration Directory</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT   11   // Bound Import Directory in headers</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_IAT            12   // Import Address Table</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT   13   // Delay Load Import Descriptors</span></span><br><span class="line"><span class="comment">#define IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR 14   // COM Runtime descriptor</span></span><br></pre></td></tr></table></figure>
-<h2 id="Machine值"><a href="#Machine值" class="headerlink" title="Machine值"></a>Machine值</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_UNKNOWN           0</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_I386              0x014c  // Intel 386.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_R3000             0x0162  // MIPS little-endian, 0x160 big-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_R4000             0x0166  // MIPS little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_R10000            0x0168  // MIPS little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_WCEMIPSV2         0x0169  // MIPS little-endian WCE v2</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_ALPHA             0x0184  // Alpha_AXP</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH3               0x01a2  // SH3 little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH3DSP            0x01a3</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH3E              0x01a4  // SH3E little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH4               0x01a6  // SH4 little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_SH5               0x01a8  // SH5</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_ARM               0x01c0  // ARM Little-Endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_THUMB             0x01c2</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_AM33              0x01d3</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_POWERPC           0x01F0  // IBM PowerPC Little-Endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_POWERPCFP         0x01f1</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_IA64              0x0200  // Intel 64</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_MIPS16            0x0266  // MIPS</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_ALPHA64           0x0284  // ALPHA64</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_MIPSFPU           0x0366  // MIPS</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_MIPSFPU16         0x0466  // MIPS</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_AXP64             IMAGE_FILE_MACHINE_ALPHA64</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_TRICORE           0x0520  // Infineon</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_CEF               0x0CEF</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_EBC               0x0EBC  // EFI Byte Code</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_AMD64             0x8664  // AMD64 (K8)</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_M32R              0x9041  // M32R little-endian</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_MACHINE_CEE               0xC0EE</span></span><br></pre></td></tr></table></figure>
-<h2 id="Characteristics值"><a href="#Characteristics值" class="headerlink" title="Characteristics值"></a>Characteristics值</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define IMAGE_FILE_RELOCS_STRIPPED           0x0001  // Relocation info stripped from file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_EXECUTABLE_IMAGE          0x0002  // File is executable  (i.e. no unresolved externel references).</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_LINE_NUMS_STRIPPED        0x0004  // Line nunbers stripped from file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_LOCAL_SYMS_STRIPPED       0x0008  // Local symbols stripped from file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_AGGRESIVE_WS_TRIM         0x0010  // Agressively trim working set</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_LARGE_ADDRESS_AWARE       0x0020  // App can handle &gt;2gb addresses</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_BYTES_REVERSED_LO         0x0080  // Bytes of machine word are reversed.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_32BIT_MACHINE             0x0100  // 32 bit word machine.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_DEBUG_STRIPPED            0x0200  // Debugging info stripped from file in .DBG file</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP   0x0400  // If Image is on removable media, copy and run from the swap file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_NET_RUN_FROM_SWAP         0x0800  // If Image is on Net, copy and run from the swap file.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_SYSTEM                    0x1000  // System File.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_DLL                       0x2000  // File is a DLL.</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_UP_SYSTEM_ONLY            0x4000  // File should only be run on a UP machine</span></span><br><span class="line"><span class="comment">#define IMAGE_FILE_BYTES_REVERSED_HI         0x8000  // Bytes of machine word are reversed.</span></span><br></pre></td></tr></table></figure>
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/10/06/Summary2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -447,7 +383,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-14 23:34:47" itemprop="dateModified" datetime="2022-10-14T23:34:47+08:00">2022-10-14</time>
+                <time title="修改时间：2022-11-21 13:56:55" itemprop="dateModified" datetime="2022-11-21T13:56:55+08:00">2022-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -470,71 +406,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="常见寄存器"><a href="#常见寄存器" class="headerlink" title="常见寄存器"></a>常见寄存器</h2><ul>
-<li>通用寄存器<ul>
-<li>EAX：（针对操作数和结果数据的）累加器</li>
-<li>EBX：（DS段的数据指针）基址寄存器</li>
-<li>ECX：（字符串和循环操作的）计数器</li>
-<li>EDX：（I&#x2F;O指针）数据寄存器</li>
-<li>ESI：（字符串操作源指针）源变址寄存器</li>
-<li>EDI：（字符串操作目标指针）目的变址寄存器</li>
-<li>EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器][栈底指针寄存器]</li>
-<li>ESP：（SS段中栈指针）栈指针寄存器[指向栈顶]</li>
+          <ul>
+<li>常见寄存器</li>
+<li>栈帧</li>
+<li>函数调用约定<!-- less --></li>
 </ul>
-</li>
-<li>段寄存器<ul>
-<li>CS：代码段寄存器</li>
-<li>SS：栈段寄存器</li>
-<li>DS：数据段寄存器</li>
-<li>FS：数据段寄存器</li>
-<li>ES：附加数据寄存器</li>
-<li>GS：数据段寄存器</li>
-</ul>
-</li>
-<li>程序状态与控制寄存器<ul>
-<li>EFLAGS：标志寄存器，32个位元的01控制<ul>
-<li>ZF(零标志器，运算结果为0时置1)  </li>
-<li>CF(进位标志，运算结果向最高位以上进位时置1)  </li>
-<li>OF(溢出标志) </li>
-<li>AF(辅助进位标志，运算结果在第3位的时候置1)</li>
-<li>SF(符号标志，有符号整型的符号位为1时置1)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>指令指针寄存器<ul>
-<li>EIP：保存CPU要执行的指令地址</li>
-</ul>
-</li>
-</ul>
-<h2 id="栈帧"><a href="#栈帧" class="headerlink" title="栈帧"></a>栈帧</h2><ul>
-<li>栈特点：FILO（first in last out）</li>
-<li>在调用函数的时候需要将参数压入栈中，栈顶地址发生改变，而使用结束又需要将参数弹出，将栈恢复到被调用前的状态，为了便于管理，于是出现了栈帧。<ul>
-<li>官方解释：利用EBP寄存器访问栈内局部变量、参数、函数返回地址的手段。</li>
-<li>具体操作：在调用函数之前，将ESP中的栈顶地址存入EBP中，将该地址作为基准点。然后调用函数，ESP寄存器正常进行，其间可通过EBP去控制访问变量参数等等，在调用结束后，再将EBP中的基准点地址给到ESP，将栈的状态恢复到函数调用前</li>
-<li>代码流程：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PUSH EBP          ;函数开始</span><br><span class="line">MOV  EBP,ESP      ;将栈顶地址存入EBP中</span><br><span class="line"></span><br><span class="line">....              ;函数执行，期间EBP地址不变</span><br><span class="line"></span><br><span class="line">MOV  ESP,EBP      ;基准点地址给到ESP</span><br><span class="line">POP EBP           ;栈状态恢复，弹出EBP</span><br><span class="line">RETN              ;函数结束</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="函数调用约定"><a href="#函数调用约定" class="headerlink" title="函数调用约定"></a>函数调用约定</h2><p>(Calling Convention)</p>
-<ul>
-<li>三种方式(cdcel, stdcall, fastcall)<ul>
-<li>cdcel<br>主要运用于c语言，由调用者负责清理栈<blockquote>
-<p>函数调用结束后通过移动ESP，恢复到调用前的栈状态</p>
-</blockquote>
-</li>
-<li>stdcall<br>主要运用于Win32 API，由被调用者清理栈<blockquote>
-<p>在被调用函数的结尾通过RETN语句移动ESP到原位置</p>
-</blockquote>
-</li>
-<li>fastcall<blockquote>
-<p>使用寄存器去传递函数的部分参数，实现快速调用</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/10/05/Summary1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -577,10 +461,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-09-18 17:40:32 / 修改时间：18:04:18" itemprop="dateCreated datePublished" datetime="2022-09-18T17:40:32+08:00">2022-09-18</time>
+              <time title="创建时间：2022-09-18 17:40:32" itemprop="dateCreated datePublished" datetime="2022-09-18T17:40:32+08:00">2022-09-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-21 13:55:23" itemprop="dateModified" datetime="2022-11-21T13:55:23+08:00">2022-11-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -602,142 +492,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ol>
-<li><p>修改apk文件后缀为zip，解压</p>
-</li>
-<li><p>将反编的dex文件复制到dex2jar工具目录下</p>
-</li>
-<li><p>使用命令生成jar文件</p>
-<blockquote>
-<p>d2j-dex2jar.bat document_name.dex</p>
-</blockquote>
-<p>如果出现下列报错(版本号不匹配):</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">com.googlecode.d2j.DexException: not support version.</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:151)</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:211)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.doCommandLine(Dex2jarCmd.java:104)</span><br><span class="line">     at com.googlecode.dex2jar.tools.BaseCmd.doMain(BaseCmd.java:288)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.main(Dex2jarCmd.java:32)</span><br></pre></td></tr></table></figure>
-<p>用文本编辑软件打开dex文件，将文件头改为035或者036</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dex</span><br><span class="line">037 9!Q&lt;€颧€?滣^氶wl?  p   x</span><br></pre></td></tr></table></figure>
-<p>正常情况应该是这样的(没有任何多余)：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\SoftWarePackage\Jd-GUI+dex2\dex2jar-2.0&gt;d2j-dex2jar.bat classes3.dex</span><br><span class="line"> dex2jar classes3.dex -&gt; .\classes3-dex2jar.jar</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用jd-guijar反编译jar文件，命令是这个：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jd-gui-1.5.0.jar</span><br></pre></td></tr></table></figure>
-<ul>
-<li>其实就是执行jar文件而已，可以直接写bat桌面一键打开</li>
+          <ul>
+<li>dex+jdgui处理APK文件<!-- less --></li>
 </ul>
-</li>
-<li><p>收工</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/15/OD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="逐渐魔化的CTF逆向手">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/15/OD/" class="post-title-link" itemprop="url">OD使用</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-15 20:05:00" itemprop="dateCreated datePublished" datetime="2022-09-15T20:05:00+08:00">2022-09-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-29 15:26:13" itemprop="dateModified" datetime="2022-09-29T15:26:13+08:00">2022-09-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E2%80%94%E2%80%94%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">CTF——工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>操作</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>F2</td>
-<td>断点</td>
-</tr>
-<tr>
-<td>F4</td>
-<td>让程序执行到光标处</td>
-</tr>
-<tr>
-<td>F7</td>
-<td>单步步入</td>
-</tr>
-<tr>
-<td>F8</td>
-<td>单步步过</td>
-</tr>
-<tr>
-<td>F9</td>
-<td>让程序执行到断点处</td>
-</tr>
-<tr>
-<td>Ctrl+F2</td>
-<td>重载程序</td>
-</tr>
-<tr>
-<td>Ctrl+G</td>
-<td>快速定位</td>
-</tr>
-</tbody></table>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/18/APK/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -780,10 +545,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-09-14 21:53:33 / 修改时间：22:13:37" itemprop="dateCreated datePublished" datetime="2022-09-14T21:53:33+08:00">2022-09-14</time>
+              <time title="创建时间：2022-09-14 21:53:33" itemprop="dateCreated datePublished" datetime="2022-09-14T21:53:33+08:00">2022-09-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-21 13:57:11" itemprop="dateModified" datetime="2022-11-21T13:57:11+08:00">2022-11-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -805,47 +576,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>鉴于某些方程不是人解的，所以就用z3了….</p>
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><blockquote>
-<p>直接搞到网盘上用链接吧：<br>链接：(<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234">https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234</a>)<br>提取码：1234</p>
-</blockquote>
-<ol>
-<li>下载解压</li>
-<li>将文件中bin目录配置到系统变量path中</li>
-<li>新建PYTHONPATH系统变量，路径为bin&#x2F;python目录</li>
-</ol>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ol>
-<li>打开黑框框</li>
-</ol>
-<blockquote>
-<p>cmd到bin&#x2F;python的目录</p>
-</blockquote>
-<p>or</p>
-<blockquote>
-<p>在bin&#x2F;python目录下shift右键powershell</p>
-</blockquote>
-<ol start="2">
-<li><p>输入python</p>
-</li>
-<li><p>把代码输进去回车就完了</p>
-</li>
-</ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
-<li><p>先看官方示例</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from z3 import *</span><br><span class="line">x = Real(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">y = Real(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">s = Solver()</span><br><span class="line">s.add(x + y &gt; 5, x &gt; 1, y &gt; 1)</span><br><span class="line"><span class="built_in">print</span>(s.check())</span><br><span class="line"><span class="built_in">print</span>(s.model())</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>简单说一下</p>
-</li>
+          <ul>
+<li>鉴于某些方程不是人解的，所以记录一下工具z3….<!-- less --></li>
 </ul>
-<ol>
-<li>导包z3</li>
-<li>a &#x3D; Real(b), a为方程中的未知数，b为输出时候用来表示a的变量</li>
-<li>Solver()，简言之：解决函数，方程接收器</li>
-<li>add()，括号里塞方程就行，用“,”隔开，或者你多用几个add()也行</li>
-<li>后面俩不用动了，就那样</li>
-<li>回车出结果</li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/14/z3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -896,7 +637,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-27 21:03:35" itemprop="dateModified" datetime="2022-09-27T21:03:35+08:00">2022-09-27</time>
+                <time title="修改时间：2022-11-21 13:55:44" itemprop="dateModified" datetime="2022-11-21T13:55:44+08:00">2022-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -919,300 +660,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <table>
-<thead>
-<tr>
-<th>操作</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>F5</td>
-<td>反汇编</td>
-</tr>
-<tr>
-<td>函数列表Ctrl+F</td>
-<td>搜索函数</td>
-</tr>
-<tr>
-<td>X</td>
-<td>交叉引用</td>
-</tr>
-<tr>
-<td>G</td>
-<td>跳转到指定地址</td>
-</tr>
-<tr>
-<td>Shift+F12</td>
-<td>字符串列表</td>
-</tr>
-<tr>
-<td>Alt+T</td>
-<td>按指令查找</td>
-</tr>
-<tr>
-<td>N</td>
-<td>重命名(函数名等)</td>
-</tr>
-<tr>
-<td>Ctrl+Z</td>
-<td>操作撤销</td>
-</tr>
-<tr>
-<td>D</td>
-<td>将字符串等元素转为数据</td>
-</tr>
-<tr>
-<td>A</td>
-<td>将数据转变为字符串</td>
-</tr>
-<tr>
-<td>C</td>
-<td>将数据转变为汇编代码</td>
-</tr>
-<tr>
-<td>U</td>
-<td>将字符串转变为原始数据</td>
-</tr>
-<tr>
-<td>Shift+E</td>
-<td>导出数据</td>
-</tr>
-<tr>
-<td>Shift+F2</td>
-<td>脚本嵌入</td>
-</tr>
-<tr>
-<td>;</td>
-<td>添加注释(所有交叉参考处均显示)</td>
-</tr>
-<tr>
-<td>:</td>
-<td>添加注释(仅在此处显示)</td>
-</tr>
-<tr>
-<td>Esc</td>
-<td>后退一步</td>
-</tr>
-<tr>
-<td>Ctrl+Enter</td>
-<td>前进一步</td>
-</tr>
-<tr>
-<td>Alt+M</td>
-<td>标记当前位置</td>
-</tr>
-<tr>
-<td>Ctrl+M</td>
-<td>跳转到标记位置</td>
-</tr>
-<tr>
-<td>P</td>
-<td>创建函数</td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/07/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="逐渐魔化的CTF逆向手">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/07/index/" class="post-title-link" itemprop="url">幂数加密</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-07 20:36:29" itemprop="dateCreated datePublished" datetime="2022-09-07T20:36:29+08:00">2022-09-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-20 11:16:10" itemprop="dateModified" datetime="2022-11-20T11:16:10+08:00">2022-11-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">CTF题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="加密方法"><a href="#加密方法" class="headerlink" title="加密方法"></a>加密方法</h3><ul>
-<li>由于每一个数都可以变成形式为”2<sup>a</sup>+2<sup>b</sup>+2<sup>c</sup>….”的表达式<br>所以我们用对应”abc…”数字串来代表这个数</li>
-<li>例如<br>5 &#x3D; 2<sup>0</sup>+2<sup>2</sup>，即可表示为02<br>19 &#x3D; 2<sup>0</sup>+2<sup>1</sup>+2<sup>4</sup>，即014</li>
+          <ul>
+<li>快捷操作<!-- less -->
+<hr width="100%" color="#FF7F00"></li>
 </ul>
-<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
-<p>8842101220480224404014224202480122</p>
-</blockquote>
-<ul>
-<li>是8位大写字母</li>
-<li>采用幂数加密</li>
-</ul>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><ul>
-<li><p>联想8位字母和8个0的字符串，猜测<font color="#f18583">以0为分隔符</font><br>拆分后可以得到：</p>
-<blockquote>
-<p>88421 122 48 2244 4 142242 248 122</p>
-</blockquote>
-</li>
-<li><p>观察发现每个数字都是2的倍数，推断单个数字表示的就是”2<sup>a</sup>“，所以将每一段数字直接求和</p>
-</li>
-<li><p>上脚本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	string s = <span class="string">&quot;88421 122 48 2244 4 142242 248 122 &quot;</span>; </span><br><span class="line">	int <span class="built_in">sum</span> = 0;</span><br><span class="line">	<span class="keyword">for</span>(int i = 0; i &lt; s.length(); i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s[i] == <span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">			cout &lt;&lt;<span class="string">char(sum+&#x27;A&#x27;-1);</span></span><br><span class="line"><span class="string">			sum = 0;</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		else&#123;</span></span><br><span class="line"><span class="string">			sum += (s[i]-&#x27;0&#x27;);</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	return 0;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-<li><p>得到flag：</p>
-<blockquote>
-<p>cyberpace{WELLDONE}</p>
-</blockquote>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/07/python-trade/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="WoodenmanDu">
-      <meta itemprop="description" content="逐渐魔化的CTF逆向手">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逆向光点">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/07/python-trade/" class="post-title-link" itemprop="url">python-trade</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-07 17:09:18" itemprop="dateCreated datePublished" datetime="2022-09-07T17:09:18+08:00">2022-09-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-18 15:48:21" itemprop="dateModified" datetime="2022-11-18T15:48:21+08:00">2022-11-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">CTF题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>此处无法显示。。。。</p>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><ul>
-<li>拿到的是一个pyc文件，那第一步必定是反编回去看源码<br>利用uncompyle6反编之后得到</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line"></span><br><span class="line">def encode(message):</span><br><span class="line">    s = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> message:</span><br><span class="line">        x = ord(i) ^ 32</span><br><span class="line">        x = x + 16</span><br><span class="line">        s += chr(x)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> base64.b64encode(s)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">correct = <span class="string">&#x27;XlNkVmtUI1MgXWBZXCFeKY+AaXNt&#x27;</span></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Input flag:&#x27;</span>)</span><br><span class="line">flag = input()</span><br><span class="line"><span class="keyword">if</span> encode(flag) == correct:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;correct&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;wrong&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>源码倒是简单，flag经过一个<font color="#f18583">encode()函数</font>加密之后变成了</p>
-<blockquote>
-<p>XlNkVmtUI1MgXWBZXCFeKY+AaXNt</p>
-</blockquote>
-</li>
-<li><p>直接写脚本：<br>按encode()逆一下就行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">a = <span class="string">&#x27;XlNkVmtUI1MgXWBZXCFeKY+AaXNt&#x27;</span></span><br><span class="line">a = base64.b64decode(a)</span><br><span class="line">s = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    x = (i-16)^32</span><br><span class="line">    s += chr(x)</span><br><span class="line"><span class="built_in">print</span>(s)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>得到flag：</p>
-<blockquote>
-<p>nctf{d3c0mpil1n9_PyC}</p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>这绝对是我最近遇到的最舒适的题</p>
-</blockquote>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/08/IDA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1263,7 +722,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-25 11:33:34" itemprop="dateModified" datetime="2022-10-25T11:33:34+08:00">2022-10-25</time>
+                <time title="修改时间：2022-11-21 13:56:23" itemprop="dateModified" datetime="2022-11-21T13:56:23+08:00">2022-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1286,53 +745,186 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="2022-x2F-10-x2F-25-重写"><a href="#2022-x2F-10-x2F-25-重写" class="headerlink" title="2022&#x2F;10&#x2F;25 重写"></a>2022&#x2F;10&#x2F;25 重写</h2><ul>
-<li><p>加一个内容：exe到pyc的转化</p>
-<ul>
-<li>可操作exe的识别（用python编译生成的exe文件一般来讲会比较大）</li>
-<li>具体处理（利用脚本完成）</li>
+          <ul>
+<li>pyc-exe返py<!-- less --></li>
 </ul>
-</li>
-<li><p>py脚本（pyinstxtractor）</p>
-<p>（<a target="_blank" rel="noopener" href="https://gitcode.net/mirrors/extremecoders-re/pyinstxtractor?utm_source=csdn_github_accelerator">mirrors &#x2F; extremecoders-re &#x2F; pyinstxtractor · GitCode</a>）</p>
-</li>
-<li><p>使用</p>
-<ul>
-<li><p>建议官方文档readme.md</p>
-</li>
-<li><p>比较常见的操作就是将要转化的exe程序复制到脚本文件目录下，执行命令</p>
-<blockquote>
-<p>python pyinstxtractor.py test.exe</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="pyc文件反编"><a href="#pyc文件反编" class="headerlink" title="pyc文件反编"></a>pyc文件反编</h3><p>py生成的中间文件</p>
-<blockquote>
-<p>先省略无数字，需要深入了解底层再说</p>
-</blockquote>
-<h3 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h3><ul>
-<li><p>借用外部资源，安装uncompyle6</p>
-<blockquote>
-<p>pip install uncompyle</p>
-</blockquote>
-</li>
-<li><p>使用</p>
-<blockquote>
-<p>uncompyle6 name.pyc &gt; name.py</p>
-</blockquote>
-</li>
-<li><p>或者直接用网上的在线反编译：<br>(<a target="_blank" rel="noopener" href="https://tool.lu/pyc/">https://tool.lu/pyc/</a>)</p>
-</li>
-</ul>
-<blockquote>
-<p>因为比较bug的一件事情是：<br>我遇到了某pyc文件用uncompyle6无法反编的情况，目前推测应该是版本不对的问题<br>后续再研究研究</p>
-</blockquote>
-<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
-<li>python-trade</li>
-</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/07/Re_pyc/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/06/Base64/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="WoodenmanDu">
+      <meta itemprop="description" content="逐渐魔化的CTF逆向手">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆向光点">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/06/Base64/" class="post-title-link" itemprop="url">Base64编码</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-06 21:20:23" itemprop="dateCreated datePublished" datetime="2022-09-06T21:20:23+08:00">2022-09-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-21 13:55:29" itemprop="dateModified" datetime="2022-11-21T13:55:29+08:00">2022-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>细琐编码过程<!-- less --></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/06/Base64/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/06/Affine/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="WoodenmanDu">
+      <meta itemprop="description" content="逐渐魔化的CTF逆向手">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆向光点">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/06/Affine/" class="post-title-link" itemprop="url">仿射密码(单表加密)</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-06 14:18:52" itemprop="dateCreated datePublished" datetime="2022-09-06T14:18:52+08:00">2022-09-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-21 13:55:15" itemprop="dateModified" datetime="2022-11-21T13:55:15+08:00">2022-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>细琐仿射</li>
+<li>例题<!-- less --></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/06/Affine/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1350,7 +942,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 
@@ -1418,7 +1010,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1429,7 +1021,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -1585,7 +1177,14 @@ $(document).ready(function() {
 
   
  
- 
+
+<!-- 引入jQuery -->
+<script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+
+ <!-- 雪花特效2 -->
+<script type="text/javascript" src="/js/snow2.js"></script>
+
+
 
 </body>
 </html>

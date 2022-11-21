@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","Pisces | Gemini":200,"width":200,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言本来不想写的，后来发现自己脑子不太行根本记不住，查又不想查，所以慢慢积累吧，总有一天会用到的我的设想是等未来达到一定数量以后再按python库整理，现在的话就这样散着 IDC爬数据123456auto addr &#x3D; 0x0000000100008000;auto i &#x3D; 0;for(i; i &lt; 10; i &#x3D; i+1)&amp;#123;	Message(&quot;%x&quot;,Byte">
+  <meta name="description" content="常用解题脚本汇总">
 <meta property="og:type" content="article">
 <meta property="og:title" content="脚本函数积累">
 <meta property="og:url" content="http://example.com/2022/10/12/shell/index.html">
 <meta property="og:site_name" content="逆向光点">
-<meta property="og:description" content="前言本来不想写的，后来发现自己脑子不太行根本记不住，查又不想查，所以慢慢积累吧，总有一天会用到的我的设想是等未来达到一定数量以后再按python库整理，现在的话就这样散着 IDC爬数据123456auto addr &#x3D; 0x0000000100008000;auto i &#x3D; 0;for(i; i &lt; 10; i &#x3D; i+1)&amp;#123;	Message(&quot;%x&quot;,Byte">
+<meta property="og:description" content="常用解题脚本汇总">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-12T14:13:57.903Z">
-<meta property="article:modified_time" content="2022-11-12T15:59:14.432Z">
+<meta property="article:modified_time" content="2022-11-21T05:56:32.802Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
@@ -203,6 +203,10 @@
 
         <div class="post-meta">
           
+          <i class="fa fa-thumb-tack"></i>
+          <font color=7D26CD>置顶</font>
+          <span class="post-meta-divider">|</span>
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
@@ -216,7 +220,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-12 23:59:14" itemprop="dateModified" datetime="2022-11-12T23:59:14+08:00">2022-11-12</time>
+                <time title="修改时间：2022-11-21 13:56:32" itemprop="dateModified" datetime="2022-11-21T13:56:32+08:00">2022-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,7 +250,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本来不想写的，后来发现自己脑子不太行根本记不住，查又不想查，所以慢慢积累吧，总有一天会用到的<br>我的设想是等未来达到一定数量以后再按python库整理，现在的话就这样散着</p>
+        <ul>
+<li>常用解题脚本汇总<!-- less --></li>
+</ul>
+<HR width="100%"  color="#FF7F00">
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本来不想写的，后来发现自己脑子不太行根本记不住，查又不想查，所以慢慢积累吧，总有一天会用到的<br>我的设想是等未来达到一定数量以后再按python库整理，现在的话就这样散着</p>
 <h2 id="IDC爬数据"><a href="#IDC爬数据" class="headerlink" title="IDC爬数据"></a>IDC爬数据</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> addr = <span class="number">0x0000000100008000</span>;</span><br><span class="line"><span class="keyword">auto</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(i; i &lt; <span class="number">10</span>; i = i+<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">Message</span>(<span class="string">&quot;%x&quot;</span>,<span class="built_in">Byte</span>(addr+i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -316,8 +325,6 @@
 <li>RoarCTF2019 polyre</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">secret = [<span class="number">0xBC8FF26D43536296</span>, <span class="number">0x520100780530EE16</span>, <span class="number">0x4DC0B5EA935F08EC</span>,</span><br><span class="line">          <span class="number">0x342B90AFD853F450</span>, <span class="number">0x8B250EBCAA2C3681</span>, <span class="number">0x55759F81A2C68AE4</span>]</span><br><span class="line">key = <span class="number">0xB0004B7679FA26B3</span></span><br><span class="line"></span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 产生CRC32查表法所用的表</span></span><br><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> secret:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">64</span>):</span><br><span class="line">        sign = s &amp; <span class="number">1</span>                   <span class="comment">#判断首位正负</span></span><br><span class="line">        <span class="keyword">if</span> sign == <span class="number">1</span>:</span><br><span class="line">            s ^= key</span><br><span class="line">        s //= <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> sign == <span class="number">1</span>:</span><br><span class="line">            s |= <span class="number">0x8000000000000000</span>    <span class="comment"># 防止负值除2，溢出为正值</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">hex</span>(s))                      <span class="comment"># 输出表</span></span><br><span class="line">    <span class="comment"># 计算CRC64</span></span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> j &lt; <span class="number">8</span>:</span><br><span class="line">        flag += <span class="built_in">chr</span>(s&amp;<span class="number">0xFF</span>)</span><br><span class="line">        s &gt;&gt;= <span class="number">8</span></span><br><span class="line">        j += <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
-
-
     </div>
 
     
@@ -430,7 +437,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -441,7 +448,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -597,7 +604,14 @@ $(document).ready(function() {
 
   
  
- 
+
+<!-- 引入jQuery -->
+<script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+
+ <!-- 雪花特效2 -->
+<script type="text/javascript" src="/js/snow2.js"></script>
+
+
 
 </body>
 </html>
