@@ -42,129 +42,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Base64编码</title>
-    <url>/2022/09/06/Base64/</url>
-    <content><![CDATA[<ul>
-<li>细琐编码过程<!-- less --></li>
-</ul>
-<HR width="100%"  color="#FF7F00">
-
-<h3 id="编码过程"><a href="#编码过程" class="headerlink" title="编码过程"></a>编码过程</h3><ol>
-<li><p>将目标字符依照ASCII码表变为纯二进制</p>
-</li>
-<li><p>按每6位一个单元进行重新切割，（不够6位的地方补0）</p>
-</li>
-<li><p>对照base64编码表，编码出每个单元所代表的字符</p>
-</li>
-</ol>
-<h3 id="base64编码表"><a href="#base64编码表" class="headerlink" title="base64编码表"></a>base64编码表</h3><p><img src="https://s2.loli.net/2022/09/06/QiUuEKzCvZIFNDV.jpg" alt="v2-ff0ffbecbd68704bf1ddf8f7d53095b8_r.jpg"></p>
-<h3 id="eg："><a href="#eg：" class="headerlink" title="eg："></a>eg：</h3><ul>
-<li><p>目标字符：dlw</p>
-</li>
-<li><p>第一步：转变为二进制串</p>
-</li>
-</ul>
-<blockquote>
-<p>01100100(d) 01101100(l) 01110111(w)</p>
-</blockquote>
-<ul>
-<li>第二步：6位切割</li>
-</ul>
-<blockquote>
-<p>011001 | 000110 | 110001 | 110111</p>
-</blockquote>
-<ul>
-<li>第三步：查找每一单元对应的字符，重新编码</li>
-</ul>
-<blockquote>
-<p>011001(Z) | 000110(G) | 110001(x) | 110111(3)</p>
-</blockquote>
-<ul>
-<li>得到结果：ZGx3</li>
-</ul>
-<h3 id="python编码"><a href="#python编码" class="headerlink" title="python编码"></a>python编码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64encode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
-
-<h3 id="python解码"><a href="#python解码" class="headerlink" title="python解码"></a>python解码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64decode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
-
-<h3 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h3><ol>
-<li><p>base64的特征之一：结果串长度一定为4的倍数</p>
-</li>
-<li><p>为了补齐4倍的单元，编码时可能会出现末尾n个单元全部为空的情况，这时候就用“&#x3D;”补齐，这也是识别base64编码的一种方式</p>
-</li>
-</ol>
-<h4 id="比如两个字符“dl”"><a href="#比如两个字符“dl”" class="headerlink" title="比如两个字符“dl”"></a>比如两个字符“dl”</h4><ul>
-<li><p>二进制：01100100(d) 01101100(l)</p>
-</li>
-<li><p>切割：011001(Z)) | 000110(G) | 1100（补两个0）(w) | （空单元）(&#x3D;)</p>
-</li>
-<li><p>结果：ZGw&#x3D;</p>
-</li>
-</ul>
-<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
-<li>python-trade</li>
-</ul>]]></content>
-      <categories>
-        <category>CTF———知识点</category>
-      </categories>
-      <tags>
-        <tag>密码学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>仿射密码(单表加密)</title>
-    <url>/2022/09/06/Affine/</url>
-    <content><![CDATA[<ul>
-<li>细琐仿射</li>
-<li>例题<!-- less --></li>
-</ul>
-<HR width="100%"  color="#FF7F00">
-
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><ul>
-<li>简单来说就是利用加密函数将一个字母映射为另一个字母</li>
-</ul>
-<h3 id="加密函数"><a href="#加密函数" class="headerlink" title="加密函数"></a>加密函数</h3><h4 id="E-x-x3D-ax-b-n-其中"><a href="#E-x-x3D-ax-b-n-其中" class="headerlink" title="E(x) &#x3D; (ax+b)%n,其中"></a>E(x) &#x3D; (ax+b)%n,其中</h4><ul>
-<li>n为所设置的字母编码表的大小</li>
-<li>a,b为自选数，只要满足a与n互质即可</li>
-<li>x为明文编码后的数字</li>
-</ul>
-<h3 id="解密函数"><a href="#解密函数" class="headerlink" title="解密函数"></a>解密函数</h3><h4 id="D-x-x3D-a-1-x-b-n"><a href="#D-x-x3D-a-1-x-b-n" class="headerlink" title="D(x) &#x3D; a-1(x-b)%n"></a>D(x) &#x3D; a<sup>-1</sup>(x-b)%n</h4><ul>
-<li>a<sup>-1</sup>是a在Z<sub>n</sub>群的乘法逆元</li>
-</ul>
-<blockquote>
-<p>乘法逆元这个东西等后续完全搞懂了再解释，主要的一点是满足a<sup>-1</sup>*a%n&#x3D;1</p>
-</blockquote>
-<h2 id="例题-BITSCTF2017-fanfie"><a href="#例题-BITSCTF2017-fanfie" class="headerlink" title="例题 [BITSCTF2017]fanfie"></a>例题 [BITSCTF2017]fanfie</h2><blockquote>
-<p>Brute and get the base 32 format of flag.<br>encrypted.txt: MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI</p>
-</blockquote>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>题目是一如既往的简洁<br>首先题目告诉我们有<font color="#f18583">base32编码</font><br>同时由题目来源可知flag格式为<font color="#f18583">BITSCTF{}</font></p>
-<p>接下来就是玄学猜想:<br>编码后变长了，或许刚好和题目给的密文等长吧，考虑单表加密<br>I变M，J变Z，E变Y，很明显没直接的映射规律，考虑<a href="http://woodenmandu.cn/2022/09/06/Affine/">仿射密码</a></p>
-<p>下一步计算a，b</p>
-<blockquote>
-<p>别忘记这是base32，加密函数为E(x) &#x3D; (ax+b)%32</p>
-</blockquote>
-<ul>
-<li>小算一下，拿两组数据：<blockquote>
-<p>8(I)–&gt;12(M)<br>9(J)–&gt;25(Z)</p>
-</blockquote>
-</li>
-<li>函数差值搞一下：25-12&#x3D;(9-1)a<br>a&#x3D;13，b顺理成章等于4</li>
-<li>然后google找个求逆元的网站得到逆元等于5<br>得到解密函数D(x) &#x3D; 5(x-4)%32</li>
-</ul>
-<p>通过解密得到</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">密文：MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI</span><br><span class="line">明文：IJEVIU2DKRDHWUZSKZ4VSMTUN5RDEWTNPU</span><br></pre></td></tr></table></figure>
-
-<p>最后base32解码就能得到flag:</p>
-<blockquote>
-<p>BITSCTF{S2VyY2tob2Zm}</p>
-</blockquote>]]></content>
-      <categories>
-        <category>CTF———知识点</category>
-      </categories>
-      <tags>
-        <tag>密码学</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Crypto常见编码特征识别</title>
     <url>/2022/11/10/Crypto/</url>
     <content><![CDATA[<ul>
@@ -258,6 +135,129 @@
       <categories>
         <category>CTF———知识点</category>
       </categories>
+  </entry>
+  <entry>
+    <title>仿射密码(单表加密)</title>
+    <url>/2022/09/06/Affine/</url>
+    <content><![CDATA[<ul>
+<li>细琐仿射</li>
+<li>例题<!-- less --></li>
+</ul>
+<HR width="100%"  color="#FF7F00">
+
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><ul>
+<li>简单来说就是利用加密函数将一个字母映射为另一个字母</li>
+</ul>
+<h3 id="加密函数"><a href="#加密函数" class="headerlink" title="加密函数"></a>加密函数</h3><h4 id="E-x-x3D-ax-b-n-其中"><a href="#E-x-x3D-ax-b-n-其中" class="headerlink" title="E(x) &#x3D; (ax+b)%n,其中"></a>E(x) &#x3D; (ax+b)%n,其中</h4><ul>
+<li>n为所设置的字母编码表的大小</li>
+<li>a,b为自选数，只要满足a与n互质即可</li>
+<li>x为明文编码后的数字</li>
+</ul>
+<h3 id="解密函数"><a href="#解密函数" class="headerlink" title="解密函数"></a>解密函数</h3><h4 id="D-x-x3D-a-1-x-b-n"><a href="#D-x-x3D-a-1-x-b-n" class="headerlink" title="D(x) &#x3D; a-1(x-b)%n"></a>D(x) &#x3D; a<sup>-1</sup>(x-b)%n</h4><ul>
+<li>a<sup>-1</sup>是a在Z<sub>n</sub>群的乘法逆元</li>
+</ul>
+<blockquote>
+<p>乘法逆元这个东西等后续完全搞懂了再解释，主要的一点是满足a<sup>-1</sup>*a%n&#x3D;1</p>
+</blockquote>
+<h2 id="例题-BITSCTF2017-fanfie"><a href="#例题-BITSCTF2017-fanfie" class="headerlink" title="例题 [BITSCTF2017]fanfie"></a>例题 [BITSCTF2017]fanfie</h2><blockquote>
+<p>Brute and get the base 32 format of flag.<br>encrypted.txt: MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI</p>
+</blockquote>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>题目是一如既往的简洁<br>首先题目告诉我们有<font color="#f18583">base32编码</font><br>同时由题目来源可知flag格式为<font color="#f18583">BITSCTF{}</font></p>
+<p>接下来就是玄学猜想:<br>编码后变长了，或许刚好和题目给的密文等长吧，考虑单表加密<br>I变M，J变Z，E变Y，很明显没直接的映射规律，考虑<a href="http://woodenmandu.cn/2022/09/06/Affine/">仿射密码</a></p>
+<p>下一步计算a，b</p>
+<blockquote>
+<p>别忘记这是base32，加密函数为E(x) &#x3D; (ax+b)%32</p>
+</blockquote>
+<ul>
+<li>小算一下，拿两组数据：<blockquote>
+<p>8(I)–&gt;12(M)<br>9(J)–&gt;25(Z)</p>
+</blockquote>
+</li>
+<li>函数差值搞一下：25-12&#x3D;(9-1)a<br>a&#x3D;13，b顺理成章等于4</li>
+<li>然后google找个求逆元的网站得到逆元等于5<br>得到解密函数D(x) &#x3D; 5(x-4)%32</li>
+</ul>
+<p>通过解密得到</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">密文：MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI</span><br><span class="line">明文：IJEVIU2DKRDHWUZSKZ4VSMTUN5RDEWTNPU</span><br></pre></td></tr></table></figure>
+
+<p>最后base32解码就能得到flag:</p>
+<blockquote>
+<p>BITSCTF{S2VyY2tob2Zm}</p>
+</blockquote>]]></content>
+      <categories>
+        <category>CTF———知识点</category>
+      </categories>
+      <tags>
+        <tag>密码学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Base64编码</title>
+    <url>/2022/09/06/Base64/</url>
+    <content><![CDATA[<ul>
+<li>细琐编码过程<!-- less --></li>
+</ul>
+<HR width="100%"  color="#FF7F00">
+
+<h3 id="编码过程"><a href="#编码过程" class="headerlink" title="编码过程"></a>编码过程</h3><ol>
+<li><p>将目标字符依照ASCII码表变为纯二进制</p>
+</li>
+<li><p>按每6位一个单元进行重新切割，（不够6位的地方补0）</p>
+</li>
+<li><p>对照base64编码表，编码出每个单元所代表的字符</p>
+</li>
+</ol>
+<h3 id="base64编码表"><a href="#base64编码表" class="headerlink" title="base64编码表"></a>base64编码表</h3><p><img src="https://s2.loli.net/2022/09/06/QiUuEKzCvZIFNDV.jpg" alt="v2-ff0ffbecbd68704bf1ddf8f7d53095b8_r.jpg"></p>
+<h3 id="eg："><a href="#eg：" class="headerlink" title="eg："></a>eg：</h3><ul>
+<li><p>目标字符：dlw</p>
+</li>
+<li><p>第一步：转变为二进制串</p>
+</li>
+</ul>
+<blockquote>
+<p>01100100(d) 01101100(l) 01110111(w)</p>
+</blockquote>
+<ul>
+<li>第二步：6位切割</li>
+</ul>
+<blockquote>
+<p>011001 | 000110 | 110001 | 110111</p>
+</blockquote>
+<ul>
+<li>第三步：查找每一单元对应的字符，重新编码</li>
+</ul>
+<blockquote>
+<p>011001(Z) | 000110(G) | 110001(x) | 110111(3)</p>
+</blockquote>
+<ul>
+<li>得到结果：ZGx3</li>
+</ul>
+<h3 id="python编码"><a href="#python编码" class="headerlink" title="python编码"></a>python编码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64encode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
+
+<h3 id="python解码"><a href="#python解码" class="headerlink" title="python解码"></a>python解码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import <span class="built_in">base64</span></span><br><span class="line">s = input()</span><br><span class="line">t = base64.b64decode(s.encode())</span><br><span class="line"><span class="built_in">print</span>(t.decode())</span><br></pre></td></tr></table></figure>
+
+<h3 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h3><ol>
+<li><p>base64的特征之一：结果串长度一定为4的倍数</p>
+</li>
+<li><p>为了补齐4倍的单元，编码时可能会出现末尾n个单元全部为空的情况，这时候就用“&#x3D;”补齐，这也是识别base64编码的一种方式</p>
+</li>
+</ol>
+<h4 id="比如两个字符“dl”"><a href="#比如两个字符“dl”" class="headerlink" title="比如两个字符“dl”"></a>比如两个字符“dl”</h4><ul>
+<li><p>二进制：01100100(d) 01101100(l)</p>
+</li>
+<li><p>切割：011001(Z)) | 000110(G) | 1100（补两个0）(w) | （空单元）(&#x3D;)</p>
+</li>
+<li><p>结果：ZGw&#x3D;</p>
+</li>
+</ul>
+<h3 id="涉及题目"><a href="#涉及题目" class="headerlink" title="涉及题目"></a>涉及题目</h3><ul>
+<li>python-trade</li>
+</ul>]]></content>
+      <categories>
+        <category>CTF———知识点</category>
+      </categories>
+      <tags>
+        <tag>密码学</tag>
+      </tags>
   </entry>
   <entry>
     <title>IDA快捷操作</title>
@@ -423,65 +423,55 @@
       </categories>
   </entry>
   <entry>
-    <title>buuctf Misc简单题记录</title>
-    <url>/2022/11/10/Misc/</url>
+    <title>ast树</title>
+    <url>/2022/11/21/Js_Ast/</url>
     <content><![CDATA[<ul>
-<li>闲来无事写buuctf-Misc的题目汇总<!-- less -->
-<HR width="100%"  color="#FF7F00"></li>
+<li>ast树简述以及逆向<!-- less --></li>
 </ul>
-<h2 id="金三胖"><a href="#金三胖" class="headerlink" title="金三胖"></a>金三胖</h2><ul>
-<li>gifframe捕捉帧</li>
+<HR width="100%"  color="#FF7F00">
+
+<h2 align = "center">简述</h2>
+
+
+<h3 id="ast树-抽象语法树"><a href="#ast树-抽象语法树" class="headerlink" title="ast树(抽象语法树)"></a>ast树(抽象语法树)</h3><h3 id="官方解释"><a href="#官方解释" class="headerlink" title="官方解释"></a>官方解释</h3><ul>
+<li>是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。</li>
 </ul>
-<h2 id="二维码"><a href="#二维码" class="headerlink" title="二维码"></a>二维码</h2><ul>
-<li>binwalk检测出隐藏zip</li>
-<li>foremost分离zip</li>
-<li>azpr破解zip密码得到flag</li>
+<h3 id="简单描述"><a href="#简单描述" class="headerlink" title="简单描述"></a>简单描述</h3><ul>
+<li>其实很简单，ast树就跟一本书的目录一样，只不过这个目录更加详细。以一种提取关键词和功能的方式完美展现一段代码的层次关系</li>
 </ul>
-<h2 id="你竟然赶我走"><a href="#你竟然赶我走" class="headerlink" title="你竟然赶我走"></a>你竟然赶我走</h2><ul>
-<li>winhex查看，末尾存flag</li>
+<h3 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h3><p>例如js代码<code>x = a + b</code>生成<code>ast</code>树：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;type&quot;</span>: <span class="string">&quot;AssignmentExpression&quot;</span>,</span><br><span class="line"><span class="string">&quot;start&quot;</span>: <span class="number">0</span>,</span><br><span class="line"><span class="string">&quot;end&quot;</span>: <span class="number">7</span>,</span><br><span class="line"><span class="string">&quot;operator&quot;</span>: <span class="string">&quot;=&quot;</span>,</span><br><span class="line"><span class="string">&quot;left&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;Identifier&quot;</span>,</span><br><span class="line">    <span class="string">&quot;start&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;end&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;x&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;right&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;BinaryExpression&quot;</span>,</span><br><span class="line">    <span class="string">&quot;start&quot;</span>: <span class="number">4</span>,</span><br><span class="line">    <span class="string">&quot;end&quot;</span>: <span class="number">7</span>,</span><br><span class="line">    <span class="string">&quot;left&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;Identifier&quot;</span>,</span><br><span class="line">    <span class="string">&quot;start&quot;</span>: <span class="number">4</span>,</span><br><span class="line">    <span class="string">&quot;end&quot;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;a&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;operator&quot;</span>: <span class="string">&quot;+&quot;</span>,</span><br><span class="line">    <span class="string">&quot;right&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;Identifier&quot;</span>,</span><br><span class="line">    <span class="string">&quot;start&quot;</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">&quot;end&quot;</span>: <span class="number">7</span>,</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;b&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到其内容是十分详细的：</p>
+<ul>
+<li>name：目标元素，作用对象</li>
+<li>start，end：name对象在程序代码中的起止位置</li>
+<li>operator：执行操作</li>
+<li>type：操作种类，比如说一个函数、一个返回值、一个运算、一个变量等等</li>
 </ul>
-<h2 id="乌镇峰会种图"><a href="#乌镇峰会种图" class="headerlink" title="乌镇峰会种图"></a>乌镇峰会种图</h2><ul>
-<li>同上</li>
+<h3 id="在线生成ast树结构网站："><a href="#在线生成ast树结构网站：" class="headerlink" title="在线生成ast树结构网站："></a>在线生成ast树结构网站：</h3><ul>
+<li><a href="https://astexplorer.net/">https://astexplorer.net/</a></li>
 </ul>
-<h2 id="大白"><a href="#大白" class="headerlink" title="大白"></a>大白</h2><ul>
-<li>图片高度隐藏，winhex修改图片高度即可</li>
-</ul>
-<h2 id="N种方法解决"><a href="#N种方法解决" class="headerlink" title="N种方法解决"></a>N种方法解决</h2><ul>
-<li><p>假的exe文件，010打开发现是个base64，网站在线解码输出为png，是个二维码，扫码得flag</p>
+<h2 align = "center">ast逆向</h2>
+
+
+<ul>
+<li>目前我接触的这方面东西也很少，基本上要做的事情只有两种：<ol>
+<li>给一个ast树，然后让你去除其中的混淆操作</li>
+<li>给定ast还原代码，这个代码可以是js，也可以是其他任何语言</li>
+</ol>
 </li>
-<li><p>直接将原字符作为url获得二维码</p>
+<li>对于代码还原，这种很难有现成工具使用，小代码手推，大代码自己写针对脚本</li>
+<li>手推的话：<ul>
+<li>定位operator先还原运算表达式</li>
+<li>由内层向外，还原一部分删一部分树结构</li>
+<li>独立度大的优先，按函数模块还原</li>
+<li>自己写对应代码生成ast树比对</li>
+</ul>
 </li>
-<li><pre><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;png&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;img src=&quot;data:image/jpg;base64,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&quot;&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-</li>
-</ul>
-<h2 id="基础破解"><a href="#基础破解" class="headerlink" title="基础破解"></a>基础破解</h2><ul>
-<li>azpr破解zip密码</li>
-</ul>
-<h2 id="wireshark"><a href="#wireshark" class="headerlink" title="wireshark"></a>wireshark</h2><ul>
-<li><p>wireshark捕获post请求即可</p>
-<blockquote>
-<p>http.request.method&#x3D;&#x3D;POST</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="文件中的秘密"><a href="#文件中的秘密" class="headerlink" title="文件中的秘密"></a>文件中的秘密</h2><ul>
-<li>右键属性即可</li>
-</ul>
-<h2 id="LSB"><a href="#LSB" class="headerlink" title="LSB"></a>LSB</h2><ul>
-<li>Stegsolve发现最上方隐写</li>
-<li>输出为png二维码</li>
+<li>大概就这样</li>
 </ul>]]></content>
       <categories>
-        <category>CTF题解</category>
+        <category>CTF———知识点</category>
       </categories>
   </entry>
   <entry>
@@ -543,56 +533,65 @@
       </tags>
   </entry>
   <entry>
-    <title>Tea类算法</title>
-    <url>/2022/11/21/Shell_Tea/</url>
+    <title>buuctf Misc简单题记录</title>
+    <url>/2022/11/10/Misc/</url>
     <content><![CDATA[<ul>
-<li>主要为加解密脚本</li>
-<li>Tea、xxTea<!-- less --></li>
+<li>闲来无事写buuctf-Misc的题目汇总<!-- less -->
+<HR width="100%"  color="#FF7F00"></li>
 </ul>
-<HR width="100%"  color="#FF7F00">
-
-<ul>
-<li>一写题就是变种xxtea，我已经无语了</li>
-<li>茶类算法一般来讲顺序逆写加密代码即可</li>
-<li>代码基于网络开源代码修改，侵删</li>
+<h2 id="金三胖"><a href="#金三胖" class="headerlink" title="金三胖"></a>金三胖</h2><ul>
+<li>gifframe捕捉帧</li>
 </ul>
-<h2 align = "center">Tea</h2>
-
-<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><ul>
-<li><p>delta常数：0x9e3779b9</p>
+<h2 id="二维码"><a href="#二维码" class="headerlink" title="二维码"></a>二维码</h2><ul>
+<li>binwalk检测出隐藏zip</li>
+<li>foremost分离zip</li>
+<li>azpr破解zip密码得到flag</li>
+</ul>
+<h2 id="你竟然赶我走"><a href="#你竟然赶我走" class="headerlink" title="你竟然赶我走"></a>你竟然赶我走</h2><ul>
+<li>winhex查看，末尾存flag</li>
+</ul>
+<h2 id="乌镇峰会种图"><a href="#乌镇峰会种图" class="headerlink" title="乌镇峰会种图"></a>乌镇峰会种图</h2><ul>
+<li>同上</li>
+</ul>
+<h2 id="大白"><a href="#大白" class="headerlink" title="大白"></a>大白</h2><ul>
+<li>图片高度隐藏，winhex修改图片高度即可</li>
+</ul>
+<h2 id="N种方法解决"><a href="#N种方法解决" class="headerlink" title="N种方法解决"></a>N种方法解决</h2><ul>
+<li><p>假的exe文件，010打开发现是个base64，网站在线解码输出为png，是个二维码，扫码得flag</p>
 </li>
-<li><p>key：4个32位无符号整数</p>
+<li><p>直接将原字符作为url获得二维码</p>
 </li>
-<li><p>v：2个32位无符号整数</p>
+<li><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;png&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;img src=&quot;data:image/jpg;base64,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&quot;&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 </li>
 </ul>
-<h4 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h4><ul>
-<li>利用key和delta对数据进行32轮简单和加密</li>
-<li>特征：<ul>
-<li>三异或</li>
-<li>4、5移位</li>
+<h2 id="基础破解"><a href="#基础破解" class="headerlink" title="基础破解"></a>基础破解</h2><ul>
+<li>azpr破解zip密码</li>
 </ul>
+<h2 id="wireshark"><a href="#wireshark" class="headerlink" title="wireshark"></a>wireshark</h2><ul>
+<li><p>wireshark捕获post请求即可</p>
+<blockquote>
+<p>http.request.method&#x3D;&#x3D;POST</p>
+</blockquote>
 </li>
 </ul>
-<h4 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">encrypt</span> <span class="params">(<span class="type">uint32_t</span>* v, <span class="type">uint32_t</span>* k)</span> </span>&#123;  </span><br><span class="line">    <span class="type">uint32_t</span> delta=<span class="number">0x9e3779b9</span>;</span><br><span class="line">    <span class="type">uint32_t</span> v0 = v[<span class="number">0</span>], v1 = v[<span class="number">1</span>], sum = <span class="number">0</span>;               </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;                      </span><br><span class="line">        sum += delta;  </span><br><span class="line">        v0 += ((v1&lt;&lt;<span class="number">4</span>) + k[<span class="number">0</span>]) ^ (v1 + sum) ^ ((v1&gt;&gt;<span class="number">5</span>) + k[<span class="number">1</span>]);  </span><br><span class="line">        v1 += ((v0&lt;&lt;<span class="number">4</span>) + k[<span class="number">2</span>]) ^ (v0 + sum) ^ ((v0&gt;&gt;<span class="number">5</span>) + k[<span class="number">3</span>]);  </span><br><span class="line">    &#125;                                                </span><br><span class="line">    v[<span class="number">0</span>] = v0; </span><br><span class="line">    v[<span class="number">1</span>] = v1;  </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-<h4 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">decrypt</span> <span class="params">(<span class="type">uint32_t</span>* v, <span class="type">uint32_t</span>* k)</span> </span>&#123;  </span><br><span class="line">    <span class="type">uint32_t</span> delta = <span class="number">0x9e3779b9</span>; </span><br><span class="line">	<span class="type">uint32_t</span> sum = <span class="number">0xc6ef3720</span>     <span class="comment">//sum = delta*32 = 0x13c6ef3720，取32位，高位数据溢出 </span></span><br><span class="line">    <span class="type">uint32_t</span> v0 = v[<span class="number">0</span>], v1 = v[<span class="number">1</span>]; </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;                         </span><br><span class="line">        v1 -= ((v0&lt;&lt;<span class="number">4</span>) + k[<span class="number">2</span>]) ^ (v0 + sum) ^ ((v0&gt;&gt;<span class="number">5</span>) + k[<span class="number">3</span>]);  </span><br><span class="line">        v0 -= ((v1&lt;&lt;<span class="number">4</span>) + k[<span class="number">0</span>]) ^ (v1 + sum) ^ ((v1&gt;&gt;<span class="number">5</span>) + k[<span class="number">1</span>]);  </span><br><span class="line">        sum -= delta;  </span><br><span class="line">    &#125;                                            </span><br><span class="line">    v[<span class="number">0</span>] = v0; </span><br><span class="line">    v[<span class="number">1</span>] = v1;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
-
-
-
-<h2 align = "center">xxTea</h2>
-
-<ul>
-<li>key和delta如上，加密轮数由数据长度n决定</li>
-<li>改魔数的就另当别论，一般解tea都是用c++写</li>
+<h2 id="文件中的秘密"><a href="#文件中的秘密" class="headerlink" title="文件中的秘密"></a>文件中的秘密</h2><ul>
+<li>右键属性即可</li>
 </ul>
-<h4 id="c"><a href="#c" class="headerlink" title="c++"></a>c++</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//常见变化点</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MX (((z&gt;&gt;5^y<span class="string">&lt;&lt;2) + (y&gt;</span>&gt;3^z&lt;&lt;4)) ^ ((sum^y) + (key[(p&amp;3)^e] ^ z)))  </span></span><br><span class="line"><span class="comment">//key定义，4个32位无符号整数</span></span><br><span class="line"><span class="type">const</span> <span class="type">uint32_t</span> key[<span class="number">4</span>] = &#123;&#125;;</span><br><span class="line"><span class="comment">//delta</span></span><br><span class="line"><span class="type">uint32_t</span> delta = <span class="number">0x9E3779B9</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">encrypt</span><span class="params">(<span class="type">uint32_t</span>* flag, <span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">  <span class="type">uint32_t</span> y, z, sum;  </span><br><span class="line">  rounds = <span class="number">52</span> / n + <span class="number">6</span>;</span><br><span class="line">  sum = <span class="number">0</span>;</span><br><span class="line">  z = flag[n - <span class="number">1</span>];</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">  &#123;</span><br><span class="line">    sum += delta;</span><br><span class="line">    e = (sum&gt;&gt;<span class="number">2</span>) &amp; <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; ++i )</span><br><span class="line">    &#123;</span><br><span class="line">      y = flag[i+<span class="number">1</span>];</span><br><span class="line">      z = flag[i] += MX;</span><br><span class="line">    &#125;</span><br><span class="line">    y = flag[<span class="number">0</span>];</span><br><span class="line">    z = flag[n<span class="number">-1</span>] += MX;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (--rounds);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">decrypt</span><span class="params">(<span class="type">uint32_t</span>* flag, <span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">  <span class="type">uint32_t</span> y, z, sum;  </span><br><span class="line">  rounds = <span class="number">52</span> / n + <span class="number">6</span>;</span><br><span class="line">  sum = rounds*delta;</span><br><span class="line">  y = flag[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">  &#123;</span><br><span class="line">    e = (sum&gt;&gt;<span class="number">2</span>) &amp; <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span> ( i = n<span class="number">-1</span>; i &gt; <span class="number">0</span>; i--)</span><br><span class="line">    &#123;</span><br><span class="line">      z = flag[i<span class="number">-1</span>];</span><br><span class="line">      y = flag[i] -= MX;</span><br><span class="line">    &#125;</span><br><span class="line">    z = flag[n<span class="number">-1</span>];</span><br><span class="line">    y = flag[<span class="number">0</span>] -= MX;</span><br><span class="line">    sum -= delta;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (--rounds);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="python"><a href="#python" class="headerlink" title="python"></a>python</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">参数描述:</span></span><br><span class="line"><span class="string">  DELTA: 神秘常数δ，它来源于黄金比率，以保证每一轮加密都不相同。但δ的精确值似乎并不重要，这里 TEA 把它定义为 δ=「(√5 - 1)231」</span></span><br><span class="line"><span class="string">      v: 需要加解密的数据，格式为32位的无符号整数组成的数组</span></span><br><span class="line"><span class="string">      n: n表示需要加密的32位无符号整数的个数（例：n为1时，只有v数组中的第一个元素被加密了），n不能大于v的长度</span></span><br><span class="line"><span class="string">      k: 密钥，格式为4个32位无符号整数组成的数组，即密钥长度为128位</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> c_uint32</span><br><span class="line"> </span><br><span class="line">DELTA = <span class="number">0x9E3779B9</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">encrypt</span>(<span class="params">v, n, k</span>):</span><br><span class="line">    rounds = <span class="number">6</span> + <span class="built_in">int</span>(<span class="number">52</span> / n)</span><br><span class="line">    <span class="built_in">sum</span> = c_uint32(<span class="number">0</span>)</span><br><span class="line">    z = v[n - <span class="number">1</span>].value</span><br><span class="line">    <span class="keyword">while</span> rounds &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">sum</span>.value += DELTA</span><br><span class="line">        e = (<span class="built_in">sum</span>.value &gt;&gt; <span class="number">2</span>) &amp; <span class="number">3</span></span><br><span class="line">        p = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> p &lt; n - <span class="number">1</span>:</span><br><span class="line">            y = v[p + <span class="number">1</span>].value</span><br><span class="line">            v[p].value += (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">            z = v[p].value</span><br><span class="line">            p += <span class="number">1</span></span><br><span class="line">        y = v[<span class="number">0</span>].value</span><br><span class="line">        v[n - <span class="number">1</span>].value += (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">        z = v[n - <span class="number">1</span>].value</span><br><span class="line">        rounds -= <span class="number">1</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt</span>(<span class="params">v, n, k</span>):</span><br><span class="line">    rounds = <span class="number">6</span> + <span class="built_in">int</span>(<span class="number">52</span> / n)</span><br><span class="line">    <span class="built_in">sum</span> = c_uint32(rounds * DELTA)</span><br><span class="line">    y = v[<span class="number">0</span>].value</span><br><span class="line">    <span class="keyword">while</span> rounds &gt; <span class="number">0</span>:</span><br><span class="line">        e = (<span class="built_in">sum</span>.value &gt;&gt; <span class="number">2</span>) &amp; <span class="number">3</span></span><br><span class="line">        p = n - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> p &gt; <span class="number">0</span>:</span><br><span class="line">            z = v[p - <span class="number">1</span>].value</span><br><span class="line">            v[p].value -= (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">            y = v[p].value</span><br><span class="line">            p -= <span class="number">1</span></span><br><span class="line">        z = v[n - <span class="number">1</span>].value</span><br><span class="line">        v[<span class="number">0</span>].value -= (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">        y = v[<span class="number">0</span>].value</span><br><span class="line">        <span class="built_in">sum</span>.value -= DELTA</span><br><span class="line">        rounds -= <span class="number">1</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test1</span>():</span><br><span class="line">    k = [<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">    v = [c_uint32(<span class="number">1</span>), c_uint32(<span class="number">2</span>)]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;plain: 1 2&#x27;</span>)</span><br><span class="line">    encrypt(v, <span class="built_in">len</span>(v), k)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;encrypted: %X %X&#x27;</span> % (v[<span class="number">0</span>].value, v[<span class="number">1</span>].value))</span><br><span class="line">    decrypt(v, <span class="built_in">len</span>(v), k)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;decrypted: %X %X&#x27;</span> % (v[<span class="number">0</span>].value, v[<span class="number">1</span>].value))</span><br><span class="line"></span><br><span class="line">————————————————</span><br><span class="line">此段代码为转载，原文链接：https://blog.csdn.net/koxb/article/details/<span class="number">120088234</span></span><br></pre></td></tr></table></figure>]]></content>
+<h2 id="LSB"><a href="#LSB" class="headerlink" title="LSB"></a>LSB</h2><ul>
+<li>Stegsolve发现最上方隐写</li>
+<li>输出为png二维码</li>
+</ul>]]></content>
       <categories>
-        <category>CTF———知识点</category>
+        <category>CTF题解</category>
       </categories>
   </entry>
   <entry>
@@ -660,6 +659,59 @@
 </ul>]]></content>
       <categories>
         <category>CTF题解</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Tea类算法</title>
+    <url>/2022/11/21/Shell_Tea/</url>
+    <content><![CDATA[<ul>
+<li>主要为加解密脚本</li>
+<li>Tea、xxTea<!-- less --></li>
+</ul>
+<HR width="100%"  color="#FF7F00">
+
+<ul>
+<li>一写题就是变种xxtea，我已经无语了</li>
+<li>茶类算法一般来讲顺序逆写加密代码即可</li>
+<li>代码基于网络开源代码修改，侵删</li>
+</ul>
+<h2 align = "center">Tea</h2>
+
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><ul>
+<li><p>delta常数：0x9e3779b9</p>
+</li>
+<li><p>key：4个32位无符号整数</p>
+</li>
+<li><p>v：2个32位无符号整数</p>
+</li>
+</ul>
+<h4 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h4><ul>
+<li>利用key和delta对数据进行32轮简单和加密</li>
+<li>特征：<ul>
+<li>三异或</li>
+<li>4、5移位</li>
+</ul>
+</li>
+</ul>
+<h4 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">encrypt</span> <span class="params">(<span class="type">uint32_t</span>* v, <span class="type">uint32_t</span>* k)</span> </span>&#123;  </span><br><span class="line">    <span class="type">uint32_t</span> delta=<span class="number">0x9e3779b9</span>;</span><br><span class="line">    <span class="type">uint32_t</span> v0 = v[<span class="number">0</span>], v1 = v[<span class="number">1</span>], sum = <span class="number">0</span>;               </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;                      </span><br><span class="line">        sum += delta;  </span><br><span class="line">        v0 += ((v1&lt;&lt;<span class="number">4</span>) + k[<span class="number">0</span>]) ^ (v1 + sum) ^ ((v1&gt;&gt;<span class="number">5</span>) + k[<span class="number">1</span>]);  </span><br><span class="line">        v1 += ((v0&lt;&lt;<span class="number">4</span>) + k[<span class="number">2</span>]) ^ (v0 + sum) ^ ((v0&gt;&gt;<span class="number">5</span>) + k[<span class="number">3</span>]);  </span><br><span class="line">    &#125;                                                </span><br><span class="line">    v[<span class="number">0</span>] = v0; </span><br><span class="line">    v[<span class="number">1</span>] = v1;  </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<h4 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">decrypt</span> <span class="params">(<span class="type">uint32_t</span>* v, <span class="type">uint32_t</span>* k)</span> </span>&#123;  </span><br><span class="line">    <span class="type">uint32_t</span> delta = <span class="number">0x9e3779b9</span>; </span><br><span class="line">	<span class="type">uint32_t</span> sum = <span class="number">0xc6ef3720</span>     <span class="comment">//sum = delta*32 = 0x13c6ef3720，取32位，高位数据溢出 </span></span><br><span class="line">    <span class="type">uint32_t</span> v0 = v[<span class="number">0</span>], v1 = v[<span class="number">1</span>]; </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;                         </span><br><span class="line">        v1 -= ((v0&lt;&lt;<span class="number">4</span>) + k[<span class="number">2</span>]) ^ (v0 + sum) ^ ((v0&gt;&gt;<span class="number">5</span>) + k[<span class="number">3</span>]);  </span><br><span class="line">        v0 -= ((v1&lt;&lt;<span class="number">4</span>) + k[<span class="number">0</span>]) ^ (v1 + sum) ^ ((v1&gt;&gt;<span class="number">5</span>) + k[<span class="number">1</span>]);  </span><br><span class="line">        sum -= delta;  </span><br><span class="line">    &#125;                                            </span><br><span class="line">    v[<span class="number">0</span>] = v0; </span><br><span class="line">    v[<span class="number">1</span>] = v1;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 align = "center">xxTea</h2>
+
+<ul>
+<li>key和delta如上，加密轮数由数据长度n决定</li>
+<li>改魔数的就另当别论，一般解tea都是用c++写</li>
+</ul>
+<h4 id="c"><a href="#c" class="headerlink" title="c++"></a>c++</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//常见变化点</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MX (((z&gt;&gt;5^y<span class="string">&lt;&lt;2) + (y&gt;</span>&gt;3^z&lt;&lt;4)) ^ ((sum^y) + (key[(p&amp;3)^e] ^ z)))  </span></span><br><span class="line"><span class="comment">//key定义，4个32位无符号整数</span></span><br><span class="line"><span class="type">const</span> <span class="type">uint32_t</span> key[<span class="number">4</span>] = &#123;&#125;;</span><br><span class="line"><span class="comment">//delta</span></span><br><span class="line"><span class="type">uint32_t</span> delta = <span class="number">0x9E3779B9</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">encrypt</span><span class="params">(<span class="type">uint32_t</span>* flag, <span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">  <span class="type">uint32_t</span> y, z, sum;  </span><br><span class="line">  rounds = <span class="number">52</span> / n + <span class="number">6</span>;</span><br><span class="line">  sum = <span class="number">0</span>;</span><br><span class="line">  z = flag[n - <span class="number">1</span>];</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">  &#123;</span><br><span class="line">    sum += delta;</span><br><span class="line">    e = (sum&gt;&gt;<span class="number">2</span>) &amp; <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; ++i )</span><br><span class="line">    &#123;</span><br><span class="line">      y = flag[i+<span class="number">1</span>];</span><br><span class="line">      z = flag[i] += MX;</span><br><span class="line">    &#125;</span><br><span class="line">    y = flag[<span class="number">0</span>];</span><br><span class="line">    z = flag[n<span class="number">-1</span>] += MX;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (--rounds);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">decrypt</span><span class="params">(<span class="type">uint32_t</span>* flag, <span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">  <span class="type">uint32_t</span> y, z, sum;  </span><br><span class="line">  rounds = <span class="number">52</span> / n + <span class="number">6</span>;</span><br><span class="line">  sum = rounds*delta;</span><br><span class="line">  y = flag[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">  &#123;</span><br><span class="line">    e = (sum&gt;&gt;<span class="number">2</span>) &amp; <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span> ( i = n<span class="number">-1</span>; i &gt; <span class="number">0</span>; i--)</span><br><span class="line">    &#123;</span><br><span class="line">      z = flag[i<span class="number">-1</span>];</span><br><span class="line">      y = flag[i] -= MX;</span><br><span class="line">    &#125;</span><br><span class="line">    z = flag[n<span class="number">-1</span>];</span><br><span class="line">    y = flag[<span class="number">0</span>] -= MX;</span><br><span class="line">    sum -= delta;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (--rounds);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="python"><a href="#python" class="headerlink" title="python"></a>python</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">参数描述:</span></span><br><span class="line"><span class="string">  DELTA: 神秘常数δ，它来源于黄金比率，以保证每一轮加密都不相同。但δ的精确值似乎并不重要，这里 TEA 把它定义为 δ=「(√5 - 1)231」</span></span><br><span class="line"><span class="string">      v: 需要加解密的数据，格式为32位的无符号整数组成的数组</span></span><br><span class="line"><span class="string">      n: n表示需要加密的32位无符号整数的个数（例：n为1时，只有v数组中的第一个元素被加密了），n不能大于v的长度</span></span><br><span class="line"><span class="string">      k: 密钥，格式为4个32位无符号整数组成的数组，即密钥长度为128位</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> c_uint32</span><br><span class="line"> </span><br><span class="line">DELTA = <span class="number">0x9E3779B9</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">encrypt</span>(<span class="params">v, n, k</span>):</span><br><span class="line">    rounds = <span class="number">6</span> + <span class="built_in">int</span>(<span class="number">52</span> / n)</span><br><span class="line">    <span class="built_in">sum</span> = c_uint32(<span class="number">0</span>)</span><br><span class="line">    z = v[n - <span class="number">1</span>].value</span><br><span class="line">    <span class="keyword">while</span> rounds &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">sum</span>.value += DELTA</span><br><span class="line">        e = (<span class="built_in">sum</span>.value &gt;&gt; <span class="number">2</span>) &amp; <span class="number">3</span></span><br><span class="line">        p = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> p &lt; n - <span class="number">1</span>:</span><br><span class="line">            y = v[p + <span class="number">1</span>].value</span><br><span class="line">            v[p].value += (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">            z = v[p].value</span><br><span class="line">            p += <span class="number">1</span></span><br><span class="line">        y = v[<span class="number">0</span>].value</span><br><span class="line">        v[n - <span class="number">1</span>].value += (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">        z = v[n - <span class="number">1</span>].value</span><br><span class="line">        rounds -= <span class="number">1</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt</span>(<span class="params">v, n, k</span>):</span><br><span class="line">    rounds = <span class="number">6</span> + <span class="built_in">int</span>(<span class="number">52</span> / n)</span><br><span class="line">    <span class="built_in">sum</span> = c_uint32(rounds * DELTA)</span><br><span class="line">    y = v[<span class="number">0</span>].value</span><br><span class="line">    <span class="keyword">while</span> rounds &gt; <span class="number">0</span>:</span><br><span class="line">        e = (<span class="built_in">sum</span>.value &gt;&gt; <span class="number">2</span>) &amp; <span class="number">3</span></span><br><span class="line">        p = n - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> p &gt; <span class="number">0</span>:</span><br><span class="line">            z = v[p - <span class="number">1</span>].value</span><br><span class="line">            v[p].value -= (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">            y = v[p].value</span><br><span class="line">            p -= <span class="number">1</span></span><br><span class="line">        z = v[n - <span class="number">1</span>].value</span><br><span class="line">        v[<span class="number">0</span>].value -= (((z &gt;&gt; <span class="number">5</span> ^ y &lt;&lt; <span class="number">2</span>) + (y &gt;&gt; <span class="number">3</span> ^ z &lt;&lt; <span class="number">4</span>)) ^ ((<span class="built_in">sum</span>.value ^ y) + (k[(p &amp; <span class="number">3</span>) ^ e] ^ z)))</span><br><span class="line">        y = v[<span class="number">0</span>].value</span><br><span class="line">        <span class="built_in">sum</span>.value -= DELTA</span><br><span class="line">        rounds -= <span class="number">1</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test1</span>():</span><br><span class="line">    k = [<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">    v = [c_uint32(<span class="number">1</span>), c_uint32(<span class="number">2</span>)]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;plain: 1 2&#x27;</span>)</span><br><span class="line">    encrypt(v, <span class="built_in">len</span>(v), k)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;encrypted: %X %X&#x27;</span> % (v[<span class="number">0</span>].value, v[<span class="number">1</span>].value))</span><br><span class="line">    decrypt(v, <span class="built_in">len</span>(v), k)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;decrypted: %X %X&#x27;</span> % (v[<span class="number">0</span>].value, v[<span class="number">1</span>].value))</span><br><span class="line"></span><br><span class="line">————————————————</span><br><span class="line">此段代码为转载，原文链接：https://blog.csdn.net/koxb/article/details/<span class="number">120088234</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>CTF———知识点</category>
       </categories>
   </entry>
   <entry>
@@ -749,80 +801,35 @@
       </categories>
   </entry>
   <entry>
-    <title>《逆向工程核心原理》总结1</title>
-    <url>/2022/10/05/Summary1/</url>
+    <title>《逆向工程核心原理》总结3</title>
+    <url>/2022/10/08/Summary3/</url>
     <content><![CDATA[<ul>
-<li>常见寄存器</li>
-<li>栈帧</li>
-<li>函数调用约定<!-- less --></li>
+<li>DLL文件</li>
+<li>节区删除<!-- less --></li>
 </ul>
 <HR width="100%"  color="#FF7F00">
 
-
-<h2 id="常见寄存器"><a href="#常见寄存器" class="headerlink" title="常见寄存器"></a>常见寄存器</h2><ul>
-<li>通用寄存器<ul>
-<li>EAX：（针对操作数和结果数据的）累加器</li>
-<li>EBX：（DS段的数据指针）基址寄存器</li>
-<li>ECX：（字符串和循环操作的）计数器</li>
-<li>EDX：（I&#x2F;O指针）数据寄存器</li>
-<li>ESI：（字符串操作源指针）源变址寄存器</li>
-<li>EDI：（字符串操作目标指针）目的变址寄存器</li>
-<li>EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器][栈底指针寄存器]</li>
-<li>ESP：（SS段中栈指针）栈指针寄存器[指向栈顶]</li>
+<h2 id="DLL文件"><a href="#DLL文件" class="headerlink" title="DLL文件"></a>DLL文件</h2><ul>
+<li>（Dynamic Link Library）动态链接库</li>
+<li>目的：解决在多进程时一个系统API可能会被多次调用，多次加载到内存造成空间浪费的问题</li>
+<li>描述：<ul>
+<li>库封装，单独组成DLL文件</li>
+<li>内存映射技术，实现多进程共享同一个文件</li>
+<li>更新库时替换对应DLL文件</li>
 </ul>
 </li>
-<li>段寄存器<ul>
-<li>CS：代码段寄存器</li>
-<li>SS：栈段寄存器</li>
-<li>DS：数据段寄存器</li>
-<li>FS：数据段寄存器</li>
-<li>ES：附加数据寄存器</li>
-<li>GS：数据段寄存器</li>
-</ul>
-</li>
-<li>程序状态与控制寄存器<ul>
-<li>EFLAGS：标志寄存器，32个位元的01控制<ul>
-<li>ZF(零标志器，运算结果为0时置1)  </li>
-<li>CF(进位标志，运算结果向最高位以上进位时置1)  </li>
-<li>OF(溢出标志) </li>
-<li>AF(辅助进位标志，运算结果在第3位的时候置1)</li>
-<li>SF(符号标志，有符号整型的符号位为1时置1)</li>
+<li>加载方式：<ul>
+<li>显式链接：使用时加载，用完后释放内存</li>
+<li>隐式链接：加载程序时将DLL全部加载，程序终止后释放内存</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>指令指针寄存器<ul>
-<li>EIP：保存CPU要执行的指令地址</li>
-</ul>
-</li>
-</ul>
-<h2 id="栈帧"><a href="#栈帧" class="headerlink" title="栈帧"></a>栈帧</h2><ul>
-<li>栈特点：FILO（first in last out）</li>
-<li>在调用函数的时候需要将参数压入栈中，栈顶地址发生改变，而使用结束又需要将参数弹出，将栈恢复到被调用前的状态，为了便于管理，于是出现了栈帧。<ul>
-<li>官方解释：利用EBP寄存器访问栈内局部变量、参数、函数返回地址的手段。</li>
-<li>具体操作：在调用函数之前，将ESP中的栈顶地址存入EBP中，将该地址作为基准点。然后调用函数，ESP寄存器正常进行，其间可通过EBP去控制访问变量参数等等，在调用结束后，再将EBP中的基准点地址给到ESP，将栈的状态恢复到函数调用前</li>
-<li>代码流程：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PUSH EBP          ;函数开始</span><br><span class="line">MOV  EBP,ESP      ;将栈顶地址存入EBP中</span><br><span class="line"></span><br><span class="line">....              ;函数执行，期间EBP地址不变</span><br><span class="line"></span><br><span class="line">MOV  ESP,EBP      ;基准点地址给到ESP</span><br><span class="line">POP EBP           ;栈状态恢复，弹出EBP</span><br><span class="line">RETN              ;函数结束</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="函数调用约定"><a href="#函数调用约定" class="headerlink" title="函数调用约定"></a>函数调用约定</h2><p>(Calling Convention)</p>
-<ul>
-<li>三种方式(cdcel, stdcall, fastcall)<ul>
-<li>cdcel<br>主要运用于c语言，由调用者负责清理栈<blockquote>
-<p>函数调用结束后通过移动ESP，恢复到调用前的栈状态</p>
-</blockquote>
-</li>
-<li>stdcall<br>主要运用于Win32 API，由被调用者清理栈<blockquote>
-<p>在被调用函数的结尾通过RETN语句移动ESP到原位置</p>
-</blockquote>
-</li>
-<li>fastcall<blockquote>
-<p>使用寄存器去传递函数的部分参数，实现快速调用</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>]]></content>
+<h2 id="节区删除"><a href="#节区删除" class="headerlink" title="节区删除"></a>节区删除</h2><ol>
+<li>删除节区头，PEview中查看节区头起始地址及长度，在hex编辑器中将该区域用0覆盖</li>
+<li>删除节区，查看节区起始偏移及长度，hex编辑器中删除</li>
+<li>修改IMAGE_FILE_HEADER[Number Of Sections -&#x3D; 1]</li>
+<li>修改IMAGE_OPTIONAL_HEADER[Size Of Image减少对应长度]</li>
+</ol>]]></content>
       <categories>
         <category>CTF———知识点</category>
       </categories>
@@ -909,37 +916,181 @@
       </categories>
   </entry>
   <entry>
-    <title>《逆向工程核心原理》总结3</title>
-    <url>/2022/10/08/Summary3/</url>
+    <title>《逆向工程核心原理》总结1</title>
+    <url>/2022/10/05/Summary1/</url>
     <content><![CDATA[<ul>
-<li>DLL文件</li>
-<li>节区删除<!-- less --></li>
+<li>常见寄存器</li>
+<li>栈帧</li>
+<li>函数调用约定<!-- less --></li>
 </ul>
 <HR width="100%"  color="#FF7F00">
 
-<h2 id="DLL文件"><a href="#DLL文件" class="headerlink" title="DLL文件"></a>DLL文件</h2><ul>
-<li>（Dynamic Link Library）动态链接库</li>
-<li>目的：解决在多进程时一个系统API可能会被多次调用，多次加载到内存造成空间浪费的问题</li>
-<li>描述：<ul>
-<li>库封装，单独组成DLL文件</li>
-<li>内存映射技术，实现多进程共享同一个文件</li>
-<li>更新库时替换对应DLL文件</li>
+
+<h2 id="常见寄存器"><a href="#常见寄存器" class="headerlink" title="常见寄存器"></a>常见寄存器</h2><ul>
+<li>通用寄存器<ul>
+<li>EAX：（针对操作数和结果数据的）累加器</li>
+<li>EBX：（DS段的数据指针）基址寄存器</li>
+<li>ECX：（字符串和循环操作的）计数器</li>
+<li>EDX：（I&#x2F;O指针）数据寄存器</li>
+<li>ESI：（字符串操作源指针）源变址寄存器</li>
+<li>EDI：（字符串操作目标指针）目的变址寄存器</li>
+<li>EBP：（SS段中栈内数据指针）扩展基址指针寄存器[栈帧寄存器][栈底指针寄存器]</li>
+<li>ESP：（SS段中栈指针）栈指针寄存器[指向栈顶]</li>
 </ul>
 </li>
-<li>加载方式：<ul>
-<li>显式链接：使用时加载，用完后释放内存</li>
-<li>隐式链接：加载程序时将DLL全部加载，程序终止后释放内存</li>
+<li>段寄存器<ul>
+<li>CS：代码段寄存器</li>
+<li>SS：栈段寄存器</li>
+<li>DS：数据段寄存器</li>
+<li>FS：数据段寄存器</li>
+<li>ES：附加数据寄存器</li>
+<li>GS：数据段寄存器</li>
+</ul>
+</li>
+<li>程序状态与控制寄存器<ul>
+<li>EFLAGS：标志寄存器，32个位元的01控制<ul>
+<li>ZF(零标志器，运算结果为0时置1)  </li>
+<li>CF(进位标志，运算结果向最高位以上进位时置1)  </li>
+<li>OF(溢出标志) </li>
+<li>AF(辅助进位标志，运算结果在第3位的时候置1)</li>
+<li>SF(符号标志，有符号整型的符号位为1时置1)</li>
 </ul>
 </li>
 </ul>
-<h2 id="节区删除"><a href="#节区删除" class="headerlink" title="节区删除"></a>节区删除</h2><ol>
-<li>删除节区头，PEview中查看节区头起始地址及长度，在hex编辑器中将该区域用0覆盖</li>
-<li>删除节区，查看节区起始偏移及长度，hex编辑器中删除</li>
-<li>修改IMAGE_FILE_HEADER[Number Of Sections -&#x3D; 1]</li>
-<li>修改IMAGE_OPTIONAL_HEADER[Size Of Image减少对应长度]</li>
-</ol>]]></content>
+</li>
+<li>指令指针寄存器<ul>
+<li>EIP：保存CPU要执行的指令地址</li>
+</ul>
+</li>
+</ul>
+<h2 id="栈帧"><a href="#栈帧" class="headerlink" title="栈帧"></a>栈帧</h2><ul>
+<li>栈特点：FILO（first in last out）</li>
+<li>在调用函数的时候需要将参数压入栈中，栈顶地址发生改变，而使用结束又需要将参数弹出，将栈恢复到被调用前的状态，为了便于管理，于是出现了栈帧。<ul>
+<li>官方解释：利用EBP寄存器访问栈内局部变量、参数、函数返回地址的手段。</li>
+<li>具体操作：在调用函数之前，将ESP中的栈顶地址存入EBP中，将该地址作为基准点。然后调用函数，ESP寄存器正常进行，其间可通过EBP去控制访问变量参数等等，在调用结束后，再将EBP中的基准点地址给到ESP，将栈的状态恢复到函数调用前</li>
+<li>代码流程：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PUSH EBP          ;函数开始</span><br><span class="line">MOV  EBP,ESP      ;将栈顶地址存入EBP中</span><br><span class="line"></span><br><span class="line">....              ;函数执行，期间EBP地址不变</span><br><span class="line"></span><br><span class="line">MOV  ESP,EBP      ;基准点地址给到ESP</span><br><span class="line">POP EBP           ;栈状态恢复，弹出EBP</span><br><span class="line">RETN              ;函数结束</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="函数调用约定"><a href="#函数调用约定" class="headerlink" title="函数调用约定"></a>函数调用约定</h2><p>(Calling Convention)</p>
+<ul>
+<li>三种方式(cdcel, stdcall, fastcall)<ul>
+<li>cdcel<br>主要运用于c语言，由调用者负责清理栈<blockquote>
+<p>函数调用结束后通过移动ESP，恢复到调用前的栈状态</p>
+</blockquote>
+</li>
+<li>stdcall<br>主要运用于Win32 API，由被调用者清理栈<blockquote>
+<p>在被调用函数的结尾通过RETN语句移动ESP到原位置</p>
+</blockquote>
+</li>
+<li>fastcall<blockquote>
+<p>使用寄存器去传递函数的部分参数，实现快速调用</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>]]></content>
       <categories>
         <category>CTF———知识点</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>工具汇总</title>
+    <url>/2022/09/18/Tools/</url>
+    <content><![CDATA[<ul>
+<li>CTF工具汇总</li>
+<li>如果引用内容侵权，请联系删除</li>
+<li>安装过程一般不做说明，google即可<!-- less --></li>
+</ul>
+<HR width="100%"  color="#FF7F00">
+
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h3><ul>
+<li><p>虚拟机下载<br><a href="https://mirrors.tuna.tsinghua.edu.cn/">清华源</a><br><a href="https://developer.aliyun.com/mirror">阿里源</a></p>
+</li>
+<li><p>exeinfope(查壳工具)</p>
+<blockquote>
+<p>链接：(<a href="https://pan.baidu.com/s/1oXarqcAuWdXWTB-8830q0Q?pwd=1234">https://pan.baidu.com/s/1oXarqcAuWdXWTB-8830q0Q?pwd=1234</a>)<br>提取码：1234</p>
+</blockquote>
+</li>
+<li><p>PEiD(查壳工具)</p>
+<blockquote>
+<p>链接：(<a href="https://pan.baidu.com/s/15vWG_e4qcNi_McHmdiTPkg?pwd=1234">https://pan.baidu.com/s/15vWG_e4qcNi_McHmdiTPkg?pwd=1234</a>)<br>提取码：1234</p>
+</blockquote>
+</li>
+<li><p>IDA7.2(静态调试工具)</p>
+<blockquote>
+<p>链接：<a href="https://pan.baidu.com/s/1fADIonw9sSyZ1pFIDkeBXg?pwd=1234">https://pan.baidu.com/s/1fADIonw9sSyZ1pFIDkeBXg?pwd=1234</a><br>提取码：1234</p>
+</blockquote>
+</li>
+<li><p>Ollydbg(动态调试工具)<br><a href="https://www.52pojie.cn/thread-350397-1-1.html">吾爱破解</a></p>
+</li>
+<li><p>x64dbg(动态调试工具)[工具来源于吾爱破解]</p>
+<blockquote>
+<p>链接：(<a href="https://pan.baidu.com/s/1aG_nczhG8mOqDBvOZMzyYg?pwd=1234">https://pan.baidu.com/s/1aG_nczhG8mOqDBvOZMzyYg?pwd=1234</a>)<br>提取码：1234 </p>
+</blockquote>
+</li>
+<li><p>Ghidra(静态调试工具)</p>
+<blockquote>
+<p>链接：<a href="https://pan.baidu.com/s/1fr1TeZUrdzD-VZHnWbl57w?pwd=1234">https://pan.baidu.com/s/1fr1TeZUrdzD-VZHnWbl57w?pwd=1234</a><br>提取码：1234</p>
+</blockquote>
+</li>
+<li><p>cheat engine(内存修改工具)<br>官方网站-(<a href="https://cheatengine.org/">https://cheatengine.org/</a>)</p>
+</li>
+<li><p>upx加脱壳</p>
+<blockquote>
+<p>链接：(<a href="https://pan.baidu.com/s/1LqzAz1arZqpbEBEHZrRsBg?pwd=1234">https://pan.baidu.com/s/1LqzAz1arZqpbEBEHZrRsBg?pwd=1234</a>)<br>提取码：1234</p>
+</blockquote>
+</li>
+<li><p>upx shell</p>
+<blockquote>
+<p>链接：(<a href="https://pan.baidu.com/s/195lxQRjBB39H_RA46SWxpg?pwd=1234">https://pan.baidu.com/s/195lxQRjBB39H_RA46SWxpg?pwd=1234</a>)<br>提取码：1234 </p>
+</blockquote>
+</li>
+<li><p>upx<br>官方网站-(<a href="https://upx.github.io/">https://upx.github.io</a>)</p>
+</li>
+<li><p>PEview(查看PE文件结构)</p>
+<blockquote>
+<p>链接：<a href="https://pan.baidu.com/s/1JGCcCVmR5nUOJbkM5OzQ5w?pwd=1234">https://pan.baidu.com/s/1JGCcCVmR5nUOJbkM5OzQ5w?pwd=1234</a><br>提取码：1234 </p>
+</blockquote>
+</li>
+<li><p>Winhex(十六进制查看器)</p>
+<blockquote>
+<p>链接：<a href="https://pan.baidu.com/s/1NLyr9YsQ1DNAOTPyY02hBA?pwd=1234">https://pan.baidu.com/s/1NLyr9YsQ1DNAOTPyY02hBA?pwd=1234</a><br>提取码：1234</p>
+</blockquote>
+</li>
+<li><p>010 Editor(十六进制查看器)</p>
+<blockquote>
+<p>链接：<a href="https://pan.baidu.com/s/1o1X7FKxfOUZsOkGxi22Ttg?pwd=1234">https://pan.baidu.com/s/1o1X7FKxfOUZsOkGxi22Ttg?pwd=1234</a><br>提取码：1234</p>
+</blockquote>
+</li>
+<li><p>APKTOOLS(反编译android apk)<br>官方网站-(<a href="https://ibotpeaches.github.io/Apktool/install/">https://ibotpeaches.github.io/Apktool/install/</a>)</p>
+</li>
+<li><p>Dex2jar(打包dex文件为jar)<br> SOURCEFORGE-(<a href="https://sourceforge.net/projects/dex2jar">https://sourceforge.net/projects/dex2jar</a>)</p>
+</li>
+<li><p>JD-GUIjar(反编译jar文件)</p>
+</li>
+<li><p>jeb(apk反编)<br>看雪社区搜索破解</p>
+</li>
+</ul>
+<h3 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h3><ul>
+<li><p>z3(解方程工具)</p>
+<blockquote>
+<p>链接：(<a href="https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234">https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234</a>)<br>提取码：1234</p>
+</blockquote>
+</li>
+<li><p>Ziperello(zip加密暴力破解)</p>
+<blockquote>
+<p>链接：(<a href="https://pan.baidu.com/s/1of_e5mleYDPjZGZxiYi63Q?pwd=1234">https://pan.baidu.com/s/1of_e5mleYDPjZGZxiYi63Q?pwd=1234</a>)<br>提取码：1234</p>
+</blockquote>
+</li>
+<li><p>Converter(编码转换工具)</p>
+<blockquote>
+<p>链接：<a href="https://pan.baidu.com/s/1hzK04wmtm4rWsNyofqXPxw?pwd=1234">https://pan.baidu.com/s/1hzK04wmtm4rWsNyofqXPxw?pwd=1234</a><br>提取码：1234</p>
+</blockquote>
+</li>
+</ul>]]></content>
+      <categories>
+        <category>CTF——工具</category>
       </categories>
   </entry>
   <entry>
@@ -1282,221 +1433,6 @@
       </categories>
   </entry>
   <entry>
-    <title>《c++反汇编与逆向分析技术揭秘》速记1</title>
-    <url>/2022/11/05/fast_sum1/</url>
-    <content><![CDATA[<ul>
-<li>数据类型<!-- less --></li>
-</ul>
-<HR width="100%"  color="#FF7F00">
-
-<h2 id="基本类型表示"><a href="#基本类型表示" class="headerlink" title="基本类型表示"></a>基本类型表示</h2><ul>
-<li><p>无符号整数：全部字节表示数字，只有正数</p>
-</li>
-<li><p>有符号整数：最高位表示正负</p>
-</li>
-<li><p>负数表示</p>
-<ul>
-<li><p>补码（0减去该数的绝对值）存放，补码 &#x3D; 反码 + 1，进位丢失</p>
-</li>
-<li><p>举例：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">--&gt; -<span class="number">3</span></span><br><span class="line">--&gt; <span class="number">0</span>减去该数的绝对值</span><br><span class="line">----&gt; <span class="number">0xFFFFFFFD</span> + <span class="number">3</span> = <span class="number">0</span>，最高位溢出 &gt;&gt; <span class="number">0xFFFFFFFD</span>表示-<span class="number">3</span></span><br><span class="line">--&gt; 补码 = 反码 + <span class="number">1</span></span><br><span class="line">----&gt; <span class="built_in">bin</span>(<span class="number">3</span>):<span class="number">11</span></span><br><span class="line">----&gt; <span class="built_in">bin</span>(<span class="number">3</span>)反码:<span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1100</span></span><br><span class="line">----&gt; <span class="built_in">hex</span>(反码+<span class="number">1</span>):<span class="number">0xFFFFFFFD</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>浮点数</p>
-<ul>
-<li>定点实数存储：提前约定整数和小数长度，进行存放</li>
-<li>浮点实数存储：开辟两个部分，一部分存指数域（小数点位置），一部分存数值大小（无小数点的整数）</li>
-<li>编码方式（符号位-指数域-尾数域）<ul>
-<li>float（size4，32位）：1-8-23</li>
-<li>double（size8，64位）：1-11-52</li>
-<li>因为指数域可能为负数，所以在指数存放时 + 0xf（ 127，1023），判别正负</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>字符串</p>
-<ul>
-<li>编码方式：unicode，ASCII···</li>
-<li>存储<ul>
-<li>线性存储，需要确定首尾地址</li>
-<li>尾地址确定：<ol>
-<li>开辟一部分空间存放长度len，首地址+len确定</li>
-<li>利用结束符直接确定</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="main函数（语法规定用户入口）特点"><a href="#main函数（语法规定用户入口）特点" class="headerlink" title="main函数（语法规定用户入口）特点"></a>main函数（语法规定用户入口）特点</h2><blockquote>
-<p>int __cdecl main(int argc, const char **argv, const char **envp)</p>
-</blockquote>
-<ul>
-<li>main函数启动函数中唯一一个3参数函数：命令行参数个数、命令行参数信息、环境变量信息。</li>
-<li>WinMain是唯一一个4参数函数</li>
-<li>返回要调用exit()函数</li>
-</ul>
-<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.text:0000000000401387           loc_401387:          </span><br><span class="line">.text:0000000000401387           mov     qword ptr [rax], 0</span><br><span class="line">.text:000000000040138E           mov     cs:argv, rbp</span><br><span class="line">.text:0000000000401395           call    __main</span><br><span class="line">.text:0000000000401395</span><br><span class="line">.text:000000000040139A           mov     rax, cs:_refptr___imp___initenv</span><br><span class="line">.text:00000000004013A1           mov     rdx, cs:envp</span><br><span class="line">.text:00000000004013A8           mov     ecx, cs:argc           ; argc</span><br><span class="line">.text:00000000004013AE           mov     rax, [rax]</span><br><span class="line">.text:00000000004013B1           mov     [rax], rdx</span><br><span class="line">.text:00000000004013B4           mov     r8, cs:envp            ; envp</span><br><span class="line">.text:00000000004013BB           mov     rdx, cs:argv           ; argv</span><br><span class="line">.text:00000000004013C2           call    main</span><br><span class="line">.text:00000000004013C2</span><br><span class="line">.text:00000000004013C7           mov     ecx, cs:managedapp</span><br><span class="line">.text:00000000004013CD           mov     cs:mainret, eax</span><br><span class="line">.text:00000000004013D3           test    ecx, ecx</span><br><span class="line">.text:00000000004013D5           jz      loc_40149E</span><br><span class="line">.text:00000000004013D5</span><br><span class="line">.text:00000000004013DB           mov     edx, cs:has_cctor</span><br><span class="line">.text:00000000004013E1           test    edx, edx</span><br><span class="line">.text:00000000004013E3           jnz     short loc_4013F0</span><br><span class="line">.text:00000000004013E3</span><br><span class="line">.text:00000000004013E5           call    _cexit                ;返回调用exit()函数</span><br></pre></td></tr></table></figure>
-
-<h2 id="表达式求值"><a href="#表达式求值" class="headerlink" title="表达式求值"></a>表达式求值</h2><ul>
-<li>无效语句，例如2+3；编译时自动剔除，不进行处理</li>
-</ul>]]></content>
-      <categories>
-        <category>CTF———知识点</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>工具汇总</title>
-    <url>/2022/09/18/Tools/</url>
-    <content><![CDATA[<ul>
-<li>CTF工具汇总</li>
-<li>如果引用内容侵权，请联系删除</li>
-<li>安装过程一般不做说明，google即可<!-- less --></li>
-</ul>
-<HR width="100%"  color="#FF7F00">
-
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h3><ul>
-<li><p>虚拟机下载<br><a href="https://mirrors.tuna.tsinghua.edu.cn/">清华源</a><br><a href="https://developer.aliyun.com/mirror">阿里源</a></p>
-</li>
-<li><p>exeinfope(查壳工具)</p>
-<blockquote>
-<p>链接：(<a href="https://pan.baidu.com/s/1oXarqcAuWdXWTB-8830q0Q?pwd=1234">https://pan.baidu.com/s/1oXarqcAuWdXWTB-8830q0Q?pwd=1234</a>)<br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>PEiD(查壳工具)</p>
-<blockquote>
-<p>链接：(<a href="https://pan.baidu.com/s/15vWG_e4qcNi_McHmdiTPkg?pwd=1234">https://pan.baidu.com/s/15vWG_e4qcNi_McHmdiTPkg?pwd=1234</a>)<br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>IDA7.2(静态调试工具)</p>
-<blockquote>
-<p>链接：<a href="https://pan.baidu.com/s/1fADIonw9sSyZ1pFIDkeBXg?pwd=1234">https://pan.baidu.com/s/1fADIonw9sSyZ1pFIDkeBXg?pwd=1234</a><br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>Ollydbg(动态调试工具)<br><a href="https://www.52pojie.cn/thread-350397-1-1.html">吾爱破解</a></p>
-</li>
-<li><p>x64dbg(动态调试工具)[工具来源于吾爱破解]</p>
-<blockquote>
-<p>链接：(<a href="https://pan.baidu.com/s/1aG_nczhG8mOqDBvOZMzyYg?pwd=1234">https://pan.baidu.com/s/1aG_nczhG8mOqDBvOZMzyYg?pwd=1234</a>)<br>提取码：1234 </p>
-</blockquote>
-</li>
-<li><p>Ghidra(静态调试工具)</p>
-<blockquote>
-<p>链接：<a href="https://pan.baidu.com/s/1fr1TeZUrdzD-VZHnWbl57w?pwd=1234">https://pan.baidu.com/s/1fr1TeZUrdzD-VZHnWbl57w?pwd=1234</a><br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>cheat engine(内存修改工具)<br>官方网站-(<a href="https://cheatengine.org/">https://cheatengine.org/</a>)</p>
-</li>
-<li><p>upx加脱壳</p>
-<blockquote>
-<p>链接：(<a href="https://pan.baidu.com/s/1LqzAz1arZqpbEBEHZrRsBg?pwd=1234">https://pan.baidu.com/s/1LqzAz1arZqpbEBEHZrRsBg?pwd=1234</a>)<br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>upx shell</p>
-<blockquote>
-<p>链接：(<a href="https://pan.baidu.com/s/195lxQRjBB39H_RA46SWxpg?pwd=1234">https://pan.baidu.com/s/195lxQRjBB39H_RA46SWxpg?pwd=1234</a>)<br>提取码：1234 </p>
-</blockquote>
-</li>
-<li><p>upx<br>官方网站-(<a href="https://upx.github.io/">https://upx.github.io</a>)</p>
-</li>
-<li><p>PEview(查看PE文件结构)</p>
-<blockquote>
-<p>链接：<a href="https://pan.baidu.com/s/1JGCcCVmR5nUOJbkM5OzQ5w?pwd=1234">https://pan.baidu.com/s/1JGCcCVmR5nUOJbkM5OzQ5w?pwd=1234</a><br>提取码：1234 </p>
-</blockquote>
-</li>
-<li><p>Winhex(十六进制查看器)</p>
-<blockquote>
-<p>链接：<a href="https://pan.baidu.com/s/1NLyr9YsQ1DNAOTPyY02hBA?pwd=1234">https://pan.baidu.com/s/1NLyr9YsQ1DNAOTPyY02hBA?pwd=1234</a><br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>010 Editor(十六进制查看器)</p>
-<blockquote>
-<p>链接：<a href="https://pan.baidu.com/s/1o1X7FKxfOUZsOkGxi22Ttg?pwd=1234">https://pan.baidu.com/s/1o1X7FKxfOUZsOkGxi22Ttg?pwd=1234</a><br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>APKTOOLS(反编译android apk)<br>官方网站-(<a href="https://ibotpeaches.github.io/Apktool/install/">https://ibotpeaches.github.io/Apktool/install/</a>)</p>
-</li>
-<li><p>Dex2jar(打包dex文件为jar)<br> SOURCEFORGE-(<a href="https://sourceforge.net/projects/dex2jar">https://sourceforge.net/projects/dex2jar</a>)</p>
-</li>
-<li><p>JD-GUIjar(反编译jar文件)</p>
-</li>
-<li><p>jeb(apk反编)<br>看雪社区搜索破解</p>
-</li>
-</ul>
-<h3 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h3><ul>
-<li><p>z3(解方程工具)</p>
-<blockquote>
-<p>链接：(<a href="https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234">https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234</a>)<br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>Ziperello(zip加密暴力破解)</p>
-<blockquote>
-<p>链接：(<a href="https://pan.baidu.com/s/1of_e5mleYDPjZGZxiYi63Q?pwd=1234">https://pan.baidu.com/s/1of_e5mleYDPjZGZxiYi63Q?pwd=1234</a>)<br>提取码：1234</p>
-</blockquote>
-</li>
-<li><p>Converter(编码转换工具)</p>
-<blockquote>
-<p>链接：<a href="https://pan.baidu.com/s/1hzK04wmtm4rWsNyofqXPxw?pwd=1234">https://pan.baidu.com/s/1hzK04wmtm4rWsNyofqXPxw?pwd=1234</a><br>提取码：1234</p>
-</blockquote>
-</li>
-</ul>]]></content>
-      <categories>
-        <category>CTF——工具</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>解方程用的牛马z3</title>
-    <url>/2022/09/14/z3/</url>
-    <content><![CDATA[<ul>
-<li>鉴于某些方程不是人解的，所以记录一下工具z3….<!-- less --></li>
-</ul>
-<HR width="100%"  color="#FF7F00">
-
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><blockquote>
-<p>直接搞到网盘上用链接吧：<br>链接：(<a href="https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234">https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234</a>)<br>提取码：1234</p>
-</blockquote>
-<ol>
-<li>下载解压</li>
-<li>将文件中bin目录配置到系统变量path中</li>
-<li>新建PYTHONPATH系统变量，路径为bin&#x2F;python目录</li>
-</ol>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ol>
-<li>打开黑框框</li>
-</ol>
-<blockquote>
-<p>cmd到bin&#x2F;python的目录</p>
-</blockquote>
-<p>or</p>
-<blockquote>
-<p>在bin&#x2F;python目录下shift右键powershell</p>
-</blockquote>
-<ol start="2">
-<li><p>输入python</p>
-</li>
-<li><p>把代码输进去回车就完了</p>
-</li>
-</ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
-<li><p>先看官方示例</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">from z3 import *</span><br><span class="line">x = Real(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">y = Real(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">s = Solver()</span><br><span class="line">s.add(x + y &gt; 5, x &gt; 1, y &gt; 1)</span><br><span class="line"><span class="built_in">print</span>(s.check())</span><br><span class="line"><span class="built_in">print</span>(s.model())</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>简单说一下</p>
-</li>
-</ul>
-<ol>
-<li>导包z3</li>
-<li>a &#x3D; Real(b), a为方程中的未知数，b为输出时候用来表示a的变量</li>
-<li>Solver()，简言之：解决函数，方程接收器</li>
-<li>add()，括号里塞方程就行，用“,”隔开，或者你多用几个add()也行</li>
-<li>后面俩不用动了，就那样</li>
-<li>回车出结果</li>
-</ol>]]></content>
-      <categories>
-        <category>CTF——工具</category>
-      </categories>
-  </entry>
-  <entry>
     <title>脚本函数积累</title>
     <url>/2022/10/12/shell/</url>
     <content><![CDATA[<ul>
@@ -1569,6 +1505,122 @@
 <li>RoarCTF2019 polyre</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">secret = [<span class="number">0xBC8FF26D43536296</span>, <span class="number">0x520100780530EE16</span>, <span class="number">0x4DC0B5EA935F08EC</span>,</span><br><span class="line">          <span class="number">0x342B90AFD853F450</span>, <span class="number">0x8B250EBCAA2C3681</span>, <span class="number">0x55759F81A2C68AE4</span>]</span><br><span class="line">key = <span class="number">0xB0004B7679FA26B3</span></span><br><span class="line"></span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 产生CRC32查表法所用的表</span></span><br><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> secret:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">64</span>):</span><br><span class="line">        sign = s &amp; <span class="number">1</span>                   <span class="comment">#判断首位正负</span></span><br><span class="line">        <span class="keyword">if</span> sign == <span class="number">1</span>:</span><br><span class="line">            s ^= key</span><br><span class="line">        s //= <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> sign == <span class="number">1</span>:</span><br><span class="line">            s |= <span class="number">0x8000000000000000</span>    <span class="comment"># 防止负值除2，溢出为正值</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">hex</span>(s))                      <span class="comment"># 输出表</span></span><br><span class="line">    <span class="comment"># 计算CRC64</span></span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> j &lt; <span class="number">8</span>:</span><br><span class="line">        flag += <span class="built_in">chr</span>(s&amp;<span class="number">0xFF</span>)</span><br><span class="line">        s &gt;&gt;= <span class="number">8</span></span><br><span class="line">        j += <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>CTF———知识点</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>解方程用的牛马z3</title>
+    <url>/2022/09/14/z3/</url>
+    <content><![CDATA[<ul>
+<li>鉴于某些方程不是人解的，所以记录一下工具z3….<!-- less --></li>
+</ul>
+<HR width="100%"  color="#FF7F00">
+
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><blockquote>
+<p>直接搞到网盘上用链接吧：<br>链接：(<a href="https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234">https://pan.baidu.com/s/1gni_eYUC-Y_dQVogJh9QyA?pwd=1234</a>)<br>提取码：1234</p>
+</blockquote>
+<ol>
+<li>下载解压</li>
+<li>将文件中bin目录配置到系统变量path中</li>
+<li>新建PYTHONPATH系统变量，路径为bin&#x2F;python目录</li>
+</ol>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ol>
+<li>打开黑框框</li>
+</ol>
+<blockquote>
+<p>cmd到bin&#x2F;python的目录</p>
+</blockquote>
+<p>or</p>
+<blockquote>
+<p>在bin&#x2F;python目录下shift右键powershell</p>
+</blockquote>
+<ol start="2">
+<li><p>输入python</p>
+</li>
+<li><p>把代码输进去回车就完了</p>
+</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
+<li><p>先看官方示例</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">from z3 import *</span><br><span class="line">x = Real(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">y = Real(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">s = Solver()</span><br><span class="line">s.add(x + y &gt; 5, x &gt; 1, y &gt; 1)</span><br><span class="line"><span class="built_in">print</span>(s.check())</span><br><span class="line"><span class="built_in">print</span>(s.model())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简单说一下</p>
+</li>
+</ul>
+<ol>
+<li>导包z3</li>
+<li>a &#x3D; Real(b), a为方程中的未知数，b为输出时候用来表示a的变量</li>
+<li>Solver()，简言之：解决函数，方程接收器</li>
+<li>add()，括号里塞方程就行，用“,”隔开，或者你多用几个add()也行</li>
+<li>后面俩不用动了，就那样</li>
+<li>回车出结果</li>
+</ol>]]></content>
+      <categories>
+        <category>CTF——工具</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>《c++反汇编与逆向分析技术揭秘》速记1</title>
+    <url>/2022/11/05/fast_sum1/</url>
+    <content><![CDATA[<ul>
+<li>数据类型<!-- less --></li>
+</ul>
+<HR width="100%"  color="#FF7F00">
+
+<h2 id="基本类型表示"><a href="#基本类型表示" class="headerlink" title="基本类型表示"></a>基本类型表示</h2><ul>
+<li><p>无符号整数：全部字节表示数字，只有正数</p>
+</li>
+<li><p>有符号整数：最高位表示正负</p>
+</li>
+<li><p>负数表示</p>
+<ul>
+<li><p>补码（0减去该数的绝对值）存放，补码 &#x3D; 反码 + 1，进位丢失</p>
+</li>
+<li><p>举例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">--&gt; -<span class="number">3</span></span><br><span class="line">--&gt; <span class="number">0</span>减去该数的绝对值</span><br><span class="line">----&gt; <span class="number">0xFFFFFFFD</span> + <span class="number">3</span> = <span class="number">0</span>，最高位溢出 &gt;&gt; <span class="number">0xFFFFFFFD</span>表示-<span class="number">3</span></span><br><span class="line">--&gt; 补码 = 反码 + <span class="number">1</span></span><br><span class="line">----&gt; <span class="built_in">bin</span>(<span class="number">3</span>):<span class="number">11</span></span><br><span class="line">----&gt; <span class="built_in">bin</span>(<span class="number">3</span>)反码:<span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1100</span></span><br><span class="line">----&gt; <span class="built_in">hex</span>(反码+<span class="number">1</span>):<span class="number">0xFFFFFFFD</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>浮点数</p>
+<ul>
+<li>定点实数存储：提前约定整数和小数长度，进行存放</li>
+<li>浮点实数存储：开辟两个部分，一部分存指数域（小数点位置），一部分存数值大小（无小数点的整数）</li>
+<li>编码方式（符号位-指数域-尾数域）<ul>
+<li>float（size4，32位）：1-8-23</li>
+<li>double（size8，64位）：1-11-52</li>
+<li>因为指数域可能为负数，所以在指数存放时 + 0xf（ 127，1023），判别正负</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>字符串</p>
+<ul>
+<li>编码方式：unicode，ASCII···</li>
+<li>存储<ul>
+<li>线性存储，需要确定首尾地址</li>
+<li>尾地址确定：<ol>
+<li>开辟一部分空间存放长度len，首地址+len确定</li>
+<li>利用结束符直接确定</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="main函数（语法规定用户入口）特点"><a href="#main函数（语法规定用户入口）特点" class="headerlink" title="main函数（语法规定用户入口）特点"></a>main函数（语法规定用户入口）特点</h2><blockquote>
+<p>int __cdecl main(int argc, const char **argv, const char **envp)</p>
+</blockquote>
+<ul>
+<li>main函数启动函数中唯一一个3参数函数：命令行参数个数、命令行参数信息、环境变量信息。</li>
+<li>WinMain是唯一一个4参数函数</li>
+<li>返回要调用exit()函数</li>
+</ul>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.text:0000000000401387           loc_401387:          </span><br><span class="line">.text:0000000000401387           mov     qword ptr [rax], 0</span><br><span class="line">.text:000000000040138E           mov     cs:argv, rbp</span><br><span class="line">.text:0000000000401395           call    __main</span><br><span class="line">.text:0000000000401395</span><br><span class="line">.text:000000000040139A           mov     rax, cs:_refptr___imp___initenv</span><br><span class="line">.text:00000000004013A1           mov     rdx, cs:envp</span><br><span class="line">.text:00000000004013A8           mov     ecx, cs:argc           ; argc</span><br><span class="line">.text:00000000004013AE           mov     rax, [rax]</span><br><span class="line">.text:00000000004013B1           mov     [rax], rdx</span><br><span class="line">.text:00000000004013B4           mov     r8, cs:envp            ; envp</span><br><span class="line">.text:00000000004013BB           mov     rdx, cs:argv           ; argv</span><br><span class="line">.text:00000000004013C2           call    main</span><br><span class="line">.text:00000000004013C2</span><br><span class="line">.text:00000000004013C7           mov     ecx, cs:managedapp</span><br><span class="line">.text:00000000004013CD           mov     cs:mainret, eax</span><br><span class="line">.text:00000000004013D3           test    ecx, ecx</span><br><span class="line">.text:00000000004013D5           jz      loc_40149E</span><br><span class="line">.text:00000000004013D5</span><br><span class="line">.text:00000000004013DB           mov     edx, cs:has_cctor</span><br><span class="line">.text:00000000004013E1           test    edx, edx</span><br><span class="line">.text:00000000004013E3           jnz     short loc_4013F0</span><br><span class="line">.text:00000000004013E3</span><br><span class="line">.text:00000000004013E5           call    _cexit                ;返回调用exit()函数</span><br></pre></td></tr></table></figure>
+
+<h2 id="表达式求值"><a href="#表达式求值" class="headerlink" title="表达式求值"></a>表达式求值</h2><ul>
+<li>无效语句，例如2+3；编译时自动剔除，不进行处理</li>
+</ul>]]></content>
       <categories>
         <category>CTF———知识点</category>
       </categories>
