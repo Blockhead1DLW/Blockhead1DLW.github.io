@@ -477,7 +477,7 @@ code {
   color: #586e75;
 }
 .highlight figcaption a:hover {
-  border-bottom-color: #008000;
+  border-bottom-color: #586e75;
 }
 .highlight .gutter {
   -moz-user-select: none;
@@ -1221,7 +1221,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #f14e5d;
+  background: #ff01fc;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
