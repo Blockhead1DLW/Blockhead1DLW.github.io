@@ -818,7 +818,32 @@
 <!-- less --></li>
 </ul>
 <HR width="100%"  color="#FF7F00">
+## Base家族
 
+<h4 id="base16"><a href="#base16" class="headerlink" title="base16"></a>base16</h4><ul>
+<li>16进制，只包含（[0-9], [A-F]）</li>
+</ul>
+<h4 id="base32"><a href="#base32" class="headerlink" title="base32"></a>base32</h4><ul>
+<li>（[A-Z],[2-7]）,一般来讲密文字母多于数字，而且末尾有多个等号</li>
+</ul>
+<h4 id="base58"><a href="#base58" class="headerlink" title="base58"></a>base58</h4><ul>
+<li>结尾无等号</li>
+</ul>
+<h4 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h4><ul>
+<li><p>（[A-Z],[a-z],[0-9]），末尾有1到2个等号</p>
+</li>
+<li><p>8位变6位重组</p>
+</li>
+</ul>
+<h4 id="base85"><a href="#base85" class="headerlink" title="base85"></a>base85</h4><ul>
+<li>等号可能出现在密文中间</li>
+</ul>
+<h4 id="base91"><a href="#base91" class="headerlink" title="base91"></a>base91</h4><ul>
+<li>（[0-9]，[a-z]，[A-Z],[!#$%&amp;()*+,.&#x2F;:;&lt;&#x3D;&gt;?@[]^_&#96;{|}~”]）</li>
+</ul>
+<h4 id="base100"><a href="#base100" class="headerlink" title="base100"></a>base100</h4><ul>
+<li>密文为emjio</li>
+</ul>
 <h2 id="幂数加密"><a href="#幂数加密" class="headerlink" title="幂数加密"></a>幂数加密</h2><h3 id="加密方法"><a href="#加密方法" class="headerlink" title="加密方法"></a>加密方法</h3><ul>
 <li>由于每一个数都可以变成形式为”2<sup>a</sup>+2<sup>b</sup>+2<sup>c</sup>….”的表达式<br>所以我们用对应”abc…”数字串来代表这个数</li>
 <li>例如<br>5 &#x3D; 2<sup>0</sup>+2<sup>2</sup>，即可表示为02<br>19 &#x3D; 2<sup>0</sup>+2<sup>1</sup>+2<sup>4</sup>，即014</li>
@@ -855,6 +880,17 @@
 <li><p>解密网站：</p>
 <ul>
 <li><a href="https://xiao84.com/tools/103177.html">猪圈密码-在线解密加密工具 (xiao84.com)</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="emjio-AES"><a href="#emjio-AES" class="headerlink" title="emjio-AES"></a>emjio-AES</h2><ul>
+<li>加密过程就是将一段字符串用key和rotation进行AES加密，然后将输出的base64码用表情包替换，特征只能靠猜和hint了</li>
+<li>解密网站：<ul>
+<li><a href="https://aghorler.github.io/emoji-aes/">emoji-aes (aghorler.github.io)</a></li>
+</ul>
+</li>
+<li>涉及题目<ul>
+<li>ISCTF2022 可爱的emjio</li>
 </ul>
 </li>
 </ul>

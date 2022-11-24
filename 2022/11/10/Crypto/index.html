@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2022/11/10/NcQI8HopdEwVzy9.jpg">
 <meta property="article:published_time" content="2022-11-10T09:12:53.377Z">
-<meta property="article:modified_time" content="2022-11-21T05:55:35.412Z">
+<meta property="article:modified_time" content="2022-11-24T03:11:12.798Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s2.loli.net/2022/11/10/NcQI8HopdEwVzy9.jpg">
@@ -218,7 +218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-21 13:55:35" itemprop="dateModified" datetime="2022-11-21T13:55:35+08:00">2022-11-21</time>
+                <time title="修改时间：2022-11-24 11:11:12" itemprop="dateModified" datetime="2022-11-24T11:11:12+08:00">2022-11-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -269,7 +269,32 @@
 <!-- less --></li>
 </ul>
 <HR width="100%"  color="#FF7F00">
+## Base家族
 
+<h4 id="base16"><a href="#base16" class="headerlink" title="base16"></a>base16</h4><ul>
+<li>16进制，只包含（[0-9], [A-F]）</li>
+</ul>
+<h4 id="base32"><a href="#base32" class="headerlink" title="base32"></a>base32</h4><ul>
+<li>（[A-Z],[2-7]）,一般来讲密文字母多于数字，而且末尾有多个等号</li>
+</ul>
+<h4 id="base58"><a href="#base58" class="headerlink" title="base58"></a>base58</h4><ul>
+<li>结尾无等号</li>
+</ul>
+<h4 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h4><ul>
+<li><p>（[A-Z],[a-z],[0-9]），末尾有1到2个等号</p>
+</li>
+<li><p>8位变6位重组</p>
+</li>
+</ul>
+<h4 id="base85"><a href="#base85" class="headerlink" title="base85"></a>base85</h4><ul>
+<li>等号可能出现在密文中间</li>
+</ul>
+<h4 id="base91"><a href="#base91" class="headerlink" title="base91"></a>base91</h4><ul>
+<li>（[0-9]，[a-z]，[A-Z],[!#$%&amp;()*+,.&#x2F;:;&lt;&#x3D;&gt;?@[]^_&#96;{|}~”]）</li>
+</ul>
+<h4 id="base100"><a href="#base100" class="headerlink" title="base100"></a>base100</h4><ul>
+<li>密文为emjio</li>
+</ul>
 <h2 id="幂数加密"><a href="#幂数加密" class="headerlink" title="幂数加密"></a>幂数加密</h2><h3 id="加密方法"><a href="#加密方法" class="headerlink" title="加密方法"></a>加密方法</h3><ul>
 <li>由于每一个数都可以变成形式为”2<sup>a</sup>+2<sup>b</sup>+2<sup>c</sup>….”的表达式<br>所以我们用对应”abc…”数字串来代表这个数</li>
 <li>例如<br>5 &#x3D; 2<sup>0</sup>+2<sup>2</sup>，即可表示为02<br>19 &#x3D; 2<sup>0</sup>+2<sup>1</sup>+2<sup>4</sup>，即014</li>
@@ -306,6 +331,17 @@
 <li><p>解密网站：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://xiao84.com/tools/103177.html">猪圈密码-在线解密加密工具 (xiao84.com)</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="emjio-AES"><a href="#emjio-AES" class="headerlink" title="emjio-AES"></a>emjio-AES</h2><ul>
+<li>加密过程就是将一段字符串用key和rotation进行AES加密，然后将输出的base64码用表情包替换，特征只能靠猜和hint了</li>
+<li>解密网站：<ul>
+<li><a target="_blank" rel="noopener" href="https://aghorler.github.io/emoji-aes/">emoji-aes (aghorler.github.io)</a></li>
+</ul>
+</li>
+<li>涉及题目<ul>
+<li>ISCTF2022 可爱的emjio</li>
 </ul>
 </li>
 </ul>
@@ -447,7 +483,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%82%E6%95%B0%E5%8A%A0%E5%AF%86"><span class="nav-text">幂数加密</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86%E6%96%B9%E6%B3%95"><span class="nav-text">加密方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8C%AA%E5%9C%88%E5%AF%86%E7%A0%81"><span class="nav-text">猪圈密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9B%E6%9B%B0%E5%8A%A0%E5%AF%86"><span class="nav-text">佛曰加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A9%E5%B9%B2%E5%9C%B0%E6%94%AF%E5%8A%A0%E5%AF%86"><span class="nav-text">天干地支加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC%E8%A7%82%E5%8A%A0%E5%AF%86"><span class="nav-text">社会主义核心价值观加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsfuck%E7%BC%96%E7%A0%81"><span class="nav-text">jsfuck编码</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#base16"><span class="nav-text">base16</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#base32"><span class="nav-text">base32</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#base58"><span class="nav-text">base58</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#base64"><span class="nav-text">base64</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#base85"><span class="nav-text">base85</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#base91"><span class="nav-text">base91</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#base100"><span class="nav-text">base100</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%82%E6%95%B0%E5%8A%A0%E5%AF%86"><span class="nav-text">幂数加密</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86%E6%96%B9%E6%B3%95"><span class="nav-text">加密方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8C%AA%E5%9C%88%E5%AF%86%E7%A0%81"><span class="nav-text">猪圈密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#emjio-AES"><span class="nav-text">emjio-AES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9B%E6%9B%B0%E5%8A%A0%E5%AF%86"><span class="nav-text">佛曰加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A9%E5%B9%B2%E5%9C%B0%E6%94%AF%E5%8A%A0%E5%AF%86"><span class="nav-text">天干地支加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC%E8%A7%82%E5%8A%A0%E5%AF%86"><span class="nav-text">社会主义核心价值观加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsfuck%E7%BC%96%E7%A0%81"><span class="nav-text">jsfuck编码</span></a></div>
       </div>
       <!--/noindex-->
 
