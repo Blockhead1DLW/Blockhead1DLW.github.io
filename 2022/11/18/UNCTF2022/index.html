@@ -28,7 +28,7 @@
 <meta property="og:description" content="总述 部分题目WP">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-18T07:46:15.227Z">
-<meta property="article:modified_time" content="2022-11-21T08:08:25.890Z">
+<meta property="article:modified_time" content="2022-11-25T12:48:43.944Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-21 16:08:25" itemprop="dateModified" datetime="2022-11-21T16:08:25+08:00">2022-11-21</time>
+                <time title="修改时间：2022-11-25 20:48:43" itemprop="dateModified" datetime="2022-11-25T20:48:43+08:00">2022-11-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -305,7 +305,7 @@
 <li><p>对了，还有个upx脱壳，直接工具搞一下</p>
 </li>
 </ul>
-<h2 id="ezzzzre-广东海洋大学"><a href="#ezzzzre-广东海洋大学" class="headerlink" title="ezzzzre-广东海洋大学"></a>ezzzzre-广东海洋大学</h2><ul>
+<h3 id="ezzzzre-广东海洋大学"><a href="#ezzzzre-广东海洋大学" class="headerlink" title="ezzzzre-广东海洋大学"></a>ezzzzre-广东海洋大学</h3><ul>
 <li><p>有个upx壳，工具脱掉</p>
 </li>
 <li><p>F5主函数</p>
@@ -316,7 +316,7 @@
 <li><p>提取Helloctf[i]直接计算即可</p>
 </li>
 </ul>
-<h2 id="Sudoku-陆军工程大学"><a href="#Sudoku-陆军工程大学" class="headerlink" title="Sudoku-陆军工程大学"></a>Sudoku-陆军工程大学</h2><p><code>考点</code>：<code>动态调试</code>，<code>数据提取</code>，<code>python</code></p>
+<h3 id="Sudoku-陆军工程大学"><a href="#Sudoku-陆军工程大学" class="headerlink" title="Sudoku-陆军工程大学"></a>Sudoku-陆军工程大学</h3><p><code>考点</code>：<code>动态调试</code>，<code>数据提取</code>，<code>python</code></p>
 <ul>
 <li><p>IDA反编F5+cmd运行测试</p>
 </li>
@@ -356,7 +356,26 @@
 <li><p>UNCTF{Ast_1s_v4ry_u3slu1}</p>
 </li>
 </ul>
-<h2 id="shelled-babyxor-重庆大学"><a href="#shelled-babyxor-重庆大学" class="headerlink" title="shelled_babyxor-重庆大学"></a>shelled_babyxor-重庆大学</h2><p><code>考点</code>：<code>手动脱壳</code>，<code>数据处理</code>，<code>逆写解密</code></p>
+<h3 id="HelloRust"><a href="#HelloRust" class="headerlink" title="HelloRust"></a>HelloRust</h3><ul>
+<li><p>这题，一切都在动调中</p>
+</li>
+<li><p>首先通过关键词检索识别为rc4加密</p>
+</li>
+<li><p>修改内存数据，将unctf等等一系列数据变为字符串</p>
+</li>
+<li><p>动调，在keyinit函数处找到密钥<code>Unctf2022</code></p>
+</li>
+<li><p>在cmp函数上方找到密文</p>
+</li>
+<li><p>提取密文</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> addr = <span class="number">0x00005622B1A340A6</span>;</span><br><span class="line"><span class="keyword">auto</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">Message</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"><span class="keyword">for</span>(i; i &lt; (<span class="number">0x00005622B1A340C1</span> - addr + <span class="number">1</span>); i = i+<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">Message</span>(<span class="string">&quot;%02x&quot;</span>,<span class="built_in">Byte</span>(addr+i));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//876927216fc731261b6c3a749a626ea002811d85e0e2d071f4a3090e</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在线网站解密得到</p>
+</li>
+<li><p>unctf{Ru5t_Rc4_1s_2_e@zy!!!}</p>
+</li>
+</ul>
+<h3 id="shelled-babyxor-重庆大学"><a href="#shelled-babyxor-重庆大学" class="headerlink" title="shelled_babyxor-重庆大学"></a>shelled_babyxor-重庆大学</h3><p><code>考点</code>：<code>手动脱壳</code>，<code>数据处理</code>，<code>逆写解密</code></p>
 <ul>
 <li><p>提示脱壳+算法逆向，有点东西</p>
 </li>
@@ -504,6 +523,32 @@
 <p>UNCTF{CRYPROISFUN}</p>
 </blockquote>
 </li>
+</ul>
+<h3 id="Fermat"><a href="#Fermat" class="headerlink" title="Fermat"></a>Fermat</h3><ul>
+<li><p>费马小定理： 如果p是一个质数，而整数a不是p的倍数，则有a<sup>(p-1)</sup>≡1（mod p）</p>
+</li>
+<li><p>推导</p>
+<ul>
+<li><p>gift+x &#x3D; xp</p>
+</li>
+<li><p>gift &#x3D; (p-1)*x</p>
+</li>
+<li><p>2<sup>x*(p-1)</sup> ≡ 1(mod p)</p>
+</li>
+<li><p>2<sup>x*(p-1)</sup> - 1 &#x3D; x * p</p>
+</li>
+<li><p>2<sup>gift</sup> -1 &#x3D; x*p</p>
+</li>
+<li><p>结合n &#x3D; p*q</p>
+</li>
+<li><p>p &#x3D; gcd(n, 2<sup>gift</sup> -1)</p>
+</li>
+<li><p>p &#x3D; gcd(n, powmod(2, gift, n))</p>
+</li>
+</ul>
+</li>
+<li><p>解密脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"></span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line">n =  <span class="number">19793392713544070457027688479915778034777978273001720422783377164900114996244094242708846944654400975309197274029725271852278868848866055341793968628630614866044892220651519906766987523723167772766264471738575578352385622923984300236873960423976260016266837752686791744352546924090533029391012155478169775768669029210298020072732213084681874537570149819864200486326715202569620771301183541168920293383480995205295027880564610382830236168192045808503329671954996275913950214212865497595508488636836591923116671959919150665452149128370999053882832187730559499602328396445739728918488554797208524455601679374538090229259</span></span><br><span class="line">c = <span class="number">388040015421654529602726530745444492795380886347450760542380535829893454552342509717706633524047462519852647123869277281803838546899812555054346458364202308821287717358321436303133564356740604738982100359999571338136343563820284214462840345638397346674622692956703291932399421179143390021606803873010804742453728454041597734468711112843307879361621434484986414368504648335684946420377995426633388307499467425060702337163601268480035415645840678848175121483351171989659915143104037610965403453400778398233728478485618134227607237718738847749796204570919757202087150892548180370435537346442018275672130416574430694059</span></span><br><span class="line">gift = <span class="number">28493930909416220193248976348190268445371212704486248387964331415565449421099615661533797087163499951763570988748101165456730856835623237735728305577465527656655424601018192421625513978923509191087994899267887557104946667250073139087563975700714392158474439232535598303396614625803120915200062198119177012906806978497977522010955029535460948754300579519507100555238234886672451138350711195210839503633694262246536916073018376588368865238702811391960064511721322374269804663854748971378143510485102611920761475212154163275729116496865922237474172415758170527875090555223562882324599031402831107977696519982548567367160</span></span><br><span class="line"></span><br><span class="line">gift = <span class="built_in">pow</span>(<span class="number">2</span>,gift,n) - <span class="number">1</span></span><br><span class="line">p = libnum.gcd(gift,n)</span><br><span class="line">q = n // p</span><br><span class="line">phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line">m = <span class="built_in">pow</span>(c,d,n)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))</span><br><span class="line"><span class="comment"># b&#x27;UNCTF&#123;DO_y0u_Fermat_1ittle_theOrem&#125;&#x27;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a><code>Misc</code></h2><h3 id="magic-word-西南科技大学"><a href="#magic-word-西南科技大学" class="headerlink" title="magic_word-西南科技大学"></a>magic_word-西南科技大学</h3><p><code>知识点</code>：<code>零宽隐写</code></p>
 <ul>
@@ -692,7 +737,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">总述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">WP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reverse"><span class="nav-text">Reverse</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#whereisyourkey-%E5%B9%BF%E4%B8%9C%E6%B5%B7%E6%B4%8B%E5%A4%A7%E5%AD%A6"><span class="nav-text">whereisyourkey-广东海洋大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#halo-%E7%BB%8D%E5%85%B4%E5%85%83%E5%9F%B9"><span class="nav-text">halo-绍兴元培</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ezzzzre-%E5%B9%BF%E4%B8%9C%E6%B5%B7%E6%B4%8B%E5%A4%A7%E5%AD%A6"><span class="nav-text">ezzzzre-广东海洋大学</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sudoku-%E9%99%86%E5%86%9B%E5%B7%A5%E7%A8%8B%E5%A4%A7%E5%AD%A6"><span class="nav-text">Sudoku-陆军工程大学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ezast-%E6%B5%99%E6%B1%9F%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6"><span class="nav-text">ezast-浙江师范大学</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shelled-babyxor-%E9%87%8D%E5%BA%86%E5%A4%A7%E5%AD%A6"><span class="nav-text">shelled_babyxor-重庆大学</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto"><span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#md5-1-%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"><span class="nav-text">md5-1-西南科技大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#md5-2-%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"><span class="nav-text">md5-2-西南科技大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dddd-%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"><span class="nav-text">dddd-西南科技大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#caesar-%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"><span class="nav-text">caesar-西南科技大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ezxor-%E6%B5%99%E6%B1%9F%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6"><span class="nav-text">ezxor-浙江师范大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Single-table-%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"><span class="nav-text">Single table-西南科技大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-table-%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"><span class="nav-text">Multi table-西南科技大学</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98"><span class="nav-text">解题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#easy-RSA-%E4%B8%AD%E5%9B%BD%E4%BA%BA%E6%B0%91%E5%85%AC%E5%AE%89%E5%A4%A7%E5%AD%A6"><span class="nav-text">easy_RSA-中国人民公安大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Today-is-Thursday-V-me-50-%E6%B5%B7%E5%8D%97%E5%A4%A7%E5%AD%A6"><span class="nav-text">Today_is_Thursday_V_me_50-海南大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ezRSA-%E5%B9%BF%E4%B8%9C%E6%B5%B7%E6%B4%8B%E5%A4%A7%E5%AD%A6"><span class="nav-text">ezRSA-广东海洋大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#babyRSA-%E5%B9%BF%E4%B8%9C%E6%B5%B7%E6%B4%8B%E5%A4%A7%E5%AD%A6"><span class="nav-text">babyRSA-广东海洋大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8A%E6%99%9A%E5%90%83%E4%BB%80%E4%B9%88-%E9%87%91%E9%99%B5%E7%A7%91%E6%8A%80%E5%AD%A6%E9%99%A2"><span class="nav-text">今晚吃什么-金陵科技学院</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc"><span class="nav-text">Misc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#magic-word-%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"><span class="nav-text">magic_word-西南科技大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A8%E9%B1%BC-%E6%B2%B3%E5%8D%97%E7%90%86%E5%B7%A5%E5%A4%A7%E5%AD%A6"><span class="nav-text">巨鱼-河南理工大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#syslog-%E6%B5%99%E6%B1%9F%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6"><span class="nav-text">syslog-浙江师范大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%BE%97%E5%88%B0%E6%88%91%E5%90%97-%E9%97%BD%E5%8D%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6"><span class="nav-text">找得到我吗-闽南师范大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BE%E4%BB%80%E4%B9%88%E7%A4%BE-%E6%B9%96%E5%8D%97%E8%AD%A6%E5%AF%9F%E5%AD%A6%E9%99%A2"><span class="nav-text">社什么社-湖南警察学院</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#In-the-Morse-Garden-%E9%99%86%E5%86%9B%E5%B7%A5%E7%A8%8B%E5%A4%A7%E5%AD%A6"><span class="nav-text">In_the_Morse_Garden-陆军工程大学</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">总述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">WP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reverse"><span class="nav-text">Reverse</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#whereisyourkey-%E5%B9%BF%E4%B8%9C%E6%B5%B7%E6%B4%8B%E5%A4%A7%E5%AD%A6"><span class="nav-text">whereisyourkey-广东海洋大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#halo-%E7%BB%8D%E5%85%B4%E5%85%83%E5%9F%B9"><span class="nav-text">halo-绍兴元培</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ezzzzre-%E5%B9%BF%E4%B8%9C%E6%B5%B7%E6%B4%8B%E5%A4%A7%E5%AD%A6"><span class="nav-text">ezzzzre-广东海洋大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sudoku-%E9%99%86%E5%86%9B%E5%B7%A5%E7%A8%8B%E5%A4%A7%E5%AD%A6"><span class="nav-text">Sudoku-陆军工程大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ezast-%E6%B5%99%E6%B1%9F%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6"><span class="nav-text">ezast-浙江师范大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HelloRust"><span class="nav-text">HelloRust</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shelled-babyxor-%E9%87%8D%E5%BA%86%E5%A4%A7%E5%AD%A6"><span class="nav-text">shelled_babyxor-重庆大学</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto"><span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#md5-1-%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"><span class="nav-text">md5-1-西南科技大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#md5-2-%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"><span class="nav-text">md5-2-西南科技大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dddd-%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"><span class="nav-text">dddd-西南科技大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#caesar-%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"><span class="nav-text">caesar-西南科技大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ezxor-%E6%B5%99%E6%B1%9F%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6"><span class="nav-text">ezxor-浙江师范大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Single-table-%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"><span class="nav-text">Single table-西南科技大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-table-%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"><span class="nav-text">Multi table-西南科技大学</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-text">题意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98"><span class="nav-text">解题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#easy-RSA-%E4%B8%AD%E5%9B%BD%E4%BA%BA%E6%B0%91%E5%85%AC%E5%AE%89%E5%A4%A7%E5%AD%A6"><span class="nav-text">easy_RSA-中国人民公安大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Today-is-Thursday-V-me-50-%E6%B5%B7%E5%8D%97%E5%A4%A7%E5%AD%A6"><span class="nav-text">Today_is_Thursday_V_me_50-海南大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ezRSA-%E5%B9%BF%E4%B8%9C%E6%B5%B7%E6%B4%8B%E5%A4%A7%E5%AD%A6"><span class="nav-text">ezRSA-广东海洋大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#babyRSA-%E5%B9%BF%E4%B8%9C%E6%B5%B7%E6%B4%8B%E5%A4%A7%E5%AD%A6"><span class="nav-text">babyRSA-广东海洋大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8A%E6%99%9A%E5%90%83%E4%BB%80%E4%B9%88-%E9%87%91%E9%99%B5%E7%A7%91%E6%8A%80%E5%AD%A6%E9%99%A2"><span class="nav-text">今晚吃什么-金陵科技学院</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fermat"><span class="nav-text">Fermat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc"><span class="nav-text">Misc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#magic-word-%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"><span class="nav-text">magic_word-西南科技大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A8%E9%B1%BC-%E6%B2%B3%E5%8D%97%E7%90%86%E5%B7%A5%E5%A4%A7%E5%AD%A6"><span class="nav-text">巨鱼-河南理工大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#syslog-%E6%B5%99%E6%B1%9F%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6"><span class="nav-text">syslog-浙江师范大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%BE%97%E5%88%B0%E6%88%91%E5%90%97-%E9%97%BD%E5%8D%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6"><span class="nav-text">找得到我吗-闽南师范大学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BE%E4%BB%80%E4%B9%88%E7%A4%BE-%E6%B9%96%E5%8D%97%E8%AD%A6%E5%AF%9F%E5%AD%A6%E9%99%A2"><span class="nav-text">社什么社-湖南警察学院</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#In-the-Morse-Garden-%E9%99%86%E5%86%9B%E5%B7%A5%E7%A8%8B%E5%A4%A7%E5%AD%A6"><span class="nav-text">In_the_Morse_Garden-陆军工程大学</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

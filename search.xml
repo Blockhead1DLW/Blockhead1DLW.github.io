@@ -406,7 +406,7 @@
 <li><p>对了，还有个upx脱壳，直接工具搞一下</p>
 </li>
 </ul>
-<h2 id="ezzzzre-广东海洋大学"><a href="#ezzzzre-广东海洋大学" class="headerlink" title="ezzzzre-广东海洋大学"></a>ezzzzre-广东海洋大学</h2><ul>
+<h3 id="ezzzzre-广东海洋大学"><a href="#ezzzzre-广东海洋大学" class="headerlink" title="ezzzzre-广东海洋大学"></a>ezzzzre-广东海洋大学</h3><ul>
 <li><p>有个upx壳，工具脱掉</p>
 </li>
 <li><p>F5主函数</p>
@@ -417,7 +417,7 @@
 <li><p>提取Helloctf[i]直接计算即可</p>
 </li>
 </ul>
-<h2 id="Sudoku-陆军工程大学"><a href="#Sudoku-陆军工程大学" class="headerlink" title="Sudoku-陆军工程大学"></a>Sudoku-陆军工程大学</h2><p><code>考点</code>：<code>动态调试</code>，<code>数据提取</code>，<code>python</code></p>
+<h3 id="Sudoku-陆军工程大学"><a href="#Sudoku-陆军工程大学" class="headerlink" title="Sudoku-陆军工程大学"></a>Sudoku-陆军工程大学</h3><p><code>考点</code>：<code>动态调试</code>，<code>数据提取</code>，<code>python</code></p>
 <ul>
 <li><p>IDA反编F5+cmd运行测试</p>
 </li>
@@ -457,7 +457,26 @@
 <li><p>UNCTF{Ast_1s_v4ry_u3slu1}</p>
 </li>
 </ul>
-<h2 id="shelled-babyxor-重庆大学"><a href="#shelled-babyxor-重庆大学" class="headerlink" title="shelled_babyxor-重庆大学"></a>shelled_babyxor-重庆大学</h2><p><code>考点</code>：<code>手动脱壳</code>，<code>数据处理</code>，<code>逆写解密</code></p>
+<h3 id="HelloRust"><a href="#HelloRust" class="headerlink" title="HelloRust"></a>HelloRust</h3><ul>
+<li><p>这题，一切都在动调中</p>
+</li>
+<li><p>首先通过关键词检索识别为rc4加密</p>
+</li>
+<li><p>修改内存数据，将unctf等等一系列数据变为字符串</p>
+</li>
+<li><p>动调，在keyinit函数处找到密钥<code>Unctf2022</code></p>
+</li>
+<li><p>在cmp函数上方找到密文</p>
+</li>
+<li><p>提取密文</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">auto</span> addr = <span class="number">0x00005622B1A340A6</span>;</span><br><span class="line"><span class="keyword">auto</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">Message</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"><span class="keyword">for</span>(i; i &lt; (<span class="number">0x00005622B1A340C1</span> - addr + <span class="number">1</span>); i = i+<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">Message</span>(<span class="string">&quot;%02x&quot;</span>,<span class="built_in">Byte</span>(addr+i));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//876927216fc731261b6c3a749a626ea002811d85e0e2d071f4a3090e</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在线网站解密得到</p>
+</li>
+<li><p>unctf{Ru5t_Rc4_1s_2_e@zy!!!}</p>
+</li>
+</ul>
+<h3 id="shelled-babyxor-重庆大学"><a href="#shelled-babyxor-重庆大学" class="headerlink" title="shelled_babyxor-重庆大学"></a>shelled_babyxor-重庆大学</h3><p><code>考点</code>：<code>手动脱壳</code>，<code>数据处理</code>，<code>逆写解密</code></p>
 <ul>
 <li><p>提示脱壳+算法逆向，有点东西</p>
 </li>
@@ -605,6 +624,32 @@
 <p>UNCTF{CRYPROISFUN}</p>
 </blockquote>
 </li>
+</ul>
+<h3 id="Fermat"><a href="#Fermat" class="headerlink" title="Fermat"></a>Fermat</h3><ul>
+<li><p>费马小定理： 如果p是一个质数，而整数a不是p的倍数，则有a<sup>(p-1)</sup>≡1（mod p）</p>
+</li>
+<li><p>推导</p>
+<ul>
+<li><p>gift+x &#x3D; xp</p>
+</li>
+<li><p>gift &#x3D; (p-1)*x</p>
+</li>
+<li><p>2<sup>x*(p-1)</sup> ≡ 1(mod p)</p>
+</li>
+<li><p>2<sup>x*(p-1)</sup> - 1 &#x3D; x * p</p>
+</li>
+<li><p>2<sup>gift</sup> -1 &#x3D; x*p</p>
+</li>
+<li><p>结合n &#x3D; p*q</p>
+</li>
+<li><p>p &#x3D; gcd(n, 2<sup>gift</sup> -1)</p>
+</li>
+<li><p>p &#x3D; gcd(n, powmod(2, gift, n))</p>
+</li>
+</ul>
+</li>
+<li><p>解密脚本</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"></span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line">n =  <span class="number">19793392713544070457027688479915778034777978273001720422783377164900114996244094242708846944654400975309197274029725271852278868848866055341793968628630614866044892220651519906766987523723167772766264471738575578352385622923984300236873960423976260016266837752686791744352546924090533029391012155478169775768669029210298020072732213084681874537570149819864200486326715202569620771301183541168920293383480995205295027880564610382830236168192045808503329671954996275913950214212865497595508488636836591923116671959919150665452149128370999053882832187730559499602328396445739728918488554797208524455601679374538090229259</span></span><br><span class="line">c = <span class="number">388040015421654529602726530745444492795380886347450760542380535829893454552342509717706633524047462519852647123869277281803838546899812555054346458364202308821287717358321436303133564356740604738982100359999571338136343563820284214462840345638397346674622692956703291932399421179143390021606803873010804742453728454041597734468711112843307879361621434484986414368504648335684946420377995426633388307499467425060702337163601268480035415645840678848175121483351171989659915143104037610965403453400778398233728478485618134227607237718738847749796204570919757202087150892548180370435537346442018275672130416574430694059</span></span><br><span class="line">gift = <span class="number">28493930909416220193248976348190268445371212704486248387964331415565449421099615661533797087163499951763570988748101165456730856835623237735728305577465527656655424601018192421625513978923509191087994899267887557104946667250073139087563975700714392158474439232535598303396614625803120915200062198119177012906806978497977522010955029535460948754300579519507100555238234886672451138350711195210839503633694262246536916073018376588368865238702811391960064511721322374269804663854748971378143510485102611920761475212154163275729116496865922237474172415758170527875090555223562882324599031402831107977696519982548567367160</span></span><br><span class="line"></span><br><span class="line">gift = <span class="built_in">pow</span>(<span class="number">2</span>,gift,n) - <span class="number">1</span></span><br><span class="line">p = libnum.gcd(gift,n)</span><br><span class="line">q = n // p</span><br><span class="line">phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line">m = <span class="built_in">pow</span>(c,d,n)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))</span><br><span class="line"><span class="comment"># b&#x27;UNCTF&#123;DO_y0u_Fermat_1ittle_theOrem&#125;&#x27;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a><code>Misc</code></h2><h3 id="magic-word-西南科技大学"><a href="#magic-word-西南科技大学" class="headerlink" title="magic_word-西南科技大学"></a>magic_word-西南科技大学</h3><p><code>知识点</code>：<code>零宽隐写</code></p>
 <ul>
