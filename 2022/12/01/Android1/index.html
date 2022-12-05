@@ -28,7 +28,7 @@
 <meta property="og:description" content="安卓结构目录体系">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-01T13:12:57.999Z">
-<meta property="article:modified_time" content="2022-12-01T13:31:57.447Z">
+<meta property="article:modified_time" content="2022-12-05T03:30:23.928Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
@@ -208,10 +208,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-01 21:12:57 / 修改时间：21:31:57" itemprop="dateCreated datePublished" datetime="2022-12-01T21:12:57+08:00">2022-12-01</time>
+              <time title="创建时间：2022-12-01 21:12:57" itemprop="dateCreated datePublished" datetime="2022-12-01T21:12:57+08:00">2022-12-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-05 11:30:23" itemprop="dateModified" datetime="2022-12-05T11:30:23+08:00">2022-12-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -255,7 +261,8 @@
 
       
         <ul>
-<li>安卓结构目录体系<!-- less --></li>
+<li><p>安卓结构目录体系</p>
+<!-- less --></li>
 </ul>
 <HR width="100%"  color="#FF7F00">
 
@@ -303,6 +310,63 @@
 </li>
 <li>resources.arsc<ul>
 <li>编译后资源的位置与id之间的映射关系</li>
+</ul>
+</li>
+</ol>
+<h2 id="Android四大组件"><a href="#Android四大组件" class="headerlink" title="Android四大组件"></a>Android四大组件</h2><ol>
+<li><p>activity</p>
+<ul>
+<li>用户可视化界面</li>
+<li>safe：1.点击劫持 2.拒绝服务 3.组件导出</li>
+</ul>
+</li>
+<li><p>service</p>
+<ul>
+<li>用于后台实现操作，如后台接受微信消息</li>
+<li>safe：1.串谋攻击 2.拒绝服务</li>
+</ul>
+</li>
+<li><p>content provider</p>
+<ul>
+<li>为应用提供数据，统一接口</li>
+<li>safe：1.数据库注入</li>
+</ul>
+</li>
+<li><p>broadcast receiver</p>
+<ul>
+<li>信息传输机制</li>
+<li>safe：恶意广播</li>
+</ul>
+</li>
+</ol>
+<p><font color="red">注：所有组件均需在AndroidManifest中注册声明</font></p>
+<p>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ican87/article/details/21874321">(1条消息) android四大组件(详细总结)_87now的博客-CSDN博客_android的四大组件</a></p>
+<h2 id="adb基本使用"><a href="#adb基本使用" class="headerlink" title="adb基本使用"></a>adb基本使用</h2><ul>
+<li>adb devices        列出当前安卓设备</li>
+<li>adb shell             进入安卓linux命令行</li>
+<li>adb push            上传</li>
+<li>adb pull              下载</li>
+<li>adb connect       ip连接设备</li>
+<li>adb kill-server    断开连接</li>
+</ul>
+<h2 id="apktool反编译命令"><a href="#apktool反编译命令" class="headerlink" title="apktool反编译命令"></a>apktool反编译命令</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apktool目录进入命令行</span><br><span class="line">apktool.bat d 反编译文件</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="dex2-jdgui反编译"><a href="#dex2-jdgui反编译" class="headerlink" title="dex2+jdgui反编译"></a>dex2+jdgui反编译</h2><ol>
+<li><p>修改apk文件后缀为zip，解压</p>
+</li>
+<li><p>将反编的dex文件复制到dex2jar工具目录下</p>
+</li>
+<li><p>使用命令生成jar文件</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d2j-dex2jar.bat document_name.dex</span><br></pre></td></tr></table></figure>
+<p>   如果出现下列报错(版本号不匹配):<br>   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">com.googlecode.d2j.DexException: not support version.</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:<span class="number">151</span>)</span><br><span class="line">     at com.googlecode.d2j.reader.DexFileReader.&lt;init&gt;(DexFileReader.java:<span class="number">211</span>)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.doCommandLine(Dex2jarCmd.java:<span class="number">104</span>)</span><br><span class="line">     at com.googlecode.dex2jar.tools.BaseCmd.doMain(BaseCmd.java:<span class="number">288</span>)</span><br><span class="line">     at com.googlecode.dex2jar.tools.Dex2jarCmd.main(Dex2jarCmd.java:<span class="number">32</span>)</span><br></pre></td></tr></table></figure><br>   用文本编辑软件打开dex文件，将文件头改为035或者036<br>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dex</span><br><span class="line">037 9!Q&lt;€颧€?滣^氶wl?  p   x</span><br></pre></td></tr></table></figure><br>   正常情况应该是这样的(没有任何多余)：<br>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\SoftWarePackage\Jd-GUI+dex2\dex2jar-2.0&gt;d2j-dex2jar.bat classes3.dex</span><br><span class="line">    dex2jar classes3.dex -&gt; .\classes3-dex2jar.jar</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li>用jd-guijar反编译jar文件，命令是这个：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jd-gui-1.5.0.jar</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其实就是执行jar文件而已，可以直接写bat桌面一键打开</li>
 </ul>
 </li>
 </ol>
@@ -400,7 +464,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%8D%93%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-text">安卓系统架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apk%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text">apk目录结构</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%8D%93%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-text">安卓系统架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apk%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text">apk目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="nav-text">Android四大组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#adb%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">adb基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apktool%E5%8F%8D%E7%BC%96%E8%AF%91%E5%91%BD%E4%BB%A4"><span class="nav-text">apktool反编译命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dex2-jdgui%E5%8F%8D%E7%BC%96%E8%AF%91"><span class="nav-text">dex2+jdgui反编译</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -416,7 +480,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
