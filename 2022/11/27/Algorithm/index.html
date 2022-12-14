@@ -28,7 +28,7 @@
 <meta property="og:description" content="用低劣的水平描述数据结构的东西，后续考研还要细学 目前主要是要考试，大体过一遍，以极简的风格&lt;对于学过数据结构的人可能有一定用处吧&gt; 日后必更新">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-27T12:52:47.991Z">
-<meta property="article:modified_time" content="2022-12-14T05:19:09.266Z">
+<meta property="article:modified_time" content="2022-12-14T11:16:37.619Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-14 13:19:09" itemprop="dateModified" datetime="2022-12-14T13:19:09+08:00">2022-12-14</time>
+                <time title="修改时间：2022-12-14 19:16:37" itemprop="dateModified" datetime="2022-12-14T19:16:37+08:00">2022-12-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,10 +266,31 @@
 <li>日后必更新<!-- less --></li>
 </ul>
 <HR width="100%"  color="#FF7F00">
+<h1 align="center" ><font color="red">前置</font></h1>
 
+<ul>
+<li>一堆概念</li>
+<li>逻辑结构分类<ul>
+<li>线性与非线性</li>
+<li>线性、树、图、集合</li>
+</ul>
+</li>
+<li>时间复杂度</li>
+<li>空间复杂度</li>
+</ul>
+<h1 align="center" ><font color="red">线性表</font></h1>
 
+<h4 id="普通"><a href="#普通" class="headerlink" title="普通"></a>普通</h4><h4 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h4><h4 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h4><h4 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h4><h1 align="center" ><font color="red">栈和队列</font></h1>
 
-
+<h4 id="栈（先进后出）"><a href="#栈（先进后出）" class="headerlink" title="栈（先进后出）"></a>栈（先进后出）</h4><ul>
+<li>不想说了，没完没了</li>
+</ul>
+<h4 id="队列（先进先出）"><a href="#队列（先进先出）" class="headerlink" title="队列（先进先出）"></a>队列（先进先出）</h4><ul>
+<li>普通队列</li>
+<li>循环队列</li>
+<li>双向队列（两个端点都能入队、出队）</li>
+<li>优先队列（队列元素维持有序，算竞常用）</li>
+</ul>
 <h1 align="center" ><font color="red">字符串</font></h1>
 
 
@@ -277,9 +298,9 @@
 - 书上的代码便于理解，但是不能跑，下标有问题
 - 这个难点就在一个求next数组吧。所谓next，就是每个字符的最长相同前后缀。至于代码上注意把握是在递归求解即可
 
-<h5 id="结构体声明"><a href="#结构体声明" class="headerlink" title="结构体声明"></a>结构体声明</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAXSIZE 1024</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>&#123;</span><br><span class="line">    <span class="type">char</span> ch[MAXSIZE+<span class="number">1</span>];		<span class="comment">//字符串</span></span><br><span class="line">    <span class="type">int</span> length;				<span class="comment">//长度</span></span><br><span class="line">&#125;String;</span><br></pre></td></tr></table></figure>
+<h4 id="结构体声明"><a href="#结构体声明" class="headerlink" title="结构体声明"></a>结构体声明</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAXSIZE 1024</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>&#123;</span><br><span class="line">    <span class="type">char</span> ch[MAXSIZE+<span class="number">1</span>];		<span class="comment">//字符串</span></span><br><span class="line">    <span class="type">int</span> length;				<span class="comment">//长度</span></span><br><span class="line">&#125;String;</span><br></pre></td></tr></table></figure>
 
-<h5 id="求解next数组"><a href="#求解next数组" class="headerlink" title="求解next数组"></a>求解next数组</h5><ul>
+<h4 id="求解next数组"><a href="#求解next数组" class="headerlink" title="求解next数组"></a>求解next数组</h4><ul>
 <li>优化前</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Get_Next</span><span class="params">(String t, <span class="type">int</span> ne[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ne[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; t.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">-1</span> || t.ch[i] == t.ch[j])&#123;</span><br><span class="line">            i++, j++;</span><br><span class="line">            ne[i] = j;		<span class="comment">//相等，直接在之前的基础上加一</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123; </span><br><span class="line">            j = ne[j];      <span class="comment">//不相等，向前递归</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -289,7 +310,7 @@
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Get_Next</span><span class="params">(String t, <span class="type">int</span> nextval[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    nextval[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; t.length)&#123;</span><br><span class="line">        <span class="comment">//相同前后缀，进入判断</span></span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">-1</span> || t.ch[i] == t.ch[j])&#123;</span><br><span class="line">            i++, j++;						<span class="comment">//修改位置</span></span><br><span class="line">            <span class="keyword">if</span>(t.ch[i] != t.ch[j])</span><br><span class="line">                nextval[i] = j;				<span class="comment">//不相等，直接取值             </span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                nextval[i] = nextval[j];    <span class="comment">//相等，无意义，再次向前求解</span></span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">            j = nextval[j];      <span class="comment">//非相同前后缀，向前递归</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">KMP</span><span class="params">(String s, String t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> nextval[MAXSIZE+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">Get_Next</span>(t, nextval);		             <span class="comment">//求解nextval</span></span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; s.length &amp;&amp; j &lt; t.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == - <span class="number">1</span> || s.ch[i] == t.ch[j])&#123;  <span class="comment">//相同，可匹配</span></span><br><span class="line">            i++, j++;</span><br><span class="line">        &#125;<span class="keyword">else</span>							     <span class="comment">//不可匹配，向前追溯</span></span><br><span class="line">            j = nextval[j];        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//输出匹配位置</span></span><br><span class="line">    <span class="keyword">if</span>(j &gt;= t.length)</span><br><span class="line">        <span class="keyword">return</span> i - t.length + <span class="number">1</span>;	<span class="comment">//输出实际位置长度，非数组下标</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">KMP</span><span class="params">(String s, String t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> nextval[MAXSIZE+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">Get_Next</span>(t, nextval);		             <span class="comment">//求解nextval</span></span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; s.length &amp;&amp; j &lt; t.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == - <span class="number">1</span> || s.ch[i] == t.ch[j])&#123;  <span class="comment">//相同，可匹配</span></span><br><span class="line">            i++, j++;</span><br><span class="line">        &#125;<span class="keyword">else</span>							     <span class="comment">//不可匹配，向前追溯</span></span><br><span class="line">            j = nextval[j];        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//输出匹配位置</span></span><br><span class="line">    <span class="keyword">if</span>(j &gt;= t.length)</span><br><span class="line">        <span class="keyword">return</span> i - t.length + <span class="number">1</span>;	<span class="comment">//输出实际位置长度，非数组下标</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -300,11 +321,33 @@
 
 
 
+<ul>
+<li>略</li>
+</ul>
+<h3 align="center">二叉树的遍历</h3>
+
+<h4 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h4><ul>
+<li>根左右，就是从根结点开始跑图^_^</li>
+</ul>
+<h4 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h4><ul>
+<li>左根右，看成果树自然脱落，然后顺序捡果子</li>
+</ul>
+<h4 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h4><ul>
+<li>左右根，好像没什么可描述的思路。</li>
+</ul>
+<h4 id="层序遍历"><a href="#层序遍历" class="headerlink" title="层序遍历"></a>层序遍历</h4><ul>
+<li>顾名思义，从根结点开始，一层一层输出就完事</li>
+</ul>
 <h3 align="center">森林</h3>
 
-<h3 align="center">哈夫曼树</h3>
+<ul>
+<li>把一堆树放一起</li>
+</ul>
+<h4 id="森林遍历"><a href="#森林遍历" class="headerlink" title="森林遍历"></a>森林遍历</h4><h3 align="center">哈夫曼树</h3>
 
-
+<ul>
+<li>最优树，带权路径最短，也就是所有结点的深度与权值积之和最小</li>
+</ul>
 <h3 align="center">哈夫曼编码</h3>
 
 
@@ -316,14 +359,25 @@
 
 
 
+<h3 align="center">存储</h3>
+
+<h4 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h4><h4 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h4><h4 id="十字链表"><a href="#十字链表" class="headerlink" title="十字链表"></a>十字链表</h4><h4 id="邻接多重表"><a href="#邻接多重表" class="headerlink" title="邻接多重表"></a>邻接多重表</h4><p>-_-我只是列举一下罢了</p>
+<h3 align="center">搜索</h3>
+
+<h4 id="深度优先搜索（DFS）"><a href="#深度优先搜索（DFS）" class="headerlink" title="深度优先搜索（DFS）"></a>深度优先搜索（DFS）</h4><ul>
+<li>一条道走到黑，走完回去再走另一条</li>
+</ul>
+<h4 id="广度优先搜索（BFS）"><a href="#广度优先搜索（BFS）" class="headerlink" title="广度优先搜索（BFS）"></a>广度优先搜索（BFS）</h4><ul>
+<li>同深度的路同时试探，多点开花</li>
+</ul>
 <h3 align="center">拓扑排序</h3>
 
 
 
-<h5 id="作用对象"><a href="#作用对象" class="headerlink" title="作用对象"></a>作用对象</h5><ul>
+<h4 id="作用对象"><a href="#作用对象" class="headerlink" title="作用对象"></a>作用对象</h4><ul>
 <li>无环有向图</li>
 </ul>
-<h5 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h5><ol>
+<h4 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h4><ol>
 <li><p>找一个无前驱(入度为0)的点存入拓扑序，或者找到后直接输出</p>
 </li>
 <li><p>将该点以及所有以该点作为起点的边删掉</p>
@@ -331,32 +385,35 @@
 <li><p>重复1、2操作，直到所有的点都存入拓扑序中或者找不到入度为0的点</p>
 </li>
 </ol>
-<h5 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h5><ol>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ol>
 <li><p>根据操作就可以分析出带环的图无法进行拓扑排序，因为一个环中不存在入度为0的点</p>
 </li>
 <li><p>因为一个图在拓扑排序前，或者拓扑排序开始后，都有可能存在许多个入度为0的点，此时就可以选择不同的点继续进行拓扑排序，所以拓扑排序的解不是唯一的</p>
 </li>
 </ol>
-<h5 id="应用范围"><a href="#应用范围" class="headerlink" title="应用范围"></a>应用范围</h5><ol>
-<li><p>检测一个图是否含有环</p>
-</li>
-<li><p>求解AOE图的关键路径</p>
-</li>
-<li><p>在有承接关系的工程中计算最优的项目处理顺序</p>
-</li>
+<h4 id="应用范围"><a href="#应用范围" class="headerlink" title="应用范围"></a>应用范围</h4><ol>
+<li>检测一个图是否含有环</li>
+<li>求解AOE图的关键路径</li>
+<li>在有承接关系的工程中计算最优的项目处理顺序</li>
 </ol>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 1000</span></span><br><span class="line"><span class="comment">//邻接矩阵定义</span></span><br><span class="line"><span class="type">int</span> egde[MAXN+<span class="number">1</span>][MAXN+<span class="number">1</span>];</span><br><span class="line"><span class="type">int</span> n, res[MAXN+<span class="number">1</span>];</span><br><span class="line"><span class="comment">//记录每个点的入度</span></span><br><span class="line"><span class="type">int</span> in_cnt[MAXN+<span class="number">1</span>];</span><br><span class="line">queue&lt;<span class="type">int</span>&gt;q;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">Topo_sort</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//初始化入度</span></span><br><span class="line">    <span class="built_in">memset</span>(in_cnt, <span class="number">0</span>, <span class="built_in">sizeof</span>(in_cnt));</span><br><span class="line">    <span class="comment">//存度</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">	    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j++)&#123;</span><br><span class="line">	        <span class="comment">//指向边不存在或者指向自己</span></span><br><span class="line">	        <span class="keyword">if</span>(i == j || edge[i][j] == <span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            in_cnt[j]++;</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> cnt = <span class="number">0</span>; <span class="comment">//记录拓扑序</span></span><br><span class="line">	<span class="comment">//拓扑排序</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">	    <span class="comment">//将入度为0的点放入队列</span></span><br><span class="line">	    <span class="keyword">if</span>(in_cnt[i] == <span class="number">0</span>) q.<span class="built_in">push</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="type">int</span> temp = q.<span class="built_in">front</span>();  q.<span class="built_in">pop</span>();</span><br><span class="line">	    res[++cnt] = temp;</span><br><span class="line">	    <span class="comment">//删除以其为起点的边</span></span><br><span class="line">	    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">	        <span class="comment">//边不存在</span></span><br><span class="line">	        <span class="keyword">if</span>(edge[temp][i] == <span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">	        <span class="comment">//指向的点的入度减一</span></span><br><span class="line">	        in_cnt[i]--;</span><br><span class="line">	        <span class="keyword">if</span>(in_cnt == <span class="number">0</span>) q.<span class="built_in">push</span>(i);</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//得到的拓扑序中的点的个数小于图中点的个数</span></span><br><span class="line">	<span class="comment">//说明拓扑排序无法完成，可能存在自环</span></span><br><span class="line">    <span class="keyword">if</span>(cnt != n) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h3 align="center">最小生成树-prim</h3>
 
 <ol>
-<li><p>将图分成两个部分，在树里的部分和不在树里的部分</p>
-</li>
-<li><p>选择一条权值最小的边，且该边所连的两个点一个在树内，一个在树外</p>
-</li>
-<li><p>将选定的边加入树内，并将该边的权值记录</p>
-</li>
-<li><p>重复上述操作直到所有的点都被加入树中</p>
-</li>
+<li>将图分成两个部分，在树里的部分和不在树里的部分</li>
+<li>选择一条权值最小的边，且该边所连的两个点一个在树内，一个在树外</li>
+<li>将选定的边加入树内，并将该边的权值记录</li>
+<li>重复上述操作直到所有的点都被加入树中</li>
 </ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> M 500000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 100000</span></span><br><span class="line"><span class="type">int</span> n, m, res = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//链式前向星建图</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span>&#123;</span><br><span class="line">    <span class="type">int</span> x, v, next;</span><br><span class="line">&#125;edge[M*<span class="number">2</span>+<span class="number">1</span>];</span><br><span class="line"><span class="type">int</span> head[N+<span class="number">1</span>], cnt = <span class="number">0</span>, dis[N+<span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">addedge</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> z)</span></span>&#123;</span><br><span class="line">    edge[++cnt].x = y;</span><br><span class="line">    edge[cnt].v = z;</span><br><span class="line">    edge[cnt].next = head[x];</span><br><span class="line">    head[x] = cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//边权优先队列</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ty</span>&#123;</span><br><span class="line">    <span class="type">int</span> x, len;  </span><br><span class="line">    <span class="comment">//比大小重载</span></span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span> &lt; (<span class="type">const</span> ty &amp;a) <span class="type">const</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> len &gt; a.len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;temp;</span><br><span class="line">priority_queue&lt;ty&gt;q;</span><br><span class="line"><span class="type">bool</span> vis[N+<span class="number">1</span>];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">prim</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//以初始点1更新队列</span></span><br><span class="line">    vis[<span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = head[<span class="number">1</span>]; i != <span class="number">-1</span>; i = edge[i].next)&#123;</span><br><span class="line">        temp.x = edge[i].x;</span><br><span class="line">        dis[edge[i].x] = edge[i].v;</span><br><span class="line">        temp.len = edge[i].v;</span><br><span class="line">        q.<span class="built_in">push</span>(temp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        <span class="comment">//将当前边权最小的可连接点加入树中</span></span><br><span class="line">        <span class="comment">//并更新最小生成树代价</span></span><br><span class="line">        ty tmp = q.<span class="built_in">top</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span>(vis[tmp.x]) <span class="keyword">continue</span>;</span><br><span class="line">        vis[tmp.x] = <span class="literal">true</span>;</span><br><span class="line">        res += tmp.len;</span><br><span class="line">        <span class="comment">//将新加入点所连接的边放进队列</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = head[tmp.x]; i != <span class="number">-1</span>; i = edge[i].next)&#123;</span><br><span class="line">            <span class="keyword">if</span>(vis[edge[i].x]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="comment">//大于等于之前所选边权的新边权无需放入</span></span><br><span class="line">            <span class="keyword">if</span>(dis[edge[i].x] &lt;= edge[i].v) <span class="keyword">continue</span>; </span><br><span class="line">            <span class="comment">//</span></span><br><span class="line">            tmp.x = edge[i].x;</span><br><span class="line">            dis[edge[i].x] = edge[i].v;</span><br><span class="line">            tmp.len = edge[i].v;</span><br><span class="line">            q.<span class="built_in">push</span>(tmp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//输出</span></span><br><span class="line">    cout &lt;&lt;res;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(head, <span class="number">-1</span>, <span class="built_in">sizeof</span>(head));</span><br><span class="line">    <span class="built_in">memset</span>(dis, <span class="number">0x3f</span>, <span class="built_in">sizeof</span>(dis));</span><br><span class="line">    <span class="built_in">memset</span>(vis, <span class="literal">false</span>, <span class="built_in">sizeof</span>(vis));</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">        <span class="type">int</span> a, b, v;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;a, &amp;b, &amp;v);</span><br><span class="line">        <span class="built_in">addedge</span>(a, b, v);</span><br><span class="line">        <span class="built_in">addedge</span>(b, a, v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">prim</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 align="center">最小生成树-kruskal</h3>
 
 
@@ -367,6 +424,12 @@
 <li>利用并查集判断选出的边所连接的两个点当前是否在一个集合里，如果不在，就将该边计入，并更新并查集信息</li>
 <li>重复2、3操作直到所有的点生成一颗树</li>
 </ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> M 500000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 100000</span></span><br><span class="line"><span class="type">int</span> n, m, res = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//边结构体</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span>&#123;</span><br><span class="line">    <span class="type">int</span> x, y, v;</span><br><span class="line">&#125;edge[M+<span class="number">1</span>];</span><br><span class="line"><span class="comment">//按边权值升序排列</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(Node a, Node b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.v &lt; b.v;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//并查集查找父节点以及路径压缩</span></span><br><span class="line"><span class="type">int</span> fa[N+<span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(fa[x] == x)</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> fa[x] = <span class="built_in">find</span>(fa[x]);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Kruskal</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//初始化并查集</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) fa[i] = i;</span><br><span class="line">    <span class="comment">//按边权排序</span></span><br><span class="line">    <span class="built_in">sort</span>(edge+<span class="number">1</span>, edge+<span class="number">1</span>+m, cmp);</span><br><span class="line">    <span class="comment">//依次拿边</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">        <span class="comment">//判断选定边所连的两个点是否已经在树里</span></span><br><span class="line">        <span class="type">int</span> fx = <span class="built_in">find</span>(edge[i].x);</span><br><span class="line">        <span class="type">int</span> fy = <span class="built_in">find</span>(edge[i].y);</span><br><span class="line">        <span class="keyword">if</span>(fx == fy) <span class="keyword">continue</span>;</span><br><span class="line">        res += edge[i].v;</span><br><span class="line">        fa[fx] = fy;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt;res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m); </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">        <span class="type">int</span> a, b, v;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;edge[i].x, &amp;edge[i].y, &amp;edge[i].v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Kruskal</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h3 align="center">最短路</h3>
 
 
@@ -409,6 +472,83 @@
 <li>懒得重写了，CSDN链接如下</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_59700927/article/details/124547139?ops_request_misc=%7B%22request_id%22:%22167099472316782390553941%22,%22scm%22:%2220140713.130102334.pc_blog.%22%7D&request_id=167099472316782390553941&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-3-124547139-null-null.nonecase&utm_term=%E6%9C%80%E7%9F%AD%E8%B7%AF&spm=1018.2226.3001.4450">三种求最短路算法基本描述及实现(C++)_Woodenman杜的博客-CSDN博客_最短路算法c++</a></p>
+<h3 align="center">一些特殊的图</h3>
+
+
+
+<h4 id="AOE网"><a href="#AOE网" class="headerlink" title="AOE网"></a>AOE网</h4><ul>
+<li><p>工程图，可以用来评估工程进度</p>
+</li>
+<li><p>具体表示</p>
+<ul>
+<li><p>总的来说还是一个带权有向图</p>
+</li>
+<li><p>只有一个入度为0的点和出度为0的点，表示工程的起点和终点，也叫入点和汇点</p>
+</li>
+<li><p>每一条边表示一项工程，其权值可表示完成工程所需要的时间</p>
+</li>
+<li><p>每一个结点，相当于一个锁，只有指向它的所有工程全部完成以后，它所指向的工程才能进行</p>
+</li>
+<li><p>多个工程可以同时进行</p>
+</li>
+</ul>
+</li>
+<li><p>一些需要关注的点</p>
+<ul>
+<li>每个工程的最早开始时间</li>
+<li>每个工程的最迟开始时间</li>
+<li>工程的最快完成时间（也就是从入点到汇点的最长路径）</li>
+<li>关键路径（决定完成时间的路径）</li>
+</ul>
+</li>
+</ul>
+<h4 id="欧拉图"><a href="#欧拉图" class="headerlink" title="欧拉图"></a>欧拉图</h4><ul>
+<li>欧拉回路：在一个连通图里，每个边走且只走一次的回路</li>
+<li>欧拉图就是有欧拉回路的图</li>
+</ul>
+<h4 id="哈密顿图"><a href="#哈密顿图" class="headerlink" title="哈密顿图"></a>哈密顿图</h4><ul>
+<li>哈密顿回路：在一个图里，每个点走且只走一次的回路</li>
+<li>哈密顿图就是有哈密顿回路的图</li>
+</ul>
+<h4 id="二部图"><a href="#二部图" class="headerlink" title="二部图"></a>二部图</h4><ul>
+<li>将图中所有的点分成两部分，使得图中所有的边连接的两个点，都属于不同的两部分</li>
+</ul>
+<h1 align="center" ><font color="red">查找</font></h1>
+
+<h3 align="center">线性表查找</h3>
+
+
+
+<h4 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h4><ul>
+<li>就叫顺序查找（笑哭），线性遍历</li>
+</ul>
+<h4 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h4><ul>
+<li>也就是二分查找，一眼可懂。注意被查找的序列必须是按条件有序</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//x为被查找数</span></span><br><span class="line"><span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">  <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span>(mid &gt;= x) r = mid;</span><br><span class="line">  <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<h4 id="分块查找"><a href="#分块查找" class="headerlink" title="分块查找"></a>分块查找</h4><ul>
+<li>将原来的表拆分成n个表（分块）</li>
+<li>将每个表中权值最大的元素作为该表的关键字</li>
+<li>find，先通过每个表的关键字定位到正确表中，再进行查找</li>
+</ul>
+<h3 align="center">树表查找</h3>
+
+<h4 id="二叉排序树"><a href="#二叉排序树" class="headerlink" title="二叉排序树"></a>二叉排序树</h4><ul>
+<li>特殊二叉树，对于每一个结点<ul>
+<li>如果有左子树，左子树所有结点的权值均小于根结点</li>
+<li>如果有右子树，右子树所有结点的权值均大于根结点</li>
+</ul>
+</li>
+<li>至于查找就很简单了，从根结点一直向下比较就行，有点像二分，或者说它就是二分</li>
+</ul>
+<h4 id="平衡二叉树（AVL树）"><a href="#平衡二叉树（AVL树）" class="headerlink" title="平衡二叉树（AVL树）"></a>平衡二叉树（AVL树）</h4><ul>
+<li>|depth<sub>左子树</sub> - depth<sub>右子树</sub>|&lt;&#x3D;1</li>
+</ul>
+<h4 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h4><h4 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h4><h3 align="center">散列表查找</h3>
+
+
+
 <h1 align="center" ><font color="red">排序</font></h1>
 
 
@@ -639,7 +779,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">KMP算法(字符串匹配，t向s匹配)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E5%A3%B0%E6%98%8E"><span class="nav-text">结构体声明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3next%E6%95%B0%E7%BB%84"><span class="nav-text">求解next数组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#KMP"><span class="nav-text">KMP</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">一堆概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">森林</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">哈夫曼树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">哈夫曼编码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">拓扑排序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%AF%B9%E8%B1%A1"><span class="nav-text">作用对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4"><span class="nav-text">具体步骤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E8%8C%83%E5%9B%B4"><span class="nav-text">应用范围</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">最小生成树-prim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">最小生成树-kruskal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">最短路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">希尔排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">基数排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">归并排序</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">前置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%AE%E9%80%9A"><span class="nav-text">普通</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8"><span class="nav-text">单链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8"><span class="nav-text">循环链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8"><span class="nav-text">双向链表</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">栈和队列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%88%EF%BC%88%E5%85%88%E8%BF%9B%E5%90%8E%E5%87%BA%EF%BC%89"><span class="nav-text">栈（先进后出）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%9F%E5%88%97%EF%BC%88%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA%EF%BC%89"><span class="nav-text">队列（先进先出）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">KMP算法(字符串匹配，t向s匹配)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E5%A3%B0%E6%98%8E"><span class="nav-text">结构体声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3next%E6%95%B0%E7%BB%84"><span class="nav-text">求解next数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KMP"><span class="nav-text">KMP</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">一堆概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">二叉树的遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="nav-text">前序遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="nav-text">中序遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="nav-text">后序遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="nav-text">层序遍历</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">森林</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%AE%E6%9E%97%E9%81%8D%E5%8E%86"><span class="nav-text">森林遍历</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">哈夫曼树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">哈夫曼编码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">存储</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E8%A1%A8"><span class="nav-text">邻接表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5"><span class="nav-text">邻接矩阵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8"><span class="nav-text">十字链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E5%A4%9A%E9%87%8D%E8%A1%A8"><span class="nav-text">邻接多重表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%88DFS%EF%BC%89"><span class="nav-text">深度优先搜索（DFS）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%88BFS%EF%BC%89"><span class="nav-text">广度优先搜索（BFS）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">拓扑排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%AF%B9%E8%B1%A1"><span class="nav-text">作用对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4"><span class="nav-text">具体步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E8%8C%83%E5%9B%B4"><span class="nav-text">应用范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">最小生成树-prim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">最小生成树-kruskal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">最短路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">一些特殊的图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AOE%E7%BD%91"><span class="nav-text">AOE网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%9B%BE"><span class="nav-text">欧拉图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%BE"><span class="nav-text">哈密顿图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E9%83%A8%E5%9B%BE"><span class="nav-text">二部图</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">线性表查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E6%9F%A5%E6%89%BE"><span class="nav-text">顺序查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%98%E5%8D%8A%E6%9F%A5%E6%89%BE"><span class="nav-text">折半查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%9D%97%E6%9F%A5%E6%89%BE"><span class="nav-text">分块查找</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">树表查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91"><span class="nav-text">二叉排序树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%88AVL%E6%A0%91%EF%BC%89"><span class="nav-text">平衡二叉树（AVL树）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-%E6%A0%91"><span class="nav-text">B-树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-%E6%A0%91-1"><span class="nav-text">B+树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">散列表查找</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">希尔排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">基数排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">归并排序</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
