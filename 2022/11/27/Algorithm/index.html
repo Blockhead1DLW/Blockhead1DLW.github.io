@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","Pisces | Gemini":200,"width":200,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="主要是准备记录一下复习数据结构的代码随笔吧，核心在于通过代码理解思路">
+  <meta name="description" content="用低劣的水平描述数据结构的东西，后续考研还要细学 目前主要是要考试，大体过一遍，以极简的风格&lt;对于学过数据结构的人可能有一定用处吧&gt; 日后必更新">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构代码（纯C）">
+<meta property="og:title" content="数据结构（纯C）">
 <meta property="og:url" content="http://example.com/2022/11/27/Algorithm/index.html">
 <meta property="og:site_name" content="逆向光点">
-<meta property="og:description" content="主要是准备记录一下复习数据结构的代码随笔吧，核心在于通过代码理解思路">
+<meta property="og:description" content="用低劣的水平描述数据结构的东西，后续考研还要细学 目前主要是要考试，大体过一遍，以极简的风格&lt;对于学过数据结构的人可能有一定用处吧&gt; 日后必更新">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-27T12:52:47.991Z">
-<meta property="article:modified_time" content="2022-12-01T13:12:32.949Z">
+<meta property="article:modified_time" content="2022-12-14T05:19:09.266Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>数据结构代码（纯C） | 逆向光点</title>
+  <title>数据结构（纯C） | 逆向光点</title>
   
 
 
@@ -198,7 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          数据结构代码（纯C）
+          数据结构（纯C）
         </h1>
 
         <div class="post-meta">
@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-01 21:12:32" itemprop="dateModified" datetime="2022-12-01T21:12:32+08:00">2022-12-01</time>
+                <time title="修改时间：2022-12-14 13:19:09" itemprop="dateModified" datetime="2022-12-14T13:19:09+08:00">2022-12-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -261,19 +261,25 @@
 
       
         <ul>
-<li>主要是准备记录一下复习数据结构的代码随笔吧，核心在于通过代码理解思路<!-- less --></li>
+<li>用低劣的水平描述数据结构的东西，后续考研还要细学</li>
+<li>目前主要是要考试，大体过一遍，以极简的风格&lt;对于学过数据结构的人可能有一定用处吧&gt;</li>
+<li>日后必更新<!-- less --></li>
 </ul>
 <HR width="100%"  color="#FF7F00">
 
 
 
-<h2 id="KMP算法-字符串匹配，t向s匹配"><a href="#KMP算法-字符串匹配，t向s匹配" class="headerlink" title="KMP算法(字符串匹配，t向s匹配)"></a>KMP算法(字符串匹配，t向s匹配)</h2><ul>
-<li>书上的代码便于理解，但是不能跑，下标有问题</li>
-<li>这个难点就在一个求next数组吧。所谓next，就是每个字符的最长相同前后缀。至于代码上注意把握是在递归求解即可</li>
-</ul>
-<h4 id="结构体声明"><a href="#结构体声明" class="headerlink" title="结构体声明"></a>结构体声明</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAXSIZE 1024</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>&#123;</span><br><span class="line">    <span class="type">char</span> ch[MAXSIZE+<span class="number">1</span>];		<span class="comment">//字符串</span></span><br><span class="line">    <span class="type">int</span> length;				<span class="comment">//长度</span></span><br><span class="line">&#125;String;</span><br></pre></td></tr></table></figure>
 
-<h4 id="求解next数组"><a href="#求解next数组" class="headerlink" title="求解next数组"></a>求解next数组</h4><ul>
+<h1 align="center" ><font color="red">字符串</font></h1>
+
+
+<h3 align="center">KMP算法(字符串匹配，t向s匹配)</h3>
+- 书上的代码便于理解，但是不能跑，下标有问题
+- 这个难点就在一个求next数组吧。所谓next，就是每个字符的最长相同前后缀。至于代码上注意把握是在递归求解即可
+
+<h5 id="结构体声明"><a href="#结构体声明" class="headerlink" title="结构体声明"></a>结构体声明</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAXSIZE 1024</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>&#123;</span><br><span class="line">    <span class="type">char</span> ch[MAXSIZE+<span class="number">1</span>];		<span class="comment">//字符串</span></span><br><span class="line">    <span class="type">int</span> length;				<span class="comment">//长度</span></span><br><span class="line">&#125;String;</span><br></pre></td></tr></table></figure>
+
+<h5 id="求解next数组"><a href="#求解next数组" class="headerlink" title="求解next数组"></a>求解next数组</h5><ul>
 <li>优化前</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Get_Next</span><span class="params">(String t, <span class="type">int</span> ne[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ne[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; t.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">-1</span> || t.ch[i] == t.ch[j])&#123;</span><br><span class="line">            i++, j++;</span><br><span class="line">            ne[i] = j;		<span class="comment">//相等，直接在之前的基础上加一</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123; </span><br><span class="line">            j = ne[j];      <span class="comment">//不相等，向前递归</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -283,7 +289,259 @@
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Get_Next</span><span class="params">(String t, <span class="type">int</span> nextval[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    nextval[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; t.length)&#123;</span><br><span class="line">        <span class="comment">//相同前后缀，进入判断</span></span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">-1</span> || t.ch[i] == t.ch[j])&#123;</span><br><span class="line">            i++, j++;						<span class="comment">//修改位置</span></span><br><span class="line">            <span class="keyword">if</span>(t.ch[i] != t.ch[j])</span><br><span class="line">                nextval[i] = j;				<span class="comment">//不相等，直接取值             </span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                nextval[i] = nextval[j];    <span class="comment">//相等，无意义，再次向前求解</span></span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">            j = nextval[j];      <span class="comment">//非相同前后缀，向前递归</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">KMP</span><span class="params">(String s, String t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> nextval[MAXSIZE+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">Get_Next</span>(t, nextval);		             <span class="comment">//求解nextval</span></span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; s.length &amp;&amp; j &lt; t.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == - <span class="number">1</span> || s.ch[i] == t.ch[j])&#123;  <span class="comment">//相同，可匹配</span></span><br><span class="line">            i++, j++;</span><br><span class="line">        &#125;<span class="keyword">else</span>							     <span class="comment">//不可匹配，向前追溯</span></span><br><span class="line">            j = nextval[j];        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//输出匹配位置</span></span><br><span class="line">    <span class="keyword">if</span>(j &gt;= t.length)</span><br><span class="line">        <span class="keyword">return</span> i - t.length + <span class="number">1</span>;	<span class="comment">//输出实际位置长度，非数组下标</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">KMP</span><span class="params">(String s, String t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> nextval[MAXSIZE+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">Get_Next</span>(t, nextval);		             <span class="comment">//求解nextval</span></span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; s.length &amp;&amp; j &lt; t.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == - <span class="number">1</span> || s.ch[i] == t.ch[j])&#123;  <span class="comment">//相同，可匹配</span></span><br><span class="line">            i++, j++;</span><br><span class="line">        &#125;<span class="keyword">else</span>							     <span class="comment">//不可匹配，向前追溯</span></span><br><span class="line">            j = nextval[j];        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//输出匹配位置</span></span><br><span class="line">    <span class="keyword">if</span>(j &gt;= t.length)</span><br><span class="line">        <span class="keyword">return</span> i - t.length + <span class="number">1</span>;	<span class="comment">//输出实际位置长度，非数组下标</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 align="center" ><font color="red">树</font></h1>
+
+
+<h3 align="center">一堆概念</h3>
+
+
+
+<h3 align="center">森林</h3>
+
+<h3 align="center">哈夫曼树</h3>
+
+
+<h3 align="center">哈夫曼编码</h3>
+
+
+
+<ul>
+<li>在哈夫曼树上按照<code>左0右1</code>的规则从根节点走到目标节点形成的数字串</li>
+</ul>
+<h1 align="center" ><font color="red">图</font></h1>
+
+
+
+<h3 align="center">拓扑排序</h3>
+
+
+
+<h5 id="作用对象"><a href="#作用对象" class="headerlink" title="作用对象"></a>作用对象</h5><ul>
+<li>无环有向图</li>
+</ul>
+<h5 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h5><ol>
+<li><p>找一个无前驱(入度为0)的点存入拓扑序，或者找到后直接输出</p>
+</li>
+<li><p>将该点以及所有以该点作为起点的边删掉</p>
+</li>
+<li><p>重复1、2操作，直到所有的点都存入拓扑序中或者找不到入度为0的点</p>
+</li>
+</ol>
+<h5 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h5><ol>
+<li><p>根据操作就可以分析出带环的图无法进行拓扑排序，因为一个环中不存在入度为0的点</p>
+</li>
+<li><p>因为一个图在拓扑排序前，或者拓扑排序开始后，都有可能存在许多个入度为0的点，此时就可以选择不同的点继续进行拓扑排序，所以拓扑排序的解不是唯一的</p>
+</li>
+</ol>
+<h5 id="应用范围"><a href="#应用范围" class="headerlink" title="应用范围"></a>应用范围</h5><ol>
+<li><p>检测一个图是否含有环</p>
+</li>
+<li><p>求解AOE图的关键路径</p>
+</li>
+<li><p>在有承接关系的工程中计算最优的项目处理顺序</p>
+</li>
+</ol>
+<h3 align="center">最小生成树-prim</h3>
+
+<ol>
+<li><p>将图分成两个部分，在树里的部分和不在树里的部分</p>
+</li>
+<li><p>选择一条权值最小的边，且该边所连的两个点一个在树内，一个在树外</p>
+</li>
+<li><p>将选定的边加入树内，并将该边的权值记录</p>
+</li>
+<li><p>重复上述操作直到所有的点都被加入树中</p>
+</li>
+</ol>
+<h3 align="center">最小生成树-kruskal</h3>
+
+
+
+<ol>
+<li>将所有的边按大小进行排序</li>
+<li>选择一条之前<code>未选择过的</code>且<code>权值最小的</code>边</li>
+<li>利用并查集判断选出的边所连接的两个点当前是否在一个集合里，如果不在，就将该边计入，并更新并查集信息</li>
+<li>重复2、3操作直到所有的点生成一颗树</li>
+</ol>
+<h3 align="center">最短路</h3>
+
+
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">Floyed</th>
+<th align="center">Dijkstra(优先队列优化)</th>
+<th align="center">SPFA(优先队列优化)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>时间复杂度</td>
+<td align="center">o(n<sup>3</sup>)</td>
+<td align="center">o(n+m)(log<sub>2</sub>m)</td>
+<td align="center">o(km)</td>
+</tr>
+<tr>
+<td>基本思想</td>
+<td align="center">动态规划</td>
+<td align="center">贪心</td>
+<td align="center">贪心</td>
+</tr>
+<tr>
+<td>适用范围</td>
+<td align="center">无负环图</td>
+<td align="center">无负权图</td>
+<td align="center">无负环图</td>
+</tr>
+<tr>
+<td>适用范围</td>
+<td align="center">多源最短路</td>
+<td align="center">不含负权图的低复杂度解</td>
+<td align="center">含负权边时的单源最短路求解</td>
+</tr>
+</tbody></table>
+<ul>
+<li>懒得重写了，CSDN链接如下</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_59700927/article/details/124547139?ops_request_misc=%7B%22request_id%22:%22167099472316782390553941%22,%22scm%22:%2220140713.130102334.pc_blog.%22%7D&request_id=167099472316782390553941&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-3-124547139-null-null.nonecase&utm_term=%E6%9C%80%E7%9F%AD%E8%B7%AF&spm=1018.2226.3001.4450">三种求最短路算法基本描述及实现(C++)_Woodenman杜的博客-CSDN博客_最短路算法c++</a></p>
+<h1 align="center" ><font color="red">排序</font></h1>
+
+
+
+<ul>
+<li><p>稳定排序：插入、冒泡、基数、归并</p>
+</li>
+<li><p>不稳定排序：希尔、选择、快排、堆</p>
+</li>
+</ul>
+<p>表格还是来得快哈，非常合理</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">时间复杂度(平均)</th>
+<th align="center">空间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">选择排序</td>
+<td align="center">o(n<sup>2</sup>)</td>
+<td align="center">o(1)</td>
+</tr>
+<tr>
+<td align="center">堆排序</td>
+<td align="center">o(n<sup>2</sup>)</td>
+<td align="center">o(1)</td>
+</tr>
+<tr>
+<td align="center">冒泡排序</td>
+<td align="center">o(n<sup>2</sup>)</td>
+<td align="center">o(1)</td>
+</tr>
+<tr>
+<td align="center">快速排序</td>
+<td align="center">o(nlog<sub>2</sub>n)</td>
+<td align="center">o(log<sub>2</sub>n) –&gt; o(n)</td>
+</tr>
+<tr>
+<td align="center">插入排序</td>
+<td align="center">o(n<sup>2</sup>)</td>
+<td align="center">o(1)</td>
+</tr>
+<tr>
+<td align="center">希尔排序</td>
+<td align="center">看希尔增量合适不合适，平均n<sup>1.3</sup>?</td>
+<td align="center">o(1)</td>
+</tr>
+<tr>
+<td align="center">基数排序</td>
+<td align="center">o(d(n+rd))</td>
+<td align="center">o(n+rd)</td>
+</tr>
+<tr>
+<td align="center">归并排序</td>
+<td align="center">o(nlog<sub>2</sub>n)</td>
+<td align="center">o(n)</td>
+</tr>
+</tbody></table>
+<h3 align="center">选择排序</h3>
+
+
+<ul>
+<li>不断选择未排序序列中权值最大的数放到未排序序列末尾</li>
+</ul>
+<h3 align="center">堆排序</h3>
+
+<p>首先明确这玩意是要顺序存储的完全二叉树，然后利用根堆的根最大（小）的性质</p>
+<ol>
+<li>实现一个大(小)根堆（建初堆）</li>
+<li>将根节点和末尾节点替换</li>
+<li>将除末尾节点（也就是之前根堆的根）之外的其它元素继续执行上述操作，直到排序结束</li>
+</ol>
+<h3 align="center">冒泡排序</h3>
+
+<ul>
+<li>通过邻近两元素的不断比较交换实现排序，共n-1趟，期间权值较大的元素不断下浮，故名冒泡</li>
+</ul>
+<h3 align="center">快速排序</h3>
+
+<p>这个像所有排序的结合体，虽然说是由冒泡改进而来。同时消除多次逆序</p>
+<ol>
+<li>选择一个枢轴（pivotkey）</li>
+<li>将所有权值小于pivotkey的放在左边，权值大于pivotkey的放在右边</li>
+<li>再将pivotkey归位，放在分界处</li>
+<li>对pivotkey两边的数列重复上述操作，也就是一个递归，直到排序完成</li>
+</ol>
+<h3 align="center">插入排序</h3>
+
+<p>拿出第一个乱序数，放到已经排好序的序列的合适位置</p>
+<p>好像挺明了的，可以看成是一个选择排序的进化？</p>
+<h3 align="center">希尔排序</h3>
+
+
+
+<p>这个东西吧，就是分组和插入排序的循环</p>
+<ol>
+<li>在原数组中按照一定间隔从头到尾取出一系列数形成几个新的序列</li>
+<li>对每个新的序列进行插入排序</li>
+<li>按原位置序列合并</li>
+</ol>
+<p>至于这个间隔，就涉及到希尔增量，举个例子就明白了，分组不断降低。</p>
+<p>比如对半式增量：</p>
+<ul>
+<li><p>一个长度为8的数组，8&#x2F;2 &#x3D; 4，所以第一次就按间隔为4取数，那么形成的新序列的下标就是：&lt;1 5&gt;,&lt;2 6&gt;,&lt;3 7&gt;,&lt;4 8&gt;</p>
+</li>
+<li><p>第二次间隔为4&#x2F;2 &#x3D; 2，则新取出的序列为&lt;1 3 5 7&gt;,&lt;2 4 6 8&gt;</p>
+</li>
+<li><p>然后下一次就是2&#x2F;2 &#x3D; 1，没得分了，排序也就结束了</p>
+</li>
+</ul>
+<h3 align="center">基数排序</h3>
+
+
+
+<p>这个不好描述，不写了~</p>
+<ol>
+<li><p>选取有效位(个十百千万)</p>
+</li>
+<li><p>将元素按顺序放进对应数字（0-9）的队列</p>
+</li>
+<li><p>再按0-9的顺序将每个队列的元素拿出来</p>
+</li>
+<li><p>重复上述过程，直到排序完成（有效位的选取是从低到高的）</p>
+</li>
+</ol>
+<h3 align="center">归并排序</h3>
+
+
+
+<p>整体就是无限二分和选数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里a和b数组没有声明，应该写到外面，a数组是录入数据的数组</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Merge_sort</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//递归到了只有一个元素，直接返回</span></span><br><span class="line">    <span class="keyword">if</span>(l == r) <span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">//找到中点，然后两边分别再归并（二分）</span></span><br><span class="line">    <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">Merge_sort</span>(<span class="number">1</span>, mid);</span><br><span class="line">    <span class="built_in">Merge_sort</span>(mid + <span class="number">1</span>, r);</span><br><span class="line">    <span class="comment">//合并序列（选数）</span></span><br><span class="line">    <span class="type">int</span> p = <span class="number">1</span>, q = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= r; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(q &gt; r || (p &lt;= mid &amp;&amp; a[p] &lt;= a[q])) b[i] = a[p++];</span><br><span class="line">        <span class="keyword">else</span> b[i] = a[q++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//还原到a数组里</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= r; i++) a[i] = b[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -298,7 +556,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://example.com/2022/11/27/Algorithm/" title="数据结构代码（纯C）">http://example.com/2022/11/27/Algorithm/</a>
+    <a href="http://example.com/2022/11/27/Algorithm/" title="数据结构（纯C）">http://example.com/2022/11/27/Algorithm/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -381,7 +639,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#KMP%E7%AE%97%E6%B3%95-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%EF%BC%8Ct%E5%90%91s%E5%8C%B9%E9%85%8D"><span class="nav-text">KMP算法(字符串匹配，t向s匹配)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E5%A3%B0%E6%98%8E"><span class="nav-text">结构体声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3next%E6%95%B0%E7%BB%84"><span class="nav-text">求解next数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KMP"><span class="nav-text">KMP</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">KMP算法(字符串匹配，t向s匹配)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E5%A3%B0%E6%98%8E"><span class="nav-text">结构体声明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3next%E6%95%B0%E7%BB%84"><span class="nav-text">求解next数组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#KMP"><span class="nav-text">KMP</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">一堆概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">森林</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">哈夫曼树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">哈夫曼编码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">拓扑排序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%AF%B9%E8%B1%A1"><span class="nav-text">作用对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4"><span class="nav-text">具体步骤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E8%8C%83%E5%9B%B4"><span class="nav-text">应用范围</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">最小生成树-prim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">最小生成树-kruskal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">最短路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">希尔排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">基数排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">归并排序</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
