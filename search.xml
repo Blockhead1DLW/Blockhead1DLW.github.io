@@ -377,7 +377,8 @@
     <url>/2022/11/27/Algorithm/</url>
     <content><![CDATA[<ul>
 <li>用低劣的水平描述数据结构的东西，后续考研还要细学</li>
-<li>目前主要是要考试，大体过一遍，以极简的风格&lt;对于学过数据结构的人可能有一定用处吧&gt;</li>
+<li>目前主要是要考试，大体过一遍，如果你质疑我的文章，那一定是我错了，我会忽略一些专业术语，更偏向于自己的理解思考</li>
+<li>&lt;对于学过数据结构的人可能有一定用处吧&gt;</li>
 <li>日后必更新<!-- less --></li>
 </ul>
 <HR width="100%"  color="#FF7F00">
@@ -476,7 +477,69 @@
 
 <h3 align="center">存储</h3>
 
-<h4 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h4><h4 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h4><h4 id="十字链表"><a href="#十字链表" class="headerlink" title="十字链表"></a>十字链表</h4><h4 id="邻接多重表"><a href="#邻接多重表" class="headerlink" title="邻接多重表"></a>邻接多重表</h4><p>-_-我只是列举一下罢了</p>
+<p><code>有些东西，凭直觉走就行了</code></p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">邻接表</th>
+<th align="center">邻接矩阵</th>
+<th align="center">十字链表</th>
+<th align="center">邻接多重表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">空间复杂度</td>
+<td align="center">有向图o(V+E<sup>2</sup>)，无向图o(V+E)</td>
+<td align="center">o(V<sup>2</sup>)</td>
+<td align="center">o(V+E)</td>
+<td align="center">o(V+E)</td>
+</tr>
+<tr>
+<td align="center">适用范围</td>
+<td align="center">稀疏图</td>
+<td align="center">稠密图</td>
+<td align="center">有向图</td>
+<td align="center">无向图</td>
+</tr>
+<tr>
+<td align="center">缺点</td>
+<td align="center">点和边难删除，一找就需要遍历</td>
+<td align="center">删点需要删除整行整列</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h4 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h4><ul>
+<li>就像一个二维向量？</li>
+<li>先把每个点都摘出来是第一维。然后对于每个点，又把所有跟它有关的边都存一遍是第二维</li>
+</ul>
+<h4 id="逆邻接表（有向图）"><a href="#逆邻接表（有向图）" class="headerlink" title="逆邻接表（有向图）"></a>逆邻接表（有向图）</h4><ul>
+<li>针对于有向图，邻接表的第二维放的是由某个点指向的所有边（其实应该叫弧）</li>
+<li>逆邻接表，就是把第二维给倒一下，存所有指向某个点的边</li>
+<li>比如点v，就存a-&gt;v，b-&gt;v，c-&gt;v…</li>
+</ul>
+<h4 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h4><ul>
+<li>正常理解就行了</li>
+<li>第n行第m列等于1表示：n-&gt;m &#x3D; 1</li>
+<li>具体数字，那就看什么图了，可以表示权值，也可以表示是否有边</li>
+</ul>
+<h4 id="十字链表（有向图）"><a href="#十字链表（有向图）" class="headerlink" title="十字链表（有向图）"></a>十字链表（有向图）</h4><ul>
+<li>基于邻接表做改进，每个结构里多了两个指针，一个指向弧头相同的结构，另一个指向弧尾相同的结构</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//这玩意只是为了更加形象，不代表就这么简单</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span>&#123;</span><br><span class="line">    <span class="type">int</span> u;		<span class="comment">//弧尾</span></span><br><span class="line">    <span class="type">int</span> v;		<span class="comment">//弧头</span></span><br><span class="line">    <span class="type">int</span> value;	<span class="comment">//权值</span></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> *hlink;    <span class="comment">//指向下一个弧头相同的Node结构</span></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> *tlink;    <span class="comment">//指向下一个弧尾相同的Node结构</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="邻接多重表（无向图）"><a href="#邻接多重表（无向图）" class="headerlink" title="邻接多重表（无向图）"></a>邻接多重表（无向图）</h4><ul>
+<li>跟十字链表大同小异，无非是没有了指向（弧变成了边）</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span>&#123;</span><br><span class="line">    <span class="type">int</span> u;		<span class="comment">//边的一个结点</span></span><br><span class="line">    <span class="type">int</span> v;		<span class="comment">//边的另一个结点</span></span><br><span class="line">    <span class="type">int</span> value;	<span class="comment">//权值</span></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> *hlink;    <span class="comment">//指向下一个含u的Node结构</span></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> *tlink;    <span class="comment">//指向下一个含v的Node结构</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这俩表示方式也就相当于是：</p>
+<p>一条边两个点，分别把跟两个点有关的东西全部串在了一起</p>
 <h3 align="center">搜索</h3>
 
 <h4 id="深度优先搜索（DFS）"><a href="#深度优先搜索（DFS）" class="headerlink" title="深度优先搜索（DFS）"></a>深度优先搜索（DFS）</h4><ul>
