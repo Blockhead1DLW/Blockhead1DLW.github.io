@@ -382,7 +382,13 @@
 <li>日后必更新<!-- less --></li>
 </ul>
 <HR width="100%"  color="#FF7F00">
+
+
+
 <h1 align="center" ><font color="red">前置</font></h1>
+
+
+
 
 <ul>
 <li>一堆概念</li>
@@ -396,7 +402,11 @@
 </ul>
 <h1 align="center" ><font color="red">线性表</font></h1>
 
+
+
 <h4 id="普通"><a href="#普通" class="headerlink" title="普通"></a>普通</h4><h4 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h4><h4 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h4><h4 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h4><h1 align="center" ><font color="red">栈和队列</font></h1>
+
+
 
 <h4 id="栈（先进后出）"><a href="#栈（先进后出）" class="headerlink" title="栈（先进后出）"></a>栈（先进后出）</h4><ul>
 <li>不想说了，没完没了</li>
@@ -410,10 +420,13 @@
 <h1 align="center" ><font color="red">字符串</font></h1>
 
 
-<h3 align="center">KMP算法(字符串匹配，t向s匹配)</h3>
-- 书上的代码便于理解，但是不能跑，下标有问题
-- 这个难点就在一个求next数组吧。所谓next，就是每个字符的最长相同前后缀。至于代码上注意把握是在递归求解即可
 
+<h3 align="center">KMP算法(字符串匹配，t向s匹配)</h3>
+
+<ul>
+<li>书上的代码便于理解，但是不能跑，下标有问题</li>
+<li>这个难点就在一个求next数组吧。所谓next，就是每个字符的最长相同前后缀。至于代码上注意把握是在递归求解即可</li>
+</ul>
 <h4 id="结构体声明"><a href="#结构体声明" class="headerlink" title="结构体声明"></a>结构体声明</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAXSIZE 1024</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>&#123;</span><br><span class="line">    <span class="type">char</span> ch[MAXSIZE+<span class="number">1</span>];		<span class="comment">//字符串</span></span><br><span class="line">    <span class="type">int</span> length;				<span class="comment">//长度</span></span><br><span class="line">&#125;String;</span><br></pre></td></tr></table></figure>
 
 <h4 id="求解next数组"><a href="#求解next数组" class="headerlink" title="求解next数组"></a>求解next数组</h4><ul>
@@ -859,6 +872,11 @@
 <td align="center">o(nlog<sub>2</sub>n)</td>
 <td align="center">o(n)</td>
 </tr>
+<tr>
+<td align="center">计数(桶)排序</td>
+<td align="center">o(n)</td>
+<td align="center">o(max-min+1)</td>
+</tr>
 </tbody></table>
 <h3 align="center">选择排序</h3>
 
@@ -866,6 +884,12 @@
 <ul>
 <li>不断选择未排序序列中权值最大的数放到未排序序列末尾</li>
 </ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Select_sort</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> minx, minn;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="comment">//minn存放每一趟排序中的最小数，minx存放下标</span></span><br><span class="line">        minn = a[i];  minx = i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = i + <span class="number">1</span>; j &lt;= n; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(minn &gt; a[j])&#123;</span><br><span class="line">                minn = a[j];</span><br><span class="line">                minx = j;</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(minx != i) <span class="built_in">swap</span>(a[i],a[minx]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h3 align="center">堆排序</h3>
 
 <p>首先明确这玩意是要顺序存储的完全二叉树，然后利用根堆的根最大（小）的性质</p>
@@ -879,6 +903,10 @@
 <ul>
 <li>通过邻近两元素的不断比较交换实现排序，共n-1趟，期间权值较大的元素不断下浮，故名冒泡</li>
 </ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Bubble_sort</span><span class="params">(<span class="type">int</span> a[],<span class="type">int</span> n)</span>				    <span class="comment">//n个数，从1下标开始</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt; n; i++)&#123;			        <span class="comment">//n-1趟排序</span></span><br><span class="line">     <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n-i; j++)&#123;				<span class="comment">//第i趟排序后有n-i个未排序的数</span></span><br><span class="line">        <span class="keyword">if</span>(a[j] &gt; a[j+<span class="number">1</span>]) <span class="built_in">swap</span>(a[j], a[j+<span class="number">1</span>]);	<span class="comment">//冒泡交换</span></span><br><span class="line">     &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 align="center">快速排序</h3>
 
 <p>这个像所有排序的结合体，虽然说是由冒泡改进而来。同时消除多次逆序</p>
@@ -932,7 +960,16 @@
 
 
 <p>整体就是无限二分和选数</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//这里a和b数组没有声明，应该写到外面，a数组是录入数据的数组</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Merge_sort</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//递归到了只有一个元素，直接返回</span></span><br><span class="line">    <span class="keyword">if</span>(l == r) <span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">//找到中点，然后两边分别再归并（二分）</span></span><br><span class="line">    <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">Merge_sort</span>(<span class="number">1</span>, mid);</span><br><span class="line">    <span class="built_in">Merge_sort</span>(mid + <span class="number">1</span>, r);</span><br><span class="line">    <span class="comment">//合并序列（选数）</span></span><br><span class="line">    <span class="type">int</span> p = <span class="number">1</span>, q = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= r; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(q &gt; r || (p &lt;= mid &amp;&amp; a[p] &lt;= a[q])) b[i] = a[p++];</span><br><span class="line">        <span class="keyword">else</span> b[i] = a[q++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//还原到a数组里</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= r; i++) a[i] = b[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//这里a和b数组没有声明，应该写到外面，a数组是录入数据的数组</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Merge_sort</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//递归到了只有一个元素，直接返回</span></span><br><span class="line">    <span class="keyword">if</span>(l == r) <span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">//找到中点，然后两边分别再归并（二分）</span></span><br><span class="line">    <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">Merge_sort</span>(<span class="number">1</span>, mid);</span><br><span class="line">    <span class="built_in">Merge_sort</span>(mid + <span class="number">1</span>, r);</span><br><span class="line">    <span class="comment">//合并序列（选数）</span></span><br><span class="line">    <span class="type">int</span> p = <span class="number">1</span>, q = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= r; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(q &gt; r || (p &lt;= mid &amp;&amp; a[p] &lt;= a[q])) b[i] = a[p++];</span><br><span class="line">        <span class="keyword">else</span> b[i] = a[q++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//还原到a数组里</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= r; i++) a[i] = b[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 align="center">桶（计数）排序</h3>
+
+<ul>
+<li>适用于数据集中，数据范围较小且比较明确的情况</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 10000</span></span><br><span class="line"><span class="type">int</span> cnt[MAXN+<span class="number">1</span>],n,temp;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//输入</span></span><br><span class="line">    <span class="built_in">memset</span>(cnt,<span class="number">0</span>,<span class="built_in">sizeof</span>(cnt));</span><br><span class="line">    cin &gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        cin &gt;&gt;temp;</span><br><span class="line">        cnt[temp]++; <span class="comment">//计数</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//输出</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= MAXN; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(cnt[i])&#123; <span class="comment">//检测数字i有没有出现过</span></span><br><span class="line">            <span class="comment">//出现几次输出几个i</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= cnt[i]; j++) cout &lt;&lt;i &lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>ICPC</category>
       </categories>
