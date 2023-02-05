@@ -1,9 +1,12 @@
-http://example.com/2022/11/27/Algorithm/
 http://example.com/2022/12/01/Android1/
+http://example.com/2023/01/10/Compiler/
+http://example.com/2022/10/12/shell/
+http://example.com/2023/02/03/Pack/
+http://example.com/2023/01/13/yifhu/
+http://example.com/2022/11/27/Algorithm/
 http://example.com/2022/11/18/UNCTF2022/
 http://example.com/2022/11/10/Crypto/
 http://example.com/2022/11/21/Js_Ast/
-http://example.com/2022/10/12/shell/
 http://example.com/2022/11/21/Shell_Tea/
 http://example.com/2022/11/11/Solve3/
 http://example.com/2022/09/18/Tools/
@@ -32,3 +35,4 @@ http://example.com/categories/Android/
 http://example.com/categories/CTF%E2%80%94%E2%80%94%E5%B7%A5%E5%85%B7/
 http://example.com/categories/Welcome/
 http://example.com/categories/CTF%E9%A2%98%E8%A7%A3/
+http://example.com/categories/Compiler/
