@@ -28,7 +28,7 @@
 <meta property="og:description" content="闲来无事写buuctf-Misc的题目汇总">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-10T13:22:56.952Z">
-<meta property="article:modified_time" content="2022-11-21T05:55:51.389Z">
+<meta property="article:modified_time" content="2023-02-27T08:54:28.657Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-21 13:55:51" itemprop="dateModified" datetime="2022-11-21T13:55:51+08:00">2022-11-21</time>
+                <time title="修改时间：2023-02-27 16:54:28" itemprop="dateModified" datetime="2023-02-27T16:54:28+08:00">2023-02-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -315,6 +315,42 @@
 <li>Stegsolve发现最上方隐写</li>
 <li>输出为png二维码</li>
 </ul>
+<h2 id="zip伪加密"><a href="#zip伪加密" class="headerlink" title="zip伪加密"></a>zip伪加密</h2><ul>
+<li>修改deflags为0即可</li>
+</ul>
+<h2 id="rar"><a href="#rar" class="headerlink" title="rar"></a>rar</h2><ul>
+<li>直接爆破四位数字</li>
+</ul>
+<h2 id="被嗅探的流量"><a href="#被嗅探的流量" class="headerlink" title="被嗅探的流量"></a>被嗅探的流量</h2><ul>
+<li>wireshark打开搜索flag</li>
+</ul>
+<h2 id="qr"><a href="#qr" class="headerlink" title="qr"></a>qr</h2><ul>
+<li>qr直接识别</li>
+</ul>
+<h2 id="镜子中的世界"><a href="#镜子中的世界" class="headerlink" title="镜子中的世界"></a>镜子中的世界</h2><ul>
+<li>LSB，RGB三个0</li>
+</ul>
+<h2 id="ningen"><a href="#ningen" class="headerlink" title="ningen"></a>ningen</h2><ul>
+<li>提示加密，是个图片</li>
+<li>binwalk分离zip，然后爆破zip密码</li>
+</ul>
+<h2 id="小明的保险箱"><a href="#小明的保险箱" class="headerlink" title="小明的保险箱"></a>小明的保险箱</h2><ul>
+<li>同上</li>
+</ul>
+<h2 id="爱因斯坦"><a href="#爱因斯坦" class="headerlink" title="爱因斯坦"></a>爱因斯坦</h2><ul>
+<li>同上，但是密码放在了图片属性里</li>
+</ul>
+<h2 id="easycap"><a href="#easycap" class="headerlink" title="easycap"></a>easycap</h2><ul>
+<li>wireshark搜索追踪</li>
+</ul>
+<h2 id="隐藏的钥匙"><a href="#隐藏的钥匙" class="headerlink" title="隐藏的钥匙"></a>隐藏的钥匙</h2><ul>
+<li>010搜索flag</li>
+<li>base64</li>
+<li>翻找没有意义，永远相信ctrlf</li>
+</ul>
+<h2 id="另外一个世界"><a href="#另外一个世界" class="headerlink" title="另外一个世界"></a>另外一个世界</h2><ul>
+<li>010打开发现01串，转为acsii</li>
+</ul>
     </div>
 
     
@@ -412,7 +448,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%91%E4%B8%89%E8%83%96"><span class="nav-text">金三胖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E7%A0%81"><span class="nav-text">二维码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%A0%E7%AB%9F%E7%84%B6%E8%B5%B6%E6%88%91%E8%B5%B0"><span class="nav-text">你竟然赶我走</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%8C%E9%95%87%E5%B3%B0%E4%BC%9A%E7%A7%8D%E5%9B%BE"><span class="nav-text">乌镇峰会种图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E7%99%BD"><span class="nav-text">大白</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N%E7%A7%8D%E6%96%B9%E6%B3%95%E8%A7%A3%E5%86%B3"><span class="nav-text">N种方法解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%A0%B4%E8%A7%A3"><span class="nav-text">基础破解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wireshark"><span class="nav-text">wireshark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E7%A7%98%E5%AF%86"><span class="nav-text">文件中的秘密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSB"><span class="nav-text">LSB</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%91%E4%B8%89%E8%83%96"><span class="nav-text">金三胖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E7%A0%81"><span class="nav-text">二维码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%A0%E7%AB%9F%E7%84%B6%E8%B5%B6%E6%88%91%E8%B5%B0"><span class="nav-text">你竟然赶我走</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%8C%E9%95%87%E5%B3%B0%E4%BC%9A%E7%A7%8D%E5%9B%BE"><span class="nav-text">乌镇峰会种图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E7%99%BD"><span class="nav-text">大白</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N%E7%A7%8D%E6%96%B9%E6%B3%95%E8%A7%A3%E5%86%B3"><span class="nav-text">N种方法解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%A0%B4%E8%A7%A3"><span class="nav-text">基础破解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wireshark"><span class="nav-text">wireshark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E7%A7%98%E5%AF%86"><span class="nav-text">文件中的秘密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSB"><span class="nav-text">LSB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zip%E4%BC%AA%E5%8A%A0%E5%AF%86"><span class="nav-text">zip伪加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rar"><span class="nav-text">rar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A2%AB%E5%97%85%E6%8E%A2%E7%9A%84%E6%B5%81%E9%87%8F"><span class="nav-text">被嗅探的流量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#qr"><span class="nav-text">qr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%AD%90%E4%B8%AD%E7%9A%84%E4%B8%96%E7%95%8C"><span class="nav-text">镜子中的世界</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ningen"><span class="nav-text">ningen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E6%98%8E%E7%9A%84%E4%BF%9D%E9%99%A9%E7%AE%B1"><span class="nav-text">小明的保险箱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%B1%E5%9B%A0%E6%96%AF%E5%9D%A6"><span class="nav-text">爱因斯坦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#easycap"><span class="nav-text">easycap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E7%9A%84%E9%92%A5%E5%8C%99"><span class="nav-text">隐藏的钥匙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%A6%E5%A4%96%E4%B8%80%E4%B8%AA%E4%B8%96%E7%95%8C"><span class="nav-text">另外一个世界</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -428,7 +464,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

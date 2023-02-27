@@ -269,6 +269,69 @@
       </categories>
   </entry>
   <entry>
+    <title>安卓开发问题集合</title>
+    <url>/2023/02/20/Create-Android/</url>
+    <content><![CDATA[<ul>
+<li><p>安卓开发</p>
+<!-- less --></li>
+</ul>
+<HR width="100%"  color="#FF7F00">
+
+
+
+<h3 id="隐藏标题栏失效"><a href="#隐藏标题栏失效" class="headerlink" title="隐藏标题栏失效"></a>隐藏标题栏失效</h3><ul>
+<li>继承的是 Activity</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">Java:</span><br><span class="line">requestWindowFeature(Window.FEATURE_NO_TITLE);</span><br><span class="line">//写在setContentView()方法的前面</span><br><span class="line"></span><br><span class="line">AndroidManifest.xml:</span><br><span class="line"><span class="tag">&lt;<span class="name">application</span> <span class="attr">android:theme</span>=<span class="string">&quot;@android:style/Theme.NoTitleBar&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>继承的是 AppCompatActivity</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">Java:</span><br><span class="line">getSupportActionBar().hide();</span><br><span class="line">//写在setContentView()方法的后面</span><br><span class="line"></span><br><span class="line">AndroidManifest.xml:</span><br><span class="line"><span class="tag">&lt;<span class="name">application</span> <span class="attr">android:theme</span>=<span class="string">&quot;@style/Theme.AppCompat.NoActionBar&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>攻防世界安卓题目分析</title>
+    <url>/2023/02/16/GFSJ-Android/</url>
+    <content><![CDATA[<ul>
+<li>把攻防世界的安卓题试水一遍玩玩<!-- less --></li>
+</ul>
+<HR width="100%"  color="#FF7F00">
+
+
+
+<h3 id="app1"><a href="#app1" class="headerlink" title="app1"></a>app1</h3><ul>
+<li>jad直接反编译，MainActivity发现版本号与版本名的异或</li>
+<li><code>水题</code>，<code>简单使用工具</code></li>
+</ul>
+<h3 id="easy-apk"><a href="#easy-apk" class="headerlink" title="easy-apk"></a>easy-apk</h3><ul>
+<li>变表base64</li>
+<li><code>水题</code></li>
+</ul>
+<h3 id="app2"><a href="#app2" class="headerlink" title="app2"></a>app2</h3><ul>
+<li>逻辑分析SecondActivity，从而找到加密so文件，确定AES加密，解密</li>
+<li><code>so分析</code>，<code>AES</code></li>
+</ul>
+<h3 id="easy-so"><a href="#easy-so" class="headerlink" title="easy-so"></a>easy-so</h3><ul>
+<li>同样从java代码找到so文件关键代码分析，两个简单换位加密</li>
+<li><code>so分析</code>，<code>简单加密</code></li>
+</ul>
+<h3 id="easy-jni"><a href="#easy-jni" class="headerlink" title="easy-jni"></a>easy-jni</h3><ul>
+<li>毫无新意，同样so分析，变表base64加换位</li>
+</ul>
+<h3 id="基础android"><a href="#基础android" class="headerlink" title="基础android"></a>基础android</h3><ul>
+<li>好题，java层简单加密，以及对广播的一个考察</li>
+<li><code>简单逆向</code>，<code>Broadcast</code>，<code>页面跳转</code>，<code>文件流</code></li>
+</ul>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+  </entry>
+  <entry>
     <title>打包</title>
     <url>/2023/02/03/Pack/</url>
     <content><![CDATA[<ul>
@@ -1924,6 +1987,42 @@
 <h2 id="LSB"><a href="#LSB" class="headerlink" title="LSB"></a>LSB</h2><ul>
 <li>Stegsolve发现最上方隐写</li>
 <li>输出为png二维码</li>
+</ul>
+<h2 id="zip伪加密"><a href="#zip伪加密" class="headerlink" title="zip伪加密"></a>zip伪加密</h2><ul>
+<li>修改deflags为0即可</li>
+</ul>
+<h2 id="rar"><a href="#rar" class="headerlink" title="rar"></a>rar</h2><ul>
+<li>直接爆破四位数字</li>
+</ul>
+<h2 id="被嗅探的流量"><a href="#被嗅探的流量" class="headerlink" title="被嗅探的流量"></a>被嗅探的流量</h2><ul>
+<li>wireshark打开搜索flag</li>
+</ul>
+<h2 id="qr"><a href="#qr" class="headerlink" title="qr"></a>qr</h2><ul>
+<li>qr直接识别</li>
+</ul>
+<h2 id="镜子中的世界"><a href="#镜子中的世界" class="headerlink" title="镜子中的世界"></a>镜子中的世界</h2><ul>
+<li>LSB，RGB三个0</li>
+</ul>
+<h2 id="ningen"><a href="#ningen" class="headerlink" title="ningen"></a>ningen</h2><ul>
+<li>提示加密，是个图片</li>
+<li>binwalk分离zip，然后爆破zip密码</li>
+</ul>
+<h2 id="小明的保险箱"><a href="#小明的保险箱" class="headerlink" title="小明的保险箱"></a>小明的保险箱</h2><ul>
+<li>同上</li>
+</ul>
+<h2 id="爱因斯坦"><a href="#爱因斯坦" class="headerlink" title="爱因斯坦"></a>爱因斯坦</h2><ul>
+<li>同上，但是密码放在了图片属性里</li>
+</ul>
+<h2 id="easycap"><a href="#easycap" class="headerlink" title="easycap"></a>easycap</h2><ul>
+<li>wireshark搜索追踪</li>
+</ul>
+<h2 id="隐藏的钥匙"><a href="#隐藏的钥匙" class="headerlink" title="隐藏的钥匙"></a>隐藏的钥匙</h2><ul>
+<li>010搜索flag</li>
+<li>base64</li>
+<li>翻找没有意义，永远相信ctrlf</li>
+</ul>
+<h2 id="另外一个世界"><a href="#另外一个世界" class="headerlink" title="另外一个世界"></a>另外一个世界</h2><ul>
+<li>010打开发现01串，转为acsii</li>
 </ul>]]></content>
       <categories>
         <category>CTF题解</category>
