@@ -28,7 +28,7 @@
 <meta property="og:description" content="安卓结构目录体系">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-01T13:12:57.999Z">
-<meta property="article:modified_time" content="2023-02-05T02:35:23.481Z">
+<meta property="article:modified_time" content="2023-03-10T03:30:52.094Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-05 10:35:23" itemprop="dateModified" datetime="2023-02-05T10:35:23+08:00">2023-02-05</time>
+                <time title="修改时间：2023-03-10 11:30:52" itemprop="dateModified" datetime="2023-03-10T11:30:52+08:00">2023-03-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -351,7 +351,21 @@
 <li>adb pull                         下载</li>
 <li>adb connect                  ip连接设备</li>
 <li>adb kill-server               断开连接</li>
-<li>dumpsys activity top    查看顶层页面信息</li>
+<li>adb shell dumpsys activity top                        查看顶层页面信息</li>
+<li>adb shell dbinfo                                                 查看app使用的数据库信息</li>
+<li>adb shell screencap -p [path]                          截屏</li>
+<li>adb shell input text [text]                                 文本框输入</li>
+<li>adb shell pm install &#x2F; pm uninstall &#x2F; pm list packages</li>
+<li>adb shell am start-activity -D -N [包名]          debug</li>
+</ul>
+<h2 id="termux使用"><a href="#termux使用" class="headerlink" title="termux使用"></a>termux使用</h2><ul>
+<li>下载地址：<a target="_blank" rel="noopener" href="https://f-droid.org/packages/com.termux/">Termux | F-Droid - Free and Open Source Android App Repository</a></li>
+</ul>
+<h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><ul>
+<li>termux-setup-storage 获取存储权限</li>
+<li>pkg install &lt;软件名&gt;     安装软件</li>
+<li>pkg upgrade                 更新软件</li>
+<li>termux-change-repo   切换源</li>
 </ul>
 <h2 id="apktool反编译命令"><a href="#apktool反编译命令" class="headerlink" title="apktool反编译命令"></a>apktool反编译命令</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apktool目录进入命令行</span><br><span class="line">apktool.bat d 反编译文件</span><br></pre></td></tr></table></figure>
 
@@ -375,34 +389,6 @@
 </ul>
 </li>
 </ol>
-<h2 id="frida（hook框架）安装配置及基本使用"><a href="#frida（hook框架）安装配置及基本使用" class="headerlink" title="frida（hook框架）安装配置及基本使用"></a>frida（hook框架）安装配置及基本使用</h2><h4 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h4><ul>
-<li>pip install frida &gt; 核心</li>
-<li>pip install frida-tools &gt; 工具包</li>
-<li>frida –version &gt; 版本检测</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/frida/frida/releases">Releases · frida&#x2F;frida (github.com)</a>安装对应版本的server，如server-android-x86</li>
-<li>将刚才下载的server文件上传到安卓手机中</li>
-</ul>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ul>
-<li><p>在手机中给server文件可执行权限并运行</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x 文件</span><br><span class="line">./文件</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在cmd中执行命令</p>
-<ul>
-<li>frida-ps -Ua              列出当前正在运行的程序</li>
-<li>frida -U -f 包名          hook对应程序</li>
-</ul>
-</li>
-</ul>
-<h3 id="Objection配置使用"><a href="#Objection配置使用" class="headerlink" title="Objection配置使用"></a>Objection配置使用</h3><ul>
-<li>基于frida框架的一个自动化脚本集成</li>
-<li>安装：pip3 install objection</li>
-</ul>
-<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><ul>
-<li>Objection -g 包名&#x2F;PID explore                           注入app进程</li>
-<li>android root disable                                           绕过root检测</li>
-<li>android proxy set <sp address> <port>    设置代理</li>
-<li>android sslpinning disable                                绕过证书固定</li>
-</ul>
 <h3 id="root检测绕过"><a href="#root检测绕过" class="headerlink" title="root检测绕过"></a>root检测绕过</h3><ol>
 <li><p>静态反编译，找到checkroot部分，对返回值进行修改，如eqz–&gt;nez，然后进行编译重新签名生成apk</p>
 </li>
@@ -521,7 +507,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%8D%93%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-text">安卓系统架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apk%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text">apk目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="nav-text">Android四大组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B"><span class="nav-text">Android打包流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B"><span class="nav-text">Android安装流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#adb%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">adb基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apktool%E5%8F%8D%E7%BC%96%E8%AF%91%E5%91%BD%E4%BB%A4"><span class="nav-text">apktool反编译命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dex2-jdgui%E5%8F%8D%E7%BC%96%E8%AF%91"><span class="nav-text">dex2+jdgui反编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#frida%EF%BC%88hook%E6%A1%86%E6%9E%B6%EF%BC%89%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">frida（hook框架）安装配置及基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="nav-text">安装配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Objection%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8"><span class="nav-text">Objection配置使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-1"><span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#root%E6%A3%80%E6%B5%8B%E7%BB%95%E8%BF%87"><span class="nav-text">root检测绕过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%BE%E5%90%8D%E7%BB%95%E8%BF%87"><span class="nav-text">签名绕过</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%8D%93%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-text">安卓系统架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apk%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text">apk目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="nav-text">Android四大组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B"><span class="nav-text">Android打包流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B"><span class="nav-text">Android安装流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#adb%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">adb基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#termux%E4%BD%BF%E7%94%A8"><span class="nav-text">termux使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-text">命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apktool%E5%8F%8D%E7%BC%96%E8%AF%91%E5%91%BD%E4%BB%A4"><span class="nav-text">apktool反编译命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dex2-jdgui%E5%8F%8D%E7%BC%96%E8%AF%91"><span class="nav-text">dex2+jdgui反编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#root%E6%A3%80%E6%B5%8B%E7%BB%95%E8%BF%87"><span class="nav-text">root检测绕过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%BE%E5%90%8D%E7%BB%95%E8%BF%87"><span class="nav-text">签名绕过</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -537,14 +523,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

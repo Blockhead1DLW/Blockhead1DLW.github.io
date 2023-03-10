@@ -269,6 +269,228 @@
       </categories>
   </entry>
   <entry>
+    <title>攻防世界逆向题目分析</title>
+    <url>/2023/03/10/GFSJ-Re/</url>
+    <content><![CDATA[<h3 id="secret-galaxy-300"><a href="#secret-galaxy-300" class="headerlink" title="secret-galaxy-300"></a>secret-galaxy-300</h3><ul>
+<li>在初始化函数中隐藏关键代码</li>
+<li>找到关键代码动调就行</li>
+</ul>
+<h3 id="rev300"><a href="#rev300" class="headerlink" title="rev300"></a>rev300</h3><ul>
+<li>水题，恢复switch递归（模拟递归求解序号应该最快）得到a1，然后异或</li>
+</ul>
+<h3 id="hackme"><a href="#hackme" class="headerlink" title="hackme"></a>hackme</h3><ul>
+<li><p>乱序循环-&gt;异或加密</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">100</span>] = &#123;<span class="number">0x5f</span>,<span class="number">0xf2</span>,<span class="number">0x5e</span>,<span class="number">0x8b</span>,<span class="number">0x4e</span>,<span class="number">0xe</span>,<span class="number">0xa3</span>,<span class="number">0xaa</span>,<span class="number">0xc7</span>,<span class="number">0x93</span>,<span class="number">0x81</span>,<span class="number">0x3d</span>,<span class="number">0x5f</span>,<span class="number">0x74</span>,<span class="number">0xa3</span>,<span class="number">0x9</span>,<span class="number">0x91</span>,<span class="number">0x2b</span>,<span class="number">0x49</span>,<span class="number">0x28</span>,<span class="number">0x93</span>,<span class="number">0x67</span>&#125;;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">22</span>; i++)&#123;</span><br><span class="line">		<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>  j = <span class="number">0</span>, v24 = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(j &lt; i)&#123;</span><br><span class="line">			v24 = <span class="number">1828812941</span> * v24 + <span class="number">12345</span>;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt;(<span class="type">char</span>)(v24^a[i<span class="number">-1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="re4-unvm-me"><a href="#re4-unvm-me" class="headerlink" title="re4-unvm-me"></a>re4-unvm-me</h3><ul>
+<li>纯水题，pyc反编md5直接解密</li>
+</ul>
+<h3 id="tt3441810"><a href="#tt3441810" class="headerlink" title="tt3441810"></a>tt3441810</h3><ul>
+<li>抽象十六进制数据文件，过滤得到flag</li>
+</ul>
+<h3 id="BABYRE"><a href="#BABYRE" class="headerlink" title="BABYRE"></a>BABYRE</h3><ul>
+<li><p>这个题我觉得不错</p>
+</li>
+<li><p><code>if ( v5 == 14 &amp;&amp; (*(unsigned int (__fastcall **)(char *))judge)(s) )</code></p>
+</li>
+<li><p>这里的judge明显是个函数，但是看反编又是个数组，说明是个花指令，通过前面的执行修改机器码实现函数</p>
+</li>
+<li><p>所以想PatchByte、CP恢复函数，再写脚本如下</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	string  s = <span class="string">&quot;fmcd&quot;</span>;</span><br><span class="line"> 	<span class="type">int</span> v2 = <span class="number">127</span>;</span><br><span class="line">  	string s1 = <span class="string">&quot;k7d;V`;np&quot;</span>;</span><br><span class="line">  	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">3</span>; i++)&#123;</span><br><span class="line">  		cout &lt;&lt;(<span class="type">char</span>)(s[i] ^ i);</span><br><span class="line">  	&#125;</span><br><span class="line">  	cout &lt;&lt;(<span class="type">char</span>)(v2^<span class="number">4</span>);</span><br><span class="line">  	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">5</span>; i &lt;= <span class="number">13</span>; i++)&#123;</span><br><span class="line">  		cout &lt;&lt;(<span class="type">char</span>)(s1[i<span class="number">-5</span>] ^ i);	</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="crackme"><a href="#crackme" class="headerlink" title="crackme"></a>crackme</h3><ul>
+<li>一个nspack壳，利用pushad，popad手动脱掉就行，然后就是个简单异或</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	string s = <span class="string">&quot;this_is_not_flag&quot;</span>;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">100</span>] = &#123;<span class="number">0x12</span>,<span class="number">0x04</span>,<span class="number">0x08</span>,<span class="number">0x14</span>,<span class="number">0x24</span>,<span class="number">0x5c</span>,<span class="number">0x4a</span>,<span class="number">0x3d</span>,<span class="number">0x56</span>,<span class="number">0x0a</span>,<span class="number">0x10</span>,<span class="number">0x67</span>,<span class="number">0x00</span>,<span class="number">0x41</span>,<span class="number">0x00</span>,<span class="number">0x01</span>,<span class="number">0x46</span>,<span class="number">0x5a</span>,<span class="number">0x44</span>,<span class="number">0x42</span>,<span class="number">0x6e</span>,<span class="number">0x0c</span>,<span class="number">0x44</span>,<span class="number">0x72</span>,<span class="number">0x0c</span>,<span class="number">0x0d</span>,<span class="number">0x40</span>,<span class="number">0x3e</span>,<span class="number">0x4b</span>,<span class="number">0x5f</span>,<span class="number">0x02</span>,<span class="number">0x01</span>,<span class="number">0x4c</span>,<span class="number">0x5e</span>,<span class="number">0x5b</span>,<span class="number">0x17</span>,<span class="number">0x6e</span>,<span class="number">0x0c</span>,<span class="number">0x16</span>,<span class="number">0x68</span>,<span class="number">0x5b</span>,<span class="number">0x12</span>,<span class="number">0x00</span>&#125;;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">42</span>; i++)&#123;</span><br><span class="line">		cout &lt;&lt;(<span class="type">char</span>)(s[i%<span class="number">16</span>]^a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h2><ul>
+<li>.net题目，dnspy打开，通过调试到入口点找到关键代码</li>
+</ul>
+<h3 id="EASYHOOK"><a href="#EASYHOOK" class="headerlink" title="EASYHOOK"></a>EASYHOOK</h3><ul>
+<li>hook函数修改值跳转到真正加密函数</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> lis[<span class="number">100</span>] = &#123;<span class="number">0x61</span>,<span class="number">0x6a</span>,<span class="number">0x79</span>,<span class="number">0x67</span>,<span class="number">0x6b</span>,<span class="number">0x46</span>,<span class="number">0x6d</span>,<span class="number">0x2e</span>,<span class="number">0x7f</span>,<span class="number">0x5f</span>,<span class="number">0x7e</span>,<span class="number">0x2d</span>,<span class="number">0x53</span>,<span class="number">0x56</span>,<span class="number">0x7b</span>,<span class="number">0x38</span>,<span class="number">0x6d</span>,<span class="number">0x4c</span>,<span class="number">0x6e</span>,<span class="number">0x00</span>&#125;;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">18</span>; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(i == <span class="number">18</span>)&#123;</span><br><span class="line">			lis[i] ^= <span class="number">0x13</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(i % <span class="number">2</span>)&#123;</span><br><span class="line">				lis[i] ^= i;</span><br><span class="line">				lis[i] += i;</span><br><span class="line">				</span><br><span class="line">			&#125;<span class="keyword">else</span></span><br><span class="line">				lis[i] ^= i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">18</span>; i &gt;= <span class="number">2</span>; i-=<span class="number">2</span>)&#123;</span><br><span class="line">		lis[i] = lis[i<span class="number">-2</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">18</span>; i++)&#123;</span><br><span class="line">		cout &lt;&lt;(<span class="type">char</span>)lis[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ReverseMe-120"><a href="#ReverseMe-120" class="headerlink" title="ReverseMe-120"></a>ReverseMe-120</h3><ul>
+<li>输入–&gt;base64解码–&gt;异或</li>
+</ul>
+<h2 id="key"><a href="#key" class="headerlink" title="key"></a>key</h2><ul>
+<li>这题有点别调，字符串检索找到关键代码，然后根据加密逆写就行，建议7.0版本以下ida</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	string s = <span class="string">&quot;themidathemidathemida&quot;</span>;</span><br><span class="line">	string t = <span class="string">&quot;&gt;----++++....&lt;&lt;&lt;&lt;.&quot;</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; s[i]; i++)&#123;</span><br><span class="line">		s[i] = (s[i]^t[i]) + <span class="number">22</span> + <span class="number">9</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; s[i]; i++)&#123;</span><br><span class="line">		cout &lt;&lt;(<span class="type">char</span>)s[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="easyre-153"><a href="#easyre-153" class="headerlink" title="easyre-153"></a>easyre-153</h2><ul>
+<li><p>pipe、fork双进程</p>
+</li>
+<li><p>利用必然跳转让ida反汇编错误</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov     [ebp+var_D], al</span><br><span class="line">mov     [ebp+var_C], 0</span><br><span class="line">cmp     [ebp+var_C], 1</span><br><span class="line">jnz     short loc_80486D3</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> v2[<span class="number">100</span>];</span><br><span class="line">	string a1 = <span class="string">&quot;69800876143568214356928753&quot;</span>;</span><br><span class="line"></span><br><span class="line">	  v2[<span class="number">0</span>] = <span class="number">2</span> * a1[<span class="number">1</span>];</span><br><span class="line">	  v2[<span class="number">1</span>] = a1[<span class="number">4</span>] + a1[<span class="number">5</span>];</span><br><span class="line">	  v2[<span class="number">2</span>] = a1[<span class="number">8</span>] + a1[<span class="number">9</span>];</span><br><span class="line">	  v2[<span class="number">3</span>] = <span class="number">2</span> * a1[<span class="number">12</span>];</span><br><span class="line">	  v2[<span class="number">4</span>] = a1[<span class="number">18</span>] + a1[<span class="number">17</span>];</span><br><span class="line">	  v2[<span class="number">5</span>] = a1[<span class="number">10</span>] + a1[<span class="number">21</span>];</span><br><span class="line">	  v2[<span class="number">6</span>] = a1[<span class="number">9</span>] + a1[<span class="number">25</span>];</span><br><span class="line">	 <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; v2[i]; i++)&#123;</span><br><span class="line">	 	std::cout &lt;&lt;(<span class="type">char</span>)v2[i];</span><br><span class="line">	 &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Newbie-calculations"><a href="#Newbie-calculations" class="headerlink" title="Newbie_calculations"></a>Newbie_calculations</h3><ul>
+<li>三个函数组成的一长串，就是简单的加减乘混淆</li>
+</ul>
+]]></content>
+      <categories>
+        <category>re</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>安卓逆向基础</title>
+    <url>/2023/03/08/Frida/</url>
+    <content><![CDATA[<ul>
+<li><p>frida</p>
+<!-- less --></li>
+</ul>
+<HR width="100%"  color="#FF7F00">
+
+
+<h1 align="center"><font color="red">Smail</font></h1>
+
+<h3 id="寄存器命名"><a href="#寄存器命名" class="headerlink" title="寄存器命名"></a>寄存器命名</h3><ul>
+<li>均为32位，64位用2个寄存器</li>
+<li>p：p0、p1          函数参数</li>
+<li>v：v0、v1           函数内部变量</li>
+</ul>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><table>
+<thead>
+<tr>
+<th align="center">数据类型——Smail</th>
+<th align="center">数据类型——Java</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">V</td>
+<td align="center">void</td>
+</tr>
+<tr>
+<td align="center">Z</td>
+<td align="center">boolean</td>
+</tr>
+<tr>
+<td align="center">B</td>
+<td align="center">byte</td>
+</tr>
+<tr>
+<td align="center">S</td>
+<td align="center">string</td>
+</tr>
+<tr>
+<td align="center">C</td>
+<td align="center">char</td>
+</tr>
+<tr>
+<td align="center">I</td>
+<td align="center">int</td>
+</tr>
+<tr>
+<td align="center">J</td>
+<td align="center">long</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">float</td>
+</tr>
+<tr>
+<td align="center">D</td>
+<td align="center">double</td>
+</tr>
+</tbody></table>
+<ul>
+<li>数组：[+数据类型      eg：[I   &lt;&#x3D;&#x3D;&gt; int[]</li>
+</ul>
+<h3 id="文件头"><a href="#文件头" class="headerlink" title="文件头"></a>文件头</h3><ul>
+<li><p>.class&lt;访问权限&gt;&lt;关键修饰字&gt;&lt;类名&gt;</p>
+</li>
+<li><p>.super&lt;父类名&gt;</p>
+</li>
+<li><p>.source&lt;源文件名&gt;</p>
+</li>
+</ul>
+<h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.method&lt;访问权限&gt;&lt;关键修饰字&gt;&lt;方法原型（返回值类型）&gt;</span><br><span class="line">&lt;.locals/.registers&gt;		    		# 非参数变量数目</span><br><span class="line">[.param]								# 声明方法中的参数名</span><br><span class="line">[.line]									# 源码中的行号</span><br><span class="line">.end method</span><br></pre></td></tr></table></figure>
+
+<h3 id="常量操作指令"><a href="#常量操作指令" class="headerlink" title="常量操作指令"></a>常量操作指令</h3><ul>
+<li>const</li>
+<li>const-string v1,”re”         将string类型常量re放进寄存器v1</li>
+</ul>
+<h3 id="方法调用指令"><a href="#方法调用指令" class="headerlink" title="方法调用指令"></a>方法调用指令</h3><ul>
+<li>invoke-kind {vA、vB}, method@DDDD</li>
+<li>invoke-(virtual、super、static | 正常函数、父类函数、静态函数) { 传入参数 }，方法名</li>
+</ul>
+<h3 id="移位指令"><a href="#移位指令" class="headerlink" title="移位指令"></a>移位指令</h3><ul>
+<li>move</li>
+<li>move-result-object v0      将上一步的函数返回值存进v0</li>
+</ul>
+<h3 id="分支判断指令"><a href="#分支判断指令" class="headerlink" title="分支判断指令"></a>分支判断指令</h3><ul>
+<li><p>if-eq：如果vA等于vB则跳转。Java语法表示为“if(vA &#x3D;&#x3D; vB)”</p>
+</li>
+<li><p>if-ne：如果vA不等于vB则跳转。Java语法表示为“if(vA !&#x3D; vB)”</p>
+</li>
+<li><p>if-lt：如果vA小于vB则跳转。Java语法表示为“if(vA &lt; vB)”</p>
+</li>
+<li><p>if-ge：如果vA大于等于vB则跳转。Java语法表示为“if(vA &gt;&#x3D; vB)”</p>
+</li>
+<li><p>if-gt：如果vA大于vB则跳转。Java语法表示为“if(vA &gt; vB)”</p>
+</li>
+<li><p>if-le：如果vA小于等于vB则跳转。Java语法表示为“if(vA &lt;&#x3D; vB)”</p>
+</li>
+<li><p>if-testz vAA, +BBBB：条件跳转指令。拿vAA寄存器与0比较，如果比较结果满足或值为0时就跳转到BBBB指定的偏移处。偏移量BBBB不能为0。 if-testz类型的指令有以下几条：</p>
+</li>
+<li><p>if-eqz：如果vAA为0则跳转。Java语法表示为“if(vAA &#x3D;&#x3D; 0)”</p>
+</li>
+<li><p>if-nez：如果vAA不为0则跳转。Java语法表示为“if(vAA !&#x3D; 0)”</p>
+</li>
+<li><p>if-ltz：如果vAA小于0则跳转。Java语法表示为“if(vAA &lt; 0)”</p>
+</li>
+<li><p>if-gez：如果vAA大于等于0则跳转。Java语法表示为“if(vAA &gt;&#x3D; 0)”</p>
+</li>
+<li><p>if-gtz：如果vAA大于0则跳转。Java语法表示为“if(vAA &gt; 0)”</p>
+</li>
+<li><p>if-lez：如果vAA小于等于0则跳转。Java语法表示为“if(vAA &lt;&#x3D; 0)”</p>
+</li>
+</ul>
+<h1 align="center"><font color="red">Frida</font></h1>
+
+<h2 id="frida（hook框架）安装配置及基本使用"><a href="#frida（hook框架）安装配置及基本使用" class="headerlink" title="frida（hook框架）安装配置及基本使用"></a>frida（hook框架）安装配置及基本使用</h2><h4 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h4><ul>
+<li>pip install frida &gt; 核心</li>
+<li>pip install frida-tools &gt; 工具包</li>
+<li>frida –version &gt; 版本检测</li>
+<li><a href="https://github.com/frida/frida/releases">Releases · frida&#x2F;frida (github.com)</a>安装对应版本的server，如server-android-x86</li>
+<li>将刚才下载的server文件上传到安卓手机中</li>
+</ul>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ul>
+<li><p>在手机中给server文件可执行权限并运行</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">chmod +x 文件</span><br><span class="line">./文件</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在cmd中执行命令</p>
+<ul>
+<li>frida-ps -Ua              列出当前正在运行的程序</li>
+<li>frida -U -f 包名          hook对应程序</li>
+</ul>
+</li>
+</ul>
+<h3 id="Objection配置使用"><a href="#Objection配置使用" class="headerlink" title="Objection配置使用"></a>Objection配置使用</h3><ul>
+<li>基于frida框架的一个自动化脚本集成</li>
+<li>安装：pip3 install objection</li>
+</ul>
+<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><ul>
+<li>Objection -g 包名&#x2F;PID explore                           注入app进程</li>
+<li>android root disable                                           绕过root检测</li>
+<li>android proxy set <sp address> <port>    设置代理</li>
+<li>android sslpinning disable                                绕过证书固定</li>
+</ul>
+<h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">var</span> <span class="title class_">MainActivity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;com.example.retest.MainActivity&#x27;</span>)</span><br><span class="line">        <span class="comment">//overload重载</span></span><br><span class="line">        <span class="title class_">MainActivity</span>.<span class="property">fun</span>.<span class="title function_">overload</span>(<span class="string">&#x27;int&#x27;</span>,<span class="string">&#x27;int&#x27;</span>).<span class="property">implementation</span> = <span class="keyword">function</span>(<span class="params">x, y</span>)&#123;</span><br><span class="line">            </span><br><span class="line">            ...</span><br><span class="line">        </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">setImmediate</span>(main)</span><br></pre></td></tr></table></figure>
+
+<h2 id="类函数和实例方法主动调用"><a href="#类函数和实例方法主动调用" class="headerlink" title="类函数和实例方法主动调用"></a>类函数和实例方法主动调用</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">var</span> <span class="title class_">MainActivity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;com.example.retest.MainActivity&#x27;</span>)</span><br><span class="line">        <span class="comment">//静态函数，直接调用</span></span><br><span class="line">        <span class="title class_">MainActivity</span>.<span class="title function_">staticsecret</span>()</span><br><span class="line">        </span><br><span class="line">		<span class="comment">//动态函数主动调用</span></span><br><span class="line">        <span class="title class_">Java</span>.<span class="title function_">choose</span>(<span class="string">&#x27;com.example.retest.MainActicity&#x27;</span>,&#123;</span><br><span class="line">            <span class="comment">//实例化对象</span></span><br><span class="line">            <span class="attr">onMatch</span>:<span class="keyword">function</span>(<span class="params">instance</span>)&#123;</span><br><span class="line">                <span class="comment">//调用</span></span><br><span class="line">                instance.<span class="title function_">secret</span>()</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">onComplete</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;search Complete&#x27;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">setImmediate</span>(main)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+  </entry>
+  <entry>
     <title>安卓开发问题集合</title>
     <url>/2023/02/20/Create-Android/</url>
     <content><![CDATA[<ul>
@@ -645,7 +867,21 @@
 <li>adb pull                         下载</li>
 <li>adb connect                  ip连接设备</li>
 <li>adb kill-server               断开连接</li>
-<li>dumpsys activity top    查看顶层页面信息</li>
+<li>adb shell dumpsys activity top                        查看顶层页面信息</li>
+<li>adb shell dbinfo                                                 查看app使用的数据库信息</li>
+<li>adb shell screencap -p [path]                          截屏</li>
+<li>adb shell input text [text]                                 文本框输入</li>
+<li>adb shell pm install &#x2F; pm uninstall &#x2F; pm list packages</li>
+<li>adb shell am start-activity -D -N [包名]          debug</li>
+</ul>
+<h2 id="termux使用"><a href="#termux使用" class="headerlink" title="termux使用"></a>termux使用</h2><ul>
+<li>下载地址：<a href="https://f-droid.org/packages/com.termux/">Termux | F-Droid - Free and Open Source Android App Repository</a></li>
+</ul>
+<h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><ul>
+<li>termux-setup-storage 获取存储权限</li>
+<li>pkg install &lt;软件名&gt;     安装软件</li>
+<li>pkg upgrade                 更新软件</li>
+<li>termux-change-repo   切换源</li>
 </ul>
 <h2 id="apktool反编译命令"><a href="#apktool反编译命令" class="headerlink" title="apktool反编译命令"></a>apktool反编译命令</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">apktool目录进入命令行</span><br><span class="line">apktool.bat d 反编译文件</span><br></pre></td></tr></table></figure>
 
@@ -669,34 +905,6 @@
 </ul>
 </li>
 </ol>
-<h2 id="frida（hook框架）安装配置及基本使用"><a href="#frida（hook框架）安装配置及基本使用" class="headerlink" title="frida（hook框架）安装配置及基本使用"></a>frida（hook框架）安装配置及基本使用</h2><h4 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h4><ul>
-<li>pip install frida &gt; 核心</li>
-<li>pip install frida-tools &gt; 工具包</li>
-<li>frida –version &gt; 版本检测</li>
-<li><a href="https://github.com/frida/frida/releases">Releases · frida&#x2F;frida (github.com)</a>安装对应版本的server，如server-android-x86</li>
-<li>将刚才下载的server文件上传到安卓手机中</li>
-</ul>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ul>
-<li><p>在手机中给server文件可执行权限并运行</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">chmod +x 文件</span><br><span class="line">./文件</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在cmd中执行命令</p>
-<ul>
-<li>frida-ps -Ua              列出当前正在运行的程序</li>
-<li>frida -U -f 包名          hook对应程序</li>
-</ul>
-</li>
-</ul>
-<h3 id="Objection配置使用"><a href="#Objection配置使用" class="headerlink" title="Objection配置使用"></a>Objection配置使用</h3><ul>
-<li>基于frida框架的一个自动化脚本集成</li>
-<li>安装：pip3 install objection</li>
-</ul>
-<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><ul>
-<li>Objection -g 包名&#x2F;PID explore                           注入app进程</li>
-<li>android root disable                                           绕过root检测</li>
-<li>android proxy set <sp address> <port>    设置代理</li>
-<li>android sslpinning disable                                绕过证书固定</li>
-</ul>
 <h3 id="root检测绕过"><a href="#root检测绕过" class="headerlink" title="root检测绕过"></a>root检测绕过</h3><ol>
 <li><p>静态反编译，找到checkroot部分，对返回值进行修改，如eqz–&gt;nez，然后进行编译重新签名生成apk</p>
 </li>
@@ -2023,6 +2231,16 @@
 </ul>
 <h2 id="另外一个世界"><a href="#另外一个世界" class="headerlink" title="另外一个世界"></a>另外一个世界</h2><ul>
 <li>010打开发现01串，转为acsii</li>
+</ul>
+<h2 id="FLAG"><a href="#FLAG" class="headerlink" title="FLAG"></a>FLAG</h2><ul>
+<li>LSB rgb勾选保存为zip</li>
+<li>linux运行elf文件</li>
+</ul>
+<h2 id="神秘龙卷风"><a href="#神秘龙卷风" class="headerlink" title="神秘龙卷风"></a>神秘龙卷风</h2><ul>
+<li>爆破，brainfuck</li>
+</ul>
+<h2 id="假如给我三天光明"><a href="#假如给我三天光明" class="headerlink" title="假如给我三天光明"></a>假如给我三天光明</h2><ul>
+<li>盲文解密压缩包，摩斯密码音频</li>
 </ul>]]></content>
       <categories>
         <category>CTF题解</category>
