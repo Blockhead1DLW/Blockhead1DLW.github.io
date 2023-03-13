@@ -20,17 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","Pisces | Gemini":200,"width":200,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="逐渐魔化的CTF逆向手">
-<meta property="og:type" content="website">
-<meta property="og:title" content="逆向光点">
-<meta property="og:url" content="http://example.com/archives/2022/page/3/index.html">
+  <meta name="description" content="主要是工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kali-linux常用指令汇总">
+<meta property="og:url" content="http://example.com/2023/03/13/linux/index.html">
 <meta property="og:site_name" content="逆向光点">
-<meta property="og:description" content="逐渐魔化的CTF逆向手">
+<meta property="og:description" content="主要是工具">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-13T10:37:56.761Z">
+<meta property="article:modified_time" content="2023-03-13T10:38:56.392Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/archives/2022/page/3/">
+<link rel="canonical" href="http://example.com/2023/03/13/linux/">
 
 
 <script id="page-configurations">
@@ -38,12 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | 逆向光点</title>
+  <title>kali-linux常用指令汇总 | 逆向光点</title>
   
 
 
@@ -176,79 +178,176 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/13/linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="WoodenmanDu">
+      <meta itemprop="description" content="逐渐魔化的CTF逆向手">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆向光点">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          kali-linux常用指令汇总
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-03-13 18:37:56 / 修改时间：18:38:56" itemprop="dateCreated datePublished" datetime="2023-03-13T18:37:56+08:00">2023-03-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF%E2%80%94%E2%80%94%E2%80%94%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">CTF———知识点</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 30 篇日志。 继续努力。</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/03/13/linux/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/03/13/linux/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+        <ul>
+<li>主要是工具<!-- less --></li>
+</ul>
+<h3 id="linux指令"><a href="#linux指令" class="headerlink" title="linux指令"></a>linux指令</h3><ul>
+<li><p>file，查看文件类型</p>
+</li>
+<li><p>head，查看文件内容</p>
+</li>
+<li><p>ldd，查看文件依赖</p>
+</li>
+<li><p>xxd，十六进制转储工具</p>
+<ul>
+<li>xxd -c 32：每行显示32字节</li>
+<li>xxb -b：二进制显示</li>
+<li>-l：指定转储长度</li>
+</ul>
+</li>
+<li><p>dd，同转储工具，容易造成文件覆盖</p>
+</li>
+<li><p>readelf，elf查看解析</p>
+<ul>
+<li>readelf -h：查看elf头</li>
+<li>readelf -s：查看符号表</li>
+</ul>
+</li>
+<li><p>nm，文件符号解析</p>
+<ul>
+<li>nm -D：解析动态·符号表</li>
+</ul>
+</li>
+<li><p>c++filt，符号解析（传入参数为要解析的函数）</p>
+</li>
+<li><p>strings，查看字符串</p>
+<ul>
+<li>-n：指定最小字符长度</li>
+<li>-d：只输出data段字符串</li>
+</ul>
+</li>
+<li><p>strace，显示文件执行时的系统调用</p>
+<ul>
+<li>strace -p pid：附加到pid进程</li>
+</ul>
+</li>
+<li><p>ltrace，显示文件执行时的库文件调用</p>
+</li>
+</ul>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
+        
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-09-06T21:20:23+08:00"
-              content="2022-09-06">
-          09-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/09/06/Base64/" itemprop="url">
-            <span itemprop="name">Base64编码</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-09-06T14:18:52+08:00"
-              content="2022-09-06">
-          09-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/09/06/Affine/" itemprop="url">
-            <span itemprop="name">仿射密码(单表加密)</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>WoodenmanDu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/03/13/linux/" title="kali-linux常用指令汇总">http://example.com/2023/03/13/linux/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
 
 
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/03/10/GFSJ-Re/" rel="prev" title="攻防世界逆向题目分析">
+      <i class="fa fa-chevron-left"></i> 攻防世界逆向题目分析
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-  </div>
+      </footer>
+    
+  </article>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2022/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/2022/">1</a><a class="page-number" href="/archives/2022/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -295,6 +394,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#linux%E6%8C%87%E4%BB%A4"><span class="nav-text">linux指令</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
