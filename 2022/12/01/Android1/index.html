@@ -28,7 +28,7 @@
 <meta property="og:description" content="安卓结构目录体系">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-01T13:12:57.999Z">
-<meta property="article:modified_time" content="2023-03-10T03:30:52.094Z">
+<meta property="article:modified_time" content="2023-03-30T07:48:45.857Z">
 <meta property="article:author" content="WoodenmanDu">
 <meta name="twitter:card" content="summary">
 
@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-10 11:30:52" itemprop="dateModified" datetime="2023-03-10T11:30:52+08:00">2023-03-10</time>
+                <time title="修改时间：2023-03-30 15:48:45" itemprop="dateModified" datetime="2023-03-30T15:48:45+08:00">2023-03-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -344,13 +344,33 @@
 <h2 id="Android打包流程"><a href="#Android打包流程" class="headerlink" title="Android打包流程"></a>Android打包流程</h2><h2 id="Android安装流程"><a href="#Android安装流程" class="headerlink" title="Android安装流程"></a>Android安装流程</h2><ul>
 <li>复制APk安装包到data&#x2F;app目录下，解压扫描安装包，把dex文件保存到dalvik-cache目录，并在data&#x2F;data目录创建对应的应用数据。（AndroidManifest.xml）</li>
 </ul>
-<h2 id="adb基本使用"><a href="#adb基本使用" class="headerlink" title="adb基本使用"></a>adb基本使用</h2><ul>
+<h2 id="arm流水线"><a href="#arm流水线" class="headerlink" title="arm流水线"></a>arm流水线</h2><ul>
+<li>PC：程序计数器。永远指向取指地址</li>
+<li>IF：取指。同时确定下一条指令地址（指针指向下一条指令）</li>
+<li>ID：译码。同时给出即将使用的寄存器，或者让立即数进行拓展，亦或者是给出转移目的寄存器与转移条件（转移指令）</li>
+<li>EX：执行。</li>
+<li>MEM：访存。若为load&#x2F;store指令，这个阶段就要访问存储器。另外，在这个阶段还要判定是否有异常要处理，如果有，那么就清除流水线，然后转移到异常处理例程入口地址处继续执行</li>
+<li>WB：回写。将运算结果保存到目标寄存器</li>
+</ul>
+<h4 id="三级流水线"><a href="#三级流水线" class="headerlink" title="三级流水线"></a>三级流水线</h4><ul>
+<li>取指–&gt;译码–&gt;执行</li>
+<li>pc–&gt;pc-4–&gt;pc-8     (arm7)</li>
+</ul>
+<h4 id="五级流水线"><a href="#五级流水线" class="headerlink" title="五级流水线"></a>五级流水线</h4><ul>
+<li>取指–&gt;译码–&gt;执行–&gt;访存–&gt;回写       (arm9)</li>
+</ul>
+<h4 id="Notice"><a href="#Notice" class="headerlink" title="Notice"></a>Notice</h4><ul>
+<li>我觉得需要强调的一个点是理论和实践是不一样的。不一定所有指令都要经历流水线的每个过程</li>
+<li>具体参考文章：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/438259856">CPU设计—五级流水线 - 知乎 (zhihu.com)</a></li>
+</ul>
+<h2 id="ADB"><a href="#ADB" class="headerlink" title="ADB"></a>ADB</h2><ul>
 <li>adb devices                   列出当前安卓设备</li>
 <li>adb shell                        进入安卓linux命令行</li>
 <li>adb push                       上传</li>
 <li>adb pull                         下载</li>
 <li>adb connect                  ip连接设备</li>
 <li>adb kill-server               断开连接</li>
+<li>adb forward tcp:23946 tcp:23946                  端口转移到本地</li>
 <li>adb shell dumpsys activity top                        查看顶层页面信息</li>
 <li>adb shell dbinfo                                                 查看app使用的数据库信息</li>
 <li>adb shell screencap -p [path]                          截屏</li>
@@ -362,10 +382,30 @@
 <li>下载地址：<a target="_blank" rel="noopener" href="https://f-droid.org/packages/com.termux/">Termux | F-Droid - Free and Open Source Android App Repository</a></li>
 </ul>
 <h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><ul>
-<li>termux-setup-storage 获取存储权限</li>
-<li>pkg install &lt;软件名&gt;     安装软件</li>
-<li>pkg upgrade                 更新软件</li>
-<li>termux-change-repo   切换源</li>
+<li><p>termux-setup-storage 获取存储权限</p>
+</li>
+<li><p>pkg install &lt;软件名&gt;     安装软件</p>
+</li>
+<li><p>pkg upgrade                 更新软件</p>
+<p>termux-change-repo   切换源</p>
+</li>
+</ul>
+<h2 id="静态插桩"><a href="#静态插桩" class="headerlink" title="静态插桩"></a>静态插桩</h2><ul>
+<li>找到函数入口点</li>
+</ul>
+<h2 id="敏感信息"><a href="#敏感信息" class="headerlink" title="敏感信息"></a>敏感信息</h2><h4 id="动态注册"><a href="#动态注册" class="headerlink" title="动态注册"></a>动态注册</h4><ul>
+<li>Jni_OnLoad</li>
+</ul>
+<h4 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h4><ul>
+<li>getPackageManager</li>
+<li>getPackageInfo</li>
+<li>signatures</li>
+</ul>
+<h4 id="模拟器检测"><a href="#模拟器检测" class="headerlink" title="模拟器检测"></a>模拟器检测</h4><ul>
+<li>checkcpuinfo</li>
+</ul>
+<h4 id="反调试"><a href="#反调试" class="headerlink" title="反调试"></a>反调试</h4><ul>
+<li>android-server</li>
 </ul>
 <h2 id="apktool反编译命令"><a href="#apktool反编译命令" class="headerlink" title="apktool反编译命令"></a>apktool反编译命令</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apktool目录进入命令行</span><br><span class="line">apktool.bat d 反编译文件</span><br></pre></td></tr></table></figure>
 
@@ -389,27 +429,6 @@
 </ul>
 </li>
 </ol>
-<h3 id="root检测绕过"><a href="#root检测绕过" class="headerlink" title="root检测绕过"></a>root检测绕过</h3><ol>
-<li><p>静态反编译，找到checkroot部分，对返回值进行修改，如eqz–&gt;nez，然后进行编译重新签名生成apk</p>
-</li>
-<li><p>如果apk进行了签名校验，那么静态方法将无法实现，这时候可以用firda动态绕过。同样先找到checkroot，然后写对应脚本进行hook</p>
-<ul>
-<li><p>frida -U -f 包名 -l 对应脚本</p>
-</li>
-<li><pre><code class="javascript">Java.perform(function()&#123;
-    var hook = Java.use(&#39;对应目录&#39;);
-    hook.checkRootPathSU.implementation = function () &#123;
-        return false;
-    &#125;
-&#125;)
-</code></pre>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="签名绕过"><a href="#签名绕过" class="headerlink" title="签名绕过"></a>签名绕过</h3><ul>
-<li>frida hook</li>
-</ul>
     </div>
 
     
@@ -507,7 +526,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%8D%93%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-text">安卓系统架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apk%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text">apk目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="nav-text">Android四大组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B"><span class="nav-text">Android打包流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B"><span class="nav-text">Android安装流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#adb%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">adb基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#termux%E4%BD%BF%E7%94%A8"><span class="nav-text">termux使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-text">命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apktool%E5%8F%8D%E7%BC%96%E8%AF%91%E5%91%BD%E4%BB%A4"><span class="nav-text">apktool反编译命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dex2-jdgui%E5%8F%8D%E7%BC%96%E8%AF%91"><span class="nav-text">dex2+jdgui反编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#root%E6%A3%80%E6%B5%8B%E7%BB%95%E8%BF%87"><span class="nav-text">root检测绕过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%BE%E5%90%8D%E7%BB%95%E8%BF%87"><span class="nav-text">签名绕过</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%8D%93%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-text">安卓系统架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apk%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text">apk目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="nav-text">Android四大组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B"><span class="nav-text">Android打包流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B"><span class="nav-text">Android安装流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#arm%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-text">arm流水线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-text">三级流水线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-text">五级流水线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Notice"><span class="nav-text">Notice</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ADB"><span class="nav-text">ADB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#termux%E4%BD%BF%E7%94%A8"><span class="nav-text">termux使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-text">命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E6%8F%92%E6%A1%A9"><span class="nav-text">静态插桩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF"><span class="nav-text">敏感信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C"><span class="nav-text">动态注册</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%BE%E5%90%8D"><span class="nav-text">签名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%A3%80%E6%B5%8B"><span class="nav-text">模拟器检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E8%B0%83%E8%AF%95"><span class="nav-text">反调试</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apktool%E5%8F%8D%E7%BC%96%E8%AF%91%E5%91%BD%E4%BB%A4"><span class="nav-text">apktool反编译命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dex2-jdgui%E5%8F%8D%E7%BC%96%E8%AF%91"><span class="nav-text">dex2+jdgui反编译</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
